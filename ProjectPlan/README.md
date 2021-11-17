@@ -63,8 +63,3 @@
 ![011](./SoccerInfo_Plan.011.jpeg)
 
 ---
-
-![012](./SoccerInfo_Plan.012.jpeg)
-
-
----
