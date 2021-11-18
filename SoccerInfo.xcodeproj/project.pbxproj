@@ -9,21 +9,45 @@
 /* Begin PBXBuildFile section */
 		894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF769274250B600E71C09 /* AppDelegate.swift */; };
 		894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF76B274250B600E71C09 /* SceneDelegate.swift */; };
-		894BF76E274250B600E71C09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF76D274250B600E71C09 /* ViewController.swift */; };
+		894BF76E274250B600E71C09 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF76D274250B600E71C09 /* MainViewController.swift */; };
 		894BF771274250B600E71C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF76F274250B600E71C09 /* Main.storyboard */; };
 		894BF773274250B700E71C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 894BF772274250B700E71C09 /* Assets.xcassets */; };
 		894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF774274250B700E71C09 /* LaunchScreen.storyboard */; };
+		89740BE5274649760033AD2C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BE4274649760033AD2C /* Alamofire */; };
+		89740BED274649AB0033AD2C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEC274649AB0033AD2C /* SideMenu */; };
+		89740BF027464A040033AD2C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEF27464A040033AD2C /* Realm */; };
+		89740BF227464A040033AD2C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BF127464A040033AD2C /* RealmSwift */; };
+		89740BFF27464B510033AD2C /* SchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740BFD27464B510033AD2C /* SchedulesViewController.swift */; };
+		89740C0227464B6D0033AD2C /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0127464B6D0033AD2C /* EventsViewController.swift */; };
+		89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0327464B7F0033AD2C /* StandingsViewController.swift */; };
+		89740C0627464B880033AD2C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0527464B880033AD2C /* NewsViewController.swift */; };
+		89740C0A27464BE30033AD2C /* SquadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0927464BE30033AD2C /* SquadsViewController.swift */; };
+		89740C0C27464BF20033AD2C /* Schedules.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C0B27464BF20033AD2C /* Schedules.storyboard */; };
+		89740C0E27464BFD0033AD2C /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C0D27464BFD0033AD2C /* Events.storyboard */; };
+		89740C1027464D140033AD2C /* Standings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C0F27464D140033AD2C /* Standings.storyboard */; };
+		89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1127464D3C0033AD2C /* Squads.storyboard */; };
+		89740C1427464D430033AD2C /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1327464D430033AD2C /* News.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		894BF766274250B600E71C09 /* SoccerInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoccerInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894BF769274250B600E71C09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		894BF76B274250B600E71C09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		894BF76D274250B600E71C09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		894BF76D274250B600E71C09 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		894BF770274250B600E71C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		894BF772274250B700E71C09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		894BF775274250B700E71C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		894BF777274250B700E71C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89740BFD27464B510033AD2C /* SchedulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesViewController.swift; sourceTree = "<group>"; };
+		89740C0127464B6D0033AD2C /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		89740C0327464B7F0033AD2C /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
+		89740C0527464B880033AD2C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		89740C0927464BE30033AD2C /* SquadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadsViewController.swift; sourceTree = "<group>"; };
+		89740C0B27464BF20033AD2C /* Schedules.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedules.storyboard; sourceTree = "<group>"; };
+		89740C0D27464BFD0033AD2C /* Events.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
+		89740C0F27464D140033AD2C /* Standings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Standings.storyboard; sourceTree = "<group>"; };
+		89740C1127464D3C0033AD2C /* Squads.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Squads.storyboard; sourceTree = "<group>"; };
+		89740C1327464D430033AD2C /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +55,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89740BF227464A040033AD2C /* RealmSwift in Frameworks */,
+				89740BF027464A040033AD2C /* Realm in Frameworks */,
+				89740BED274649AB0033AD2C /* SideMenu in Frameworks */,
+				89740BE5274649760033AD2C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +84,121 @@
 		894BF768274250B600E71C09 /* SoccerInfo */ = {
 			isa = PBXGroup;
 			children = (
-				894BF769274250B600E71C09 /* AppDelegate.swift */,
-				894BF76B274250B600E71C09 /* SceneDelegate.swift */,
-				894BF76D274250B600E71C09 /* ViewController.swift */,
-				894BF76F274250B600E71C09 /* Main.storyboard */,
-				894BF772274250B700E71C09 /* Assets.xcassets */,
-				894BF774274250B700E71C09 /* LaunchScreen.storyboard */,
+				89740BF627464A370033AD2C /* Resources */,
+				89740BF527464A300033AD2C /* Managers */,
+				89740BF427464A1A0033AD2C /* Models */,
+				89740BF327464A140033AD2C /* Views */,
 				894BF777274250B700E71C09 /* Info.plist */,
 			);
 			path = SoccerInfo;
+			sourceTree = "<group>";
+		};
+		89740BF327464A140033AD2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				89740BF727464A7E0033AD2C /* Main */,
+				89740BF827464A900033AD2C /* Fixtures */,
+				89740BF927464A9C0033AD2C /* Ranks */,
+				89740BFA27464AA70033AD2C /* News */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		89740BF427464A1A0033AD2C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		89740BF527464A300033AD2C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		89740BF627464A370033AD2C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				894BF769274250B600E71C09 /* AppDelegate.swift */,
+				894BF76B274250B600E71C09 /* SceneDelegate.swift */,
+				894BF772274250B700E71C09 /* Assets.xcassets */,
+				894BF774274250B700E71C09 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		89740BF727464A7E0033AD2C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				894BF76D274250B600E71C09 /* MainViewController.swift */,
+				894BF76F274250B600E71C09 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		89740BF827464A900033AD2C /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				89740BFB27464AE30033AD2C /* Schedules */,
+				89740BFC27464AF60033AD2C /* Events */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		89740BF927464A9C0033AD2C /* Ranks */ = {
+			isa = PBXGroup;
+			children = (
+				89740C0827464BD40033AD2C /* Standings */,
+				89740C0727464B910033AD2C /* Squads */,
+			);
+			path = Ranks;
+			sourceTree = "<group>";
+		};
+		89740BFA27464AA70033AD2C /* News */ = {
+			isa = PBXGroup;
+			children = (
+				89740C0527464B880033AD2C /* NewsViewController.swift */,
+				89740C1327464D430033AD2C /* News.storyboard */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		89740BFB27464AE30033AD2C /* Schedules */ = {
+			isa = PBXGroup;
+			children = (
+				89740BFD27464B510033AD2C /* SchedulesViewController.swift */,
+				89740C0B27464BF20033AD2C /* Schedules.storyboard */,
+			);
+			path = Schedules;
+			sourceTree = "<group>";
+		};
+		89740BFC27464AF60033AD2C /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				89740C0127464B6D0033AD2C /* EventsViewController.swift */,
+				89740C0D27464BFD0033AD2C /* Events.storyboard */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		89740C0727464B910033AD2C /* Squads */ = {
+			isa = PBXGroup;
+			children = (
+				89740C0927464BE30033AD2C /* SquadsViewController.swift */,
+				89740C1127464D3C0033AD2C /* Squads.storyboard */,
+			);
+			path = Squads;
+			sourceTree = "<group>";
+		};
+		89740C0827464BD40033AD2C /* Standings */ = {
+			isa = PBXGroup;
+			children = (
+				89740C0327464B7F0033AD2C /* StandingsViewController.swift */,
+				89740C0F27464D140033AD2C /* Standings.storyboard */,
+			);
+			path = Standings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +217,12 @@
 			dependencies = (
 			);
 			name = SoccerInfo;
+			packageProductDependencies = (
+				89740BE4274649760033AD2C /* Alamofire */,
+				89740BEC274649AB0033AD2C /* SideMenu */,
+				89740BEF27464A040033AD2C /* Realm */,
+				89740BF127464A040033AD2C /* RealmSwift */,
+			);
 			productName = SoccerInfo;
 			productReference = 894BF766274250B600E71C09 /* SoccerInfo.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +251,11 @@
 				Base,
 			);
 			mainGroup = 894BF75D274250B600E71C09;
+			packageReferences = (
+				89740BE3274649760033AD2C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				89740BEB274649AB0033AD2C /* XCRemoteSwiftPackageReference "SideMenu" */,
+				89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 894BF767274250B600E71C09 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,9 +270,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89740C1027464D140033AD2C /* Standings.storyboard in Resources */,
 				894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */,
 				894BF773274250B700E71C09 /* Assets.xcassets in Resources */,
+				89740C1427464D430033AD2C /* News.storyboard in Resources */,
+				89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */,
 				894BF771274250B600E71C09 /* Main.storyboard in Resources */,
+				89740C0C27464BF20033AD2C /* Schedules.storyboard in Resources */,
+				89740C0E27464BFD0033AD2C /* Events.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +288,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				894BF76E274250B600E71C09 /* ViewController.swift in Sources */,
+				894BF76E274250B600E71C09 /* MainViewController.swift in Sources */,
 				894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */,
+				89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */,
 				894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */,
+				89740C0627464B880033AD2C /* NewsViewController.swift in Sources */,
+				89740C0A27464BE30033AD2C /* SquadsViewController.swift in Sources */,
+				89740BFF27464B510033AD2C /* SchedulesViewController.swift in Sources */,
+				89740C0227464B6D0033AD2C /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +444,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -317,6 +473,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -360,6 +517,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		89740BE3274649760033AD2C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		89740BEB274649AB0033AD2C /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+		89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.18.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		89740BE4274649760033AD2C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89740BE3274649760033AD2C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		89740BEC274649AB0033AD2C /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89740BEB274649AB0033AD2C /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+		89740BEF27464A040033AD2C /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		89740BF127464A040033AD2C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 894BF75E274250B600E71C09 /* Project object */;
 }
