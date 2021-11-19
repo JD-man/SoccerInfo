@@ -9,21 +9,26 @@ import UIKit
 
 class StandingsViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .yellow
+        viewConfig()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func viewConfig() {
+        
     }
-    */
-
+    
+//    func fetchData() {
+//        guard let filePath = Bundle.main.path(forResource: "Standing", ofType: "json"),
+//              let jsonString = try? String(contentsOfFile: filePath) else {
+//                  return
+//              }
+//              
+//        let standings = try? JSONDecoder().decode(StandingResponse.self, from: jsonString.data(using: .utf8)!)
+//        print(standings)
+//    }
 }
