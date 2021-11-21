@@ -30,7 +30,12 @@ class MainTabBarController: UITabBarController {
               
         do {
             let standingData = try JSONDecoder().decode(StandingData.self, from: jsonString.data(using: .utf8)!)
-            let standings = standingData.response[0].league.standings[0]
+            let league = standingData.response[0].league
+            
+            let leagueID = league.id
+            let season = league.season
+            let standings = league.standings[0]
+            
             
             standings.forEach { print($0.team.name) }
             
@@ -45,11 +50,38 @@ class MainTabBarController: UITabBarController {
                 list.append($0)
             }
             
-            let table = StandingsTable(data: list)
-            let localRealm = try! Realm()            
-            try! localRealm.write {
-                localRealm.add(table, update: .modified)
-            }            
+            let table = StandingsTable(leagueID: leagueID,
+                                       season: season,
+                                       standingData: list)
+            
+            let app = App(id: APIComponents.realmAppID)
+
+            app.login(credentials: .anonymous) { result in
+                switch result {
+                case .success(let user):
+                    let config = user.configuration(partitionValue: "\(leagueID)")
+                    Realm.asyncOpen(configuration: config) { result in
+                        switch result {
+                        case .success(let realm):
+                            print(realm.configuration.fileURL)
+                            try! realm.write({
+                                realm.add(table)
+                            })
+                            print(user.logOut())
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            
+//            let localRealm = try! Realm()
+//            print(localRealm.configuration.fileURL)
+//            try! localRealm.write {
+//                localRealm.add(table, update: .modified)
+//            }
         }
         catch {
             print(error)

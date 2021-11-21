@@ -8,19 +8,96 @@
 import Foundation
 import RealmSwift
 
+/*
+ {
+    "title": "StandingsTable",
+    "bsonType": "object",
+    "required": [
+      "_id",
+      "_partition",
+      "season",
+      "updateDate"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "_partition": {
+        "bsonType": "string"
+      },
+      "season": {
+        "bsonType": "int"
+      },
+      "standingData": {
+        "bsonType": "array",
+        "items": {
+          "title": "StandingsRealmData",
+          "bsonType": "object",
+          "required": [
+            "teamName",
+            "teamLogo",
+            "teamID",
+            "played",
+            "points",
+            "win",
+            "draw",
+            "lose"
+          ],
+          "properties": {
+              "teamName": {
+                  "bsonType": "string"
+              },
+              "teamLogo": {
+                  "bsonType": "string"
+              },
+              "teamID": {
+                  "bsonType": "int"
+              },
+              "played": {
+                  "bsonType": "int"
+              },
+              "points": {
+                  "bsonType": "int"
+              },
+              "win": {
+                  "bsonType": "int"
+              },
+              "draw": {
+                  "bsonType": "int"
+              },
+              "lose": {
+                  "bsonType": "int"
+              }
+          }
+        }
+      },
+      "updateDate": {
+        "bsonType": "date"
+      }
+    }
+  }
+ */
+
+
 // Realm Data
 
 class StandingsTable: Object {
-    @Persisted(primaryKey: true) var id = ObjectId()
-    @Persisted var data: List<StandingsRealmData>
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var _partition: String
+    @Persisted var season: Int
+    @Persisted var standingData: List<StandingsRealmData>
+    @Persisted var updateDate = Date()
 
-    convenience init(data: List<StandingsRealmData>) {
+    convenience init(leagueID: Int, season: Int, standingData: List<StandingsRealmData>) {
         self.init()
-        self.data = data
+        self._partition = "\(leagueID)"
+        self.season = season
+        self.standingData = standingData
     }
 }
 
-class StandingsRealmData: Object {
+class StandingsRealmData: EmbeddedObject {
+    //@Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var teamName: String
     @Persisted var teamLogo: String
     @Persisted var teamID: Int
@@ -54,6 +131,8 @@ struct StandingResponse: Codable {
 }
 
 struct StandingLeague: Codable {
+    var id: Int
+    var season: Int
     var standings: [[Standings]]
 }
 
@@ -77,3 +156,74 @@ struct StandingStatus: Codable {
     var draw: Int
     var lose: Int
 }
+
+
+/*
+ {
+   "title": "StandingsTable",
+   "bsonType": "object",
+   "required": [
+     "_id",
+     "_partition",
+     "season",
+     "updateDate"
+   ],
+   "properties": {
+     "_id": {
+       "bsonType": "objectId"
+     },
+     "_partition": {
+       "bsonType": "string"
+     },
+     "season": {
+       "bsonType": "long"
+     },
+     "standingData": {
+       "bsonType": "array",
+       "items": {
+         "title": "StandingsRealmData",
+         "bsonType": "object",
+         "required": [
+           "teamName",
+           "teamLogo",
+           "teamID",
+           "played",
+           "points",
+           "win",
+           "draw",
+           "lose"
+         ],
+         "properties": {
+           "teamName": {
+             "bsonType": "string"
+           },
+           "teamLogo": {
+             "bsonType": "string"
+           },
+           "teamID": {
+             "bsonType": "long"
+           },
+           "played": {
+             "bsonType": "long"
+           },
+           "points": {
+             "bsonType": "long"
+           },
+           "win": {
+             "bsonType": "long"
+           },
+           "draw": {
+             "bsonType": "long"
+           },
+           "lose": {
+             "bsonType": "long"
+           }
+         }
+       }
+     },
+     "updateDate": {
+       "bsonType": "date"
+     }
+   }
+ }
+ */
