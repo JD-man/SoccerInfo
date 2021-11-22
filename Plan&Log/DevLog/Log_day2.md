@@ -78,15 +78,56 @@
     }    
 ```
 
-## 문제점
+---
+
+## Realm User 문제
 - Local이든 Cloud든 현재 기기에 로그인이 된 유저로부터 configuration을 가져와야 한다.
 - 유저 데이터를 따로 저장하지 않기 때문에 익명 유저를 사용하려고 했었다.
 - 하지만 익명 유저는 60일 지나면 expired 되고 기존 데이터에 접근하지 못한다.
 - 그러면 이전에 저장된 Realm 파일을 삭제하는등 관리하기 힘드므로 UUID를 이용한 custom function user의 사용을 고려하고있다.
-https://docs.mongodb.com/realm/sdk/ios/examples/users/authenticate-users/#custom-function-user
+https://docs.mongodb.com/realm/sdk/ios/examples/users/authenticate-users/#custom-function-user  
+=> UIDevice의 identifierForVender를 이용해 해결  
+=> 앱 삭제 후 재설치시 새로운값을 사용하나 익명 유저를 사용하는거보다 안정적이다.
 
+## fetchRealmData 함수(3시간)
+- Generic을 사용해 하나의 함수로 여러 자료형에 적용
+- 약간 길어지긴 했지만 Local Realm에 원하는 데이터가 없는 경우 Cloud Realm을 이용하는 것까지 구현
+```swift
+    func fetchRealmData<T: Object>(table: T.Type, league: Int, completion: @escaping (Result<T, Error>) -> Void ) {
+        let app = App(id: APIComponents.realmAppID)
+        if let user = app.currentUser {
+            let configuration = user.configuration(partitionValue: "\(league)")
+            do {
+                // Local Realm Load
+                let localRealm = try Realm(configuration: configuration)
+                let objects = localRealm.objects(T.self)
+                
+                // Cloud Realm Load
+                if objects.isEmpty {
+                    Realm.asyncOpen(configuration: configuration) { result in
+                        switch result {
+                        case .success(let realm):
+                            let syncedObjects = realm.objects(T.self)
+                            completion(.success(syncedObjects.first!))
+                            print("Cloud Realm Loaded")
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                }
+                else {
+                    completion(.success(objects.first!))
+                    print("Local Realm loaded")
+                }
+                
+            }
+            catch {
+                completion(.failure(error))
+            }
+        }        
+    }    
+```
 
-
-
-
-
+### 어려웠던 부분
+- 클래스의 type과 self에 대한 이해가 부족해 시간이 걸렸다.
+- 함수를 정의할 때 매개변수 부분에 클래스의 type을 작성하고, 함수 호출시 전달인자로 self 전달한다.

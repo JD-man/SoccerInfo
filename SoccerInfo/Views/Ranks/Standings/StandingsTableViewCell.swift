@@ -7,17 +7,6 @@
 
 import UIKit
 
-/*
- teamName
- teamLogo
- teamID
- played
- points
- win
- draw
- lose
- */
-
 class StandingsTableViewCell: UITableViewCell {
     
     static let identifier = "StandingsTableViewCell"

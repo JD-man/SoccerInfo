@@ -10,6 +10,7 @@ import RealmSwift
 
 class StandingsViewController: UIViewController {
 
+    typealias standingObject = Result<StandingsTable, Error>
     @IBOutlet weak var standingsTableView: UITableView!
     
     var data: [StandingsRealmData] = [] {
@@ -21,7 +22,7 @@ class StandingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         viewConfig()
-        fetchData()
+        fetchStandingRealmData()
     }
     
     func viewConfig() {
@@ -30,85 +31,14 @@ class StandingsViewController: UIViewController {
         standingsTableView.separatorStyle = .none
     }
     
-    func fetchData() {
-        guard let filePath = Bundle.main.path(forResource: "Standing", ofType: "json"),
-              let jsonString = try? String(contentsOfFile: filePath) else {
-                  return
-              }
-
-        do {
-//            // fetch from Football - API
-//            let standingData = try JSONDecoder().decode(StandingData.self, from: jsonString.data(using: .utf8)!)
-//            let league = standingData.response[0].league
-//
-//            let leagueID = league.id
-//            let season = league.season
-//            let standings = league.standings[0]
-//
-//            let realmData = standings.map {
-//                StandingsRealmData(standings: $0)
-//            }
-//
-//            data = realmData
-
-            print("============================================")
-            
-            let app = App(id: APIComponents.realmAppID)
-//            app.login(credentials: .anonymous) { result in
-//                switch result {
-//                case .success(let user):
-//                    print(user.id)
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-            
-            // fetch from Local Realm
-            let user = app.currentUser!
-            let config = user.configuration(partitionValue: "\(39)")
-            
-            let localRealm = try! Realm(configuration: config)
-            let realmData = try! localRealm.objects(StandingsTable.self).first!
-            data = Array(realmData.standingData)
-            
-            
-            // fetch from Cloud Realm
-
-//            let list = List<StandingsRealmData>()
-//            realmData.forEach {
-//                list.append($0)
-//            }
-//
-//            let table = StandingsTable(leagueID: leagueID,
-//                                       season: season,
-//                                       standingData: list)
-
-
-
-//            app.login(credentials: .anonymous) { [weak self] result in
-//                switch result {
-//                case .success(let user):
-//                    let config = user.configuration(partitionValue: "\(39)")
-//                    Realm.asyncOpen(configuration: config) { result in
-//                        switch result {
-//                        case .success(let realm):
-//                            let standingData = try! realm.objects(StandingsTable.self).first!
-//                            self?.data = Array(standingData.standingData)
-//                            print(realm.configuration.fileURL)
-////                            try! realm.write({
-////                                realm.add(table)
-////                            })
-//                        case .failure(let error):
-//                            print(error)
-//                        }
-//                    }
-//                case .failure(let error):
-//                    print(error)
-//                }
-//            }
-        }
-        catch {
-            print(error)
+    func fetchStandingRealmData() {
+        fetchRealmData(table: StandingsTable.self, league: 39) { [weak self] (result: standingObject) in
+            switch result {
+            case .success(let object):
+                self?.data = Array(object.standingData)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }
