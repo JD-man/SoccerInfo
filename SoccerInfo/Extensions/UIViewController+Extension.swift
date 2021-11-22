@@ -11,26 +11,29 @@ import Alamofire
 
 //MARK: - extension with realm
 extension UIViewController {
-    func fetchRealmData<T: Object>(table: FootballData, league: Int, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
+    // T is determined when ViewController declare typealias
+    func fetchRealmData<T: RealmTable>(league: Int, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else { return }
         let configuration = user.configuration(partitionValue: "\(league)")
         do {
             // Local Realm Load
             let localRealm = try Realm(configuration: configuration)
-            let objects = localRealm.objects(table.realmTable)
+            let objects = localRealm.objects(T.self).where {
+                $0.season == 2021
+            }
             
             // Cloud Realm Load
             if objects.isEmpty {
                 Realm.asyncOpen(configuration: configuration) { result in
                     switch result {
                     case .success(let realm):
-                        let syncedObjects = realm.objects(table.realmTable)
+                        let syncedObjects = realm.objects(T.self)
                         if syncedObjects.isEmpty {
                             completion(.failure(.emptyData))
                         }
                         else {
-                            completion(.success(syncedObjects.first! as! T))
+                            completion(.success(syncedObjects.first!))
                         }
                         print("Cloud Realm Loaded")
                     case .failure(let error):
@@ -40,7 +43,7 @@ extension UIViewController {
                 }
             }
             else {
-                completion(.success(objects.first! as! T))
+                completion(.success(objects.first!))
                 print("Local Realm loaded")
             }
         }

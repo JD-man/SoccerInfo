@@ -8,9 +8,13 @@
 import Foundation
 import RealmSwift
 
-// Realm Data
+protocol RealmTable: Object {
+    var season: Int { get }
+    var updateDate: Date { get set}
+}
 
-class StandingsTable: Object {
+// Realm Data
+class StandingsTable: Object, RealmTable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String
     @Persisted var season: Int

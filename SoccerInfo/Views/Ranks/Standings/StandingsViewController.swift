@@ -32,7 +32,7 @@ class StandingsViewController: UIViewController {
     }
     
     func fetchStandingRealmData() {
-        fetchRealmData(table: .standings, league: 39) { [weak self] (result: standingObject) in
+        fetchRealmData(league: 39) { [weak self] (result: standingObject) in
             switch result {
             case .success(let object):                
                 self?.data = Array(object.standingData)
