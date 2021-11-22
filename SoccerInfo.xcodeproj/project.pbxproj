@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		891345DD274A790E00FACD61 /* APIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891345DC274A790E00FACD61 /* APIComponents.swift */; };
+		8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */; };
+		8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */; };
+		8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */; };
 		894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF769274250B600E71C09 /* AppDelegate.swift */; };
 		894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF76B274250B600E71C09 /* SceneDelegate.swift */; };
 		894BF771274250B600E71C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF76F274250B600E71C09 /* Main.storyboard */; };
@@ -37,6 +40,9 @@
 
 /* Begin PBXFileReference section */
 		891345DC274A790E00FACD61 /* APIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIComponents.swift; sourceTree = "<group>"; };
+		8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsTableViewCell.swift; sourceTree = "<group>"; };
+		8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StandingSectionHeaderView.xib; sourceTree = "<group>"; };
+		8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingSectionHeaderView.swift; sourceTree = "<group>"; };
 		894BF766274250B600E71C09 /* SoccerInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoccerInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894BF769274250B600E71C09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		894BF76B274250B600E71C09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +83,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8913C82A274B5CF0000CCC44 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				89740C0F27464D140033AD2C /* Standings.storyboard */,
+				8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		894BF75D274250B600E71C09 = {
 			isa = PBXGroup;
 			children = (
@@ -213,8 +228,10 @@
 		89740C0827464BD40033AD2C /* Standings */ = {
 			isa = PBXGroup;
 			children = (
+				8913C82A274B5CF0000CCC44 /* Storyboard */,
 				89740C0327464B7F0033AD2C /* StandingsViewController.swift */,
-				89740C0F27464D140033AD2C /* Standings.storyboard */,
+				8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */,
+				8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */,
 			);
 			path = Standings;
 			sourceTree = "<group>";
@@ -297,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89740C1027464D140033AD2C /* Standings.storyboard in Resources */,
+				8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */,
 				894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */,
 				898A63E2274689390023426A /* Standing.json in Resources */,
 				894BF773274250B700E71C09 /* Assets.xcassets in Resources */,
@@ -320,6 +338,8 @@
 				898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */,
 				89F1ADD02747BF9400E860BB /* URLManager.swift in Sources */,
 				89F1ADD22747BFA100E860BB /* APIManager.swift in Sources */,
+				8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */,
+				8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */,
 				89F1ADD42747BFAE00E860BB /* RealmManager.swift in Sources */,
 				898A63E0274687450023426A /* StandingsResponse.swift in Sources */,
 				894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */,
@@ -482,6 +502,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -511,6 +532,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

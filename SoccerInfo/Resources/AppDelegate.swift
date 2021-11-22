@@ -9,11 +9,20 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        if #available(iOS 15.0, *) {
+            let tabbarAppearance = UITabBarAppearance()
+            tabbarAppearance.configureWithOpaqueBackground()
+            tabbarAppearance.backgroundColor = .systemBackground
+            tabbarAppearance.selectionIndicatorTintColor = .label
+            
+            UITabBar.appearance().standardAppearance = tabbarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = tabbarAppearance
+        }
+        else {
+            UITabBar.appearance().tintColor = .label
+            UITabBar.appearance().backgroundColor = .systemBackground
+        }
         return true
     }
 

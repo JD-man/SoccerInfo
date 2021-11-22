@@ -8,77 +8,6 @@
 import Foundation
 import RealmSwift
 
-/*
- {
-    "title": "StandingsTable",
-    "bsonType": "object",
-    "required": [
-      "_id",
-      "_partition",
-      "season",
-      "updateDate"
-    ],
-    "properties": {
-      "_id": {
-        "bsonType": "objectId"
-      },
-      "_partition": {
-        "bsonType": "string"
-      },
-      "season": {
-        "bsonType": "int"
-      },
-      "standingData": {
-        "bsonType": "array",
-        "items": {
-          "title": "StandingsRealmData",
-          "bsonType": "object",
-          "required": [
-            "teamName",
-            "teamLogo",
-            "teamID",
-            "played",
-            "points",
-            "win",
-            "draw",
-            "lose"
-          ],
-          "properties": {
-              "teamName": {
-                  "bsonType": "string"
-              },
-              "teamLogo": {
-                  "bsonType": "string"
-              },
-              "teamID": {
-                  "bsonType": "int"
-              },
-              "played": {
-                  "bsonType": "int"
-              },
-              "points": {
-                  "bsonType": "int"
-              },
-              "win": {
-                  "bsonType": "int"
-              },
-              "draw": {
-                  "bsonType": "int"
-              },
-              "lose": {
-                  "bsonType": "int"
-              }
-          }
-        }
-      },
-      "updateDate": {
-        "bsonType": "date"
-      }
-    }
-  }
- */
-
-
 // Realm Data
 
 class StandingsTable: Object {
@@ -97,7 +26,7 @@ class StandingsTable: Object {
 }
 
 class StandingsRealmData: EmbeddedObject {
-    //@Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var rank: Int
     @Persisted var teamName: String
     @Persisted var teamLogo: String
     @Persisted var teamID: Int
@@ -106,9 +35,11 @@ class StandingsRealmData: EmbeddedObject {
     @Persisted var win: Int
     @Persisted var draw: Int
     @Persisted var lose: Int
+    @Persisted var goalsDiff: Int
     
     convenience init(standings: Standings) {
         self.init()
+        self.rank = standings.rank
         self.teamName = standings.team.name
         self.teamLogo = standings.team.logo
         self.teamID = standings.team.id
@@ -117,6 +48,7 @@ class StandingsRealmData: EmbeddedObject {
         self.win = standings.all.win
         self.draw = standings.all.draw
         self.lose = standings.all.lose
+        self.goalsDiff = standings.goalsDiff
     }
 }
     
@@ -156,74 +88,3 @@ struct StandingStatus: Codable {
     var draw: Int
     var lose: Int
 }
-
-
-/*
- {
-   "title": "StandingsTable",
-   "bsonType": "object",
-   "required": [
-     "_id",
-     "_partition",
-     "season",
-     "updateDate"
-   ],
-   "properties": {
-     "_id": {
-       "bsonType": "objectId"
-     },
-     "_partition": {
-       "bsonType": "string"
-     },
-     "season": {
-       "bsonType": "long"
-     },
-     "standingData": {
-       "bsonType": "array",
-       "items": {
-         "title": "StandingsRealmData",
-         "bsonType": "object",
-         "required": [
-           "teamName",
-           "teamLogo",
-           "teamID",
-           "played",
-           "points",
-           "win",
-           "draw",
-           "lose"
-         ],
-         "properties": {
-           "teamName": {
-             "bsonType": "string"
-           },
-           "teamLogo": {
-             "bsonType": "string"
-           },
-           "teamID": {
-             "bsonType": "long"
-           },
-           "played": {
-             "bsonType": "long"
-           },
-           "points": {
-             "bsonType": "long"
-           },
-           "win": {
-             "bsonType": "long"
-           },
-           "draw": {
-             "bsonType": "long"
-           },
-           "lose": {
-             "bsonType": "long"
-           }
-         }
-       }
-     },
-     "updateDate": {
-       "bsonType": "date"
-     }
-   }
- }
- */
