@@ -31,9 +31,12 @@
 		89740C1027464D140033AD2C /* Standings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C0F27464D140033AD2C /* Standings.storyboard */; };
 		89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1127464D3C0033AD2C /* Squads.storyboard */; };
 		89740C1427464D430033AD2C /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1327464D430033AD2C /* News.storyboard */; };
-		898A63E0274687450023426A /* StandingsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63DF274687450023426A /* StandingsResponse.swift */; };
+		898A63E0274687450023426A /* StandingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63DF274687450023426A /* StandingsModel.swift */; };
 		898A63E2274689390023426A /* Standing.json in Resources */ = {isa = PBXBuildFile; fileRef = 898A63E1274689390023426A /* Standing.json */; };
 		898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63E5274690CE0023426A /* MainTabBarController.swift */; };
+		89DB128E274BE009009E8888 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB128D274BE009009E8888 /* DataTypes.swift */; };
+		89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB128F274BE125009E8888 /* FixturesModel.swift */; };
+		89DB1292274BE1C5009E8888 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB1291274BE1C5009E8888 /* Errors.swift */; };
 		89F1ADD02747BF9400E860BB /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ADCF2747BF9400E860BB /* URLManager.swift */; };
 		89F1ADD22747BFA100E860BB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ADD12747BFA100E860BB /* APIManager.swift */; };
 		89F1ADD42747BFAE00E860BB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ADD32747BFAE00E860BB /* RealmManager.swift */; };
@@ -62,9 +65,12 @@
 		89740C0F27464D140033AD2C /* Standings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Standings.storyboard; sourceTree = "<group>"; };
 		89740C1127464D3C0033AD2C /* Squads.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Squads.storyboard; sourceTree = "<group>"; };
 		89740C1327464D430033AD2C /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
-		898A63DF274687450023426A /* StandingsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsResponse.swift; sourceTree = "<group>"; };
+		898A63DF274687450023426A /* StandingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsModel.swift; sourceTree = "<group>"; };
 		898A63E1274689390023426A /* Standing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Standing.json; sourceTree = "<group>"; };
 		898A63E5274690CE0023426A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		89DB128D274BE009009E8888 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
+		89DB128F274BE125009E8888 /* FixturesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesModel.swift; sourceTree = "<group>"; };
+		89DB1291274BE1C5009E8888 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		89F1ADCF2747BF9400E860BB /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		89F1ADD12747BFA100E860BB /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		89F1ADD32747BFAE00E860BB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 		894BF768274250B600E71C09 /* SoccerInfo */ = {
 			isa = PBXGroup;
 			children = (
+				89DB128C274BDFD1009E8888 /* Enums */,
 				8913C82F274BB8A2000CCC44 /* Extensions */,
 				89F1ADCE2747BF8500E860BB /* APIKey */,
 				89740BF627464A370033AD2C /* Resources */,
@@ -146,8 +153,9 @@
 		89740BF427464A1A0033AD2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				898A63DF274687450023426A /* StandingsResponse.swift */,
+				898A63DF274687450023426A /* StandingsModel.swift */,
 				898A63E1274689390023426A /* Standing.json */,
+				89DB128F274BE125009E8888 /* FixturesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,6 +253,15 @@
 				8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */,
 			);
 			path = Standings;
+			sourceTree = "<group>";
+		};
+		89DB128C274BDFD1009E8888 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				89DB128D274BE009009E8888 /* DataTypes.swift */,
+				89DB1291274BE1C5009E8888 /* Errors.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		89F1ADCE2747BF8500E860BB /* APIKey */ = {
@@ -345,15 +362,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */,
+				89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */,
 				894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */,
 				89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */,
 				898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */,
+				89DB128E274BE009009E8888 /* DataTypes.swift in Sources */,
 				89F1ADD02747BF9400E860BB /* URLManager.swift in Sources */,
+				89DB1292274BE1C5009E8888 /* Errors.swift in Sources */,
 				89F1ADD22747BFA100E860BB /* APIManager.swift in Sources */,
 				8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */,
 				8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */,
 				89F1ADD42747BFAE00E860BB /* RealmManager.swift in Sources */,
-				898A63E0274687450023426A /* StandingsResponse.swift in Sources */,
+				898A63E0274687450023426A /* StandingsModel.swift in Sources */,
 				894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */,
 				89740C0627464B880033AD2C /* NewsViewController.swift in Sources */,
 				89740C0A27464BE30033AD2C /* SquadsViewController.swift in Sources */,

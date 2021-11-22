@@ -6,44 +6,50 @@
 //
 
 import UIKit
-import Realm
 import RealmSwift
+import Alamofire
 
-// extension with realm
+//MARK: - extension with realm
 extension UIViewController {
-    func fetchRealmData<T: Object>(table: T.Type, league: Int, completion: @escaping (Result<T, Error>) -> Void ) {
+    func fetchRealmData<T: Object>(table: FootballData, league: Int, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
         let app = App(id: APIComponents.realmAppID)
-        if let user = app.currentUser {
-            let configuration = user.configuration(partitionValue: "\(league)")
-            do {
-                // Local Realm Load
-                let localRealm = try Realm(configuration: configuration)
-                let objects = localRealm.objects(T.self)
-                
-                // Cloud Realm Load
-                if objects.isEmpty {
-                    Realm.asyncOpen(configuration: configuration) { result in
-                        switch result {
-                        case .success(let realm):
-                            let syncedObjects = realm.objects(T.self)
-                            completion(.success(syncedObjects.first!))
-                            print("Cloud Realm Loaded")
-                        case .failure(let error):
-                            completion(.failure(error))
+        guard let user = app.currentUser else { return }
+        let configuration = user.configuration(partitionValue: "\(league)")
+        do {
+            // Local Realm Load
+            let localRealm = try Realm(configuration: configuration)
+            let objects = localRealm.objects(table.realmTable)
+            
+            // Cloud Realm Load
+            if objects.isEmpty {
+                Realm.asyncOpen(configuration: configuration) { result in
+                    switch result {
+                    case .success(let realm):
+                        let syncedObjects = realm.objects(table.realmTable)
+                        if syncedObjects.isEmpty {
+                            completion(.failure(.emptyData))
                         }
+                        else {
+                            completion(.success(syncedObjects.first! as! T))
+                        }
+                        print("Cloud Realm Loaded")
+                    case .failure(let error):
+                        print(error)
+                        completion(.failure(.asyncOpenFail))
                     }
                 }
-                else {
-                    completion(.success(objects.first!))
-                    print("Local Realm loaded")
-                }
-                
             }
-            catch {
-                completion(.failure(error))
+            else {
+                completion(.success(objects.first! as! T))
+                print("Local Realm loaded")
             }
-        }        
+        }
+        catch {
+            print(error)
+            completion(.failure(.realmFail))
+        }
     }
+
     
     func loginRealm() {
         let app = App(id: APIComponents.realmAppID)
@@ -62,5 +68,12 @@ extension UIViewController {
                 print(error)
             }
         }
+    }
+}
+
+//MARK: - extension with Alamofire
+extension UIViewController {
+    func fetchAPIData() {
+        
     }
 }

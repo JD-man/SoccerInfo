@@ -10,7 +10,7 @@ import RealmSwift
 
 class StandingsViewController: UIViewController {
 
-    typealias standingObject = Result<StandingsTable, Error>
+    typealias standingObject = Result<StandingsTable, RealmErrorType>
     @IBOutlet weak var standingsTableView: UITableView!
     
     var data: [StandingsRealmData] = [] {
@@ -32,12 +32,18 @@ class StandingsViewController: UIViewController {
     }
     
     func fetchStandingRealmData() {
-        fetchRealmData(table: StandingsTable.self, league: 39) { [weak self] (result: standingObject) in
+        fetchRealmData(table: .standings, league: 39) { [weak self] (result: standingObject) in
             switch result {
-            case .success(let object):
+            case .success(let object):                
                 self?.data = Array(object.standingData)
             case .failure(let error):
-                print(error)
+                switch error {
+                case .emptyData:
+                    print("API call")
+                default:
+                    print(error)
+                    break
+                }
             }
         }
     }
