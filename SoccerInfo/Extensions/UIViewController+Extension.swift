@@ -20,11 +20,14 @@ extension UIViewController {
         do {
             // Local Realm Load
             let localRealm = try Realm(configuration: configuration)
+            let today = Date().today
+            
             // check league, season, updateDate
             let objects = localRealm.objects(T.self).where {
                 $0._partition == "\(league.leagueID)" &&
-                $0.season == season //&&
-                //$0.updateDate == Date()
+                $0.season == season &&
+                $0.updateDate >= today &&
+                $0.updateDate < today.nextDay
             }
             if objects.isEmpty {
                 // Cloud Realm Load
@@ -33,8 +36,9 @@ extension UIViewController {
                     case .success(let realm):
                         let syncedObjects = realm.objects(T.self).where {
                             $0._partition == "\(league.leagueID)" &&
-                            $0.season == season //&&
-                            //$0.updateDate == Date()
+                            $0.season == season &&
+                            $0.updateDate >= today &&
+                            $0.updateDate < today.nextDay
                         }
                         if syncedObjects.isEmpty {
                             completion(.failure(.emptyData))

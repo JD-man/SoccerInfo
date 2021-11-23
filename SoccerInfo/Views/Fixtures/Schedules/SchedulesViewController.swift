@@ -11,6 +11,8 @@ class ScheduleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        
+        print(Date().today, Date().today.nextDay)
         //viewConfig()
     }
     
