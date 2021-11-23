@@ -9,24 +9,28 @@ import Foundation
 import RealmSwift
 
 protocol RealmTable: Object {
+    associatedtype T
+    var _partition: String { get set }
     var season: Int { get }
     var updateDate: Date { get set}
+    var content: T { get set }
 }
 
 
 // Realm Data
 class StandingsTable: Object, RealmTable {
+    typealias T = List<StandingsRealmData>
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String // leagueID
     @Persisted var season: Int
-    @Persisted var standingData: List<StandingsRealmData>
+    @Persisted var content: T
     @Persisted var updateDate = Date()
 
     convenience init(leagueID: Int, season: Int, standingData: List<StandingsRealmData>) {
         self.init()
         self._partition = "\(leagueID)"
         self.season = season
-        self.standingData = standingData
+        self.content = standingData
     }
 }
 

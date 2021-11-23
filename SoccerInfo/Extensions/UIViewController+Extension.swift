@@ -20,8 +20,11 @@ extension UIViewController {
         do {
             // Local Realm Load
             let localRealm = try Realm(configuration: configuration)
+            // check league, season, updateDate
             let objects = localRealm.objects(T.self).where {
-                $0.season == season
+                $0._partition == "\(league.leagueID)" &&
+                $0.season == season &&
+                $0.updateDate == Date()
             }
             if objects.isEmpty {
                 // Cloud Realm Load
@@ -29,7 +32,9 @@ extension UIViewController {
                     switch result {
                     case .success(let realm):
                         let syncedObjects = realm.objects(T.self).where {
-                            $0.season == season
+                            $0._partition == "\(league.leagueID)" &&
+                            $0.season == season &&
+                            $0.updateDate == Date()
                         }
                         if syncedObjects.isEmpty {
                             completion(.failure(.emptyData))
@@ -55,17 +60,54 @@ extension UIViewController {
         }
     }
     
-    func updateRealmData(table: RealmTable, leagueID: Int) {
+    func updateRealmData<T: RealmTable>(table: T, leagueID: Int, season: Int = 2021) {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else { return }
         let configuration = user.configuration(partitionValue: "\(leagueID)")
+        
+        Realm.asyncOpen(configuration: configuration) { result in
+            switch result {
+            case .success(let realm):
+                print(realm.configuration.fileURL)
+                do {
+                    // check league, season
+                    let object = realm.objects(T.self).where {
+                        $0._partition == "\(leagueID)" && $0.season == season
+                    }
+                    try realm.write({
+                        if object.isEmpty {
+                            realm.add(table)
+                        }
+                        else {
+                            print("change data")
+                            let prevObject = object.first!
+                            prevObject.content = table.content
+                            prevObject.updateDate = table.updateDate
+                        }
+                    })
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    // delete for test
+    func deleteRealmDataAll() {
+        let app = App(id: APIComponents.realmAppID)
+        guard let user = app.currentUser else { return }
+        let configuration = user.configuration(partitionValue: "39")
+        
         Realm.asyncOpen(configuration: configuration) { result in
             switch result {
             case .success(let realm):
                 print(realm.configuration.fileURL)
                 do {
                     try realm.write({
-                        realm.add(table, update: .modified)
+                        realm.deleteAll()
                     })
                 }
                 catch {
@@ -106,9 +148,7 @@ extension UIViewController {
             switch response.result {
             case .success(_):
                 guard let data = response.data,
-                      let decoded = try? JSONDecoder().decode(T.self, from: data) else {
-                          return
-                      }
+                      let decoded = try? JSONDecoder().decode(T.self, from: data) else { return }
                 completion(.success(decoded))
             case .failure(let error):
                 print(error)

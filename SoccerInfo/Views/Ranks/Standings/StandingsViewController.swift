@@ -50,7 +50,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         fetchRealmData(league: league) { [weak self] (result: standingObject) in
             switch result {
             case .success(let object):
-                self?.data = Array(object.standingData)
+                self?.data = Array(object.content)
             case .failure(let error):
                 switch error {
                 case .emptyData:

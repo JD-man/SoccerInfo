@@ -16,4 +16,13 @@ class ScheduleViewController: UIViewController {
     
     func viewConfig() {        
     }
+    
+    
+    @IBAction func deleteButtonClicked(_ sender: UIButton) {
+        
+        deleteRealmDataAll()
+    }
+    
+    
+    
 }
