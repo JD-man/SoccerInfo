@@ -12,6 +12,10 @@
 		8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */; };
 		8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */; };
 		8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */; };
+		893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E78274CB11100210ED1 /* SideViewController.swift */; };
+		893C6E7B274CB1C500210ED1 /* Side.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893C6E7A274CB1C500210ED1 /* Side.storyboard */; };
+		893C6E7D274CBED900210ED1 /* SideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E7C274CBED900210ED1 /* SideTableViewCell.swift */; };
+		893C6E82274CD21500210ED1 /* BasicTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E81274CD21500210ED1 /* BasicTabViewController.swift */; };
 		894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF769274250B600E71C09 /* AppDelegate.swift */; };
 		894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF76B274250B600E71C09 /* SceneDelegate.swift */; };
 		894BF771274250B600E71C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF76F274250B600E71C09 /* Main.storyboard */; };
@@ -39,7 +43,6 @@
 		89DB1292274BE1C5009E8888 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB1291274BE1C5009E8888 /* Errors.swift */; };
 		89F1ADD02747BF9400E860BB /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ADCF2747BF9400E860BB /* URLManager.swift */; };
 		89F1ADD22747BFA100E860BB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ADD12747BFA100E860BB /* APIManager.swift */; };
-		89F1ADD42747BFAE00E860BB /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F1ADD32747BFAE00E860BB /* RealmManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,10 @@
 		8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StandingSectionHeaderView.xib; sourceTree = "<group>"; };
 		8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingSectionHeaderView.swift; sourceTree = "<group>"; };
 		8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		893C6E78274CB11100210ED1 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		893C6E7A274CB1C500210ED1 /* Side.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Side.storyboard; sourceTree = "<group>"; };
+		893C6E7C274CBED900210ED1 /* SideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTableViewCell.swift; sourceTree = "<group>"; };
+		893C6E81274CD21500210ED1 /* BasicTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTabViewController.swift; sourceTree = "<group>"; };
 		894BF766274250B600E71C09 /* SoccerInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoccerInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		894BF769274250B600E71C09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		894BF76B274250B600E71C09 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +80,6 @@
 		89DB1291274BE1C5009E8888 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		89F1ADCF2747BF9400E860BB /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		89F1ADD12747BFA100E860BB /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		89F1ADD32747BFAE00E860BB /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,24 @@
 				8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		893C6E77274CAB8D00210ED1 /* Side */ = {
+			isa = PBXGroup;
+			children = (
+				893C6E78274CB11100210ED1 /* SideViewController.swift */,
+				893C6E7A274CB1C500210ED1 /* Side.storyboard */,
+				893C6E7C274CBED900210ED1 /* SideTableViewCell.swift */,
+			);
+			path = Side;
+			sourceTree = "<group>";
+		};
+		893C6E80274CD1CF00210ED1 /* SuperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				893C6E81274CD21500210ED1 /* BasicTabViewController.swift */,
+			);
+			path = SuperClasses;
 			sourceTree = "<group>";
 		};
 		894BF75D274250B600E71C09 = {
@@ -142,6 +166,8 @@
 		89740BF327464A140033AD2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				893C6E80274CD1CF00210ED1 /* SuperClasses */,
+				893C6E77274CAB8D00210ED1 /* Side */,
 				89740BF727464A7E0033AD2C /* Main */,
 				89740BF827464A900033AD2C /* Fixtures */,
 				89740BF927464A9C0033AD2C /* Ranks */,
@@ -165,7 +191,6 @@
 			children = (
 				89F1ADCF2747BF9400E860BB /* URLManager.swift */,
 				89F1ADD12747BFA100E860BB /* APIManager.swift */,
-				89F1ADD32747BFAE00E860BB /* RealmManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -349,6 +374,7 @@
 				89740C1427464D430033AD2C /* News.storyboard in Resources */,
 				89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */,
 				894BF771274250B600E71C09 /* Main.storyboard in Resources */,
+				893C6E7B274CB1C500210ED1 /* Side.storyboard in Resources */,
 				89740C0C27464BF20033AD2C /* Schedules.storyboard in Resources */,
 				89740C0E27464BFD0033AD2C /* Events.storyboard in Resources */,
 			);
@@ -362,17 +388,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */,
+				893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */,
 				89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */,
 				894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */,
+				893C6E82274CD21500210ED1 /* BasicTabViewController.swift in Sources */,
 				89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */,
 				898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */,
 				89DB128E274BE009009E8888 /* DataTypes.swift in Sources */,
 				89F1ADD02747BF9400E860BB /* URLManager.swift in Sources */,
 				89DB1292274BE1C5009E8888 /* Errors.swift in Sources */,
 				89F1ADD22747BFA100E860BB /* APIManager.swift in Sources */,
+				893C6E7D274CBED900210ED1 /* SideTableViewCell.swift in Sources */,
 				8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */,
 				8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */,
-				89F1ADD42747BFAE00E860BB /* RealmManager.swift in Sources */,
 				898A63E0274687450023426A /* StandingsModel.swift in Sources */,
 				894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */,
 				89740C0627464B880033AD2C /* NewsViewController.swift in Sources */,

@@ -6,33 +6,40 @@
 //
 
 import UIKit
+//import Realm
 import RealmSwift
+import SideMenu
 
-class StandingsViewController: UIViewController {
+class StandingsViewController: BasicTabViewController<StandingsRealmData> {
 
     typealias standingObject = Result<StandingsTable, RealmErrorType>
     @IBOutlet weak var standingsTableView: UITableView!
     
-    var data: [StandingsRealmData] = [] {
+    override var league: League {
+        didSet {
+            fetchStandingRealmData()
+        }
+    }
+    override var data: [StandingsRealmData] {
         didSet {
             standingsTableView.reloadSections(IndexSet(integer: 0), with: .fade)
         }
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
-        viewConfig()
+        super.viewDidLoad()
         fetchStandingRealmData()
     }
     
-    func viewConfig() {
+    override func viewConfig() {
+        super.viewConfig()
         standingsTableView.delegate = self
         standingsTableView.dataSource = self
         standingsTableView.separatorStyle = .none
     }
     
     func fetchStandingRealmData() {
-        fetchRealmData(league: 39) { [weak self] (result: standingObject) in
+        fetchRealmData(league: league) { [weak self] (result: standingObject) in
             switch result {
             case .success(let object):                
                 self?.data = Array(object.standingData)
@@ -73,5 +80,14 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+}
+
+extension StandingsViewController: SideMenuNavigationControllerDelegate {
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        guard let sideVC = menu.topViewController as? SideViewController else { return }
+        league = sideVC.selectedLeague
+        print(league)
+        print("side menu did disppear")
     }
 }

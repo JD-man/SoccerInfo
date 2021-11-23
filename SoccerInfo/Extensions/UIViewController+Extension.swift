@@ -8,27 +8,29 @@
 import UIKit
 import RealmSwift
 import Alamofire
+import SideMenu
 
 //MARK: - extension with realm
 extension UIViewController {
     // T is determined when ViewController declare typealias
-    func fetchRealmData<T: RealmTable>(league: Int, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
+    func fetchRealmData<T: RealmTable>(league: League, season: Int = 2021, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else { return }
-        let configuration = user.configuration(partitionValue: "\(league)")
+        let configuration = user.configuration(partitionValue: "\(league.leagueID)")
         do {
             // Local Realm Load
             let localRealm = try Realm(configuration: configuration)
             let objects = localRealm.objects(T.self).where {
-                $0.season == 2021
+                $0.season == season
             }
-            
-            // Cloud Realm Load
             if objects.isEmpty {
+                // Cloud Realm Load
                 Realm.asyncOpen(configuration: configuration) { result in
                     switch result {
                     case .success(let realm):
-                        let syncedObjects = realm.objects(T.self)
+                        let syncedObjects = realm.objects(T.self).where {
+                            $0.season == season
+                        }
                         if syncedObjects.isEmpty {
                             completion(.failure(.emptyData))
                         }

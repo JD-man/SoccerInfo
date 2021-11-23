@@ -13,6 +13,7 @@ protocol RealmTable: Object {
     var updateDate: Date { get set}
 }
 
+
 // Realm Data
 class StandingsTable: Object, RealmTable {
     @Persisted(primaryKey: true) var _id: ObjectId

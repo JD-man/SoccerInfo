@@ -21,3 +21,29 @@ enum FootballData {
         }
     }
 }
+
+enum League: String, CaseIterable {
+    case premierLeague = "Premier League"
+    case laLiga = "LaLiga"
+    case serieA = "Serie A"
+    case bundesliga = "Bundesliga"
+    case ligue1 = "Ligue 1"
+    
+    var leagueID: Int {
+        switch self {
+        case .premierLeague:
+            return 39
+        case .laLiga:
+            return 140
+        case .serieA:
+            return 135
+        case .bundesliga:
+            return 78
+        case .ligue1:
+            return 61
+        @unknown default:
+            print("league unknown default")
+            break
+        }
+    }
+}
