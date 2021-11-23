@@ -54,6 +54,28 @@ extension UIViewController {
             completion(.failure(.realmFail))
         }
     }
+    
+    func updateRealmData(table: RealmTable, leagueID: Int) {
+        let app = App(id: APIComponents.realmAppID)
+        guard let user = app.currentUser else { return }
+        let configuration = user.configuration(partitionValue: "\(leagueID)")
+        Realm.asyncOpen(configuration: configuration) { result in
+            switch result {
+            case .success(let realm):
+                print(realm.configuration.fileURL)
+                do {
+                    try realm.write({
+                        realm.add(table, update: .modified)
+                    })
+                }
+                catch {
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 
     
     func loginRealm() {
@@ -78,7 +100,19 @@ extension UIViewController {
 
 //MARK: - extension with Alamofire
 extension UIViewController {
-    func fetchAPIData() {
-        
+    func fetchAPIData<T: Codable>(of footBallData: FootballData, url: URL?, completion: @escaping (Result<T, Error>) -> Void) {
+        guard let url = url else { return }
+        AF.request(url, method: .get, headers: footBallData.headers).validate().responseJSON { response in
+            switch response.result {
+            case .success(_):
+                guard let data = response.data,
+                      let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+                          return
+                      }
+                completion(.success(decoded))
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

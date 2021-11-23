@@ -6,13 +6,13 @@
 //
 
 import UIKit
-//import Realm
 import RealmSwift
 import SideMenu
 
 class StandingsViewController: BasicTabViewController<StandingsRealmData> {
 
     typealias standingObject = Result<StandingsTable, RealmErrorType>
+    typealias standingResponse = Result<StandingData, Error>
     @IBOutlet weak var standingsTableView: UITableView!
     
     override var league: League {
@@ -20,6 +20,14 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
             fetchStandingRealmData()
         }
     }
+    
+//    //update need: season
+//    override var season: Int {
+//        didSet {
+//            fetchStandingRealmData()
+//        }
+//    }
+    
     override var data: [StandingsRealmData] {
         didSet {
             standingsTableView.reloadSections(IndexSet(integer: 0), with: .fade)
@@ -41,16 +49,52 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     func fetchStandingRealmData() {
         fetchRealmData(league: league) { [weak self] (result: standingObject) in
             switch result {
-            case .success(let object):                
+            case .success(let object):
                 self?.data = Array(object.standingData)
             case .failure(let error):
                 switch error {
                 case .emptyData:
-                    print("API call")
+                    self?.fetchStandingAPIData()
                 default:
                     print(error)
                     break
                 }
+            }
+        }
+    }
+    
+    func fetchStandingAPIData() {
+        let league = URLQueryItem(name: "league", value: "\(league.leagueID)")
+        let season = URLQueryItem(name: "season", value: "2021")
+        let url = APIComponents.footBallRootURL.toURL(of: .standings, queryItems: [league, season])
+        
+        fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponse) in
+            switch result {
+            case .success(let standingData):
+                let league = standingData.response[0].league
+                
+                let leagueID = league.id
+                let season = league.season
+                let standings = league.standings[0]
+                
+                let realmData = standings.map {
+                    StandingsRealmData(standings: $0)
+                }
+                
+                let list = List<StandingsRealmData>()
+                realmData.forEach {
+                    list.append($0)
+                }
+                
+                let table = StandingsTable(leagueID: leagueID,
+                                           season: season,
+                                           standingData: list)
+                
+                self?.updateRealmData(table: table, leagueID: leagueID)
+                self?.data = realmData
+                print("API Call")
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -86,8 +130,9 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
 extension StandingsViewController: SideMenuNavigationControllerDelegate {
     func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
         guard let sideVC = menu.topViewController as? SideViewController else { return }
-        league = sideVC.selectedLeague
-        print(league)
+        if league != sideVC.selectedLeague {
+            league = sideVC.selectedLeague
+        }
         print("side menu did disppear")
     }
 }

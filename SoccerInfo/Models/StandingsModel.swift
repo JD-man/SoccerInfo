@@ -17,7 +17,7 @@ protocol RealmTable: Object {
 // Realm Data
 class StandingsTable: Object, RealmTable {
     @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var _partition: String
+    @Persisted var _partition: String // leagueID
     @Persisted var season: Int
     @Persisted var standingData: List<StandingsRealmData>
     @Persisted var updateDate = Date()

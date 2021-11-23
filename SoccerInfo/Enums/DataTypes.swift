@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
 
 enum FootballData {
     case standings
@@ -16,8 +17,26 @@ enum FootballData {
         case .standings:
             return StandingsTable.self
         @unknown default:
-            print("unknown default")
+            print("FootballData realmTable unknown default")
             break
+        }
+    }
+    
+    var urlPath: String {
+        switch self {
+        case .standings:
+            return "/standings"
+        @unknown default:
+            print("FootballData urlPath unknown default")
+        }
+    }
+    
+    var headers: HTTPHeaders {
+        switch self {
+        case .standings:
+            return APIComponents.footBallHeaders
+        @unknown default:
+            print("FootballData headers unknown default")
         }
     }
 }

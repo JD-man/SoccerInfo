@@ -12,6 +12,7 @@ import SideMenu
 class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationControllerDelegate {
     
     var league: League = .premierLeague
+    var season: Int = 2021
     var data: [T] = []
 
     override func viewDidLoad() {
