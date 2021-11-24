@@ -31,7 +31,6 @@ class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationC
         
         sideButton.tintColor = .label
         navigationItem.leftBarButtonItem = sideButton
-        
     }
     
     @objc func sideButtonClicked() {
@@ -55,7 +54,7 @@ class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationC
         guard let sideVC = menu.topViewController as? SideViewController else { return }
         if league != sideVC.selectedLeague {
             league = sideVC.selectedLeague
+            navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue
         }
-        print("side menu did disppear")
     }
 }

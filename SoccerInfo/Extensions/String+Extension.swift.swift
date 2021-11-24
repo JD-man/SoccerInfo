@@ -14,6 +14,7 @@ extension String {
         return components?.url
     }
     
+    // for fixture date
     var toDate: Date {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)

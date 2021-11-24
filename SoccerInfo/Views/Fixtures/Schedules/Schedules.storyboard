@@ -38,32 +38,43 @@
                                                     <rect key="frame" x="251" y="10" width="59" height="59"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="793-0j-DVE">
-                                                    <rect key="frame" x="163" y="27" width="48" height="25"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                    <rect key="frame" x="167" y="27" width="40" height="25"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dth-9x-2fk">
-                                                    <rect key="frame" x="163" y="26" width="48" height="27"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                    <rect key="frame" x="167" y="29" width="40" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경기가 없습니다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mr2-bE-shL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="79"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    <color key="textColor" systemColor="systemGray2Color"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="GOI-cv-fUR" firstAttribute="centerY" secondItem="Jcc-B2-FtB" secondAttribute="centerY" id="374-1U-tXa"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mr2-bE-shL" secondAttribute="trailing" id="FjM-jZ-UFW"/>
                                                 <constraint firstItem="dth-9x-2fk" firstAttribute="centerX" secondItem="793-0j-DVE" secondAttribute="centerX" id="L6s-IZ-v8N"/>
                                                 <constraint firstItem="dth-9x-2fk" firstAttribute="centerY" secondItem="793-0j-DVE" secondAttribute="centerY" id="Ltd-lv-kNT"/>
                                                 <constraint firstItem="793-0j-DVE" firstAttribute="centerX" secondItem="Jcc-B2-FtB" secondAttribute="centerX" id="Npt-9P-JHL"/>
+                                                <constraint firstItem="Mr2-bE-shL" firstAttribute="leading" secondItem="Jcc-B2-FtB" secondAttribute="leading" id="OYQ-Qd-y3a"/>
                                                 <constraint firstItem="793-0j-DVE" firstAttribute="height" secondItem="GOI-cv-fUR" secondAttribute="height" multiplier="0.428571" id="RhQ-h7-afI"/>
                                                 <constraint firstItem="793-0j-DVE" firstAttribute="centerY" secondItem="Jcc-B2-FtB" secondAttribute="centerY" id="S0U-0T-vHl"/>
                                                 <constraint firstItem="ZFN-wR-sP3" firstAttribute="centerY" secondItem="Jcc-B2-FtB" secondAttribute="centerY" id="T7d-I8-5O0"/>
+                                                <constraint firstItem="Mr2-bE-shL" firstAttribute="top" secondItem="Jcc-B2-FtB" secondAttribute="top" id="X39-hh-xz3"/>
                                                 <constraint firstItem="GOI-cv-fUR" firstAttribute="height" secondItem="Jcc-B2-FtB" secondAttribute="height" multiplier="0.75" id="Xcc-ms-p1s"/>
                                                 <constraint firstItem="ZFN-wR-sP3" firstAttribute="height" secondItem="GOI-cv-fUR" secondAttribute="height" id="YYc-YU-ZCH"/>
                                                 <constraint firstItem="ZFN-wR-sP3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="793-0j-DVE" secondAttribute="trailing" constant="8" id="acg-JP-n03"/>
                                                 <constraint firstItem="dth-9x-2fk" firstAttribute="leading" secondItem="793-0j-DVE" secondAttribute="leading" id="c0c-fb-AnQ"/>
                                                 <constraint firstItem="793-0j-DVE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GOI-cv-fUR" secondAttribute="trailing" constant="8" id="eIS-PZ-E0j"/>
                                                 <constraint firstItem="GOI-cv-fUR" firstAttribute="centerX" secondItem="793-0j-DVE" secondAttribute="centerX" multiplier="0.45" id="fUw-hU-kvF"/>
+                                                <constraint firstAttribute="bottom" secondItem="Mr2-bE-shL" secondAttribute="bottom" id="gyq-t3-8kI"/>
                                                 <constraint firstItem="dth-9x-2fk" firstAttribute="trailing" secondItem="793-0j-DVE" secondAttribute="trailing" id="m9X-kc-GtH"/>
                                                 <constraint firstItem="ZFN-wR-sP3" firstAttribute="centerX" secondItem="793-0j-DVE" secondAttribute="centerX" multiplier="1.5" id="n94-oX-4L1"/>
                                                 <constraint firstItem="ZFN-wR-sP3" firstAttribute="width" secondItem="GOI-cv-fUR" secondAttribute="width" id="urX-Xk-Usg"/>
@@ -73,25 +84,40 @@
                                         <connections>
                                             <outlet property="awayLogoImageView" destination="ZFN-wR-sP3" id="GAd-Bq-yas"/>
                                             <outlet property="homeLogoImageView" destination="GOI-cv-fUR" id="PJh-Sc-w6q"/>
+                                            <outlet property="noMatchCellLabel" destination="Mr2-bE-shL" id="lbn-oV-QMs"/>
                                             <outlet property="scoreLabel" destination="793-0j-DVE" id="ybd-QD-V1g"/>
                                             <outlet property="timeLabel" destination="dth-9x-2fk" id="q8R-gc-VpK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경기가 없습니다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlH-TL-dcx">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="dXf-9s-JFb" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="1oq-aP-blX"/>
+                            <constraint firstItem="rlH-TL-dcx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="6bt-ia-yq0"/>
                             <constraint firstItem="dXf-9s-JFb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="MFn-Cb-IjI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rlH-TL-dcx" secondAttribute="bottom" id="WyY-MV-DVf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="dXf-9s-JFb" secondAttribute="bottom" id="Yri-Q1-Uer"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dXf-9s-JFb" secondAttribute="trailing" id="hwi-uq-apm"/>
+                            <constraint firstItem="rlH-TL-dcx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="oPU-0J-0gU"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rlH-TL-dcx" secondAttribute="trailing" id="u2c-Yj-Fei"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="경기일정" id="Xui-7d-Yfn"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="noMatchLabel" destination="rlH-TL-dcx" id="T3g-VD-QKp"/>
                         <outlet property="schedulesTableView" destination="dXf-9s-JFb" id="2m8-3A-eUQ"/>
                     </connections>
                 </viewController>
@@ -123,6 +149,9 @@
         <image name="calendar" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
