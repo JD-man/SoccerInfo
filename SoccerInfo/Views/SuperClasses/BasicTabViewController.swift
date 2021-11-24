@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import SideMenu
 
-class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationControllerDelegate {
+class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
     var league: League = .premierLeague
     var season: Int = 2021
@@ -49,5 +49,13 @@ class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationC
         sideNav.delegate = self
         
         present(sideNav, animated: true, completion: nil)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        guard let sideVC = menu.topViewController as? SideViewController else { return }
+        if league != sideVC.selectedLeague {
+            league = sideVC.selectedLeague
+        }
+        print("side menu did disppear")
     }
 }

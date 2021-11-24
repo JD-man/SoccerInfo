@@ -126,13 +126,3 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
         return 50
     }
 }
-
-extension StandingsViewController: SideMenuNavigationControllerDelegate {
-    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
-        guard let sideVC = menu.topViewController as? SideViewController else { return }
-        if league != sideVC.selectedLeague {
-            league = sideVC.selectedLeague
-        }
-        print("side menu did disppear")
-    }
-}

@@ -17,7 +17,7 @@ protocol RealmTable: Object {
 }
 
 
-// Realm Data
+// MARK: - Standings Realm Model
 class StandingsTable: Object, RealmTable {
     typealias T = List<StandingsRealmData>
     @Persisted(primaryKey: true) var _id: ObjectId
@@ -62,7 +62,7 @@ class StandingsRealmData: EmbeddedObject {
 }
     
 
-// Response By API
+// MARK: - Standings Response Model
 struct StandingData: Codable {
     var response: [StandingResponse]
 }

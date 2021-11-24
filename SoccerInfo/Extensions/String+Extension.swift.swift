@@ -13,4 +13,15 @@ extension String {
         components?.queryItems = queryItems        
         return components?.url
     }
+    
+    var toDate: Date {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
+        formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+        
+        // 2021-11-28T23:00:00+09:00
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        return formatter.date(from: self) ?? Date()
+    }
 }

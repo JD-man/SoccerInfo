@@ -11,11 +11,14 @@ import Alamofire
 
 enum FootballData {
     case standings
+    case fixtures
     
     var realmTable: Object.Type {
         switch self {
         case .standings:
             return StandingsTable.self
+        case .fixtures:
+            return FixturesTable.self
         @unknown default:
             print("FootballData realmTable unknown default")
             break
@@ -26,6 +29,8 @@ enum FootballData {
         switch self {
         case .standings:
             return "/standings"
+        case .fixtures:
+            return "/fixtures"
         @unknown default:
             print("FootballData urlPath unknown default")
         }
@@ -33,7 +38,7 @@ enum FootballData {
     
     var headers: HTTPHeaders {
         switch self {
-        case .standings:
+        case .standings, .fixtures:
             return APIComponents.footBallHeaders
         @unknown default:
             print("FootballData headers unknown default")

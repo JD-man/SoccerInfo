@@ -31,6 +31,4 @@ class MainTabBarController: UITabBarController {
             UITabBar.appearance().backgroundColor = .systemBackground
         }
     }
-    
-    
 }

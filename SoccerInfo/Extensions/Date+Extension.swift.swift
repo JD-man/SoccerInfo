@@ -15,4 +15,22 @@ extension Date {
     var nextDay: Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: self)!
     }
+    var formattedDay: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
+        formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+        
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        return formatter.string(from: self)
+    }
+    
+    var formattedHour: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
+        formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+        
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
 }

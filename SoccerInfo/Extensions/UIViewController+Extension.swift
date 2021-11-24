@@ -15,10 +15,13 @@ extension UIViewController {
     // T is determined when ViewController declare typealias
     func fetchRealmData<T: RealmTable>(league: League, season: Int = 2021, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
         let app = App(id: APIComponents.realmAppID)
-        guard let user = app.currentUser else { return }
+        guard let user = app.currentUser else {
+            print("user not login")
+            return }
         let configuration = user.configuration(partitionValue: "\(league.leagueID)")
         do {
             // Local Realm Load
+            print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
             let today = Date().today
             
@@ -31,6 +34,7 @@ extension UIViewController {
             }
             if objects.isEmpty {
                 // Cloud Realm Load
+                print("Cloud Realm Load")
                 Realm.asyncOpen(configuration: configuration) { result in
                     switch result {
                     case .success(let realm):
@@ -66,7 +70,9 @@ extension UIViewController {
     
     func updateRealmData<T: RealmTable>(table: T, leagueID: Int, season: Int = 2021) {
         let app = App(id: APIComponents.realmAppID)
-        guard let user = app.currentUser else { return }
+        guard let user = app.currentUser else {
+            print("user not login")
+            return }
         let configuration = user.configuration(partitionValue: "\(leagueID)")
         
         Realm.asyncOpen(configuration: configuration) { result in
@@ -102,7 +108,9 @@ extension UIViewController {
     // delete for test
     func deleteRealmDataAll() {
         let app = App(id: APIComponents.realmAppID)
-        guard let user = app.currentUser else { return }
+        guard let user = app.currentUser else {
+            print("user not login")
+            return }
         let configuration = user.configuration(partitionValue: "39")
         
         Realm.asyncOpen(configuration: configuration) { result in
@@ -147,12 +155,18 @@ extension UIViewController {
 //MARK: - extension with Alamofire
 extension UIViewController {
     func fetchAPIData<T: Codable>(of footBallData: FootballData, url: URL?, completion: @escaping (Result<T, Error>) -> Void) {
-        guard let url = url else { return }
+        guard let url = url else {
+            print("url fail")
+            return            
+        }
+        print("API request start")
         AF.request(url, method: .get, headers: footBallData.headers).validate().responseJSON { response in
             switch response.result {
             case .success(_):
                 guard let data = response.data,
-                      let decoded = try? JSONDecoder().decode(T.self, from: data) else { return }
+                      let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+                          print("decode fail")
+                          return }
                 completion(.success(decoded))
             case .failure(let error):
                 print(error)
