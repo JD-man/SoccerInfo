@@ -9,14 +9,6 @@ import UIKit
 import RealmSwift
 import SideMenu
 
-/*
- Change league : fetchData
- Set data or Change monday by swipe : make scheduleData of data
- Set ScheduleData : make dateSectionTitles
- Set dateSectionTitles: make schedule content
- Set scheduleContent : Reload TableView
- */
-
 class ScheduleViewController: BasicTabViewController<FixturesRealmData> {
     
     // Fixtures RealmData
@@ -33,6 +25,14 @@ class ScheduleViewController: BasicTabViewController<FixturesRealmData> {
     
     @IBOutlet weak var schedulesTableView: UITableView!
     @IBOutlet weak var noMatchLabel: UILabel!
+    
+    /*
+     Change league : fetchData
+     Set data or Change monday by swipe : make scheduleData of data
+     Set ScheduleData : make dateSectionTitles
+     Set dateSectionTitles: make schedule content
+     Set scheduleContent : Reload TableView
+     */
     
     override var league: League {
         didSet {
