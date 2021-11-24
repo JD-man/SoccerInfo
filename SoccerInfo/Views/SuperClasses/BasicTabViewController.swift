@@ -36,6 +36,8 @@ class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationC
     @objc func sideButtonClicked() {
         let storyboard = UIStoryboard(name: "Side", bundle: nil)
         let sideVC = storyboard.instantiateViewController(withIdentifier: "SideViewController") as! SideViewController
+        
+        sideVC.selectedLeague = League(rawValue: navigationItem.leftBarButtonItem!.title!)!
         let sideNav = SideMenuNavigationController(rootViewController: sideVC)
         
         let presentationStyle = SideMenuPresentationStyle.menuSlideIn
@@ -50,11 +52,23 @@ class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationC
         present(sideNav, animated: true, completion: nil)
     }
     
+    // for sharing league value whole tab
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
+        if league != LeagueManager.shared.league {
+            league = LeagueManager.shared.league
+            navigationItem.leftBarButtonItem?.title = LeagueManager.shared.league.rawValue
+        }
+    }
+    
+    // change league
     func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
         guard let sideVC = menu.topViewController as? SideViewController else { return }
         if league != sideVC.selectedLeague {
             league = sideVC.selectedLeague
             navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue
+            LeagueManager.shared.league = sideVC.selectedLeague
         }
     }
 }

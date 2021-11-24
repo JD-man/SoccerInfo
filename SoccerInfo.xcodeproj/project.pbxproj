@@ -25,6 +25,7 @@
 		894BF771274250B600E71C09 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF76F274250B600E71C09 /* Main.storyboard */; };
 		894BF773274250B700E71C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 894BF772274250B700E71C09 /* Assets.xcassets */; };
 		894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF774274250B700E71C09 /* LaunchScreen.storyboard */; };
+		895F7D62274E9B3700C6A0C0 /* LeagueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895F7D61274E9B3700C6A0C0 /* LeagueManager.swift */; };
 		89740BE5274649760033AD2C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BE4274649760033AD2C /* Alamofire */; };
 		89740BED274649AB0033AD2C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEC274649AB0033AD2C /* SideMenu */; };
 		89740BF027464A040033AD2C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEF27464A040033AD2C /* Realm */; };
@@ -66,6 +67,7 @@
 		894BF772274250B700E71C09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		894BF775274250B700E71C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		894BF777274250B700E71C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		895F7D61274E9B3700C6A0C0 /* LeagueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueManager.swift; sourceTree = "<group>"; };
 		89740BFD27464B510033AD2C /* SchedulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesViewController.swift; sourceTree = "<group>"; };
 		89740C0127464B6D0033AD2C /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		89740C0327464B7F0033AD2C /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 		894BF768274250B600E71C09 /* SoccerInfo */ = {
 			isa = PBXGroup;
 			children = (
+				895F7D60274E9B1900C6A0C0 /* Managers */,
 				89DB128C274BDFD1009E8888 /* Enums */,
 				8913C82F274BB8A2000CCC44 /* Extensions */,
 				89F1ADCE2747BF8500E860BB /* APIKey */,
@@ -164,6 +167,14 @@
 				894BF777274250B700E71C09 /* Info.plist */,
 			);
 			path = SoccerInfo;
+			sourceTree = "<group>";
+		};
+		895F7D60274E9B1900C6A0C0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				895F7D61274E9B3700C6A0C0 /* LeagueManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		89740BF327464A140033AD2C /* Views */ = {
@@ -386,6 +397,7 @@
 				893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */,
 				89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */,
 				894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */,
+				895F7D62274E9B3700C6A0C0 /* LeagueManager.swift in Sources */,
 				893C6E82274CD21500210ED1 /* BasicTabViewController.swift in Sources */,
 				893C6E84274CE7FA00210ED1 /* String+Extension.swift.swift in Sources */,
 				89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */,
