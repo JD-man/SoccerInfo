@@ -45,6 +45,7 @@
 		89DB128E274BE009009E8888 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB128D274BE009009E8888 /* DataTypes.swift */; };
 		89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB128F274BE125009E8888 /* FixturesModel.swift */; };
 		89DB1292274BE1C5009E8888 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB1291274BE1C5009E8888 /* Errors.swift */; };
+		89E2C464274FC9AE00C73BC4 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E2C463274FC9AE00C73BC4 /* NewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		89DB128D274BE009009E8888 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 		89DB128F274BE125009E8888 /* FixturesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesModel.swift; sourceTree = "<group>"; };
 		89DB1291274BE1C5009E8888 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		89E2C463274FC9AE00C73BC4 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 			children = (
 				89740C0527464B880033AD2C /* NewsViewController.swift */,
 				89740C1327464D430033AD2C /* News.storyboard */,
+				89E2C463274FC9AE00C73BC4 /* NewsTableViewCell.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 			files = (
 				8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */,
 				893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */,
+				89E2C464274FC9AE00C73BC4 /* NewsTableViewCell.swift in Sources */,
 				89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */,
 				894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */,
 				895F7D62274E9B3700C6A0C0 /* LeagueManager.swift in Sources */,
