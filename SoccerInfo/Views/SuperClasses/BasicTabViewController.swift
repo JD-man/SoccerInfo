@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import SideMenu
 
-class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
+class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
     var league: League = .premierLeague
     var season: Int = 2021
@@ -56,9 +56,9 @@ class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationC
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print(#function)
-        if league != LeagueManager.shared.league {
-            league = LeagueManager.shared.league
-            navigationItem.leftBarButtonItem?.title = LeagueManager.shared.league.rawValue
+        if league != PublicPropertyManager.shared.league {
+            league = PublicPropertyManager.shared.league
+            navigationItem.leftBarButtonItem?.title = PublicPropertyManager.shared.league.rawValue
         }
     }
     
@@ -68,7 +68,7 @@ class BasicTabViewController<T: EmbeddedObject>: UIViewController, UINavigationC
         if league != sideVC.selectedLeague {
             league = sideVC.selectedLeague
             navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue
-            LeagueManager.shared.league = sideVC.selectedLeague
+            PublicPropertyManager.shared.league = sideVC.selectedLeague
         }
     }
 }

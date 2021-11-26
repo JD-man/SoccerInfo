@@ -144,7 +144,7 @@ extension UIViewController {
         app.login(credentials: Credentials.function(payload: params)) { result in
             switch result {
             case .success(let user):
-                print(user.id)
+                print("extension", user.id)
             case .failure(let error):
                 print(error)
             }
@@ -166,7 +166,7 @@ extension UIViewController {
                 guard let data = response.data,
                       let decoded = try? JSONDecoder().decode(T.self, from: data) else {
                           print("decode fail")
-                          return }
+                          return }                
                 completion(.success(decoded))
             case .failure(let error):
                 print(error)

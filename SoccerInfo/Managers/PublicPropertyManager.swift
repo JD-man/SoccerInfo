@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class LeagueManager {
+final class PublicPropertyManager {
     private init() {}
-    static let shared = LeagueManager()
+    static let shared = PublicPropertyManager()
     
     var league: League = .premierLeague
 }

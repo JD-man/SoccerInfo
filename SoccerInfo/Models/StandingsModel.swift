@@ -16,6 +16,9 @@ protocol RealmTable: Object {
     var content: T { get set }
 }
 
+// empty protocol for generic BasicTabViewController
+protocol BasicTabViewData { }
+
 
 // MARK: - Standings Realm Model
 class StandingsTable: Object, RealmTable {
@@ -34,7 +37,7 @@ class StandingsTable: Object, RealmTable {
     }
 }
 
-class StandingsRealmData: EmbeddedObject {
+class StandingsRealmData: EmbeddedObject, BasicTabViewData {
     @Persisted var rank: Int
     @Persisted var teamName: String
     @Persisted var teamLogo: String

@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             app.login(credentials: Credentials.function(payload: params)) { result in
                 switch result {
                 case .success(let user):
-                    print(user.id)
+                    print("SceneDelegate", user.id)
                     group.leave()
                 case .failure(let error):
                     print(error)

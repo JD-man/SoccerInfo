@@ -6,21 +6,49 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsTableViewCell: UITableViewCell {
     
     static let identifier = "NewsTableViewCell"
     
     @IBOutlet weak var newsImageView: UIImageView!
+    @IBOutlet weak var newsTitleLabel: UILabel!
+    @IBOutlet weak var newsDescriptionLabel: UILabel!
     
-    @IBOutlet weak var newsTitle: UILabel!
+    @IBOutlet weak var newsImageViewWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var newsImageViewLeftConstraint: NSLayoutConstraint!
     
+    private var newsImageInitialWidth: CGFloat = 0
+    private var newsImageInitialLeftConstant: CGFloat = 0
     
     override func awakeFromNib() {
-        super.awakeFromNib()        
+        super.awakeFromNib()
+        viewConfig()
     }
     
-    func configure(with data: UIView) {
+    func viewConfig() {
+        newsImageView.clipsToBounds = true
+        newsImageView.layer.cornerRadius = 10
         
+        newsTitleLabel.numberOfLines = 1
+        newsTitleLabel.font = .systemFont(ofSize: 14, weight: .semibold)
+        
+        newsDescriptionLabel.numberOfLines = 0
+        newsDescriptionLabel.font = .systemFont(ofSize: 11, weight: .medium)
+        newsDescriptionLabel.textColor = .systemGray2
+        
+        newsImageInitialWidth = newsImageView.frame.width
+        newsImageInitialLeftConstant = newsImageViewLeftConstraint.constant
+        print(newsImageInitialWidth)
+    }
+    
+    func configure(with data: NewsData) {
+        newsImageViewWidthConstraint.constant = data.imageURL == nil ? -newsImageInitialWidth : 0
+        newsImageViewLeftConstraint.constant = data.imageURL == nil ? 0 : newsImageInitialLeftConstant
+        
+        newsImageView.kf.setImage(with: URL(string: data.imageURL ?? ""))
+        newsTitleLabel.text = data.title?.removeSearchTag
+        newsDescriptionLabel.text = data.description?.removeSearchTag
     }
 }

@@ -12,8 +12,7 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewConfig()
-        loginRealm()
+        viewConfig()        
     }
     
     func viewConfig() {

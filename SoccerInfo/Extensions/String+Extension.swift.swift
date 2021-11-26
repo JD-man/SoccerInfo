@@ -25,4 +25,9 @@ extension String {
         
         return formatter.date(from: self) ?? Date()
     }
+    
+    // for news search
+    var removeSearchTag: String {
+        return self.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
+    }
 }

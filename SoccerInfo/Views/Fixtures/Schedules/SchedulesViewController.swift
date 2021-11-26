@@ -62,7 +62,14 @@ class ScheduleViewController: BasicTabViewController<FixturesRealmData> {
     var scheduleContent: [ScheduleContent] = [] {
         didSet {
             noMatchLabel.isHidden = scheduleContent.count > 0
-            schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
+            
+            // prevent delete section error when first view load
+            if scheduleContent.count > 0 {
+                schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
+            }
+            else {
+                schedulesTableView.reloadData()
+            }
         }
     }
     
