@@ -88,8 +88,7 @@ extension UIViewController {
                         if object.isEmpty {
                             realm.add(table)
                         }
-                        else {
-                            print("change data")
+                        else {                            
                             let prevObject = object.first!
                             prevObject.content = table.content
                             prevObject.updateDate = table.updateDate
@@ -159,7 +158,6 @@ extension UIViewController {
             print("url fail")
             return            
         }
-        print("API request start")
         AF.request(url, method: .get, headers: footBallData.headers).validate().responseJSON { response in
             switch response.result {
             case .success(_):

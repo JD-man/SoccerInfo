@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UIA-Xg-BOX">
-                    <rect key="frame" x="207" y="10" width="215" height="21"/>
+                    <rect key="frame" x="200" y="10" width="215" height="21"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="승점" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmk-Av-kJt">
                             <rect key="frame" x="0.0" y="0.0" width="36" height="21"/>
@@ -56,13 +56,13 @@
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="순위" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOu-ta-RqY">
-                    <rect key="frame" x="8" y="11.5" width="30" height="18"/>
+                    <rect key="frame" x="15" y="11.5" width="30" height="18"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="팀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7v-ki-kwf">
-                    <rect key="frame" x="43" y="11.5" width="159" height="18"/>
+                    <rect key="frame" x="50" y="11.5" width="145" height="18"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -74,8 +74,8 @@
                 <constraint firstItem="s7v-ki-kwf" firstAttribute="centerY" secondItem="EuK-sC-Wc5" secondAttribute="centerY" id="I04-a6-es4"/>
                 <constraint firstAttribute="bottom" secondItem="UIA-Xg-BOX" secondAttribute="bottom" constant="10" id="McG-JE-zRQ"/>
                 <constraint firstItem="UIA-Xg-BOX" firstAttribute="leading" secondItem="s7v-ki-kwf" secondAttribute="trailing" constant="5" id="OfO-Mq-n9j"/>
-                <constraint firstAttribute="trailing" secondItem="UIA-Xg-BOX" secondAttribute="trailing" constant="8" id="VML-9k-dnR"/>
-                <constraint firstItem="yOu-ta-RqY" firstAttribute="leading" secondItem="EuK-sC-Wc5" secondAttribute="leading" constant="8" id="eFA-3M-3j1"/>
+                <constraint firstAttribute="trailing" secondItem="UIA-Xg-BOX" secondAttribute="trailing" constant="15" id="VML-9k-dnR"/>
+                <constraint firstItem="yOu-ta-RqY" firstAttribute="leading" secondItem="EuK-sC-Wc5" secondAttribute="leading" constant="15" id="eFA-3M-3j1"/>
                 <constraint firstItem="yOu-ta-RqY" firstAttribute="width" secondItem="EuK-sC-Wc5" secondAttribute="width" multiplier="0.07" id="gUP-st-TaO"/>
                 <constraint firstItem="yOu-ta-RqY" firstAttribute="centerY" secondItem="EuK-sC-Wc5" secondAttribute="centerY" id="hjr-QZ-u9H"/>
                 <constraint firstItem="UIA-Xg-BOX" firstAttribute="width" secondItem="EuK-sC-Wc5" secondAttribute="width" multiplier="0.5" id="j6R-Hf-atU"/>

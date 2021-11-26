@@ -29,5 +29,6 @@ extension String {
     // for news search
     var removeSearchTag: String {
         return self.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
+            .replacingOccurrences(of: "&quot", with: "")
     }
 }

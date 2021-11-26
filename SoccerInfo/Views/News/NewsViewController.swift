@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SafariServices
 
 class NewsViewController: BasicTabViewController<NewsData> {
     typealias SearchResponse = Result<NewsResponse, Error>
@@ -41,29 +42,32 @@ class NewsViewController: BasicTabViewController<NewsData> {
     }
     
     func fetchNewsAPIData() {
+        // News Search Query
         let query = URLQueryItem(name: "query", value: "\(league.newsQuery)")
         let start = URLQueryItem(name: "start", value: "1")
         let display = URLQueryItem(name: "display", value: "10")
-        let sort = URLQueryItem(name: "sort", value: "sim")
         let url = APIComponents.newsRootURL.toURL(of: .newsSearch,
-                                                      queryItems: [query, start, display, sort])
+                                                      queryItems: [query, start, display])
         
         
         let group = DispatchGroup()
+        // News Search
         fetchAPIData(of: .newsSearch, url: url) { [weak self] (result: SearchResponse) in
             switch result {
             case .success(let newsResponse):
                 self?.totalPage = min(self!.totalPage, 100)
                 var items = newsResponse.items
+                if items.isEmpty { return }
                 
                 var randomIndex: Set<Int> = [0]
-                while randomIndex.count < 3 {
-                    randomIndex.insert(Int.random(in: 0 ..< 10))
+                let minCount = min(items.count, 3)
+                while randomIndex.count < minCount {
+                    randomIndex.insert(Int.random(in: 0 ..< minCount))
                 }
                 
+                // News Image Search by News title
                 for i in randomIndex {
-                    group.enter()
-                    print("enter")
+                    group.enter()                    
                     let query = URLQueryItem(name: "query", value: items[i].title!.removeSearchTag)
                     let display = URLQueryItem(name: "display", value: "1")
                     let sort = URLQueryItem(name: "sort", value: "sim")
@@ -112,6 +116,22 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 600
+        return 150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let newsLink = data[indexPath.section].link,
+              let newsURL = URL(string: newsLink) else { return }
+        
+        // webview
+//        let storyboard = UIStoryboard(name: "NewsWeb", bundle: nil)
+//        let newsWebVC = storyboard.instantiateViewController(withIdentifier: "NewsWebViewController") as! NewsWebViewController
+//        newsWebVC.url = newsLink
+//        present(newsWebVC, animated: true, completion: nil)
+        
+        // safari
+        let safariVC = SFSafariViewController(url: newsURL)
+        safariVC.modalPresentationStyle = .fullScreen
+        present(safariVC, animated: true, completion: nil)
     }
 }

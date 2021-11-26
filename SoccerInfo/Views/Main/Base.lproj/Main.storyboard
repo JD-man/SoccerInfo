@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-784" y="-380"/>
         </scene>
-        <!--Schedules-->
+        <!--Fixtures-->
         <scene sceneID="h2l-cD-ex1">
             <objects>
-                <viewControllerPlaceholder storyboardName="Schedules" id="hfh-A1-ZwO" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Fixtures" id="hfh-A1-ZwO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="gTp-Tj-3uk"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6b-PK-0P4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

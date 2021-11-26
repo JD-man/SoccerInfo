@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import SideMenu
 
-class ScheduleViewController: BasicTabViewController<FixturesRealmData> {
+class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     // Fixtures RealmData
     typealias fixturesObject = Result<FixturesTable, RealmErrorType>
@@ -54,22 +54,15 @@ class ScheduleViewController: BasicTabViewController<FixturesRealmData> {
             dateSectionTitles = schedulesData.keys.sorted { $0 < $1 }
         }
     }
-    var dateSectionTitles: [String] = [] {
+    var dateSectionTitles = [String](repeating: "", count: 7) {
         didSet {
             scheduleContent = dateSectionTitles.map { schedulesData[$0]! }
         }
     }
-    var scheduleContent: [ScheduleContent] = [] {
+    var scheduleContent = [ScheduleContent](repeating: [("","",nil,nil,"")], count: 7) {
         didSet {
             noMatchLabel.isHidden = scheduleContent.count > 0
-            
-            // prevent delete section error when first view load
-            if scheduleContent.count > 0 {
-                schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
-            }
-            else {
-                schedulesTableView.reloadData()
-            }
+            schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
         }
     }
     
@@ -183,7 +176,7 @@ class ScheduleViewController: BasicTabViewController<FixturesRealmData> {
     }
 }
 
-extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
+extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return dateSectionTitles.count
     }
@@ -204,8 +197,8 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SchedulesTableViewCell.identifier,
-                                                 for: indexPath) as! SchedulesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: FixturesTableViewCell.identifier,
+                                                 for: indexPath) as! FixturesTableViewCell
         let sectionCount = scheduleContent[indexPath.section].count
         cell.noMatchCellLabel.isHidden = sectionCount > 0
         if sectionCount > 0 {

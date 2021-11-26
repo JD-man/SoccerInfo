@@ -59,6 +59,43 @@ Wed, 12 Sep 2018 14:11:54 +0000   --> E, d MMM yyyy HH:mm:ss Z
 - 런칭화면 보여줄 때 사용한 Sleep에서 힌트를 얻음
 - DispatchGroup의 wait을 이용해 로그인을 동기적으로 처리
 - 로그인이 완료된 후에 첫번째 뷰가 로드되고 로그인된 계정을 사용해야해서 동기적으로 처리
+```swift
+    // 첫뷰시작전에 로그인되야됨 -> 여기서 해줘야됨 -> 여기서 동기적으로 로그인 Sleep(3) -> 뷰넘어가고 -> 로그인된 유저를 사용
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "RealmLoginQueue")
+        
+        group.enter()
+        queue.async {
+            print("login start")
+            let app = App(id: APIComponents.realmAppID)
+            guard let username = UIDevice.current.identifierForVendor else {
+                // alert
+                print("ID for Vender is nil")
+                return
+            }
+            let params: Document = ["username" : AnyBSON(stringLiteral: username.uuidString)]
+            
+            app.login(credentials: Credentials.function(payload: params)) { result in
+                switch result {
+                case .success(let user):
+                    print("SceneDelegate", user.id)
+                    group.leave()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        
+        group.wait()
+        print("login end")
+    }
+```
 
 
 - 14:00 ~ 17:00 - Fixture 붙이기 끝, 해야할거 : 날짜별로 정리

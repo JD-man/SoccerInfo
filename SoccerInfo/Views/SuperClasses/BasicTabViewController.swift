@@ -55,7 +55,6 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     // for sharing league value whole tab
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(#function)
         if league != PublicPropertyManager.shared.league {
             league = PublicPropertyManager.shared.league
             navigationItem.leftBarButtonItem?.title = PublicPropertyManager.shared.league.rawValue
@@ -66,9 +65,9 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
         guard let sideVC = menu.topViewController as? SideViewController else { return }
         if league != sideVC.selectedLeague {
-            league = sideVC.selectedLeague
-            navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue
             PublicPropertyManager.shared.league = sideVC.selectedLeague
+            league = sideVC.selectedLeague
+            navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue            
         }
     }
 }

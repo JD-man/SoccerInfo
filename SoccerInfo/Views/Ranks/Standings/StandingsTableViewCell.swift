@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class StandingsTableViewCell: UITableViewCell {
     
     static let identifier = "StandingsTableViewCell"
 
     @IBOutlet weak var rankLabel: UILabel!
-    @IBOutlet weak var teamNameLabel: UILabel!
+    @IBOutlet weak var teamLogoImageView: UIImageView!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var playedLabel: UILabel!
     @IBOutlet weak var winLabel: UILabel!
@@ -24,19 +25,31 @@ class StandingsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        viewConfig()
+    }
+    
+    func viewConfig() {
         selectionStyle = .none
         separateLine.isHidden = true
+        
+        rankLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        pointsLabel.font = .systemFont(ofSize: 15, weight: .semibold)
     }
     
     func configure(with data: StandingsRealmData) {
         rankLabel.text = "\(data.rank)"
-        teamNameLabel.text = data.teamName
+        teamLogoImageView.kf.setImage(with: URL(string: data.teamLogo))
         pointsLabel.text = "\(data.points)"
         playedLabel.text = "\(data.played)"
         winLabel.text = "\(data.win)"
         drawLabel.text = "\(data.draw)"
         loseLabel.text = "\(data.lose)"
         goalDiffLabel.text = "\(data.goalsDiff)"
-        separateLine.isHidden = !(data.rank == 4 || data.rank == 6)
+        if PublicPropertyManager.shared.league == .ligue1 {
+            separateLine.isHidden = !(data.rank == 2 || data.rank == 4)
+        }
+        else {
+            separateLine.isHidden = !(data.rank == 4 || data.rank == 6)
+        }
     }
 }
