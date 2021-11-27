@@ -28,6 +28,27 @@ class EventsTableViewCell: UITableViewCell {
         timeLabel.layer.borderColor = UIColor.systemGray2.cgColor
         timeLabel.layer.cornerRadius = timeLabel.frame.width / 2
         timeLabel.font = .systemFont(ofSize: 12, weight: .semibold)
-        
+    }
+    
+    func configure(with data: EventsRealmData, isHomeCell: Bool) {
+        if isHomeCell {
+            homePlayerNameLabel.text = data.player
+            print(data.eventType)
+            homeEventTypeImageView.image = UIImage(systemName: "home")
+        }
+        else {
+            awayPlayerNameLabel.text = data.player
+            homeEventTypeImageView.image = UIImage(systemName: "home")
+        }
+        timeLabel.text = "\(data.time)"
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        timeLabel.text = nil
+        homeEventTypeImageView.image = nil
+        homePlayerNameLabel.text = nil
+        awayEventTypeImageView.image = nil
+        awayPlayerNameLabel.text = nil
     }
 }

@@ -9,7 +9,11 @@ import UIKit
 import RealmSwift
 import Kingfisher
 
-class MatchDetailViewController: UIViewController {
+class MatchDetailViewController: BasicTabViewController<MatchDetailRealmData> {
+    deinit {
+        print("MatchDetailVC Deinit")
+    }
+    
     enum MatchDetailSection: CaseIterable {
         case events, lineups
         
@@ -39,9 +43,26 @@ class MatchDetailViewController: UIViewController {
     var awayLogo = ""
     var awayTeamName = ""
     
-    var data: [MatchDetailRealmData] = [] {
+    override var league: League {
         didSet {
-            print(data)
+            
+        }
+    }
+    
+    override var data: [MatchDetailRealmData] {
+        didSet {
+            guard let filtered = data.filter({ $0.fixtureID == fixtureID }).first else {
+                fetchEventsAPIData()
+                return
+            }
+            matchDetailData = filtered
+        }
+    }
+    
+    // matchDetailData not nil. optional binding when data filtering
+    var matchDetailData: MatchDetailRealmData = MatchDetailRealmData.initialValue {
+        didSet {
+            matchDetailTableView.reloadData()
         }
     }
     
@@ -54,10 +75,9 @@ class MatchDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewConfig()
     }
     
-    func viewConfig() {
+    override func viewConfig() {
         title = "경기정보"
         matchDetailTableView.register(UINib(nibName: EventsTableViewCell.identifier, bundle: nil),
                                       forCellReuseIdentifier: EventsTableViewCell.identifier)
@@ -66,12 +86,17 @@ class MatchDetailViewController: UIViewController {
         
         matchDetailTableView.delegate = self
         matchDetailTableView.dataSource = self
+        matchDetailTableView.separatorStyle = .none
         
         homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
         awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
         homeTeamNameLabel.text = homeTeamName.uppercased()
         awayTeamNameLabel.text = awayTeamName.uppercased()
-        //fetchEventsAPIData()
+        fetchMatchDetailRealmData()
+    }
+    
+    override func sideButtonConfig() {
+        
     }
     
     func fetchMatchDetailRealmData() {
@@ -97,22 +122,64 @@ class MatchDetailViewController: UIViewController {
         fetchAPIData(of: .events, url: eventsURL) { [weak self] (result: EventsResponses) in
             switch result {
             case .success(let eventsAPIData):
-                print(eventsAPIData.response)
-                print("======================================")
-                
                 let lineupURL = APIComponents.footBallRootURL.toURL(of: .lineups, queryItems: [fixtureIDQuery])
                 self?.fetchAPIData(of: .lineups, url: lineupURL, completion: { (result: LineupsResponses) in
                     switch result {
                     case .success(let lineupsAPIData):
-                        print(lineupsAPIData.response)
-                        
+                        // Make Events Realm Data
                         let eventList = List<EventsRealmData>()
-//                        eventsAPIData.response.forEach {
-//                            
-//                        }
+                        eventsAPIData.response
+                            .map { EventsRealmData(eventsResponse: $0) }
+                            .forEach {
+                                eventList.append($0)
+                            }
+                        
+                        // Make Lineup Realm Data
+                        let homeTeam = lineupsAPIData.response[0]
+                        let awayTeam = lineupsAPIData.response[1]
+                        
+                        let homeStartLineup = List<LineupRealmData>()
+                        homeTeam.startXI
+                            .map { LineupRealmData(lineupsPlayer: $0.player) }
+                            .forEach { homeStartLineup.append($0) }
+                        
+                        let homeSubLineup = List<LineupRealmData>()
+                        homeTeam.substitutes
+                            .map { LineupRealmData(lineupsPlayer: $0.player) }
+                            .forEach { homeSubLineup.append($0) }
+                        
+                        let awayStartLineup = List<LineupRealmData>()
+                        awayTeam.startXI
+                            .map { LineupRealmData(lineupsPlayer: $0.player) }
+                            .forEach { awayStartLineup.append($0) }
+                        
+                        let awaySubLineup = List<LineupRealmData>()
+                        awayTeam.substitutes
+                            .map { LineupRealmData(lineupsPlayer: $0.player) }
+                            .forEach { awaySubLineup.append($0) }
+                        
+                        let matchDetailRealmData = MatchDetailRealmData(fixtureID: self!.fixtureID,
+                                                                        events: eventList,
+                                                                        homeStartLineup: homeStartLineup,
+                                                                        homeSubLineup: homeSubLineup,
+                                                                        awayStartLineup: awayStartLineup,
+                                                                        awaySubLineup: awaySubLineup,
+                                                                        homeFormation: homeTeam.formation,
+                                                                        awayFormation: awayTeam.formation)
                         
                         
+                        let content = List<MatchDetailRealmData>()
+                        let prevData = self!.data
+                        prevData.forEach {
+                            content.append($0)
+                        }
+                        content.append(matchDetailRealmData)
+                        let table = MatchDetailTable(leagueID: self!.league.leagueID,
+                                                     season: 2021,
+                                                     content: content)
                         
+                        self?.updateRealmData(table: table, leagueID: self!.league.leagueID, season: 2021)
+                        self?.data = Array(content)
                     case .failure(let error):
                         print(error)
                     }
@@ -134,23 +201,26 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return section == 0 ? matchDetailData.events.count : matchDetailData.homeStartLineup.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: EventsTableViewCell.identifier,
-                                                     for: indexPath) as! EventsTableViewCell            
-            cell.awayPlayerNameLabel.text = "awayPlayer"
-            cell.homePlayerNameLabel.text = "homePlayer"
-            cell.homeEventTypeImageView.image = UIImage.init(systemName: "lanyardcard.fill")
-            cell.awayEventTypeImageView.image = UIImage.init(systemName: "lanyardcard.fill")
-            cell.timeLabel.text = "88"
+                                                     for: indexPath) as! EventsTableViewCell
+            
+            let event = matchDetailData.events[indexPath.item]
+            let isHomeCell = event.teamName == homeTeamName
+            cell.configure(with: event, isHomeCell: isHomeCell)
             return cell
         }
         else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineupsTableViewCell.identifier,
                                                      for: indexPath) as! LineupsTableViewCell
+            
+            let homeLineup = matchDetailData.homeStartLineup[indexPath.item]
+            let awayLineup = matchDetailData.awayStartLineup[indexPath.item]
+            cell.configure(homeLineup: homeLineup, awayLineup: awayLineup)
             return cell
         }
         return UITableViewCell()

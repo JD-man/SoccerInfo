@@ -18,4 +18,9 @@ class LineupsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func configure(homeLineup: LineupRealmData, awayLineup: LineupRealmData) {
+        homePlayer.text = homeLineup.name
+        awayPlayer.text = awayLineup.name
+    }
 }

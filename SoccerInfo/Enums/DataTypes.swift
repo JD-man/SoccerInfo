@@ -23,10 +23,8 @@ enum FootballData {
             return StandingsTable.self
         case .fixtures:
             return FixturesTable.self
-        case .events:
-            return FixturesTable.self
-        case .lineups:
-            return FixturesTable.self
+        case .events, .lineups:
+            return MatchDetailTable.self
         case .newsSearch, .newsImage:
             return NewsResponse.self
         @unknown default:

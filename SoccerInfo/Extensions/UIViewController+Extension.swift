@@ -75,6 +75,7 @@ extension UIViewController {
             return }
         let configuration = user.configuration(partitionValue: "\(leagueID)")
         
+        
         Realm.asyncOpen(configuration: configuration) { result in
             switch result {
             case .success(let realm):
@@ -84,6 +85,7 @@ extension UIViewController {
                     let object = realm.objects(T.self).where {
                         $0._partition == "\(leagueID)" && $0.season == season
                     }
+                    
                     try realm.write({
                         if object.isEmpty {
                             realm.add(table)
@@ -166,6 +168,7 @@ extension UIViewController {
                           print("decode fail")
                           return }                
                 completion(.success(decoded))
+                print("API CALL")
             case .failure(let error):
                 print(error)
             }
