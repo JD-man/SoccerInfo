@@ -63,7 +63,7 @@ final class FixturesRealmData: EmbeddedObject, BasicTabViewData {
 }
 
 // MARK: - Fixtures Response Model
-struct FixturesData: Codable {
+struct FixturesAPIData: Codable {
     var response: [FixturesResponse]
 }
 
@@ -98,4 +98,26 @@ struct FixturesTeamInfo: Codable {
 struct FixturesGoals: Codable {
     var home: Int?
     var away: Int?
+}
+
+
+// MARK: - For FixtureVC Content
+struct FixturesContent {
+    let homeName: String
+    let awayName: String
+    let homeLogo: String
+    let awayLogo: String
+    var homeGoal: Int?
+    var awayGoal: Int?
+    let matchHour: String
+    let fixtureID: Int
+    
+    static let initialContent = FixturesContent(homeName: "",
+                                                awayName: "",
+                                                homeLogo: "",
+                                                awayLogo: "",
+                                                homeGoal: nil,
+                                                awayGoal: nil,
+                                                matchHour: "",
+                                                fixtureID: 0)
 }

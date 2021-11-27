@@ -10,7 +10,7 @@ import Kingfisher
 
 class FixturesTableViewCell: UITableViewCell {
     
-    typealias ScheduleContent = (String, String, Int?, Int?, String, Int)
+    //typealias ScheduleContent = (String, String, Int?, Int?, String, Int)
     static let identifier = "FixturesTableViewCell"
     
     @IBOutlet weak var homeLogoImageView: UIImageView!
@@ -29,25 +29,38 @@ class FixturesTableViewCell: UITableViewCell {
         scoreLabel.isHidden = true
         timeLabel.isHidden = true
         selectionStyle = .none
+        isUserInteractionEnabled = false
         
         scoreLabel.font = .systemFont(ofSize: 17, weight: .medium)
         timeLabel.font = .systemFont(ofSize: 17, weight: .medium)
-        
-        accessoryType = .disclosureIndicator
     }
     
-    func configure(with data: ScheduleContent) {
-        homeLogoImageView.kf.setImage(with: URL(string: data.0))
-        awayLogoImageView.kf.setImage(with: URL(string: data.1))
-        if let homeGoal = data.2, let awayGoal = data.3 {
+    func configure(with data: FixturesContent) {
+        homeLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
+        awayLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
+        if let homeGoal = data.homeGoal, let awayGoal = data.awayGoal {
+            accessoryType = .disclosureIndicator
+            isUserInteractionEnabled = true
             scoreLabel.isHidden = false
             timeLabel.isHidden = true            
             scoreLabel.text = "\(homeGoal) - \(awayGoal)"
         }
         else {
+            accessoryType = .none
+            isUserInteractionEnabled = false
             timeLabel.isHidden = false            
             scoreLabel.isHidden = true
-            timeLabel.text = "\(data.4)"
+            timeLabel.text = "\(data.matchHour)"
         }        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        homeLogoImageView.image = nil
+        awayLogoImageView.image = nil
+        scoreLabel.text = nil
+        timeLabel.text = nil
+        accessoryType = .none
+        isUserInteractionEnabled = false
     }
 }

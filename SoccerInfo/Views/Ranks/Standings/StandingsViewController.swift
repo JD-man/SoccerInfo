@@ -12,7 +12,7 @@ import SideMenu
 class StandingsViewController: BasicTabViewController<StandingsRealmData> {
 
     typealias standingObject = Result<StandingsTable, RealmErrorType>
-    typealias standingResponse = Result<StandingData, Error>
+    typealias standingResponses = Result<StandingAPIData, Error>
     @IBOutlet weak var standingsTableView: UITableView!
     
     override var league: League {
@@ -70,7 +70,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         let season = URLQueryItem(name: "season", value: "2021")
         let url = APIComponents.footBallRootURL.toURL(of: .standings, queryItems: [league, season])
         
-        fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponse) in
+        fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponses) in
             switch result {
             case .success(let standingData):
                 let league = standingData.response[0].league

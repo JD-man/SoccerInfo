@@ -10,18 +10,16 @@ import RealmSwift
 import SideMenu
 
 class FixturesViewController: BasicTabViewController<FixturesRealmData> {
-    
     // Fixtures RealmData
-    typealias fixturesObject = Result<FixturesTable, RealmErrorType>
+    typealias FixturesObject = Result<FixturesTable, RealmErrorType>
     // API Response
-    typealias fixturesResponse = Result<FixturesData, Error>
+    typealias FixturesResponses = Result<FixturesAPIData, Error>
     
     // Dictionary of match date(section title) : schedule content
-    typealias ScheduleData = [String : ScheduleContent]
+    typealias FixturesDatas = [String : FixturesContents]
     
     // Schedule content Tuple: (homeLogo, awayLogo, homeGoal, awayGoal, match hour, fixtureID)
-    typealias ScheduleContent = [(String, String, Int?, Int?, String, Int)]
-    
+    typealias FixturesContents = [FixturesContent]
     
     @IBOutlet weak var schedulesTableView: UITableView!
     @IBOutlet weak var noMatchLabel: UILabel!
@@ -49,7 +47,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
             makeScheduleData()
         }
     }
-    var schedulesData: ScheduleData = [:] {
+    var schedulesData: FixturesDatas = [:] {
         didSet {
             dateSectionTitles = schedulesData.keys.sorted { $0 < $1 }
         }
@@ -59,7 +57,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
             scheduleContent = dateSectionTitles.map { schedulesData[$0]! }
         }
     }
-    var scheduleContent = [ScheduleContent](repeating: [("","",nil,nil,"",0)], count: 7) {
+    var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
         didSet {
             noMatchLabel.isHidden = scheduleContent.count > 0
             schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
@@ -91,7 +89,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     
     func fetchFixturesRealmData() {
-        fetchRealmData(league: league) { [weak self] (result: fixturesObject) in
+        fetchRealmData(league: league) { [weak self] (result: FixturesObject) in
             switch result {
             case .success(let fixturesTable):
                 self?.data = Array(fixturesTable.content)
@@ -112,7 +110,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         let seasonQuery = URLQueryItem(name: "season", value: "2021")
         let url = APIComponents.footBallRootURL.toURL(of: .fixtures, queryItems: [leagueQuery, seasonQuery])
         
-        fetchAPIData(of: .fixtures, url: url) { [weak self] (result: fixturesResponse) in
+        fetchAPIData(of: .fixtures, url: url) { [weak self] (result: FixturesResponses) in
             switch result {
             case .success(let fixturesData):                
                 let fixturesResponse = fixturesData.response
@@ -141,7 +139,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     func makeScheduleData() {
         
         //make dictionary
-        var newScheduleData: ScheduleData = [:]
+        var newScheduleData: FixturesDatas = [:]
         for after in 0 ..< 7 {
             let formattedDay = Calendar.current.date(byAdding: .day, value: after, to: firstDay)!.formattedDay
             newScheduleData[formattedDay] = []
@@ -151,12 +149,14 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         data.filter { $0.fixtureDate.toDate >= firstDay && $0.fixtureDate.toDate < firstDay.afterWeekDay}
             .sorted(by: { $0.fixtureDate < $1.fixtureDate })
             .forEach {
-                let element = ($0.homeLogo,
-                               $0.awayLogo,
-                               $0.homeGoal,
-                               $0.awayGoal,
-                               $0.fixtureDate.toDate.formattedHour,
-                               $0.fixtureID)
+                let element = FixturesContent(homeName: $0.homeName,
+                                              awayName: $0.awayName,
+                                              homeLogo: $0.homeLogo,
+                                              awayLogo: $0.awayLogo,
+                                              homeGoal: $0.homeGoal,
+                                              awayGoal: $0.awayGoal,
+                                              matchHour: $0.fixtureDate.toDate.formattedHour,
+                                              fixtureID: $0.fixtureID)
                 if newScheduleData[$0.fixtureDate.toDate.formattedDay] == nil {
                     newScheduleData[$0.fixtureDate.toDate.formattedDay] = [element]
                 }
@@ -206,9 +206,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         let section = indexPath.section
         let item = indexPath.item
         let sectionCount = scheduleContent[section].count
-        
-        cell.noMatchCellLabel.isHidden = sectionCount > 0
-        
+        cell.noMatchCellLabel.isHidden = sectionCount > 0        
         if sectionCount > 0 {
             cell.configure(with: scheduleContent[section][item])
         }
@@ -222,7 +220,12 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
         let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
-        matchDetailVC.fixtureID = scheduleContent[indexPath.section][indexPath.item].5
+        let selectedContent = scheduleContent[indexPath.section][indexPath.item]
+        matchDetailVC.fixtureID = selectedContent.fixtureID
+        matchDetailVC.homeLogo = selectedContent.homeLogo
+        matchDetailVC.awayLogo = selectedContent.awayLogo
+        matchDetailVC.homeTeamName = selectedContent.homeName
+        matchDetailVC.awayTeamName = selectedContent.awayName
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
 }

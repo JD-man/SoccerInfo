@@ -12,6 +12,8 @@ import Alamofire
 enum FootballData {
     case standings
     case fixtures
+    case events
+    case lineups
     case newsSearch
     case newsImage
     
@@ -20,6 +22,10 @@ enum FootballData {
         case .standings:
             return StandingsTable.self
         case .fixtures:
+            return FixturesTable.self
+        case .events:
+            return FixturesTable.self
+        case .lineups:
             return FixturesTable.self
         case .newsSearch, .newsImage:
             return NewsResponse.self
@@ -35,6 +41,10 @@ enum FootballData {
             return "/standings"
         case .fixtures:
             return "/fixtures"
+        case .events:
+            return "/fixtures/events"
+        case .lineups:
+            return "/fixtures/lineups"
         case .newsSearch:
             return "/news.json"
         case .newsImage:
@@ -46,7 +56,7 @@ enum FootballData {
     
     var headers: HTTPHeaders {
         switch self {
-        case .standings, .fixtures:
+        case .standings, .fixtures , .events, .lineups:
             return APIComponents.footBallHeaders
         case .newsImage, .newsSearch:
             return APIComponents.newsHeaders

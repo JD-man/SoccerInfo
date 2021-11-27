@@ -66,7 +66,7 @@ class StandingsRealmData: EmbeddedObject, BasicTabViewData {
     
 
 // MARK: - Standings Response Model
-struct StandingData: Codable {
+struct StandingAPIData: Codable {
     var response: [StandingResponse]
 }
 

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventsTableViewCell" rowHeight="69" id="KGk-i7-Jjw" customClass="EventsTableViewCell" customModule="SoccerInfo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUE-h0-bos">
+                        <rect key="frame" x="159.5" y="0.0" width="1" height="69"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="0b0-aj-7Cw"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vry-2e-Yai">
+                        <rect key="frame" x="145" y="19.5" width="30" height="30"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Vry-2e-Yai" secondAttribute="height" multiplier="1:1" id="6nu-k0-75H"/>
+                            <constraint firstAttribute="width" constant="30" id="j6L-eQ-bF4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanyardcard.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="tPk-cz-VcY">
+                        <rect key="frame" x="120" y="27" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="tPk-cz-VcY" secondAttribute="height" multiplier="1:1" id="CgN-RG-uwJ"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanyardcard.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TsN-3D-fvM">
+                        <rect key="frame" x="185" y="27" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="TsN-3D-fvM" secondAttribute="height" multiplier="1:1" id="d02-na-mKm"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUm-cI-N8x">
+                        <rect key="frame" x="10" y="24" width="100" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqH-O6-243">
+                        <rect key="frame" x="210" y="24" width="100" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TsN-3D-fvM" firstAttribute="width" secondItem="Vry-2e-Yai" secondAttribute="width" multiplier="0.5" id="0fG-p0-R7a"/>
+                    <constraint firstAttribute="trailing" secondItem="xqH-O6-243" secondAttribute="trailing" constant="10" id="5Qd-zq-MTe"/>
+                    <constraint firstItem="TsN-3D-fvM" firstAttribute="leading" secondItem="Vry-2e-Yai" secondAttribute="trailing" constant="10" id="AIb-xh-m36"/>
+                    <constraint firstItem="TsN-3D-fvM" firstAttribute="centerY" secondItem="Vry-2e-Yai" secondAttribute="centerY" id="CaO-vb-ZCX"/>
+                    <constraint firstItem="xqH-O6-243" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EUt-DX-Rv4"/>
+                    <constraint firstItem="Vry-2e-Yai" firstAttribute="leading" secondItem="tPk-cz-VcY" secondAttribute="trailing" constant="10" id="M4x-gH-orH"/>
+                    <constraint firstItem="JUm-cI-N8x" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PgE-5L-FAH"/>
+                    <constraint firstItem="tPk-cz-VcY" firstAttribute="centerY" secondItem="Vry-2e-Yai" secondAttribute="centerY" id="Xkw-53-GJc"/>
+                    <constraint firstItem="Vry-2e-Yai" firstAttribute="centerY" secondItem="WUE-h0-bos" secondAttribute="centerY" id="bVV-83-Fmp"/>
+                    <constraint firstItem="xqH-O6-243" firstAttribute="leading" secondItem="TsN-3D-fvM" secondAttribute="trailing" constant="10" id="c3F-La-Bot"/>
+                    <constraint firstAttribute="bottom" secondItem="WUE-h0-bos" secondAttribute="bottom" id="emk-Ll-oZc"/>
+                    <constraint firstItem="WUE-h0-bos" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gCS-Vb-Zkr"/>
+                    <constraint firstItem="tPk-cz-VcY" firstAttribute="leading" secondItem="JUm-cI-N8x" secondAttribute="trailing" constant="10" id="iOj-jf-rbR"/>
+                    <constraint firstItem="WUE-h0-bos" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lR7-T4-LW2"/>
+                    <constraint firstItem="Vry-2e-Yai" firstAttribute="centerX" secondItem="WUE-h0-bos" secondAttribute="centerX" id="loN-wv-hbw"/>
+                    <constraint firstItem="JUm-cI-N8x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="rOK-oL-A3j"/>
+                    <constraint firstItem="tPk-cz-VcY" firstAttribute="width" secondItem="Vry-2e-Yai" secondAttribute="width" multiplier="0.5" id="rdF-hV-iNa"/>
+                    <constraint firstItem="WUE-h0-bos" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="xGu-u9-pjV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="awayEventTypeImageView" destination="TsN-3D-fvM" id="IN8-0l-Z0V"/>
+                <outlet property="awayPlayerNameLabel" destination="xqH-O6-243" id="G11-91-U1I"/>
+                <outlet property="homeEventTypeImageView" destination="tPk-cz-VcY" id="2P6-PG-212"/>
+                <outlet property="homePlayerNameLabel" destination="JUm-cI-N8x" id="QHC-AJ-Y6c"/>
+                <outlet property="timeLabel" destination="Vry-2e-Yai" id="6dU-bb-hCI"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="92.745535714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="lanyardcard.fill" catalog="system" width="108" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
