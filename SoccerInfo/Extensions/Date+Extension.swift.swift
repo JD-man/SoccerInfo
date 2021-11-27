@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 extension Date {
-    var today: Date {
+    var dayStart: Date {
         return Calendar.current.startOfDay(for: self)
     }
     var nextDay: Date {

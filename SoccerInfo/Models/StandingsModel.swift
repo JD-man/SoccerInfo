@@ -27,7 +27,7 @@ class StandingsTable: Object, RealmTable {
     @Persisted var _partition: String // leagueID
     @Persisted var season: Int
     @Persisted var content: T
-    @Persisted var updateDate = Date().today
+    @Persisted var updateDate = Date().dayStart
 
     convenience init(leagueID: Int, season: Int, standingData: List<StandingsRealmData>) {
         self.init()

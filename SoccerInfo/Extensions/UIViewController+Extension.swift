@@ -23,7 +23,7 @@ extension UIViewController {
             // Local Realm Load
             print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
-            let today = Date().today
+            let today = Date().dayStart
             
             // check league, season, updateDate
             let objects = localRealm.objects(T.self).where {
@@ -46,7 +46,7 @@ extension UIViewController {
                         }
                         if syncedObjects.isEmpty {
                             completion(.failure(.emptyData))
-                        }
+                        }                        
                         else {
                             completion(.success(syncedObjects.first!))
                         }

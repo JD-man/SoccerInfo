@@ -14,7 +14,7 @@ final class FixturesTable: Object, RealmTable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String
     @Persisted var season: Int
-    @Persisted var updateDate = Date().today
+    @Persisted var updateDate = Date().dayStart
     @Persisted var content: T
     
     convenience init(leagueID: Int, season: Int, fixturesData: List<FixturesRealmData>) {

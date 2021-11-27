@@ -8,7 +8,7 @@
 import Foundation
 
 enum RealmErrorType: Error {
-    case emptyData
+    case emptyData    
     case asyncOpenFail
     case realmFail
 }

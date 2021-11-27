@@ -19,8 +19,8 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     // Dictionary of match date(section title) : schedule content
     typealias ScheduleData = [String : ScheduleContent]
     
-    // Schedule content Tuple: (homeLogo, awayLogo, homeGoal, awayGoal, match hour)
-    typealias ScheduleContent = [(String, String, Int?, Int?, String)]
+    // Schedule content Tuple: (homeLogo, awayLogo, homeGoal, awayGoal, match hour, fixtureID)
+    typealias ScheduleContent = [(String, String, Int?, Int?, String, Int)]
     
     
     @IBOutlet weak var schedulesTableView: UITableView!
@@ -59,7 +59,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
             scheduleContent = dateSectionTitles.map { schedulesData[$0]! }
         }
     }
-    var scheduleContent = [ScheduleContent](repeating: [("","",nil,nil,"")], count: 7) {
+    var scheduleContent = [ScheduleContent](repeating: [("","",nil,nil,"",0)], count: 7) {
         didSet {
             noMatchLabel.isHidden = scheduleContent.count > 0
             schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
@@ -73,9 +73,12 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewConfig() {
         super.viewConfig()
+        view.backgroundColor = .systemBackground
+        
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
+        schedulesTableView.backgroundColor = .clear
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
@@ -94,7 +97,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                 self?.data = Array(fixturesTable.content)
             case .failure(let error):
                 switch error {
-                case .emptyData:
+                case .emptyData: // Realm Data is not updatedb
                     self?.fetchFixturesAPIData()
                 default:
                     print(error)
@@ -152,7 +155,8 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                                $0.awayLogo,
                                $0.homeGoal,
                                $0.awayGoal,
-                               $0.fixtureDate.toDate.formattedHour)
+                               $0.fixtureDate.toDate.formattedHour,
+                               $0.fixtureID)
                 if newScheduleData[$0.fixtureDate.toDate.formattedDay] == nil {
                     newScheduleData[$0.fixtureDate.toDate.formattedDay] = [element]
                 }
@@ -199,10 +203,14 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FixturesTableViewCell.identifier,
                                                  for: indexPath) as! FixturesTableViewCell
-        let sectionCount = scheduleContent[indexPath.section].count
+        let section = indexPath.section
+        let item = indexPath.item
+        let sectionCount = scheduleContent[section].count
+        
         cell.noMatchCellLabel.isHidden = sectionCount > 0
+        
         if sectionCount > 0 {
-            cell.configure(with: scheduleContent[indexPath.section][indexPath.row])
+            cell.configure(with: scheduleContent[section][item])
         }
         return cell
     }
@@ -210,4 +218,13 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
+        let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
+        matchDetailVC.fixtureID = scheduleContent[indexPath.section][indexPath.item].5
+        navigationController?.pushViewController(matchDetailVC, animated: true)
+    }
 }
+
+

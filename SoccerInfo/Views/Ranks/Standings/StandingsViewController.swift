@@ -44,6 +44,8 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         standingsTableView.delegate = self
         standingsTableView.dataSource = self
         standingsTableView.separatorStyle = .none
+        standingsTableView.backgroundColor = .clear
+        standingsTableView.layer.borderColor = UIColor.label.cgColor
     }
     
     func fetchStandingRealmData() {
@@ -115,11 +117,15 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let nib = Bundle.main.loadNibNamed(StandingSectionHeaderView.identifier, owner: self, options: nil)
         let headerView = nib?.first as! StandingSectionHeaderView
+        
+        headerView.backgroundColor = .tertiarySystemGroupedBackground
+        headerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        headerView.layer.cornerRadius = 30
         return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 70
+        return 50
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
