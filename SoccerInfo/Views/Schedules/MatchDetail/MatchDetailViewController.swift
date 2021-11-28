@@ -12,25 +12,22 @@ import Kingfisher
 class MatchDetailViewController: UIViewController {
     deinit {
         print("MatchDetailVC Deinit")
-    }
-    
+    }    
     enum MatchDetailSection: CaseIterable {
-        case events, lineups
+        case events, lineups, subs
         
         var sectionTitle: String {
             switch self {
             case .events:
                 return "기록"
             case .lineups:
-                return "라인업"
+                return "선발 명단"
+            case .subs:
+                return "교체 명단"
             }
         }
     }
     
-    enum EventsType {
-        case goal, card, subst, `var`
-    }
-
     typealias EventsResponses = Result<EventsAPIData, Error>
     typealias LineupsResponses = Result<LineupsAPIData, Error>
     typealias MatchDetailObject = Result<MatchDetailTable, RealmErrorType>
@@ -55,7 +52,6 @@ class MatchDetailViewController: UIViewController {
         }
     }
     
-    // matchDetailData not nil. optional binding when data filtering
     var matchDetailData: MatchDetailRealmData = MatchDetailRealmData.initialValue {
         didSet {
             matchDetailTableView.reloadData()
@@ -71,16 +67,16 @@ class MatchDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(league)
         viewConfig()
     }
     
     func viewConfig() {
-        title = "경기정보"
+        title = "경기정보"        
         matchDetailTableView.register(UINib(nibName: EventsTableViewCell.identifier, bundle: nil),
                                       forCellReuseIdentifier: EventsTableViewCell.identifier)
         matchDetailTableView.register(UINib(nibName: LineupsTableViewCell.identifier, bundle: nil),
                                       forCellReuseIdentifier: LineupsTableViewCell.identifier)
+        matchDetailTableView.backgroundColor = .clear
         
         matchDetailTableView.delegate = self
         matchDetailTableView.dataSource = self
@@ -88,8 +84,11 @@ class MatchDetailViewController: UIViewController {
         
         homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
         awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
-        homeTeamNameLabel.text = homeTeamName.uppercased()
-        awayTeamNameLabel.text = awayTeamName.uppercased()
+        
+        homeTeamNameLabel.isHidden = true
+        awayTeamNameLabel.isHidden = true
+//        homeTeamNameLabel.text = homeTeamName.uppercased()
+//        awayTeamNameLabel.text = awayTeamName.uppercased()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +100,6 @@ class MatchDetailViewController: UIViewController {
         fetchRealmData(league: league) { [weak self] (result: MatchDetailObject) in
             switch result {
             case .success(let matchDetailTable):
-                print(matchDetailTable)
                 self?.data = Array(matchDetailTable.content)
             case .failure(let error):
                 switch error {
@@ -193,12 +191,27 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
         return MatchDetailSection.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return MatchDetailSection.allCases[section].sectionTitle
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = MatchDetailSection.allCases[section].sectionTitle
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 70
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? matchDetailData.events.count : matchDetailData.homeStartLineup.count
+        if section == 0 {
+            return matchDetailData.events.count
+        }
+        else if section == 1{
+            return matchDetailData.homeStartLineup.count
+        }
+        else {
+            return matchDetailData.homeSubLineup.count
+        }        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -220,10 +233,38 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
             cell.configure(homeLineup: homeLineup, awayLineup: awayLineup)
             return cell
         }
-        return UITableViewCell()
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: LineupsTableViewCell.identifier,
+                                                     for: indexPath) as! LineupsTableViewCell
+            
+            let homeLineup = matchDetailData.homeSubLineup[indexPath.item]
+            let awayLineup = matchDetailData.awaySubLineup[indexPath.item]
+            cell.configure(homeLineup: homeLineup, awayLineup: awayLineup)
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        let section = indexPath.section
+        let item = indexPath.item
+        let totalHeight: CGFloat = 270
+        let minHeight: CGFloat = 55
+        var height: CGFloat = 0
+        if section == 0 {
+            if item == 0 {
+                let currTime = CGFloat(matchDetailData.events[item].time)
+                height = currTime/90 * totalHeight
+            }
+            else {
+                let currTime = matchDetailData.events[item].time
+                let prevTime = matchDetailData.events[item - 1].time
+                let interval = CGFloat(currTime - prevTime)
+                height = interval/90 * totalHeight
+            }
+            return height >= minHeight ? height : minHeight
+        }
+        else {
+            return 50
+        }
     }
 }

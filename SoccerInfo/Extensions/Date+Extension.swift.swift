@@ -13,21 +13,19 @@ extension Date {
         return Calendar.current.startOfDay(for: self)
     }
     var nextDay: Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self)!
+        return Calendar.current.date(byAdding: .day, value: 1, to: self.dayStart)!
     }
     
-    var saturdayOfThisWeek: Date {
-        var todayOfWeek = Calendar.current.dateComponents([.weekOfYear, .yearForWeekOfYear], from: self)
-        todayOfWeek.weekday = 7
-        return Calendar.current.date(from: todayOfWeek)!
+    var fixtureFirstDay: Date {
+        return Calendar.current.date(byAdding: .day, value: -2, to: self.dayStart)!
     }
     
     var afterWeekDay: Date {
-        return Calendar.current.date(byAdding: .day, value: 7, to: self)!
+        return Calendar.current.date(byAdding: .day, value: 7, to: self.dayStart)!
     }
     
     var beforeWeekDay: Date {
-        return Calendar.current.date(byAdding: .day, value: -7, to: self)!
+        return Calendar.current.date(byAdding: .day, value: -7, to: self.dayStart)!
     }
     
     var formattedDay: String {

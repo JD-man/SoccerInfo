@@ -9,6 +9,48 @@ import UIKit
 
 class EventsTableViewCell: UITableViewCell {
     
+    enum EventsDetail: String {
+        case normalGoal = "Normal Goal"
+        case ownGoal = "Own Goal"
+        case penalty = "Penalty"
+        case missedPenalty = "Missed Penalty"
+        case yellowCard = "Yellow Card"
+        case secondYellowCard = "Second Yellow card"
+        case redCard = "Red card"
+        case sub1 = "Substitution 1"
+        case sub2 = "Substitution 2"
+        case sub3 = "Substitution 3"
+        case goalCancelled = "Goal cancelled"
+        case penaltyConfirmed = "Penalty confirmed"
+        
+        var eventsImage: UIImage? {
+            switch self {
+            case .normalGoal, .ownGoal, .penalty, .missedPenalty:
+                return "⚽️".image()
+            case .yellowCard, .secondYellowCard, .redCard:
+                return UIImage(systemName: "lanyardcard.fill")
+            case .sub1, .sub2, .sub3:
+                return UIImage(systemName: "arrow.left.arrow.right")
+            case .goalCancelled, .penaltyConfirmed:
+                return UIImage(systemName: "hand.thumbsdown.fill")
+            }
+        }
+        
+        var eventsColor: UIColor? {
+            switch self {
+            case .yellowCard:
+                return UIColor.yellow
+            case .secondYellowCard, .redCard:
+                return UIColor.red
+            case .goalCancelled, .penaltyConfirmed:
+                return UIColor.gray
+            default:
+                return UIColor.systemBackground
+            }
+        }
+    }
+    
+    
     static let identifier = "EventsTableViewCell"
     
     @IBOutlet weak var timeLabel: UILabel!
@@ -17,6 +59,8 @@ class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var awayEventTypeImageView: UIImageView!
     @IBOutlet weak var awayPlayerNameLabel: UILabel!
     
+    @IBOutlet weak var homeDetailLabel: UILabel!
+    @IBOutlet weak var awayDetailLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,31 +68,84 @@ class EventsTableViewCell: UITableViewCell {
     }
     
     func viewConfig() {
+        timeLabel.clipsToBounds = true
         timeLabel.layer.borderWidth = 0.5
         timeLabel.layer.borderColor = UIColor.systemGray2.cgColor
         timeLabel.layer.cornerRadius = timeLabel.frame.width / 2
         timeLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        
+        homePlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        awayPlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        homePlayerNameLabel.numberOfLines = 0
+        awayPlayerNameLabel.numberOfLines = 0
+        homePlayerNameLabel.textColor = .systemBackground
+        awayPlayerNameLabel.textColor = .systemBackground
+        
+        homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        homeDetailLabel.textColor = .systemGray2
+        awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        awayDetailLabel.textColor = .systemGray2
+        
+        //backgroundColor = .tertiarySystemGroupedBackground
+        backgroundColor = UIColor(red: 11/255, green: 70/255, blue: 25/255, alpha: 1)
     }
     
     func configure(with data: EventsRealmData, isHomeCell: Bool) {
         if isHomeCell {
-            homePlayerNameLabel.text = data.player
-            print(data.eventType)
-            homeEventTypeImageView.image = UIImage(systemName: "home")
+            homeTeamConfig(data: data)
         }
         else {
-            awayPlayerNameLabel.text = data.player
-            homeEventTypeImageView.image = UIImage(systemName: "home")
+            awayTeamConfig(data: data)
         }
         timeLabel.text = "\(data.time)"
+    }
+    
+    func homeTeamConfig(data: EventsRealmData) {
+        let eventDetail = EventsDetail(rawValue: data.eventDetail)
+        switch eventDetail {
+        case .normalGoal:
+            homeDetailLabel.text = data.assist
+            homeEventTypeImageView.image = eventDetail?.eventsImage
+        case .sub1, .sub2, .sub3:
+            homeDetailLabel.text = data.assist
+            if let homeImage = eventDetail?.eventsImage?.cgImage {
+                let rotatedImage = UIImage(cgImage: homeImage,
+                                           scale: 1.0,
+                                           orientation: .upMirrored)
+                homeEventTypeImageView.image = rotatedImage.withRenderingMode(.alwaysTemplate)
+            }
+        default :
+            homeDetailLabel.text = data.eventDetail
+            homeEventTypeImageView.image = eventDetail?.eventsImage
+        }
+        
+        homePlayerNameLabel.text = data.player
+        homeEventTypeImageView.tintColor = eventDetail?.eventsColor
+    }
+    
+    func awayTeamConfig(data: EventsRealmData) {
+        let eventDetail = EventsDetail(rawValue: data.eventDetail)
+        switch eventDetail {
+        case .normalGoal, .sub1, .sub2, .sub3:
+            awayDetailLabel.text = data.assist
+            
+        default :
+            awayDetailLabel.text = data.eventDetail
+        }
+        
+        awayPlayerNameLabel.text = data.player
+        awayEventTypeImageView.image = eventDetail?.eventsImage
+        awayEventTypeImageView.tintColor = eventDetail?.eventsColor
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         timeLabel.text = nil
-        homeEventTypeImageView.image = nil
+        homeDetailLabel.text = nil
+        awayDetailLabel.text = nil
         homePlayerNameLabel.text = nil
+        awayPlayerNameLabel.text = nil        
+        homeEventTypeImageView.image = nil
         awayEventTypeImageView.image = nil
-        awayPlayerNameLabel.text = nil
     }
 }

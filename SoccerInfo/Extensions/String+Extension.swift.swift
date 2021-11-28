@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
     func toURL(of dataType: FootballData, queryItems: [URLQueryItem]) -> URL? {
@@ -26,9 +27,28 @@ extension String {
         return formatter.date(from: self) ?? Date()
     }
     
+    var sectionTitleToDate: Date {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
+        formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+        
+        formatter.dateFormat = "yyyy-MM-dd EEEE"
+        
+        return formatter.date(from: self) ?? Date()
+    }
+    
     // for news search
     var removeSearchTag: String {
         return self.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
-            .replacingOccurrences(of: "&quot", with: "")
+            .replacingOccurrences(of: "&quot", with: "").replacingOccurrences(of: ";", with: "")
+    }
+    
+    // emoji to image
+    func image() -> UIImage? {
+        let size = CGSize(width: 100, height: 100)
+        let rect = CGRect(origin: .zero, size: size)
+        return UIGraphicsImageRenderer(size: size).image { context in
+            (self as NSString).draw(in: rect, withAttributes: [.font : UIFont.systemFont(ofSize: 80)])
+        }
     }
 }

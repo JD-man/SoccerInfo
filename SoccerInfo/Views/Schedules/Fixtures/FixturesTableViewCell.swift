@@ -33,6 +33,7 @@ class FixturesTableViewCell: UITableViewCell {
         
         scoreLabel.font = .systemFont(ofSize: 17, weight: .medium)
         timeLabel.font = .systemFont(ofSize: 17, weight: .medium)
+        timeLabel.textColor = .systemGray
     }
     
     func configure(with data: FixturesContent) {

@@ -151,7 +151,7 @@ extension UIViewController {
         app.login(credentials: Credentials.function(payload: params)) { result in
             switch result {
             case .success(let user):
-                print("extension", user.id)
+                print(user.id)
             case .failure(let error):
                 print(error)
             }

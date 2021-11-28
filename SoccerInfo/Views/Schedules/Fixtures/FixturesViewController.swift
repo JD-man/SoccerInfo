@@ -42,7 +42,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
             makeScheduleData()
         }
     }
-    var firstDay: Date = Date().saturdayOfThisWeek {
+    var firstDay: Date = Date().fixtureFirstDay {
         didSet {
             makeScheduleData()
         }
@@ -77,6 +77,13 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         schedulesTableView.dataSource = self
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
         schedulesTableView.backgroundColor = .clear
+        
+        schedulesTableView.clipsToBounds = false
+        schedulesTableView.layer.masksToBounds = false
+        schedulesTableView.layer.shadowColor = UIColor.black.cgColor
+        schedulesTableView.layer.shadowRadius = 100
+        schedulesTableView.layer.opacity = 1
+        schedulesTableView.layer.shadowOffset = .zero
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
@@ -192,6 +199,9 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "  \(dateSectionTitles[section])"
+        if dateSectionTitles[section].sectionTitleToDate.dayStart == Date().dayStart {            
+            label.text?.append(" (오늘)")
+        }
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }
