@@ -90,9 +90,15 @@ extension UIViewController {
                         if object.isEmpty {
                             realm.add(table)
                         }
-                        else {                            
+                        else {
                             let prevObject = object.first!
-                            prevObject.content = table.content
+                            print(prevObject._partition)
+                            if prevObject.content.count == table.content.count {
+                                prevObject.content = table.content
+                            }
+                            else {
+                                prevObject.content.append(table.content.last!)
+                            }
                             prevObject.updateDate = table.updateDate
                         }
                     })

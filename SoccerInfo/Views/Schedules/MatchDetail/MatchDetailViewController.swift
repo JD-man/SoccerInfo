@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import Kingfisher
 
-class MatchDetailViewController: BasicTabViewController<MatchDetailRealmData> {
+class MatchDetailViewController: UIViewController {
     deinit {
         print("MatchDetailVC Deinit")
     }
@@ -43,13 +43,9 @@ class MatchDetailViewController: BasicTabViewController<MatchDetailRealmData> {
     var awayLogo = ""
     var awayTeamName = ""
     
-    override var league: League {
-        didSet {
-            
-        }
-    }
+    var league: League = .premierLeague
     
-    override var data: [MatchDetailRealmData] {
+    var data: [MatchDetailRealmData] = [MatchDetailRealmData.initialValue] {
         didSet {
             guard let filtered = data.filter({ $0.fixtureID == fixtureID }).first else {
                 fetchEventsAPIData()
@@ -75,9 +71,11 @@ class MatchDetailViewController: BasicTabViewController<MatchDetailRealmData> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(league)
+        viewConfig()
     }
     
-    override func viewConfig() {
+    func viewConfig() {
         title = "경기정보"
         matchDetailTableView.register(UINib(nibName: EventsTableViewCell.identifier, bundle: nil),
                                       forCellReuseIdentifier: EventsTableViewCell.identifier)
@@ -92,21 +90,22 @@ class MatchDetailViewController: BasicTabViewController<MatchDetailRealmData> {
         awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
         homeTeamNameLabel.text = homeTeamName.uppercased()
         awayTeamNameLabel.text = awayTeamName.uppercased()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchMatchDetailRealmData()
     }
     
-    override func sideButtonConfig() {
-        
-    }
-    
     func fetchMatchDetailRealmData() {
-        fetchRealmData(league: .premierLeague) { [weak self] (result: MatchDetailObject) in
+        fetchRealmData(league: league) { [weak self] (result: MatchDetailObject) in
             switch result {
             case .success(let matchDetailTable):
+                print(matchDetailTable)
                 self?.data = Array(matchDetailTable.content)
             case .failure(let error):
                 switch error {
-                case .emptyData:
+                case .emptyData:                    
                     self?.fetchEventsAPIData()
                 default:
                     print(error)
@@ -167,7 +166,6 @@ class MatchDetailViewController: BasicTabViewController<MatchDetailRealmData> {
                                                                         homeFormation: homeTeam.formation,
                                                                         awayFormation: awayTeam.formation)
                         
-                        
                         let content = List<MatchDetailRealmData>()
                         let prevData = self!.data
                         prevData.forEach {
@@ -177,7 +175,6 @@ class MatchDetailViewController: BasicTabViewController<MatchDetailRealmData> {
                         let table = MatchDetailTable(leagueID: self!.league.leagueID,
                                                      season: 2021,
                                                      content: content)
-                        
                         self?.updateRealmData(table: table, leagueID: self!.league.leagueID, season: 2021)
                         self?.data = Array(content)
                     case .failure(let error):

@@ -12,7 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UITableView.appearance().showsVerticalScrollIndicator = false
-        UITableView.appearance().showsHorizontalScrollIndicator = false        
+        UITableView.appearance().showsHorizontalScrollIndicator = false
+        
         
         return true
     }

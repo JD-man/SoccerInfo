@@ -10,12 +10,12 @@ import RealmSwift
 
 // MARK: - Match Detail Realm Data Model
 final class MatchDetailTable: Object, RealmTable {
-    typealias T = List<MatchDetailRealmData>
+    typealias T = MatchDetailRealmData
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String
     @Persisted var season: Int
     @Persisted var updateDate = Date().dayStart
-    @Persisted var content: T
+    @Persisted var content: List<T>
     
     convenience init(leagueID: Int, season: Int, content: List<MatchDetailRealmData>) {
         self.init()

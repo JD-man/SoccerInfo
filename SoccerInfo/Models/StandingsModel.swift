@@ -9,11 +9,11 @@ import Foundation
 import RealmSwift
 
 protocol RealmTable: Object {
-    associatedtype T
+    associatedtype T: EmbeddedObject
     var _partition: String { get set }
     var season: Int { get }
     var updateDate: Date { get set}
-    var content: T { get set }
+    var content: List<T> { get set }
 }
 
 // empty protocol for generic BasicTabViewController
@@ -22,11 +22,11 @@ protocol BasicTabViewData { }
 
 // MARK: - Standings Realm Model
 class StandingsTable: Object, RealmTable {
-    typealias T = List<StandingsRealmData>
+    typealias T = StandingsRealmData
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String // leagueID
     @Persisted var season: Int
-    @Persisted var content: T
+    @Persisted var content: List<T>
     @Persisted var updateDate = Date().dayStart
 
     convenience init(leagueID: Int, season: Int, standingData: List<StandingsRealmData>) {

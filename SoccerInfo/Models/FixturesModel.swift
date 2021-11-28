@@ -10,12 +10,12 @@ import RealmSwift
 
 // MARK: - Fixtures Realm Model
 final class FixturesTable: Object, RealmTable {
-    typealias T = List<FixturesRealmData>
+    typealias T = FixturesRealmData
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String
     @Persisted var season: Int
     @Persisted var updateDate = Date().dayStart
-    @Persisted var content: T
+    @Persisted var content: List<T>
     
     convenience init(leagueID: Int, season: Int, fixturesData: List<FixturesRealmData>) {
         self.init()

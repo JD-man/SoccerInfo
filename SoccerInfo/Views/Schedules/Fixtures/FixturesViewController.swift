@@ -124,7 +124,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                 }
                 
                 let leagueID = self!.league.leagueID
-                let table = FixturesTable(leagueID: self!.league.leagueID,
+                let table = FixturesTable(leagueID: leagueID,
                                           season: 2021,
                                           fixturesData: list)
                 
@@ -226,6 +226,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         matchDetailVC.awayLogo = selectedContent.awayLogo
         matchDetailVC.homeTeamName = selectedContent.homeName
         matchDetailVC.awayTeamName = selectedContent.awayName
+        matchDetailVC.league = league
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
 }
