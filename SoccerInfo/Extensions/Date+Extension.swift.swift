@@ -12,6 +12,11 @@ extension Date {
     var dayStart: Date {
         return Calendar.current.startOfDay(for: self)
     }
+    
+    var updateDay: Date {
+        return Calendar.current.date(byAdding: .hour, value: 6, to: self.dayStart)!
+    }
+    
     var nextDay: Date {
         return Calendar.current.date(byAdding: .day, value: 1, to: self.dayStart)!
     }

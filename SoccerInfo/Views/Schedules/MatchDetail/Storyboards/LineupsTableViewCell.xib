@@ -17,13 +17,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KV-KZ-bKH">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KV-KZ-bKH">
                         <rect key="frame" x="60" y="0.0" width="94.5" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwG-qC-0jQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwG-qC-0jQ">
                         <rect key="frame" x="220.5" y="0.0" width="94.5" height="44"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -36,7 +36,7 @@
                             <constraint firstAttribute="width" constant="1" id="he9-GJ-DqJ"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="751" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKO-JZ-NJQ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="751" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKO-JZ-NJQ">
                         <rect key="frame" x="5" y="0.0" width="15" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="gf1-pu-rpE"/>
@@ -45,7 +45,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="751" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDE-g4-rs6">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" verticalCompressionResistancePriority="751" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDE-g4-rs6">
                         <rect key="frame" x="165.5" y="10" width="15" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="8jH-8c-GDK"/>
@@ -54,7 +54,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6P-d5-7sY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6P-d5-7sY">
                         <rect key="frame" x="25" y="0.0" width="30" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="vCc-0B-QLZ"/>
@@ -63,7 +63,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4W-9p-cU8">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4W-9p-cU8">
                         <rect key="frame" x="185.5" y="10" width="30" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="fOa-Zq-mAe"/>
@@ -102,12 +102,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="awayPlayer" destination="MwG-qC-0jQ" id="xae-tl-K0d"/>
-                <outlet property="awayPlayerNumber" destination="K4W-9p-cU8" id="6Ed-Yz-ZQA"/>
-                <outlet property="awayPlayerPosition" destination="xDE-g4-rs6" id="NLg-bn-5rD"/>
-                <outlet property="homePlayer" destination="2KV-KZ-bKH" id="vi5-tp-g3y"/>
-                <outlet property="homePlayerNumber" destination="M6P-d5-7sY" id="ewj-Ho-VFg"/>
-                <outlet property="homePlayerPosition" destination="RKO-JZ-NJQ" id="EnF-4G-LYv"/>
+                <outlet property="awayPlayerLabel" destination="MwG-qC-0jQ" id="xae-tl-K0d"/>
+                <outlet property="awayPlayerNumberLabel" destination="K4W-9p-cU8" id="6Ed-Yz-ZQA"/>
+                <outlet property="awayPlayerPositionLabel" destination="xDE-g4-rs6" id="NLg-bn-5rD"/>
+                <outlet property="homePlayerLabel" destination="2KV-KZ-bKH" id="vi5-tp-g3y"/>
+                <outlet property="homePlayerNumberLabel" destination="M6P-d5-7sY" id="ewj-Ho-VFg"/>
+                <outlet property="homePlayerPositionLabel" destination="RKO-JZ-NJQ" id="EnF-4G-LYv"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="84.375"/>
         </tableViewCell>

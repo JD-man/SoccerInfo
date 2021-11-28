@@ -19,7 +19,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dXf-9s-JFb">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FixturesTableViewCell" rowHeight="84" id="mQe-KO-VVk" customClass="FixturesTableViewCell" customModule="SoccerInfo" customModuleProvider="target">
                                         <rect key="frame" x="20" y="32" width="374" height="84"/>
@@ -91,33 +90,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경기가 없습니다!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlH-TL-dcx">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <gestureRecognizers/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <color key="textColor" systemColor="systemGray2Color"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="dXf-9s-JFb" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="1oq-aP-blX"/>
-                            <constraint firstItem="rlH-TL-dcx" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="6bt-ia-yq0"/>
                             <constraint firstItem="dXf-9s-JFb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="MFn-Cb-IjI"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="rlH-TL-dcx" secondAttribute="bottom" id="WyY-MV-DVf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="dXf-9s-JFb" secondAttribute="bottom" id="Yri-Q1-Uer"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dXf-9s-JFb" secondAttribute="trailing" id="hwi-uq-apm"/>
-                            <constraint firstItem="rlH-TL-dcx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="oPU-0J-0gU"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rlH-TL-dcx" secondAttribute="trailing" id="u2c-Yj-Fei"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="경기일정" id="Xui-7d-Yfn"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="noMatchLabel" destination="rlH-TL-dcx" id="T3g-VD-QKp"/>
                         <outlet property="schedulesTableView" destination="dXf-9s-JFb" id="2m8-3A-eUQ"/>
                     </connections>
                 </viewController>

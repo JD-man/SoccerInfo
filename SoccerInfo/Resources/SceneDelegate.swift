@@ -20,30 +20,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let group = DispatchGroup()
-        let queue = DispatchQueue(label: "RealmLoginQueue")
         
         group.enter()
-        queue.async {
-            print("login start")
-            let app = App(id: APIComponents.realmAppID)
-            guard let username = UIDevice.current.identifierForVendor else {
-                // alert
-                print("ID for Vender is nil")
-                return
-            }
-            let params: Document = ["username" : AnyBSON(stringLiteral: username.uuidString)]
-            
-            app.login(credentials: Credentials.function(payload: params)) { result in
-                switch result {
-                case .success(let user):
-                    print("SceneDelegate", user.id)
-                    group.leave()
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
         
+        print("login start")
+        let app = App(id: APIComponents.realmAppID)
+        guard let username = UIDevice.current.identifierForVendor else {
+            // alert
+            print("ID for Vender is nil")
+            return
+        }
+        let params: Document = ["username" : AnyBSON(stringLiteral: username.uuidString)]
+        
+        app.login(credentials: Credentials.function(payload: params)) { result in
+            switch result {
+            case .success(let user):
+                print("SceneDelegate", user.id)
+                group.leave()
+            case .failure(let error):
+                print(error)
+            }
+        }        
         group.wait()
         print("login end")
     }

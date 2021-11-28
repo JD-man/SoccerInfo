@@ -21,7 +21,9 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         sideButtonConfig()
     }
     
-    func viewConfig() { }
+    func viewConfig() {
+        view.backgroundColor = .systemBackground
+    }
     
     func sideButtonConfig() {
         let sideButton = UIBarButtonItem(title: "Premier League",

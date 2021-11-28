@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 
+
 class NewsTableViewCell: UITableViewCell {
     
     static let identifier = "NewsTableViewCell"
@@ -38,7 +39,7 @@ class NewsTableViewCell: UITableViewCell {
         
         newsDescriptionLabel.numberOfLines = 0
         newsDescriptionLabel.font = .systemFont(ofSize: 13, weight: .medium)
-        newsDescriptionLabel.textColor = .systemGray2
+        newsDescriptionLabel.textColor = .systemGray2        
         
         newsImageInitialWidth = newsImageView.frame.width
         newsImageInitialLeftConstant = newsImageViewLeftConstraint.constant        

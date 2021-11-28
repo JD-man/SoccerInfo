@@ -27,6 +27,7 @@ extension String {
         return formatter.date(from: self) ?? Date()
     }
     
+    // for Fixture title to Date
     var sectionTitleToDate: Date {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
@@ -41,6 +42,12 @@ extension String {
     var removeSearchTag: String {
         return self.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
             .replacingOccurrences(of: "&quot", with: "").replacingOccurrences(of: ";", with: "")
+    }
+    
+    // for Removing " " of team name
+    
+    var modifyTeamName: String {
+        return self.replacingOccurrences(of: " ", with: "\n")
     }
     
     // emoji to image

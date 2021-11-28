@@ -22,7 +22,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     typealias FixturesContents = [FixturesContent]
     
     @IBOutlet weak var schedulesTableView: UITableView!
-    @IBOutlet weak var noMatchLabel: UILabel!
+    
     
     /*
      Change league : fetchData
@@ -59,7 +59,6 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
         didSet {
-            noMatchLabel.isHidden = scheduleContent.count > 0
             schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
         }
     }
@@ -71,25 +70,17 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewConfig() {
         super.viewConfig()
-        view.backgroundColor = .systemBackground
-        
+        schedulesTableView.addShadow()
+        schedulesTableView.backgroundColor = .clear
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
-        schedulesTableView.backgroundColor = .clear
-        
-        schedulesTableView.clipsToBounds = false
-        schedulesTableView.layer.masksToBounds = false
-        schedulesTableView.layer.shadowColor = UIColor.black.cgColor
-        schedulesTableView.layer.shadowRadius = 100
-        schedulesTableView.layer.opacity = 1
-        schedulesTableView.layer.shadowOffset = .zero
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
         leftSwipeGesture.direction = .left
         view.addGestureRecognizer(leftSwipeGesture)
-        
+
         let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
         rightSwipeGesture.direction = .right
         view.addGestureRecognizer(rightSwipeGesture)
@@ -199,10 +190,10 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "  \(dateSectionTitles[section])"
-        if dateSectionTitles[section].sectionTitleToDate.dayStart == Date().dayStart {            
+        if dateSectionTitles[section].sectionTitleToDate.dayStart == Date().dayStart {
             label.text?.append(" (오늘)")
         }
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 20, weight: .semibold)        
         return label
     }
     
@@ -240,5 +231,6 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
 }
+
 
 

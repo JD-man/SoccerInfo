@@ -14,7 +14,7 @@ final class MatchDetailTable: Object, RealmTable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String
     @Persisted var season: Int
-    @Persisted var updateDate = Date().dayStart
+    @Persisted var updateDate = Date().updateDay
     @Persisted var content: List<T>
     
     convenience init(leagueID: Int, season: Int, content: List<MatchDetailRealmData>) {

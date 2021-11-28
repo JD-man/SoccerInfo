@@ -12,20 +12,6 @@ import Kingfisher
 class MatchDetailViewController: UIViewController {
     deinit {
         print("MatchDetailVC Deinit")
-    }    
-    enum MatchDetailSection: CaseIterable {
-        case events, lineups, subs
-        
-        var sectionTitle: String {
-            switch self {
-            case .events:
-                return "기록"
-            case .lineups:
-                return "선발 명단"
-            case .subs:
-                return "교체 명단"
-            }
-        }
     }
     
     typealias EventsResponses = Result<EventsAPIData, Error>
@@ -41,6 +27,7 @@ class MatchDetailViewController: UIViewController {
     var awayTeamName = ""
     
     var league: League = .premierLeague
+    var maxSubsCount = 0
     
     var data: [MatchDetailRealmData] = [MatchDetailRealmData.initialValue] {
         didSet {
@@ -54,7 +41,9 @@ class MatchDetailViewController: UIViewController {
     
     var matchDetailData: MatchDetailRealmData = MatchDetailRealmData.initialValue {
         didSet {
-            matchDetailTableView.reloadData()
+            maxSubsCount = max(matchDetailData.awaySubLineup.count,
+                              matchDetailData.homeSubLineup.count)
+            matchDetailTableView.reloadSections(IndexSet(0 ..< 3), with: .fade)
         }
     }
     
@@ -68,10 +57,29 @@ class MatchDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
+        fetchMatchDetailRealmData()
     }
     
     func viewConfig() {
         title = "경기정보"        
+        matchDetailTableViewConfig()
+        
+        matchDetailTableHeaderView.addCorner()
+        
+        homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
+        awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
+        
+//        homeTeamNameLabel.isHidden = true
+//        awayTeamNameLabel.isHidden = true
+        homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
+        awayTeamNameLabel.text = awayTeamName.uppercased().modifyTeamName
+        homeTeamNameLabel.numberOfLines = 0
+        awayTeamNameLabel.numberOfLines = 0
+        homeTeamNameLabel.adjustsFontSizeToFitWidth = true
+        awayTeamNameLabel.adjustsFontSizeToFitWidth = true
+    }
+    
+    func matchDetailTableViewConfig() {
         matchDetailTableView.register(UINib(nibName: EventsTableViewCell.identifier, bundle: nil),
                                       forCellReuseIdentifier: EventsTableViewCell.identifier)
         matchDetailTableView.register(UINib(nibName: LineupsTableViewCell.identifier, bundle: nil),
@@ -82,21 +90,17 @@ class MatchDetailViewController: UIViewController {
         matchDetailTableView.dataSource = self
         matchDetailTableView.separatorStyle = .none
         
-        homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
-        awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
-        
-        homeTeamNameLabel.isHidden = true
-        awayTeamNameLabel.isHidden = true
-//        homeTeamNameLabel.text = homeTeamName.uppercased()
-//        awayTeamNameLabel.text = awayTeamName.uppercased()
+        matchDetailTableView.addShadow()
+        matchDetailTableView.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchMatchDetailRealmData()
+        // prevent other realm object error
     }
     
     func fetchMatchDetailRealmData() {
+        league = PublicPropertyManager.shared.league
         fetchRealmData(league: league) { [weak self] (result: MatchDetailObject) in
             switch result {
             case .success(let matchDetailTable):
@@ -184,6 +188,21 @@ class MatchDetailViewController: UIViewController {
             }
         }
     }
+    
+    enum MatchDetailSection: CaseIterable {
+        case events, lineups, subs
+        
+        var sectionTitle: String {
+            switch self {
+            case .events:
+                return "기록"
+            case .lineups:
+                return "선발 명단"
+            case .subs:
+                return "교체 명단"
+            }
+        }
+    }
 }
 
 extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -194,7 +213,7 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = MatchDetailSection.allCases[section].sectionTitle
-        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.font = .systemFont(ofSize: 18, weight: .semibold)        
         return label
     }
     
@@ -206,11 +225,12 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
         if section == 0 {
             return matchDetailData.events.count
         }
-        else if section == 1{
+        else if section == 1 {
             return matchDetailData.homeStartLineup.count
         }
         else {
-            return matchDetailData.homeSubLineup.count
+            // prevent index error when the number of sub player is different
+            return maxSubsCount
         }        
     }
     
@@ -237,8 +257,19 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
             let cell = tableView.dequeueReusableCell(withIdentifier: LineupsTableViewCell.identifier,
                                                      for: indexPath) as! LineupsTableViewCell
             
-            let homeLineup = matchDetailData.homeSubLineup[indexPath.item]
-            let awayLineup = matchDetailData.awaySubLineup[indexPath.item]
+            // prevent index error when the number of sub player is different
+            let emptyPlayer = LineupsPlayer(name: "-", number: 0, pos: "-", grid: nil)
+            var homeLineup = LineupRealmData(lineupsPlayer: emptyPlayer)
+            var awayLineup = LineupRealmData(lineupsPlayer: emptyPlayer)
+            
+            let item = indexPath.item
+            if item < matchDetailData.homeSubLineup.count {
+                homeLineup = matchDetailData.homeSubLineup[indexPath.item]
+            }
+            if item < matchDetailData.awaySubLineup.count {
+                awayLineup = matchDetailData.awaySubLineup[indexPath.item]
+            }
+            
             cell.configure(homeLineup: homeLineup, awayLineup: awayLineup)
             return cell
         }

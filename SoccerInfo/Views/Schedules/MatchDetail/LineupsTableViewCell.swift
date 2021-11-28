@@ -11,39 +11,37 @@ class LineupsTableViewCell: UITableViewCell {
     
     static let identifier = "LineupsTableViewCell"
 
-    @IBOutlet weak var homePlayer: UILabel!
-    @IBOutlet weak var homePlayerNumber: UILabel!
-    @IBOutlet weak var homePlayerPosition: UILabel!
+    @IBOutlet weak var homePlayerLabel: UILabel!
+    @IBOutlet weak var homePlayerNumberLabel: UILabel!
+    @IBOutlet weak var homePlayerPositionLabel: UILabel!
     
-    @IBOutlet weak var awayPlayer: UILabel!
-    @IBOutlet weak var awayPlayerNumber: UILabel!
-    @IBOutlet weak var awayPlayerPosition: UILabel!
+    @IBOutlet weak var awayPlayerLabel: UILabel!
+    @IBOutlet weak var awayPlayerNumberLabel: UILabel!
+    @IBOutlet weak var awayPlayerPositionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         viewConfig()
     }
     
-    func viewConfig() {
-        
-        [homePlayer, homePlayerNumber, homePlayerPosition,
-         awayPlayer,awayPlayerNumber, awayPlayerPosition].forEach {
+    func viewConfig() {        
+        [homePlayerLabel, homePlayerNumberLabel, homePlayerPositionLabel,
+         awayPlayerLabel,awayPlayerNumberLabel, awayPlayerPositionLabel].forEach {
             $0?.font = .systemFont(ofSize: 13, weight: .medium)
         }
-        homePlayerPosition.textColor = .systemGray2
-        awayPlayerPosition.textColor = .systemGray2
-        homePlayerNumber.textAlignment = .center
-        awayPlayerNumber.textAlignment = .center
-        backgroundColor = .tertiarySystemGroupedBackground
+        homePlayerPositionLabel.textColor = .systemGray2
+        awayPlayerPositionLabel.textColor = .systemGray2
+        homePlayerNumberLabel.textAlignment = .center
+        awayPlayerNumberLabel.textAlignment = .center
     }
     
     func configure(homeLineup: LineupRealmData, awayLineup: LineupRealmData) {
-        homePlayer.text = homeLineup.name
-        homePlayerNumber.text = "\(homeLineup.number)"
-        homePlayerPosition.text = homeLineup.position
+        homePlayerLabel.text = homeLineup.name
+        homePlayerPositionLabel.text = homeLineup.position
+        homePlayerNumberLabel.text = homeLineup.name == "-" ? "-" : "\(homeLineup.number)"
         
-        awayPlayer.text = awayLineup.name
-        awayPlayerNumber.text = "\(awayLineup.number)"
-        awayPlayerPosition.text = awayLineup.position
+        awayPlayerLabel.text = awayLineup.name
+        awayPlayerPositionLabel.text = awayLineup.position        
+        awayPlayerNumberLabel.text = awayLineup.name == "-" ? "-" : "\(awayLineup.number)"
     }
 }

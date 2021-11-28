@@ -23,7 +23,7 @@ extension UIViewController {
             // Local Realm Load
             print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
-            let today = Date().dayStart
+            let today = Date().updateDay
             
             // check league, season, updateDate
             let objects = localRealm.objects(T.self).where {

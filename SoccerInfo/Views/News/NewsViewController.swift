@@ -35,10 +35,14 @@ class NewsViewController: BasicTabViewController<NewsData> {
     }
     
     override func viewConfig() {
-        super.viewConfig()
+        super.viewConfig()        
         newsTableView.delegate = self
         newsTableView.dataSource = self
         newsTableView.separatorInset.left = newsTableView.separatorInset.right
+        
+        newsTableView.layer.shadowRadius = 5
+        newsTableView.layer.shadowOpacity = 1
+        newsTableView.layer.shadowColor = UIColor.black.cgColor
     }
     
     func fetchNewsAPIData() {
@@ -122,13 +126,6 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let newsLink = data[indexPath.section].link,
               let newsURL = URL(string: newsLink) else { return }
-        
-        // webview
-//        let storyboard = UIStoryboard(name: "NewsWeb", bundle: nil)
-//        let newsWebVC = storyboard.instantiateViewController(withIdentifier: "NewsWebViewController") as! NewsWebViewController
-//        newsWebVC.url = newsLink
-//        present(newsWebVC, animated: true, completion: nil)
-        
         // safari
         let safariVC = SFSafariViewController(url: newsURL)
         safariVC.modalPresentationStyle = .fullScreen
