@@ -73,8 +73,6 @@ class MatchDetailViewController: UIViewController {
         homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
         awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
         
-//        homeTeamNameLabel.isHidden = true
-//        awayTeamNameLabel.isHidden = true
         homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
         awayTeamNameLabel.text = awayTeamName.uppercased().modifyTeamName
         homeTeamNameLabel.numberOfLines = 0
@@ -98,7 +96,7 @@ class MatchDetailViewController: UIViewController {
         matchDetailTableView.separatorStyle = .none
         
         matchDetailTableView.addShadow()
-        matchDetailTableView.backgroundColor = .clear
+        matchDetailTableView.backgroundColor = .clear        
     }
     
     func fetchMatchDetailRealmData() {

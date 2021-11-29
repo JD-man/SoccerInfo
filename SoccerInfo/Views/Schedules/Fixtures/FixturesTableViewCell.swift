@@ -9,8 +9,6 @@ import UIKit
 import Kingfisher
 
 class FixturesTableViewCell: UITableViewCell {
-    
-    //typealias ScheduleContent = (String, String, Int?, Int?, String, Int)
     static let identifier = "FixturesTableViewCell"
     
     @IBOutlet weak var homeLogoImageView: UIImageView!

@@ -94,15 +94,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         activityView.startAnimating()
         fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
             switch result {
-            case .success(let fixturesTable):
-                let formatter = DateFormatter()
-                formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
-                formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
-                formatter.dateFormat = "yyyy-MM-dd HH:mm"
-                
-                print(formatter.string(from: fixturesTable.updateDate))
-                print(formatter.string(from: Date().updateHour))
-                      
+            case .success(let fixturesTable):                
                 self?.data = Array(fixturesTable.content)
             case .failure(let error):
                 switch error {
