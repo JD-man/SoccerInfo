@@ -12,4 +12,5 @@ final class PublicPropertyManager {
     static let shared = PublicPropertyManager()
     
     var league: League = .premierLeague
+    var season: Int = 2021
 }

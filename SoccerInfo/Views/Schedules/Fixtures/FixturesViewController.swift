@@ -23,7 +23,6 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     @IBOutlet weak var schedulesTableView: UITableView!
     
-    
     /*
      Change league : fetchData
      Set data or Change monday by swipe : make scheduleData of data
@@ -59,6 +58,9 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
         didSet {
+            if activityView.isAnimating {
+                activityView.stopAnimating()
+            }
             schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
         }
     }
@@ -71,14 +73,12 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewConfig() {
         super.viewConfig()
+        // Schedules TableView Config
         schedulesTableView.addShadow()
         schedulesTableView.backgroundColor = .clear
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
@@ -91,7 +91,8 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     
     func fetchFixturesRealmData() {
-        fetchRealmData(league: league) { [weak self] (result: FixturesObject) in
+        activityView.startAnimating()
+        fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
             switch result {
             case .success(let fixturesTable):
                 let formatter = DateFormatter()
@@ -134,11 +135,12 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                 }
                 
                 let leagueID = self!.league.leagueID
+                let season = self!.season
                 let table = FixturesTable(leagueID: leagueID,
                                           season: 2021,
                                           fixturesData: list)
                 
-                self?.updateRealmData(table: table, leagueID: leagueID)
+                self?.updateRealmData(table: table, leagueID: leagueID, season: season)
                 self?.data = fixturesData
             case .failure(let error):
                 print(error)

@@ -31,6 +31,9 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     override var data: [StandingsRealmData] {
         didSet {
             standingsTableView.reloadSections(IndexSet(integer: 0), with: .fade)
+            if activityView.isAnimating {
+                activityView.stopAnimating()
+            }
         }
     }
     
@@ -49,7 +52,8 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     }
     
     func fetchStandingRealmData() {
-        fetchRealmData(league: league) { [weak self] (result: standingObject) in
+        activityView.startAnimating()
+        fetchRealmData(league: league, season: season) { [weak self] (result: standingObject) in
             switch result {
             case .success(let object):
                 self?.data = Array(object.content)
@@ -67,7 +71,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     
     func fetchStandingAPIData() {
         let league = URLQueryItem(name: "league", value: "\(league.leagueID)")
-        let season = URLQueryItem(name: "season", value: "2021")
+        let season = URLQueryItem(name: "season", value: "\(season)")
         let url = APIComponents.footBallRootURL.toURL(of: .standings, queryItems: [league, season])
         
         fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponses) in
@@ -92,9 +96,8 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
                                            season: season,
                                            standingData: list)
                 
-                self?.updateRealmData(table: table, leagueID: leagueID)
-                self?.data = realmData
-                print("API Call")
+                self?.updateRealmData(table: table, leagueID: leagueID, season: season)
+                self?.data = realmData                
             case .failure(let error):
                 print(error)
             }

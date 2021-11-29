@@ -13,7 +13,7 @@ import SideMenu
 //MARK: - extension with realm
 extension UIViewController {
     // T is determined when ViewController declare typealias
-    func fetchRealmData<T: RealmTable>(league: League, season: Int = 2021, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
+    func fetchRealmData<T: RealmTable>(league: League, season: Int, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else {
             print("user not login")
@@ -67,7 +67,7 @@ extension UIViewController {
         }
     }
     
-    func updateRealmData<T: RealmTable>(table: T, leagueID: Int, season: Int = 2021) {
+    func updateRealmData<T: RealmTable>(table: T, leagueID: Int, season: Int) {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else {
             print("user not login")
@@ -176,5 +176,22 @@ extension UIViewController {
                 print(error)
             }
         }
+    }
+}
+
+// MARK: - extension for activity indicator
+extension UIViewController {
+    func activityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator: UIActivityIndicatorView = {
+            let activityView = UIActivityIndicatorView()
+            activityView.hidesWhenStopped = true
+            activityView.backgroundColor = .systemBackground
+            activityView.style = .large
+            return activityView
+        }()
+        
+        self.view.addSubview(activityIndicator)
+        activityIndicator.frame = self.view.bounds
+        return activityIndicator
     }
 }

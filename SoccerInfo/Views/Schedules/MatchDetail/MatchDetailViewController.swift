@@ -27,6 +27,7 @@ class MatchDetailViewController: UIViewController {
     var awayTeamName = ""
     
     var league: League = .premierLeague
+    var season = 2021
     var maxSubsCount = 0
     
     var data: [MatchDetailRealmData] = [MatchDetailRealmData.initialValue] {
@@ -44,6 +45,9 @@ class MatchDetailViewController: UIViewController {
             maxSubsCount = max(matchDetailData.awaySubLineup.count,
                               matchDetailData.homeSubLineup.count)
             matchDetailTableView.reloadSections(IndexSet(0 ..< 3), with: .fade)
+            if activityView.isAnimating {
+                activityView.stopAnimating()
+            }
         }
     }
     
@@ -53,6 +57,7 @@ class MatchDetailViewController: UIViewController {
     @IBOutlet weak var homeTeamNameLabel: UILabel!
     @IBOutlet weak var awayTeamNameLabel: UILabel!
     @IBOutlet weak var matchDetailTableView: UITableView!
+    var activityView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +81,9 @@ class MatchDetailViewController: UIViewController {
         awayTeamNameLabel.numberOfLines = 0
         homeTeamNameLabel.adjustsFontSizeToFitWidth = true
         awayTeamNameLabel.adjustsFontSizeToFitWidth = true
+        
+        // activity view config
+        activityView = activityIndicator()
     }
     
     func matchDetailTableViewConfig() {
@@ -95,7 +103,9 @@ class MatchDetailViewController: UIViewController {
     
     func fetchMatchDetailRealmData() {
         league = PublicPropertyManager.shared.league
-        fetchRealmData(league: league) { [weak self] (result: MatchDetailObject) in
+        season = PublicPropertyManager.shared.season
+        activityView.startAnimating()
+        fetchRealmData(league: league, season: season) { [weak self] (result: MatchDetailObject) in
             switch result {
             case .success(let matchDetailTable):
                 self?.data = Array(matchDetailTable.content)

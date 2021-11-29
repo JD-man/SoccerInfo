@@ -112,7 +112,7 @@ class EventsTableViewCell: UITableViewCell {
         case missedPenalty = "Missed Penalty"
         case yellowCard = "Yellow Card"
         case secondYellowCard = "Second Yellow card"
-        case redCard = "Red card"
+        case redCard = "Red Card"
         case sub1 = "Substitution 1"
         case sub2 = "Substitution 2"
         case sub3 = "Substitution 3"

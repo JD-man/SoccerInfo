@@ -11,6 +11,7 @@ import SideMenu
 
 class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
+    var activityView = UIActivityIndicatorView()
     var league: League = .premierLeague
     var season: Int = 2021
     var data: [T] = []
@@ -23,6 +24,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     
     func viewConfig() {
         view.backgroundColor = .systemBackground
+        activityView = activityIndicator()
     }
     
     func sideButtonConfig() {
