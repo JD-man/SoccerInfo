@@ -46,8 +46,7 @@ class EventsTableViewCell: UITableViewCell {
         backgroundColor = UIColor(red: 11/255, green: 70/255, blue: 25/255, alpha: 1)
     }
     
-    func configure(with data: EventsRealmData, isHomeCell: Bool) {
-        print(data)
+    func configure(with data: EventsRealmData, isHomeCell: Bool) {        
         if isHomeCell {
             homeTeamConfig(data: data)
         }

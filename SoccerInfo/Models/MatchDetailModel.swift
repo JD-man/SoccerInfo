@@ -14,7 +14,7 @@ final class MatchDetailTable: Object, RealmTable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var _partition: String
     @Persisted var season: Int
-    @Persisted var updateDate = Date().updateDay
+    @Persisted var updateDate = Date().matchDetailUpdateDay
     @Persisted var content: List<T>
     
     convenience init(leagueID: Int, season: Int, content: List<MatchDetailRealmData>) {
@@ -26,7 +26,7 @@ final class MatchDetailTable: Object, RealmTable {
 }
 
 // events, lineup of 1 fixtures
-final class MatchDetailRealmData: EmbeddedObject, BasicTabViewData {
+final class MatchDetailRealmData: EmbeddedObject {
     @Persisted var fixtureID: Int
     @Persisted var events: List<EventsRealmData>
     @Persisted var homeStartLineup: List<LineupRealmData>

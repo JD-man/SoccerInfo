@@ -60,10 +60,9 @@ class MatchDetailViewController: UIViewController {
         fetchMatchDetailRealmData()
     }
     
-    func viewConfig() {
-        title = "경기정보"        
+    func viewConfig() {        
+        title = "경기정보"
         matchDetailTableViewConfig()
-        
         matchDetailTableHeaderView.addCorner()
         
         homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
@@ -92,11 +91,6 @@ class MatchDetailViewController: UIViewController {
         
         matchDetailTableView.addShadow()
         matchDetailTableView.backgroundColor = .clear
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // prevent other realm object error
     }
     
     func fetchMatchDetailRealmData() {

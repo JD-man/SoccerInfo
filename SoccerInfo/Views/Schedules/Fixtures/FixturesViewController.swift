@@ -65,6 +65,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fetchFixturesRealmData()
     }
     
@@ -75,6 +76,9 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
@@ -90,6 +94,14 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         fetchRealmData(league: league) { [weak self] (result: FixturesObject) in
             switch result {
             case .success(let fixturesTable):
+                let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
+                formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+                formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                
+                print(formatter.string(from: fixturesTable.updateDate))
+                print(formatter.string(from: Date().updateDay))
+                      
                 self?.data = Array(fixturesTable.content)
             case .failure(let error):
                 switch error {
@@ -227,7 +239,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         matchDetailVC.awayLogo = selectedContent.awayLogo
         matchDetailVC.homeTeamName = selectedContent.homeName
         matchDetailVC.awayTeamName = selectedContent.awayName
-        matchDetailVC.league = league
+        matchDetailVC.league = league        
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
 }

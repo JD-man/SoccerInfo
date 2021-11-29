@@ -13,6 +13,7 @@ extension Date {
         return Calendar.current.startOfDay(for: self)
     }
     
+    // Realm Update Day Hour = 06:00 AM
     var updateDay: Date {
         return Calendar.current.date(byAdding: .hour, value: 6, to: self.dayStart)!
     }
@@ -23,6 +24,11 @@ extension Date {
     
     var fixtureFirstDay: Date {
         return Calendar.current.date(byAdding: .day, value: -2, to: self.dayStart)!
+    }
+    
+    // MatchDetail update Day must be bigger than now. MatchDetailTable always load.
+    var matchDetailUpdateDay: Date {
+        return Calendar.current.date(byAdding: .year, value: 100, to: self.dayStart)!
     }
     
     var afterWeekDay: Date {

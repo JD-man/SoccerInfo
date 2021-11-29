@@ -23,14 +23,14 @@ extension UIViewController {
             // Local Realm Load
             print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
-            let today = Date().updateDay
+            let updateDay = Date().updateDay
+            print(localRealm.configuration.fileURL)
             
             // check league, season, updateDate
             let objects = localRealm.objects(T.self).where {
                 $0._partition == "\(league.leagueID)" &&
                 $0.season == season &&
-                $0.updateDate >= today &&
-                $0.updateDate < today.nextDay
+                $0.updateDate > Date()
             }
             if objects.isEmpty {
                 // Cloud Realm Load
@@ -41,8 +41,7 @@ extension UIViewController {
                         let syncedObjects = realm.objects(T.self).where {
                             $0._partition == "\(league.leagueID)" &&
                             $0.season == season &&
-                            $0.updateDate >= today &&
-                            $0.updateDate < today.nextDay
+                            $0.updateDate > Date()
                         }
                         if syncedObjects.isEmpty {
                             completion(.failure(.emptyData))
@@ -79,7 +78,6 @@ extension UIViewController {
         Realm.asyncOpen(configuration: configuration) { result in
             switch result {
             case .success(let realm):
-                print(realm.configuration.fileURL)
                 do {
                     // check league, season
                     let object = realm.objects(T.self).where {
@@ -92,14 +90,14 @@ extension UIViewController {
                         }
                         else {
                             let prevObject = object.first!
-                            print(prevObject._partition)
                             if prevObject.content.count == table.content.count {
                                 prevObject.content = table.content
                             }
                             else {
                                 prevObject.content.append(table.content.last!)
                             }
-                            prevObject.updateDate = table.updateDate
+                            let isSameDayUpdate = prevObject.updateDate.dayStart == table.updateDate.dayStart
+                            prevObject.updateDate = isSameDayUpdate ? table.updateDate.nextDay.updateDay : table.updateDate
                         }
                     })
                 }
@@ -122,8 +120,7 @@ extension UIViewController {
         
         Realm.asyncOpen(configuration: configuration) { result in
             switch result {
-            case .success(let realm):
-                print(realm.configuration.fileURL)
+            case .success(let realm):                
                 do {
                     try realm.write({
                         realm.deleteAll()
