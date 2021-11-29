@@ -14,7 +14,7 @@ extension Date {
     }
     
     // Realm Update Day Hour = 06:00 AM
-    var updateDay: Date {
+    var updateHour: Date {
         return Calendar.current.date(byAdding: .hour, value: 6, to: self.dayStart)!
     }
     

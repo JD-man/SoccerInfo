@@ -101,7 +101,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                 formatter.dateFormat = "yyyy-MM-dd HH:mm"
                 
                 print(formatter.string(from: fixturesTable.updateDate))
-                print(formatter.string(from: Date().updateDay))
+                print(formatter.string(from: Date().updateHour))
                       
                 self?.data = Array(fixturesTable.content)
             case .failure(let error):

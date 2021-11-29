@@ -23,7 +23,7 @@ extension UIViewController {
             // Local Realm Load
             print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
-            let updateDay = Date().updateDay
+            let updateDay = Date().updateHour
             print(localRealm.configuration.fileURL)
             
             // check league, season, updateDate
@@ -89,6 +89,7 @@ extension UIViewController {
                             realm.add(table)
                         }
                         else {
+                            // if both count is not same, content is List Type. Need append
                             let prevObject = object.first!
                             if prevObject.content.count == table.content.count {
                                 prevObject.content = table.content
@@ -96,8 +97,24 @@ extension UIViewController {
                             else {
                                 prevObject.content.append(table.content.last!)
                             }
-                            let isSameDayUpdate = prevObject.updateDate.dayStart == table.updateDate.dayStart
-                            prevObject.updateDate = isSameDayUpdate ? table.updateDate.nextDay.updateDay : table.updateDate
+                            
+                            
+                            // Setting New Realm Update Date
+                            let now = Date()
+                            let newUpdateDate = table.updateDate // already 06:00 AM
+                            
+                            // same day. now start == newUpdateDate start update day become nextday 06:00
+                            if now.dayStart == newUpdateDate.dayStart {
+                                prevObject.updateDate = newUpdateDate.nextDay.updateHour
+                            }
+                            // other day before 06:00 AM. now < newUpdateDate
+                            else if now < newUpdateDate {
+                                prevObject.updateDate = newUpdateDate
+                            }
+                            // other day after 06:00 AM
+                            else if now >= newUpdateDate {
+                                prevObject.updateDate = newUpdateDate.nextDay.updateHour
+                            }
                         }
                     })
                 }
