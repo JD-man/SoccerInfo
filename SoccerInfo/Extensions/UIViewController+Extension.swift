@@ -20,6 +20,7 @@ extension UIViewController {
                                  message: "네트워크에 연결하고 다시 시도해주세요.",
                                  completion: nil)
             return }
+        print("FetchRealmData", user)
         let configuration = user.configuration(partitionValue: "\(league.leagueID)")
         do {
             // Local Realm Load

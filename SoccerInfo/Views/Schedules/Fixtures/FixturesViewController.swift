@@ -67,7 +67,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(#function)
         fetchFixturesRealmData()
     }
     

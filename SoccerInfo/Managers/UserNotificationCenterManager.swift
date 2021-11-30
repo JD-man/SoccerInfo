@@ -42,8 +42,8 @@ struct UserNotificationCenterManager {
                 let hourComponent = content.matchHour.components(separatedBy: ":")
                 component.hour = Int(hourComponent[0])! - 1
                 component.minute = Int(hourComponent[1])!
-                let request = makeNotificationRequest(title: "예약한 경기 알람입니다!",
-                                                      body: "\(content.homeName) VS \(content.awayName) 1시간 전!!",
+                let request = makeNotificationRequest(title: "1시간 후 경기 시작합니다!!",
+                                                      body: "\(content.homeName) VS \(content.awayName) ",
                                                       date: component, // 여기에 정확한 시간이 들어가야함
                                                       identifier: "\(content.fixtureID)")
                 userNotificationCenter.add(request) { error in

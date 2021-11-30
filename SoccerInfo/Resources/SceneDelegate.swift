@@ -20,28 +20,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let group = DispatchGroup()
+        let queue = DispatchQueue(label: "RealmLogin")
         
         group.enter()
         print("login start")
-        let app = App(id: APIComponents.realmAppID)
-        if let currentUser = app.currentUser {
-            print(currentUser.id)
-            sleep(1)            
-            group.leave()
-            return
-        }
-        else {
-            app.login(credentials: .anonymous) { result in
-                switch result {
-                case .success(let user):
-                    print("SceneDelegate", user.id)
-                    group.leave()
-                case .failure(let error):
-                    print(error)
-                    group.leave()
+        queue.async {
+            let app = App(id: APIComponents.realmAppID)
+            if let currentUser = app.currentUser {
+                sleep(1)
+                group.leave()
+                print("current user exist",currentUser.id)
+                return
+            }
+            else {
+                app.login(credentials: .anonymous) { result in
+                    switch result {
+                    case .success(let user):
+                        print("new anonymous", user.id)
+                        group.leave()
+                    case .failure(let error):
+                        print(error)
+                        group.leave()
+                    }
                 }
             }
         }
+        
         group.wait()
         print("login end")
     }
