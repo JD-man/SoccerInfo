@@ -27,9 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         queue.async {
             let app = App(id: APIComponents.realmAppID)
             if let currentUser = app.currentUser {
+                print("current user exist",currentUser.id)
                 sleep(1)
                 group.leave()
-                print("current user exist",currentUser.id)
                 return
             }
             else {
