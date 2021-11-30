@@ -16,15 +16,15 @@ extension UIViewController {
     func fetchRealmData<T: RealmTable>(league: League, season: Int, completion: @escaping (Result<T, RealmErrorType>) -> Void ) {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else {
-            print("user not login")
+            alertWithCheckButton(title: "서버 접속에 실패했습니다",
+                                 message: "네트워크에 연결하고 다시 시도해주세요.",
+                                 completion: nil)
             return }
         let configuration = user.configuration(partitionValue: "\(league.leagueID)")
         do {
             // Local Realm Load
             print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
-            let updateDay = Date().updateHour
-            print(localRealm.configuration.fileURL)
             
             // check league, season, updateDate
             let objects = localRealm.objects(T.self).where {
@@ -51,7 +51,7 @@ extension UIViewController {
                         }
                         print("Cloud Realm Loaded")
                     case .failure(let error):
-                        print(error)
+                        print("sync realm error", error)
                         completion(.failure(.asyncOpenFail))
                     }
                 }
@@ -62,7 +62,7 @@ extension UIViewController {
             }
         }
         catch {
-            print(error)
+            print("realm fail", error)
             completion(.failure(.realmFail))
         }
     }
@@ -70,7 +70,9 @@ extension UIViewController {
     func updateRealmData<T: RealmTable>(table: T, leagueID: Int, season: Int) {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else {
-            print("user not login")
+            alertWithCheckButton(title: "서버 접속에 실패했습니다",
+                                 message: "네트워크에 연결하고 다시 시도해주세요.",
+                                 completion: nil)
             return }
         let configuration = user.configuration(partitionValue: "\(leagueID)")
         
@@ -98,7 +100,6 @@ extension UIViewController {
                                 prevObject.content.append(table.content.last!)
                             }
                             
-                            
                             // Setting New Realm Update Date
                             let now = Date()
                             let newUpdateDate = table.updateDate // already 06:00 AM
@@ -115,6 +116,8 @@ extension UIViewController {
                             else if now >= newUpdateDate {
                                 prevObject.updateDate = newUpdateDate.nextDay.updateHour
                             }
+                            
+                            print("Realm Upload complete")
                         }
                     })
                 }
@@ -122,50 +125,17 @@ extension UIViewController {
                     print(error)
                 }
             case .failure(let error):
-                print(error)
+                print("sync realm error", error)
             }
         }
     }
-    
-    // delete for test
-    func deleteRealmDataAll() {
-        let app = App(id: APIComponents.realmAppID)
-        guard let user = app.currentUser else {
-            print("user not login")
-            return }
-        let configuration = user.configuration(partitionValue: "39")
-        
-        Realm.asyncOpen(configuration: configuration) { result in
-            switch result {
-            case .success(let realm):                
-                do {
-                    try realm.write({
-                        realm.deleteAll()
-                    })
-                }
-                catch {
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
     
     func loginRealm() {
         let app = App(id: APIComponents.realmAppID)
-        guard let username = UIDevice.current.identifierForVendor else {
-            // alert
-            print("ID for Vender is nil")
-            return
-        }
-        let params: Document = ["username" : AnyBSON(stringLiteral: username.uuidString)]
-        
-        app.login(credentials: Credentials.function(payload: params)) { result in
+        app.login(credentials: .anonymous) { result in
             switch result {
             case .success(let user):
-                print(user.id)
+                print("SceneDelegate", user.id)
             case .failure(let error):
                 print(error)
             }
@@ -180,7 +150,7 @@ extension UIViewController {
             print("url fail")
             return            
         }
-        AF.request(url, method: .get, headers: footBallData.headers).validate().responseJSON { response in
+        AF.request(url, method: .get, headers: footBallData.headers).validate().responseJSON { [weak self] response in
             switch response.result {
             case .success(_):
                 guard let data = response.data,
@@ -190,6 +160,9 @@ extension UIViewController {
                 completion(.success(decoded))
                 print("API CALL")
             case .failure(let error):
+                self?.alertWithCheckButton(title: "데이터를 가져오는데 실패했습니다",
+                                           message: "네트워크 연결 상태를 확인해주세요.",
+                                           completion: nil)
                 print(error)
             }
         }
@@ -210,5 +183,15 @@ extension UIViewController {
         self.view.addSubview(activityIndicator)
         activityIndicator.frame = self.view.bounds
         return activityIndicator
+    }
+}
+
+extension UIViewController {
+    func alertWithCheckButton(title: String, message: String, completion: (() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { _ in
+            if let completion = completion { completion() }
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }

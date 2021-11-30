@@ -225,16 +225,28 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
-        let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
         let selectedContent = scheduleContent[indexPath.section][indexPath.item]
-        matchDetailVC.fixtureID = selectedContent.fixtureID
-        matchDetailVC.homeLogo = selectedContent.homeLogo
-        matchDetailVC.awayLogo = selectedContent.awayLogo
-        matchDetailVC.homeTeamName = selectedContent.homeName
-        matchDetailVC.awayTeamName = selectedContent.awayName
-        matchDetailVC.league = league        
-        navigationController?.pushViewController(matchDetailVC, animated: true)
+        
+        if let _ = selectedContent.homeGoal {
+            let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
+            let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
+            matchDetailVC.league = league
+            matchDetailVC.fixtureID = selectedContent.fixtureID
+            matchDetailVC.homeLogo = selectedContent.homeLogo
+            matchDetailVC.awayLogo = selectedContent.awayLogo
+            matchDetailVC.homeTeamName = selectedContent.homeName
+            matchDetailVC.awayTeamName = selectedContent.awayName
+            navigationController?.pushViewController(matchDetailVC, animated: true)            
+        }
+        else {
+            let sectionDate = dateSectionTitles[indexPath.section]
+            let notiManager = UserNotificationCenterManager()
+            notiManager.setNotification(content: selectedContent, sectionDate: sectionDate) { [weak self] in
+                DispatchQueue.main.async {
+                    self?.schedulesTableView.reloadRows(at: [indexPath], with: .fade)
+                }                
+            }
+        }
     }
 }
 

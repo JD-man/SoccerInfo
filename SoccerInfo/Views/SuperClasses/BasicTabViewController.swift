@@ -33,7 +33,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
                                          target: self,
                                          action: #selector(sideButtonClicked))
         
-        sideButton.tintColor = .label
+        sideButton.tintColor = .link
         navigationItem.leftBarButtonItem = sideButton
     }
     

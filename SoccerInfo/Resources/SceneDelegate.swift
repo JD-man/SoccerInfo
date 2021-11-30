@@ -22,25 +22,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let group = DispatchGroup()
         
         group.enter()
-        
         print("login start")
         let app = App(id: APIComponents.realmAppID)
-        guard let username = UIDevice.current.identifierForVendor else {
-            // alert
-            print("ID for Vender is nil")
+        if let currentUser = app.currentUser {
+            print(currentUser.id)
+            sleep(1)            
+            group.leave()
             return
         }
-        let params: Document = ["username" : AnyBSON(stringLiteral: username.uuidString)]
-        
-        app.login(credentials: Credentials.function(payload: params)) { result in
-            switch result {
-            case .success(let user):
-                print("SceneDelegate", user.id)
-                group.leave()
-            case .failure(let error):
-                print(error)
+        else {
+            app.login(credentials: .anonymous) { result in
+                switch result {
+                case .success(let user):
+                    print("SceneDelegate", user.id)
+                    group.leave()
+                case .failure(let error):
+                    print(error)
+                    group.leave()
+                }
             }
-        }        
+        }
         group.wait()
         print("login end")
     }

@@ -43,13 +43,17 @@ class FixturesTableViewCell: UITableViewCell {
             scoreLabel.isHidden = false
             timeLabel.isHidden = true            
             scoreLabel.text = "\(homeGoal) - \(awayGoal)"
+            if UserDefaults.standard.value(forKey: "\(data.fixtureID)") != nil {
+                UserDefaults.standard.removeObject(forKey: "\(data.fixtureID)")
+            }
         }
         else {
-            accessoryType = .none
-            isUserInteractionEnabled = false
+            accessoryType = .checkmark
+            isUserInteractionEnabled = true
             timeLabel.isHidden = false            
             scoreLabel.isHidden = true
             timeLabel.text = "\(data.matchHour)"
+            tintColor = UserDefaults.standard.value(forKey: "\(data.fixtureID)") == nil ? .gray : .link
         }        
     }
     
@@ -60,6 +64,7 @@ class FixturesTableViewCell: UITableViewCell {
         scoreLabel.text = nil
         timeLabel.text = nil
         accessoryType = .none
+        tintColor = .gray
         isUserInteractionEnabled = false
     }
 }
