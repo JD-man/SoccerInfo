@@ -34,7 +34,7 @@ class StandingsTableViewCell: UITableViewCell {
         
         rankLabel.font = .systemFont(ofSize: 15, weight: .semibold)
         pointsLabel.font = .systemFont(ofSize: 15, weight: .semibold)
-        backgroundColor = .clear
+        backgroundColor = .clear        
     }
     
     func configure(with data: StandingsRealmData) {

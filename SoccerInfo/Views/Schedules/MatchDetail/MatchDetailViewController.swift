@@ -82,6 +82,9 @@ class MatchDetailViewController: UIViewController {
         
         // activity view config
         activityView = activityIndicator()
+        
+        // header view config
+        matchDetailTableHeaderView.backgroundColor = .secondarySystemGroupedBackground
     }
     
     func matchDetailTableViewConfig() {

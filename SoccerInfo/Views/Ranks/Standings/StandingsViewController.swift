@@ -44,11 +44,12 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     
     override func viewConfig() {
         super.viewConfig()
+        view.backgroundColor = .secondarySystemGroupedBackground
         standingsTableView.delegate = self
         standingsTableView.dataSource = self
         standingsTableView.separatorStyle = .none
         standingsTableView.backgroundColor = .clear
-        standingsTableView.layer.borderColor = UIColor.label.cgColor
+        standingsTableView.layer.borderColor = UIColor.label.cgColor        
     }
     
     func fetchStandingRealmData() {

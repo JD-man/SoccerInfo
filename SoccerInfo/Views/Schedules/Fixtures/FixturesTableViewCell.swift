@@ -23,7 +23,7 @@ class FixturesTableViewCell: UITableViewCell {
     }
     
     func viewConfig() {
-        backgroundColor = .systemBackground                
+        backgroundColor = .secondarySystemGroupedBackground
         scoreLabel.isHidden = true
         timeLabel.isHidden = true
         selectionStyle = .none
