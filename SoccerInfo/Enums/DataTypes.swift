@@ -100,7 +100,7 @@ enum League: String, CaseIterable {
         case .bundesliga:
             return "분데스리가 | FC 바이에른 뮌헨 | 보루시아 도르트문트 | SC 프라이부르크 | | RB 라이프치히 | FSV 마인츠 05 | FC 아우크스부르크"
         case .ligue1:
-            return "프랑스 리그 1 | 파리 생제르맹 FC | FC 지롱댕 드 보르도"
+            return "리그앙"
         }
     }
 }

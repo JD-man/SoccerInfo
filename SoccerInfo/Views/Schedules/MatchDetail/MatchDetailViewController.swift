@@ -179,7 +179,7 @@ class MatchDetailViewController: UIViewController {
                         let table = MatchDetailTable(leagueID: self!.league.leagueID,
                                                      season: 2021,
                                                      content: content)
-                        self?.updateRealmData(table: table, leagueID: self!.league.leagueID, season: 2021)
+                        self?.updateRealmData(table: table, leagueID: self!.league.leagueID, season: self!.season)
                         self?.data = Array(content)
                     case .failure(let error):
                         print(error)

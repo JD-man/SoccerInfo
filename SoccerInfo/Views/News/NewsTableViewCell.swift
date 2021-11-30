@@ -37,7 +37,7 @@ class NewsTableViewCell: UITableViewCell {
         newsTitleLabel.numberOfLines = 1
         newsTitleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
         
-        newsDescriptionLabel.numberOfLines = 0
+        newsDescriptionLabel.numberOfLines = 3
         newsDescriptionLabel.font = .systemFont(ofSize: 13, weight: .medium)
         newsDescriptionLabel.textColor = .systemGray2        
         
@@ -46,7 +46,7 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     func configure(with data: NewsData) {
-        newsImageViewWidthConstraint.constant = data.imageURL == nil ? -newsImageInitialWidth : 0
+        newsImageViewWidthConstraint.constant = data.imageURL == nil ? 0 : newsImageInitialWidth
         newsImageViewLeftConstraint.constant = data.imageURL == nil ? 0 : newsImageInitialLeftConstant
         
         newsImageView.kf.setImage(with: URL(string: data.imageURL ?? ""))

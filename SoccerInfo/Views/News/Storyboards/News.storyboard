@@ -29,19 +29,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="n4b-vG-Q0s">
-                                                    <rect key="frame" x="15" y="40.5" width="145" height="94.5"/>
+                                                    <rect key="frame" x="15" y="49" width="120" height="77.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="n4b-vG-Q0s" secondAttribute="height" multiplier="1.5:1" id="8hS-WI-3io"/>
+                                                        <constraint firstAttribute="width" constant="120" id="Ihj-28-RFu"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="752" text="제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cI-7b-50t">
-                                                    <rect key="frame" x="175" y="15" width="224" height="20.5"/>
+                                                    <rect key="frame" x="150" y="15" width="249" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8C-Ju-bfB">
-                                                    <rect key="frame" x="175" y="45.5" width="224" height="20.5"/>
+                                                    <rect key="frame" x="150" y="45.5" width="249" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -51,7 +52,6 @@
                                                 <constraint firstItem="Q8C-Ju-bfB" firstAttribute="leading" secondItem="8cI-7b-50t" secondAttribute="leading" id="8dj-N4-j9K"/>
                                                 <constraint firstItem="Q8C-Ju-bfB" firstAttribute="trailing" secondItem="8cI-7b-50t" secondAttribute="trailing" id="MAb-vC-4sx"/>
                                                 <constraint firstItem="8cI-7b-50t" firstAttribute="top" secondItem="lsm-Kb-MuU" secondAttribute="top" constant="15" id="OuT-ty-QC1"/>
-                                                <constraint firstItem="n4b-vG-Q0s" firstAttribute="width" secondItem="lsm-Kb-MuU" secondAttribute="width" multiplier="0.35" id="Qoj-Hv-UGW"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Q8C-Ju-bfB" secondAttribute="bottom" constant="15" id="aWM-eG-08X"/>
                                                 <constraint firstItem="Q8C-Ju-bfB" firstAttribute="top" secondItem="8cI-7b-50t" secondAttribute="bottom" constant="10" id="k22-dT-Bnw"/>
                                                 <constraint firstItem="8cI-7b-50t" firstAttribute="leading" secondItem="n4b-vG-Q0s" secondAttribute="trailing" constant="15" id="mRS-Xn-Tlb"/>
@@ -64,7 +64,7 @@
                                             <outlet property="newsDescriptionLabel" destination="Q8C-Ju-bfB" id="22m-me-EVU"/>
                                             <outlet property="newsImageView" destination="n4b-vG-Q0s" id="mEP-kc-p12"/>
                                             <outlet property="newsImageViewLeftConstraint" destination="ryg-vF-xSi" id="J7v-CZ-uVi"/>
-                                            <outlet property="newsImageViewWidthConstraint" destination="Qoj-Hv-UGW" id="V9R-Sh-fVp"/>
+                                            <outlet property="newsImageViewWidthConstraint" destination="Ihj-28-RFu" id="efl-uw-9XH"/>
                                             <outlet property="newsTitleLabel" destination="8cI-7b-50t" id="au1-vG-TDH"/>
                                         </connections>
                                     </tableViewCell>

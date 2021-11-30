@@ -25,6 +25,9 @@ class NewsViewController: BasicTabViewController<NewsData> {
     
     override var data: [NewsData] {
         didSet {
+            if activityView.isAnimating {
+                activityView.stopAnimating()
+            }
             newsTableView.reloadData()
         }
     }
@@ -46,6 +49,7 @@ class NewsViewController: BasicTabViewController<NewsData> {
     }
     
     func fetchNewsAPIData() {
+        activityView.startAnimating()
         // News Search Query
         let query = URLQueryItem(name: "query", value: "\(league.newsQuery)")
         let start = URLQueryItem(name: "start", value: "1")

@@ -26,9 +26,11 @@ class LineupsTableViewCell: UITableViewCell {
     
     func viewConfig() {        
         [homePlayerLabel, homePlayerNumberLabel, homePlayerPositionLabel,
-         awayPlayerLabel,awayPlayerNumberLabel, awayPlayerPositionLabel].forEach {
-            $0?.font = .systemFont(ofSize: 13, weight: .medium)
-        }
+         awayPlayerLabel,awayPlayerNumberLabel, awayPlayerPositionLabel]
+            .forEach {
+                $0?.font = .systemFont(ofSize: 13, weight: .medium)
+                $0?.adjustsFontSizeToFitWidth = true
+            }
         homePlayerPositionLabel.textColor = .systemGray2
         awayPlayerPositionLabel.textColor = .systemGray2
         homePlayerNumberLabel.textAlignment = .center

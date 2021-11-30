@@ -38,7 +38,7 @@ class FixturesTableViewCell: UITableViewCell {
         homeLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
         awayLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
         if let homeGoal = data.homeGoal, let awayGoal = data.awayGoal {
-            accessoryType = .disclosureIndicator
+            accessoryType = .disclosureIndicator            
             isUserInteractionEnabled = true
             scoreLabel.isHidden = false
             timeLabel.isHidden = true            

@@ -26,6 +26,10 @@ class EventsTableViewCell: UITableViewCell {
     }
     
     func viewConfig() {
+        [timeLabel, homePlayerNameLabel, awayPlayerNameLabel, homeDetailLabel, awayDetailLabel]
+            .forEach {
+                $0?.adjustsFontSizeToFitWidth = true
+            }
         timeLabel.clipsToBounds = true
         timeLabel.layer.borderWidth = 0.5
         timeLabel.layer.borderColor = UIColor.systemGray2.cgColor
@@ -57,7 +61,7 @@ class EventsTableViewCell: UITableViewCell {
     }
     
     func awayTeamConfig(data: EventsRealmData) {
-        let eventDetail = EventsDetail(rawValue: data.eventDetail)
+        let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)
         switch eventDetail {
         case .normalGoal:
             awayDetailLabel.text = data.assist
@@ -80,7 +84,7 @@ class EventsTableViewCell: UITableViewCell {
     }
     
     func homeTeamConfig(data: EventsRealmData) {
-        let eventDetail = EventsDetail(rawValue: data.eventDetail)
+        let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)        
         switch eventDetail {
         case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
             homeDetailLabel.text = data.assist
@@ -118,7 +122,7 @@ class EventsTableViewCell: UITableViewCell {
         case sub3 = "Substitution 3"
         case sub4 = "Substitution 4"
         case sub5 = "Substitution 5"
-        case goalCancelled = "Goal cancelled"
+        case goalCancelled = "Goal Disallowed "
         case penaltyConfirmed = "Penalty confirmed"
         
         var eventsImage: UIImage? {
@@ -130,7 +134,7 @@ class EventsTableViewCell: UITableViewCell {
             case .sub1, .sub2, .sub3, .sub4, .sub5:
                 return UIImage(systemName: "arrow.left.arrow.right")
             case .goalCancelled, .penaltyConfirmed:
-                return UIImage(systemName: "hand.thumbsdown.fill")
+                return UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }
         }
         
@@ -140,8 +144,6 @@ class EventsTableViewCell: UITableViewCell {
                 return UIColor.yellow
             case .secondYellowCard, .redCard:
                 return UIColor.red
-            case .goalCancelled, .penaltyConfirmed:
-                return UIColor.gray
             default:
                 return UIColor.systemBackground
             }
