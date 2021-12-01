@@ -60,42 +60,42 @@ class EventsTableViewCell: UITableViewCell {
         timeLabel.text = "\(data.time)"
     }
     
-    func awayTeamConfig(data: EventsRealmData) {
+    func homeTeamConfig(data: EventsRealmData) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)
         switch eventDetail {
         case .normalGoal:
-            awayDetailLabel.text = data.assist
-            awayEventTypeImageView.image = eventDetail?.eventsImage
+            homeDetailLabel.text = data.assist
+            homeEventTypeImageView.image = eventDetail?.eventsImage
         case .sub1, .sub2, .sub3, .sub4, .sub5:
-            awayDetailLabel.text = data.assist
+            homeDetailLabel.text = data.assist
             if let awayImage = eventDetail?.eventsImage?.cgImage {
                 let rotatedImage = UIImage(cgImage: awayImage,
                                            scale: 1.0,
                                            orientation: .upMirrored)
-                awayEventTypeImageView.image = rotatedImage.withRenderingMode(.alwaysTemplate)
+                homeEventTypeImageView.image = rotatedImage.withRenderingMode(.alwaysTemplate)
             }
         default :
-            awayDetailLabel.text = data.eventDetail
-            awayEventTypeImageView.image = eventDetail?.eventsImage
-        }
-        
-        awayPlayerNameLabel.text = data.player
-        awayEventTypeImageView.tintColor = eventDetail?.eventsColor
-    }
-    
-    func homeTeamConfig(data: EventsRealmData) {
-        let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)        
-        switch eventDetail {
-        case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
-            homeDetailLabel.text = data.assist
-            
-        default :
             homeDetailLabel.text = data.eventDetail
+            homeEventTypeImageView.image = eventDetail?.eventsImage
         }
         
         homePlayerNameLabel.text = data.player
-        homeEventTypeImageView.image = eventDetail?.eventsImage
         homeEventTypeImageView.tintColor = eventDetail?.eventsColor
+    }
+    
+    func awayTeamConfig(data: EventsRealmData) {
+        let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)        
+        switch eventDetail {
+        case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
+            awayDetailLabel.text = data.assist
+            
+        default :
+            awayDetailLabel.text = data.eventDetail
+        }
+        
+        awayPlayerNameLabel.text = data.player
+        awayEventTypeImageView.image = eventDetail?.eventsImage
+        awayEventTypeImageView.tintColor = eventDetail?.eventsColor
     }
     
     override func prepareForReuse() {

@@ -53,7 +53,7 @@ extension UIViewController {
                         print("Cloud Realm Loaded")
                     case .failure(let error):
                         print("sync realm error", error)
-                        completion(.failure(.asyncOpenFail))
+                        completion(.failure(.asyncOpenFail))                        
                     }
                 }
             }
@@ -176,7 +176,7 @@ extension UIViewController {
         let activityIndicator: UIActivityIndicatorView = {
             let activityView = UIActivityIndicatorView()
             activityView.hidesWhenStopped = true
-            activityView.backgroundColor = .systemBackground
+            activityView.backgroundColor = .clear
             activityView.style = .large
             return activityView
         }()
