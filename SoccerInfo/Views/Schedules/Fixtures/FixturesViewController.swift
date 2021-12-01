@@ -244,12 +244,16 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
             let sectionDate = dateSectionTitles[indexPath.section]
             let notiManager = UserNotificationCenterManager()
             notiManager.setNotification(content: selectedContent,
-                                        sectionDate: sectionDate) { [weak self] isAllowed in
+                                        sectionDate: sectionDate) { [weak self] notiResult in
                 DispatchQueue.main.async {
-                    switch isAllowed {
-                    case true:
-                        self?.schedulesTableView.reloadRows(at: [indexPath], with: .fade)
-                    case false:
+                    switch notiResult {
+                    case .added, .removed:
+                        self?.alertWithCheckButton(title: "경기 알림 예약이 \(notiResult.rawValue)됐습니다.",
+                                                   message: "\(selectedContent.homeName) vs \(selectedContent.awayName)",
+                                                   completion: {
+                            self?.schedulesTableView.reloadRows(at: [indexPath], with: .fade)
+                        })
+                    case .denied:
                         self?.alertWithSettingURL(title: "알림이 설정되지 않았습니다.",
                                                   message: "알림 설정을 해주셔야 경기 시간 알림 사용이 가능합니다.",
                                                   completion: nil)

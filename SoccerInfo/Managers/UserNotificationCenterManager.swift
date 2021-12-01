@@ -8,11 +8,17 @@
 import UIKit
 import UserNotifications
 
+enum NotiResultType: String {
+    case added = "추가"
+    case removed = "취소"
+    case denied = "거절"
+}
+
 struct UserNotificationCenterManager {
     let userNotificationCenter = UNUserNotificationCenter.current()
     
     // Notification allowed : completion(true)
-    func setNotification(content: FixturesContent, sectionDate: String, completion: @escaping (Bool) -> Void) {
+    func setNotification(content: FixturesContent, sectionDate: String, completion: @escaping (NotiResultType) -> Void) {
         // 1. Check Notification allowed
         userNotificationCenter.getNotificationSettings {
             switch $0.authorizationStatus {
@@ -20,7 +26,7 @@ struct UserNotificationCenterManager {
             case .denied:
                 userNotificationCenter.removeAllPendingNotificationRequests()
                 UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
-                completion(false)
+                completion(.denied)
             // 2-2. allowed: add request process
             default:
                 // 3. Check fixture already added
@@ -34,7 +40,7 @@ struct UserNotificationCenterManager {
                             reserveds.remove(at: reservedIndex)
                             UserDefaults.standard.set(reserveds, forKey: "ReservedFixtures")
                         }
-                        completion(true)
+                        completion(.removed)
                     }
                     // 3-2. fixture is not added
                     else {
@@ -49,7 +55,7 @@ struct UserNotificationCenterManager {
         }
     }
     
-    private func addRequest(content: FixturesContent, sectionDate: String, completion: @escaping (Bool) -> Void) {
+    private func addRequest(content: FixturesContent, sectionDate: String, completion: @escaping (NotiResultType) -> Void) {
         // if save with notification switch on status
         let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .sound, .badge)
         userNotificationCenter.requestAuthorization(options: authOptions) { isNotificationUsed, error in
@@ -78,14 +84,14 @@ struct UserNotificationCenterManager {
                         else {
                             UserDefaults.standard.set([content.fixtureID], forKey: "ReservedFixtures")
                         }
-                        completion(true)
+                        completion(.added)
                     }
                 }
             }
             // when noti disallowed
             else {                             
                 UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
-                completion(false)
+                completion(.denied)
                 print("not allowed")
             }
         }
