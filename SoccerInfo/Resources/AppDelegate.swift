@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let notiCenter = UserNotificationCenterManager()
             notiCenter.userNotificationCenter.getNotificationSettings {
                 switch $0.authorizationStatus {
-                case .denied, .notDetermined:
+                case .denied:
                     if let reserved = UserDefaults.standard.object(forKey: "ReservedFixtures") as? [Int] {
                         for fixture in reserved {
                             print(fixture)

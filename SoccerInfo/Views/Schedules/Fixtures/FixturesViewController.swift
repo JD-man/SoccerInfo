@@ -227,6 +227,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedContent = scheduleContent[indexPath.section][indexPath.item]
         
+        // when match was over, push match detail VC
         if let _ = selectedContent.homeGoal {
             let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
             let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
@@ -238,6 +239,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
             matchDetailVC.awayTeamName = selectedContent.awayName
             navigationController?.pushViewController(matchDetailVC, animated: true)            
         }
+        // when match is not started, notification add request
         else {
             let sectionDate = dateSectionTitles[indexPath.section]
             let notiManager = UserNotificationCenterManager()
@@ -246,7 +248,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
                 DispatchQueue.main.async {
                     switch isAllowed {
                     case true:
-                        self?.schedulesTableView.reloadData()
+                        self?.schedulesTableView.reloadRows(at: [indexPath], with: .fade)
                     case false:
                         self?.alertWithSettingURL(title: "알림이 설정되지 않았습니다.",
                                                   message: "알림 설정을 해주셔야 경기 시간 알림 사용이 가능합니다.",

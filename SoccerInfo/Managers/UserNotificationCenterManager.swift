@@ -17,7 +17,7 @@ struct UserNotificationCenterManager {
         userNotificationCenter.getNotificationSettings {
             switch $0.authorizationStatus {
             // 2-1. Disallowed: remove all request, reserved fixtures, alert -> end
-            case .denied, .notDetermined:
+            case .denied:
                 userNotificationCenter.removeAllPendingNotificationRequests()
                 UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
                 completion(false)
@@ -25,13 +25,12 @@ struct UserNotificationCenterManager {
             default:
                 // 3. Check fixture already added
                 let fixtureID = content.fixtureID
-                if let reserved = UserDefaults.standard.object(forKey: "ReservedFixtures") as? [Int] {
+                if var reserveds = UserDefaults.standard.object(forKey: "ReservedFixtures") as? [Int] {
                     // 3-1. fixture is already added -> remove noti -> end
-                    if reserved.contains(fixtureID) {
+                    if reserveds.contains(fixtureID) {
                         print("remove noti")
                         userNotificationCenter.removePendingNotificationRequests(withIdentifiers: ["\(fixtureID)"])
-                        if var reserveds = UserDefaults.standard.value(forKey: "ReservedFixtures") as? [Int],
-                           let reservedIndex = reserveds.firstIndex(of: fixtureID) {
+                        if let reservedIndex = reserveds.firstIndex(of: fixtureID) {
                             reserveds.remove(at: reservedIndex)
                             UserDefaults.standard.set(reserveds, forKey: "ReservedFixtures")
                         }
@@ -84,8 +83,7 @@ struct UserNotificationCenterManager {
                 }
             }
             // when noti disallowed
-            else {
-                userNotificationCenter.removeAllPendingNotificationRequests()                
+            else {                             
                 UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
                 completion(false)
                 print("not allowed")

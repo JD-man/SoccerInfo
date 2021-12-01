@@ -17,7 +17,7 @@ extension UIViewController {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else {
             alertWithCheckButton(title: "서버 접속에 실패했습니다",
-                                 message: "네트워크에 연결하고 다시 시도해주세요.",
+                                 message: "네트워크 연결 상태를 확인하고 다시 시도해주세요.",
                                  completion: nil)
             return }
         print("FetchRealmData", user)
@@ -72,7 +72,7 @@ extension UIViewController {
         let app = App(id: APIComponents.realmAppID)
         guard let user = app.currentUser else {
             alertWithCheckButton(title: "서버 접속에 실패했습니다",
-                                 message: "네트워크에 연결하고 다시 시도해주세요.",
+                                 message: "네트워크 연결 상태를 확인하고 다시 시도해주세요.",
                                  completion: nil)
             return }
         let configuration = user.configuration(partitionValue: "\(leagueID)")
