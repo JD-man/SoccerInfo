@@ -187,11 +187,28 @@ extension UIViewController {
     }
 }
 
+// MARK: - extension for alert
 extension UIViewController {
     func alertWithCheckButton(title: String, message: String, completion: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { _ in
             if let completion = completion { completion() }
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func alertWithSettingURL(title: String, message: String, completion: (() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { _ in
+            if let completion = completion { completion() }
+        }))
+        alert.addAction(UIAlertAction(title: "설정", style: .default, handler: { _ in
+            guard let settingURL = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingURL) {
+                UIApplication.shared.open(settingURL, options: [:], completionHandler: nil)
+            }
         }))
         present(alert, animated: true, completion: nil)
     }

@@ -6,10 +6,64 @@
 //
 
 import UIKit
+import RealmSwift
 
+// 첫뷰시작전에 로그인, 노티 체크 -> 여기서 해줘야됨
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        
+        group.enter()
+        print("login start")
+        queue.async {
+            let app = App(id: APIComponents.realmAppID)
+            if let currentUser = app.currentUser {
+                print("current user exist",currentUser.id)
+                sleep(1)
+                group.leave()
+                return
+            }
+            else {
+                app.login(credentials: .anonymous) { result in
+                    switch result {
+                    case .success(let user):
+                        print("new anonymous", user.id)
+                        group.leave()
+                    case .failure(let error):
+                        print(error)
+                        group.leave()
+                    }
+                }
+            }
+        }
+        group.enter()
+        queue.async {
+            print("noti check")
+            let notiCenter = UserNotificationCenterManager()
+            notiCenter.userNotificationCenter.getNotificationSettings {
+                switch $0.authorizationStatus {
+                case .denied, .notDetermined:
+                    if let reserved = UserDefaults.standard.object(forKey: "ReservedFixtures") as? [Int] {
+                        for fixture in reserved {
+                            print(fixture)
+                            notiCenter.userNotificationCenter.removePendingNotificationRequests(withIdentifiers: ["\(fixture)"])
+                            print("removing")
+                        }
+                        UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
+                    }
+                    print("noti check complete")
+                    group.leave()
+                default:
+                    group.leave()
+                }
+            }
+        }
+        
+        group.wait()
+        print("AppDelegate end")
         
         UITableView.appearance().showsVerticalScrollIndicator = false
         UITableView.appearance().showsHorizontalScrollIndicator = false

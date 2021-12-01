@@ -34,7 +34,7 @@ class FixturesTableViewCell: UITableViewCell {
         timeLabel.textColor = .systemGray
     }
     
-    func configure(with data: FixturesContent) {
+    func configure(with data: FixturesContent) {        
         homeLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
         awayLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
         if let homeGoal = data.homeGoal, let awayGoal = data.awayGoal {
@@ -53,7 +53,15 @@ class FixturesTableViewCell: UITableViewCell {
             timeLabel.isHidden = false            
             scoreLabel.isHidden = true
             timeLabel.text = "\(data.matchHour)"
-            tintColor = UserDefaults.standard.value(forKey: "\(data.fixtureID)") == nil ? .gray : .link
+            
+            
+            // set accessory color by UserDefaults reserved fixture array
+            if let reserveds = UserDefaults.standard.value(forKey: "ReservedFixtures") as? [Int] {
+                tintColor = reserveds.contains(data.fixtureID) ? .link : .gray
+            }
+            else {
+                tintColor = .gray
+            }
         }        
     }
     

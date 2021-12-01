@@ -241,14 +241,19 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             let sectionDate = dateSectionTitles[indexPath.section]
             let notiManager = UserNotificationCenterManager()
-            notiManager.setNotification(content: selectedContent, sectionDate: sectionDate) { [weak self] in
+            notiManager.setNotification(content: selectedContent,
+                                        sectionDate: sectionDate) { [weak self] isAllowed in
                 DispatchQueue.main.async {
-                    self?.schedulesTableView.reloadRows(at: [indexPath], with: .fade)
+                    switch isAllowed {
+                    case true:
+                        self?.schedulesTableView.reloadData()
+                    case false:
+                        self?.alertWithSettingURL(title: "알림이 설정되지 않았습니다.",
+                                                  message: "알림 설정을 해주셔야 경기 시간 알림 사용이 가능합니다.",
+                                                  completion: nil)
+                    }
                 }                
             }
         }
     }
 }
-
-
-
