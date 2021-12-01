@@ -19,7 +19,8 @@ extension UIViewController {
             alertWithCheckButton(title: "서버 접속에 실패했습니다",
                                  message: "네트워크 연결 상태를 확인하고 다시 시도해주세요.",
                                  completion: nil)
-            return }
+            return            
+        }
         print("FetchRealmData", user)
         let configuration = user.configuration(partitionValue: "\(league.leagueID)")
         do {

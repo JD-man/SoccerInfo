@@ -81,13 +81,46 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
         
         // Swipe Gesture for change monday of week
-        let leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
+        let leftSwipeGesture = UISwipeGestureRecognizer(target: self,
+                                                        action: #selector(swipeAction(swipeGesture:)))
         leftSwipeGesture.direction = .left
         view.addGestureRecognizer(leftSwipeGesture)
 
-        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipeGesture:)))
+        let rightSwipeGesture = UISwipeGestureRecognizer(target: self,
+                                                         action: #selector(swipeAction(swipeGesture:)))
         rightSwipeGesture.direction = .right
         view.addGestureRecognizer(rightSwipeGesture)
+        
+        // manual button config
+        manualButtonConfig()
+    }
+    
+    func manualButtonConfig() {
+        let manualButton = UIBarButtonItem(barButtonSystemItem: .bookmarks,
+                                           target: self,
+                                           action: #selector(manualButtonClicked))
+        manualButton.tintColor = .link
+        navigationItem.rightBarButtonItem = manualButton
+    }
+    
+    @objc func manualButtonClicked() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "사용법",
+                                            style: .default,
+                                            handler: { [weak self] _ in
+            let manualVC = ManualViewController()
+            self?.present(manualVC, animated: true, completion: nil)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "오픈소스 라이센스",
+                                            style: .default,
+                                            handler: { [weak self] _ in
+            let openSourceVC = OpenSourceLicenseViewController()
+            self?.present(openSourceVC, animated: true, completion: nil)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "취소",
+                                            style: .destructive,
+                                            handler: nil))
+        present(actionSheet, animated: true, completion: nil)
     }
     
     func fetchFixturesRealmData() {

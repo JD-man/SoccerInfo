@@ -29,8 +29,8 @@ class FixturesTableViewCell: UITableViewCell {
         selectionStyle = .none
         isUserInteractionEnabled = false
         
-        scoreLabel.font = .systemFont(ofSize: 17, weight: .medium)
-        timeLabel.font = .systemFont(ofSize: 17, weight: .medium)
+        scoreLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        timeLabel.font = .systemFont(ofSize: 15, weight: .medium)
         timeLabel.textColor = .systemGray
     }
     
