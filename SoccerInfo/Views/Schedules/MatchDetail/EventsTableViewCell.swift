@@ -63,23 +63,13 @@ class EventsTableViewCell: UITableViewCell {
     func homeTeamConfig(data: EventsRealmData) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)
         switch eventDetail {
-        case .normalGoal:
+        case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
             homeDetailLabel.text = data.assist
-            homeEventTypeImageView.image = eventDetail?.eventsImage
-        case .sub1, .sub2, .sub3, .sub4, .sub5:
-            homeDetailLabel.text = data.assist
-            if let awayImage = eventDetail?.eventsImage?.cgImage {
-                let rotatedImage = UIImage(cgImage: awayImage,
-                                           scale: 1.0,
-                                           orientation: .upMirrored)
-                homeEventTypeImageView.image = rotatedImage.withRenderingMode(.alwaysTemplate)
-            }
         default :
             homeDetailLabel.text = data.eventDetail
-            homeEventTypeImageView.image = eventDetail?.eventsImage
         }
-        
         homePlayerNameLabel.text = data.player
+        homeEventTypeImageView.image = eventDetail?.eventsImage
         homeEventTypeImageView.tintColor = eventDetail?.eventsColor
     }
     
@@ -88,11 +78,9 @@ class EventsTableViewCell: UITableViewCell {
         switch eventDetail {
         case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
             awayDetailLabel.text = data.assist
-            
         default :
             awayDetailLabel.text = data.eventDetail
         }
-        
         awayPlayerNameLabel.text = data.player
         awayEventTypeImageView.image = eventDetail?.eventsImage
         awayEventTypeImageView.tintColor = eventDetail?.eventsColor
@@ -132,7 +120,7 @@ class EventsTableViewCell: UITableViewCell {
             case .yellowCard, .secondYellowCard, .redCard:
                 return UIImage(systemName: "lanyardcard.fill")
             case .sub1, .sub2, .sub3, .sub4, .sub5:
-                return UIImage(systemName: "arrow.left.arrow.right")
+                return UIImage(systemName: "arrow.up.arrow.down")
             case .goalCancelled, .penaltyConfirmed:
                 return UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }
