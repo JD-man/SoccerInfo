@@ -103,22 +103,21 @@ extension UIViewController {
                             }
                             
                             // Setting New Realm Update Date
-                            let now = Date()
-                            let newUpdateDate = table.updateDate // already 06:00 AM
+                            let currNewUpdateDate = table.updateDate // already 06:00 AM
+                            let prevUpdateDate = prevObject.updateDate
                             
                             // same day. now start == newUpdateDate start update day become nextday 06:00
-                            if now.dayStart == newUpdateDate.dayStart {
-                                prevObject.updateDate = newUpdateDate.nextDay.updateHour
+                            if prevUpdateDate.dayStart == currNewUpdateDate.dayStart {
+                                prevObject.updateDate = currNewUpdateDate.nextDay.updateHour
                             }
                             // other day before 06:00 AM. now < newUpdateDate
-                            else if now < newUpdateDate {
-                                prevObject.updateDate = newUpdateDate
+                            else if prevUpdateDate < currNewUpdateDate {
+                                prevObject.updateDate = currNewUpdateDate
                             }
                             // other day after 06:00 AM
-                            else if now >= newUpdateDate {
-                                prevObject.updateDate = newUpdateDate.nextDay.updateHour
-                            }
-                            
+                            else if prevUpdateDate >= currNewUpdateDate {
+                                prevObject.updateDate = currNewUpdateDate.nextDay.updateHour
+                            }                            
                             print("Realm Upload complete")
                         }
                     })
