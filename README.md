@@ -2,6 +2,7 @@
 
 ## 축구정보 앱
 - 일정, 순위, 뉴스 확인
+- 경기세부결과 확인, 경기 시작 1시간 전 알림
 
 ## Framework, Library
 - UIKit
@@ -16,5 +17,11 @@
 ## 1주차 영상
 <div align = "center">
     <a href = "https://youtu.be/Pgfj12BiwP4"><img src = "https://img.youtube.com/vi/Pgfj12BiwP4/0.jpg">
+    </a>
+</div>
+
+## 2주차 목요일 1차 제출
+<div align = "center">
+    <a href = "https://youtu.be/SApj6SQNYGQ"><img src = "https://img.youtube.com/vi/SApj6SQNYGQ/0.jpg">
     </a>
 </div>
