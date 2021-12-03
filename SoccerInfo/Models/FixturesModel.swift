@@ -103,20 +103,26 @@ struct FixturesGoals: Codable {
 
 // MARK: - For FixtureVC Content
 struct FixturesContent {
+    let homeID: Int
     let homeName: String
-    let awayName: String
     let homeLogo: String
-    let awayLogo: String
     var homeGoal: Int?
+    
+    let awayID: Int
+    let awayName: String
+    let awayLogo: String
     var awayGoal: Int?
+    
     let matchHour: String
     let fixtureID: Int
     
-    static let initialContent = FixturesContent(homeName: "",
-                                                awayName: "",
+    static let initialContent = FixturesContent(homeID: 0,
+                                                homeName: "",
                                                 homeLogo: "",
-                                                awayLogo: "",
                                                 homeGoal: nil,
+                                                awayID: 0,
+                                                awayName: "",
+                                                awayLogo: "",
                                                 awayGoal: nil,
                                                 matchHour: "",
                                                 fixtureID: 0)

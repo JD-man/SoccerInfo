@@ -25,8 +25,7 @@ class FixturesTableViewCell: UITableViewCell {
     func viewConfig() {
         backgroundColor = .secondarySystemGroupedBackground
         scoreLabel.isHidden = true
-        timeLabel.isHidden = true
-        selectionStyle = .none
+        timeLabel.isHidden = true        
         isUserInteractionEnabled = false
         
         scoreLabel.font = .systemFont(ofSize: 16, weight: .medium)
@@ -53,7 +52,6 @@ class FixturesTableViewCell: UITableViewCell {
             timeLabel.isHidden = false            
             scoreLabel.isHidden = true
             timeLabel.text = "\(data.matchHour)"
-            
             
             // set accessory color by UserDefaults reserved fixture array
             if let reserveds = UserDefaults.standard.value(forKey: "ReservedFixtures") as? [Int] {

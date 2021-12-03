@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableView.appearance().showsVerticalScrollIndicator = false
         UITableView.appearance().showsHorizontalScrollIndicator = false
         UIBarButtonItem.appearance().tintColor = .label
+        UITableViewCell.appearance().selectionStyle = .none
         return true
     }
 

@@ -29,8 +29,6 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     func viewConfig() {
-        selectionStyle = .none
-        
         newsImageView.clipsToBounds = true
         newsImageView.layer.cornerRadius = 10
         

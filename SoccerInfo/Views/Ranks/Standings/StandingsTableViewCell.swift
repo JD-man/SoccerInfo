@@ -28,8 +28,7 @@ class StandingsTableViewCell: UITableViewCell {
         viewConfig()
     }
     
-    func viewConfig() {
-        selectionStyle = .none
+    func viewConfig() {        
         separateLine.isHidden = true
         
         rankLabel.font = .systemFont(ofSize: 15, weight: .semibold)

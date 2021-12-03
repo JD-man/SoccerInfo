@@ -63,8 +63,12 @@ class EventsTableViewCell: UITableViewCell {
     func homeTeamConfig(data: EventsRealmData) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)
         switch eventDetail {
-        case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
+        case .normalGoal:
             homeDetailLabel.text = data.assist
+        case .sub1, .sub2, .sub3, .sub4, .sub5:
+            homeDetailLabel.text = data.assist
+            homeDetailLabel.textColor = .systemBackground
+            homeDetailLabel.font = .systemFont(ofSize: 14, weight: .medium)
         default :
             homeDetailLabel.text = data.eventDetail
         }
@@ -76,8 +80,12 @@ class EventsTableViewCell: UITableViewCell {
     func awayTeamConfig(data: EventsRealmData) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)        
         switch eventDetail {
-        case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
+        case .normalGoal:
             awayDetailLabel.text = data.assist
+        case .sub1, .sub2, .sub3, .sub4, .sub5:
+            awayDetailLabel.text = data.assist
+            awayDetailLabel.textColor = .systemBackground
+            awayDetailLabel.font = .systemFont(ofSize: 14, weight: .medium)
         default :
             awayDetailLabel.text = data.eventDetail
         }
@@ -95,6 +103,10 @@ class EventsTableViewCell: UITableViewCell {
         awayPlayerNameLabel.text = nil        
         homeEventTypeImageView.image = nil
         awayEventTypeImageView.image = nil
+        homeDetailLabel.textColor = .systemGray2
+        awayDetailLabel.textColor = .systemGray2
+        homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
     }
     
     enum EventsDetail: String {
@@ -120,7 +132,7 @@ class EventsTableViewCell: UITableViewCell {
             case .yellowCard, .secondYellowCard, .redCard:
                 return UIImage(systemName: "lanyardcard.fill")
             case .sub1, .sub2, .sub3, .sub4, .sub5:
-                return UIImage(systemName: "arrow.up.arrow.down")
+                return UIImage(systemName: "arrow.triangle.capsulepath")
             case .goalCancelled, .penaltyConfirmed:
                 return UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }

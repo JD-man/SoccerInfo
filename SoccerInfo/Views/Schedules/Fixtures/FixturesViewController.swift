@@ -186,11 +186,13 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         data.filter { $0.fixtureDate.toDate >= firstDay && $0.fixtureDate.toDate < firstDay.afterWeekDay}
             .sorted(by: { $0.fixtureDate < $1.fixtureDate })
             .forEach {
-                let element = FixturesContent(homeName: $0.homeName,
-                                              awayName: $0.awayName,
+                let element = FixturesContent(homeID: $0.homeID,
+                                              homeName: $0.homeName,
                                               homeLogo: $0.homeLogo,
-                                              awayLogo: $0.awayLogo,
                                               homeGoal: $0.homeGoal,
+                                              awayID: $0.awayID,
+                                              awayName: $0.awayName,
+                                              awayLogo: $0.awayLogo,
                                               awayGoal: $0.awayGoal,
                                               matchHour: $0.fixtureDate.toDate.formattedHour,
                                               fixtureID: $0.fixtureID)

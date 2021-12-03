@@ -30,6 +30,7 @@
 		894BF773274250B700E71C09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 894BF772274250B700E71C09 /* Assets.xcassets */; };
 		894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF774274250B700E71C09 /* LaunchScreen.storyboard */; };
 		895F7D62274E9B3700C6A0C0 /* PublicPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895F7D61274E9B3700C6A0C0 /* PublicPropertyManager.swift */; };
+		896833052759244E00D97FEC /* LocalizationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896833042759244E00D97FEC /* LocalizationList.swift */; };
 		89740BE5274649760033AD2C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BE4274649760033AD2C /* Alamofire */; };
 		89740BED274649AB0033AD2C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEC274649AB0033AD2C /* SideMenu */; };
 		89740BF027464A040033AD2C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEF27464A040033AD2C /* Realm */; };
@@ -84,6 +85,7 @@
 		894BF775274250B700E71C09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		894BF777274250B700E71C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		895F7D61274E9B3700C6A0C0 /* PublicPropertyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicPropertyManager.swift; sourceTree = "<group>"; };
+		896833042759244E00D97FEC /* LocalizationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationList.swift; sourceTree = "<group>"; };
 		89740BFD27464B510033AD2C /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
 		89740C0327464B7F0033AD2C /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
 		89740C0527464B880033AD2C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +205,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		896833032759241D00D97FEC /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				896833042759244E00D97FEC /* LocalizationList.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		89740BF327464A140033AD2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +240,7 @@
 		89740BF627464A370033AD2C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				896833032759241D00D97FEC /* Localization */,
 				894BF769274250B600E71C09 /* AppDelegate.swift */,
 				894BF76B274250B600E71C09 /* SceneDelegate.swift */,
 				894BF772274250B700E71C09 /* Assets.xcassets */,
@@ -459,6 +470,7 @@
 				893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */,
 				89E2C464274FC9AE00C73BC4 /* NewsTableViewCell.swift in Sources */,
 				89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */,
+				896833052759244E00D97FEC /* LocalizationList.swift in Sources */,
 				89E2C466274FE20D00C73BC4 /* NewsModel.swift in Sources */,
 				894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */,
 				895F7D62274E9B3700C6A0C0 /* PublicPropertyManager.swift in Sources */,
