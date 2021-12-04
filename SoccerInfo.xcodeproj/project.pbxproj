@@ -60,6 +60,7 @@
 		89E752FF275227CE0019F62F /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E752FD275227CE0019F62F /* EventsTableViewCell.xib */; };
 		89E75304275227EA0019F62F /* LineupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E75302275227EA0019F62F /* LineupsTableViewCell.swift */; };
 		89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E75303275227EA0019F62F /* LineupsTableViewCell.xib */; };
+		89E8C28A275BC6B10031982E /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C289275BC6B10031982E /* Calendar+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		89E752FD275227CE0019F62F /* EventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
 		89E75302275227EA0019F62F /* LineupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupsTableViewCell.swift; sourceTree = "<group>"; };
 		89E75303275227EA0019F62F /* LineupsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineupsTableViewCell.xib; sourceTree = "<group>"; };
+		89E8C289275BC6B10031982E /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				893C6E83274CE7FA00210ED1 /* String+Extension.swift.swift */,
 				89281D19274D3C77001FB81D /* Date+Extension.swift.swift */,
 				899000802753C86C00A4812A /* UIView+Extension.swift */,
+				89E8C289275BC6B10031982E /* Calendar+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */,
+				89E8C28A275BC6B10031982E /* Calendar+Extension.swift in Sources */,
 				893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */,
 				89E2C464274FC9AE00C73BC4 /* NewsTableViewCell.swift in Sources */,
 				89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */,

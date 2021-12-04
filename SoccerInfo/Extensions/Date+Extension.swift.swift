@@ -10,33 +10,33 @@ import RealmSwift
 
 extension Date {
     var dayStart: Date {
-        return Calendar.current.startOfDay(for: self)
+        return Calendar.CalendarKST.startOfDay(for: self)
     }
     
     // Realm Update Day Hour = 06:00 AM
     var updateHour: Date {
-        return Calendar.current.date(byAdding: .hour, value: 6, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .hour, value: 6, to: self.dayStart)!
     }
     
     var nextDay: Date {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .day, value: 1, to: self.dayStart)!
     }
     
     var fixtureFirstDay: Date {
-        return Calendar.current.date(byAdding: .day, value: -2, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .day, value: -2, to: self.dayStart)!
     }
     
     // MatchDetail update Day must be bigger than now. MatchDetailTable always load.
     var matchDetailUpdateDay: Date {
-        return Calendar.current.date(byAdding: .year, value: 100, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .year, value: 100, to: self.dayStart)!
     }
     
     var afterWeekDay: Date {
-        return Calendar.current.date(byAdding: .day, value: 7, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .day, value: 7, to: self.dayStart)!
     }
     
     var beforeWeekDay: Date {
-        return Calendar.current.date(byAdding: .day, value: -7, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .day, value: -7, to: self.dayStart)!
     }
     
     var formattedDay: String {

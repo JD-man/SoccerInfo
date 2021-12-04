@@ -14,7 +14,6 @@ class FormationTableViewCell: UITableViewCell {
     @IBOutlet weak var homeStackView: UIStackView!
     @IBOutlet weak var awayStackView: UIStackView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,8 +32,7 @@ class FormationTableViewCell: UITableViewCell {
                         if let label = container.subviews.first as? UILabel {
                             // label container view
                             container.isHidden = false
-                            // vertical stack view
-                            stackView.subviews[col].isHidden = false
+                            // vertical stack view                            
                             labelConfig(label: label, number: $0.number, color: direction.color)
                         }
                     }
@@ -44,12 +42,13 @@ class FormationTableViewCell: UITableViewCell {
     
     func labelConfig(label: UILabel, number: Int, color: UIColor) {
         label.text = "\(number)"
-        label.backgroundColor = color
         label.textAlignment = .center
+        label.textColor = .systemBackground
+        label.font = .systemFont(ofSize: 10.5, weight: .medium)
         
         label.clipsToBounds = true
-        label.layer.cornerRadius = 11
-        label.textColor = .systemBackground
+        label.layer.cornerRadius = 5
+        label.backgroundColor = color
     }
     
     enum FormationDirection {

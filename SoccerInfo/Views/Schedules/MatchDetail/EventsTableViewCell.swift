@@ -36,17 +36,18 @@ class EventsTableViewCell: UITableViewCell {
         timeLabel.layer.cornerRadius = timeLabel.frame.width / 2
         timeLabel.font = .systemFont(ofSize: 12, weight: .semibold)
         
-        homePlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        awayPlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         homePlayerNameLabel.numberOfLines = 0
         awayPlayerNameLabel.numberOfLines = 0
         homePlayerNameLabel.textColor = .systemBackground
         awayPlayerNameLabel.textColor = .systemBackground
+        homePlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        awayPlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         
-        homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
         homeDetailLabel.textColor = .systemGray2
-        awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
         awayDetailLabel.textColor = .systemGray2
+        homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        
         backgroundColor = UIColor(red: 11/255, green: 70/255, blue: 25/255, alpha: 1)
     }
     
