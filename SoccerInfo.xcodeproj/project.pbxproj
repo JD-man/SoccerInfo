@@ -46,6 +46,8 @@
 		898A63E0274687450023426A /* StandingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63DF274687450023426A /* StandingsModel.swift */; };
 		898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63E5274690CE0023426A /* MainTabBarController.swift */; };
 		899000812753C86C00A4812A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899000802753C86C00A4812A /* UIView+Extension.swift */; };
+		8990E775275B5CB70025CE05 /* FormationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */; };
+		8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */; };
 		89B329392750E4830043632E /* NewsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B329382750E4830043632E /* NewsWebViewController.swift */; };
 		89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C12757E2D5000AC2FE /* ManualViewController.swift */; };
 		89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */; };
@@ -97,6 +99,8 @@
 		898A63DF274687450023426A /* StandingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsModel.swift; sourceTree = "<group>"; };
 		898A63E5274690CE0023426A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		899000802753C86C00A4812A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationTableViewCell.swift; sourceTree = "<group>"; };
+		8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationTableViewCell.xib; sourceTree = "<group>"; };
 		89B329382750E4830043632E /* NewsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebViewController.swift; sourceTree = "<group>"; };
 		89C843C12757E2D5000AC2FE /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */,
 				89E752FC275227CE0019F62F /* EventsTableViewCell.swift */,
 				89E75302275227EA0019F62F /* LineupsTableViewCell.swift */,
+				8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */,
 			);
 			path = MatchDetail;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				89123EC12751ED4700DB0077 /* MatchDetail.storyboard */,
 				89E752FD275227CE0019F62F /* EventsTableViewCell.xib */,
 				89E75303275227EA0019F62F /* LineupsTableViewCell.xib */,
+				8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -449,6 +455,7 @@
 				8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */,
 				894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */,
 				89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */,
+				8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */,
 				894BF773274250B700E71C09 /* Assets.xcassets in Resources */,
 				89740C1427464D430033AD2C /* News.storyboard in Resources */,
 				89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */,
@@ -492,6 +499,7 @@
 				8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */,
 				89281D1A274D3C77001FB81D /* Date+Extension.swift.swift in Sources */,
 				89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */,
+				8990E775275B5CB70025CE05 /* FormationTableViewCell.swift in Sources */,
 				893D1433274E017000B9AAA0 /* FixturesTableViewCell.swift in Sources */,
 				898A63E0274687450023426A /* StandingsModel.swift in Sources */,
 				894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */,

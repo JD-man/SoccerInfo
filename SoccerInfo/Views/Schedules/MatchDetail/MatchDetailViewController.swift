@@ -73,12 +73,12 @@ class MatchDetailViewController: UIViewController {
         homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
         awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
         
-        homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
-        awayTeamNameLabel.text = awayTeamName.uppercased().modifyTeamName
         homeTeamNameLabel.numberOfLines = 0
         awayTeamNameLabel.numberOfLines = 0
         homeTeamNameLabel.adjustsFontSizeToFitWidth = true
         awayTeamNameLabel.adjustsFontSizeToFitWidth = true
+        homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
+        awayTeamNameLabel.text = awayTeamName.uppercased().modifyTeamName
         
         // activity view config
         activityView = activityIndicator()
@@ -88,18 +88,19 @@ class MatchDetailViewController: UIViewController {
     }
     
     func matchDetailTableViewConfig() {
-        matchDetailTableView.register(UINib(nibName: EventsTableViewCell.identifier, bundle: nil),
-                                      forCellReuseIdentifier: EventsTableViewCell.identifier)
-        matchDetailTableView.register(UINib(nibName: LineupsTableViewCell.identifier, bundle: nil),
-                                      forCellReuseIdentifier: LineupsTableViewCell.identifier)
-        matchDetailTableView.backgroundColor = .clear
-        
         matchDetailTableView.delegate = self
         matchDetailTableView.dataSource = self
         matchDetailTableView.separatorStyle = .none
         
         matchDetailTableView.addShadow()
-        matchDetailTableView.backgroundColor = .clear        
+        matchDetailTableView.backgroundColor = .clear
+        
+        let eventsCell = UINib(nibName: EventsTableViewCell.identifier, bundle: nil)
+        let lineupsCell = UINib(nibName: LineupsTableViewCell.identifier, bundle: nil)
+        let formationCell = UINib(nibName: FormationTableViewCell.identifier, bundle: nil)
+        matchDetailTableView.register(eventsCell, forCellReuseIdentifier: EventsTableViewCell.identifier)
+        matchDetailTableView.register(lineupsCell, forCellReuseIdentifier: LineupsTableViewCell.identifier)
+        matchDetailTableView.register(formationCell, forCellReuseIdentifier: FormationTableViewCell.identifier)
     }
     
     func fetchMatchDetailRealmData() {
@@ -195,12 +196,14 @@ class MatchDetailViewController: UIViewController {
     }
     
     enum MatchDetailSection: CaseIterable {
-        case events, lineups, subs
+        case events, formation, lineups, subs
         
         var sectionTitle: String {
             switch self {
             case .events:
                 return "기록"
+            case .formation:
+                return "포메이션"
             case .lineups:
                 return "선발 명단"
             case .subs:
@@ -231,6 +234,9 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
             return matchDetailData.events.count
         }
         else if section == 1 {
+            return 1
+        }
+        else if section == 2 {
             return matchDetailData.homeStartLineup.count
         }
         else {
@@ -249,7 +255,16 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
             cell.configure(with: event, isHomeCell: isHomeCell)
             return cell
         }
-        else if indexPath.section == 1 {
+        else if indexPath.section == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: FormationTableViewCell.identifier,
+                                                     for: indexPath) as! FormationTableViewCell
+            
+            let homeStarting = Array(matchDetailData.homeStartLineup)
+            let awayStarting = Array(matchDetailData.awayStartLineup)
+            cell.configure(homeLineup: homeStarting, awayLineup: awayStarting)
+            return cell
+        }
+        else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: LineupsTableViewCell.identifier,
                                                      for: indexPath) as! LineupsTableViewCell
             
@@ -298,6 +313,9 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
                 height = interval/90 * totalHeight
             }
             return height >= minHeight ? height : minHeight
+        }
+        else if section == 1 {
+            return 240
         }
         else {
             return 50
