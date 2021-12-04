@@ -42,12 +42,13 @@ class MatchDetailViewController: UIViewController {
     
     var matchDetailData: MatchDetailRealmData = MatchDetailRealmData.initialValue {
         didSet {
-            maxSubsCount = max(matchDetailData.awaySubLineup.count,
-                              matchDetailData.homeSubLineup.count)
-            matchDetailTableView.reloadSections(IndexSet(0 ..< 3), with: .fade)
             if activityView.isAnimating {
                 activityView.stopAnimating()
             }
+            maxSubsCount = max(matchDetailData.awaySubLineup.count,
+                              matchDetailData.homeSubLineup.count)
+            matchDetailTableView.reloadSections(IndexSet(0 ..< MatchDetailSection.allCases.count),
+                                                with: .fade)            
         }
     }
     
@@ -221,12 +222,30 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = MatchDetailSection.allCases[section].sectionTitle
-        label.font = .systemFont(ofSize: 18, weight: .semibold)        
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
         return label
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 {
+            let nib = Bundle.main.loadNibNamed("FormationSectionHeaderView", owner: self, options: nil)
+            let headerView = nib?.first as! FormationSectionHeaderView
+            headerView.backgroundColor = .clear
+            headerView.homeFormationLabel.text = matchDetailData.homeFormation
+            headerView.awayFormationLabel.text = matchDetailData.awayFormation
+            headerView.homeFormationLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+            headerView.awayFormationLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+            return headerView
+        }
+        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 70
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == 1 ? 50 : CGFloat.leastNonzeroMagnitude
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -255,7 +274,7 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
             cell.configure(with: event, isHomeCell: isHomeCell)
             return cell
         }
-        else if indexPath.section == 1{
+        else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: FormationTableViewCell.identifier,
                                                      for: indexPath) as! FormationTableViewCell
             
