@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FormationSectionHeaderView: UIView {
+class FormationSectionFooterView: UIView {
     
     @IBOutlet weak var homeFormationLabel: UILabel!
     @IBOutlet weak var awayFormationLabel: UILabel!   

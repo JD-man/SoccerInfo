@@ -61,8 +61,8 @@
 		89E75304275227EA0019F62F /* LineupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E75302275227EA0019F62F /* LineupsTableViewCell.swift */; };
 		89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E75303275227EA0019F62F /* LineupsTableViewCell.xib */; };
 		89E8C28A275BC6B10031982E /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C289275BC6B10031982E /* Calendar+Extension.swift */; };
-		89E8C28C275BE1380031982E /* FormationSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E8C28B275BE1380031982E /* FormationSectionHeaderView.xib */; };
-		89E8C290275BE26A0031982E /* FormationSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C28F275BE26A0031982E /* FormationSectionHeaderView.swift */; };
+		89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */; };
+		89E8C290275BE26A0031982E /* FormationSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,8 +117,8 @@
 		89E75302275227EA0019F62F /* LineupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupsTableViewCell.swift; sourceTree = "<group>"; };
 		89E75303275227EA0019F62F /* LineupsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineupsTableViewCell.xib; sourceTree = "<group>"; };
 		89E8C289275BC6B10031982E /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
-		89E8C28B275BE1380031982E /* FormationSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationSectionHeaderView.xib; sourceTree = "<group>"; };
-		89E8C28F275BE26A0031982E /* FormationSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationSectionHeaderView.swift; sourceTree = "<group>"; };
+		89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationSectionFooterView.xib; sourceTree = "<group>"; };
+		89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationSectionFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,7 +318,7 @@
 				89E752FC275227CE0019F62F /* EventsTableViewCell.swift */,
 				89E75302275227EA0019F62F /* LineupsTableViewCell.swift */,
 				8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */,
-				89E8C28F275BE26A0031982E /* FormationSectionHeaderView.swift */,
+				89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */,
 			);
 			path = MatchDetail;
 			sourceTree = "<group>";
@@ -375,7 +375,7 @@
 				89E752FD275227CE0019F62F /* EventsTableViewCell.xib */,
 				89E75303275227EA0019F62F /* LineupsTableViewCell.xib */,
 				8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */,
-				89E8C28B275BE1380031982E /* FormationSectionHeaderView.xib */,
+				89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -462,7 +462,7 @@
 				89740C1027464D140033AD2C /* Standings.storyboard in Resources */,
 				89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */,
 				8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */,
-				89E8C28C275BE1380031982E /* FormationSectionHeaderView.xib in Resources */,
+				89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */,
 				894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */,
 				89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */,
 				8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */,
@@ -495,7 +495,7 @@
 				89123EC02751ECF100DB0077 /* MatchDetailViewController.swift in Sources */,
 				89E752FE275227CE0019F62F /* EventsTableViewCell.swift in Sources */,
 				893C6E82274CD21500210ED1 /* BasicTabViewController.swift in Sources */,
-				89E8C290275BE26A0031982E /* FormationSectionHeaderView.swift in Sources */,
+				89E8C290275BE26A0031982E /* FormationSectionFooterView.swift in Sources */,
 				893C6E84274CE7FA00210ED1 /* String+Extension.swift.swift in Sources */,
 				89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */,
 				898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */,
@@ -668,7 +668,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;
@@ -684,7 +684,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SoccerInfoDevelopment;
@@ -701,7 +701,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;
@@ -717,7 +717,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SoccerInfoDistribution;
