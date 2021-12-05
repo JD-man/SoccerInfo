@@ -134,14 +134,6 @@ class MatchDetailViewController: UIViewController {
                 self?.fetchAPIData(of: .lineups, url: lineupURL, completion: { (result: LineupsResponses) in
                     switch result {
                     case .success(let lineupsAPIData):
-                        // Make Events Realm Data
-                        let eventList = List<EventsRealmData>()
-                        eventsAPIData.response
-                            .map { EventsRealmData(eventsResponse: $0) }
-                            .forEach {
-                                eventList.append($0)
-                            }
-                        
                         // Make Lineup Realm Data
                         let homeTeam = lineupsAPIData.response[0]
                         let awayTeam = lineupsAPIData.response[1]
@@ -165,6 +157,38 @@ class MatchDetailViewController: UIViewController {
                         awayTeam.substitutes
                             .map { LineupRealmData(lineupsPlayer: $0.player) }
                             .forEach { awaySubLineup.append($0) }
+                        
+                        // Make Events Realm Data
+                        let eventList = List<EventsRealmData>()
+                        let homeStartID = homeTeam.startXI.map { $0.player.id }
+                        let awayStartID = awayTeam.startXI.map { $0.player.id }
+                        eventsAPIData.response
+                            .map {                                
+                                if $0.type == "subst" {
+                                    let inID = $0.player.id
+                                    let outID = $0.assist.id ?? 0
+                                    if homeStartID.contains(outID) || awayStartID.contains(outID) {
+                                        return $0
+                                    }
+                                    else {
+                                        let newPlayer = EventsPlayer(id: outID, name: $0.assist.name ?? "")
+                                        let newAssist = EventsAssist(id: inID, name: $0.player.name)
+                                        return EventsResponse(time: $0.time,
+                                                              team: $0.team,
+                                                              player: newPlayer,
+                                                              assist: newAssist,
+                                                              type: $0.type,
+                                                              detail: $0.detail)
+                                    }
+                                }
+                                else {
+                                    return $0
+                                }
+                            }
+                            .map {
+                                EventsRealmData(eventsResponse: $0)
+                            }
+                            .forEach { eventList.append($0) }
                         
                         let matchDetailRealmData = MatchDetailRealmData(fixtureID: self!.fixtureID,
                                                                         events: eventList,
@@ -297,7 +321,7 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
                                                      for: indexPath) as! LineupsTableViewCell
             
             // prevent index error when the number of sub player is different
-            let emptyPlayer = LineupsPlayer(name: "-", number: 0, pos: "-", grid: nil)
+            let emptyPlayer = LineupsPlayer(id: -1, name: "-", number: 0, pos: "-", grid: nil)
             var homeLineup = LineupRealmData(lineupsPlayer: emptyPlayer)
             var awayLineup = LineupRealmData(lineupsPlayer: emptyPlayer)
             

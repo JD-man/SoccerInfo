@@ -51,7 +51,7 @@ class EventsTableViewCell: UITableViewCell {
         backgroundColor = UIColor(red: 11/255, green: 70/255, blue: 25/255, alpha: 1)
     }
     
-    func configure(with data: EventsRealmData, isHomeCell: Bool) {        
+    func configure(with data: EventsRealmData, isHomeCell: Bool) {
         if isHomeCell {
             homeTeamConfig(data: data)
         }
@@ -66,27 +66,28 @@ class EventsTableViewCell: UITableViewCell {
         switch eventDetail {
         case .normalGoal:
             homeDetailLabel.text = data.assist
+            homeEventTypeImageView.image = eventDetail?.eventsImage
         case .sub1, .sub2, .sub3, .sub4, .sub5:
             homeDetailLabel.text = data.assist
-            homeDetailLabel.textColor = .systemBackground
-            homeDetailLabel.font = .systemFont(ofSize: 14, weight: .medium)
+            if let awayImage = eventDetail?.eventsImage?.cgImage {
+                let rotatedImage = UIImage(cgImage: awayImage,
+                                           scale: 1.0,
+                                           orientation: .upMirrored)
+                homeEventTypeImageView.image = rotatedImage.withRenderingMode(.alwaysTemplate)
+            }
         default :
             homeDetailLabel.text = data.eventDetail
+            homeEventTypeImageView.image = eventDetail?.eventsImage
         }
         homePlayerNameLabel.text = data.player
-        homeEventTypeImageView.image = eventDetail?.eventsImage
         homeEventTypeImageView.tintColor = eventDetail?.eventsColor
     }
     
     func awayTeamConfig(data: EventsRealmData) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)        
         switch eventDetail {
-        case .normalGoal:
+        case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
             awayDetailLabel.text = data.assist
-        case .sub1, .sub2, .sub3, .sub4, .sub5:
-            awayDetailLabel.text = data.assist
-            awayDetailLabel.textColor = .systemBackground
-            awayDetailLabel.font = .systemFont(ofSize: 14, weight: .medium)
         default :
             awayDetailLabel.text = data.eventDetail
         }
@@ -133,7 +134,7 @@ class EventsTableViewCell: UITableViewCell {
             case .yellowCard, .secondYellowCard, .redCard:
                 return UIImage(systemName: "lanyardcard.fill")
             case .sub1, .sub2, .sub3, .sub4, .sub5:
-                return UIImage(systemName: "arrow.triangle.capsulepath")
+                return UIImage(systemName: "arrow.left.arrow.right")
             case .goalCancelled, .penaltyConfirmed:
                 return UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }

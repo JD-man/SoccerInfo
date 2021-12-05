@@ -119,10 +119,12 @@ struct EventsTeam: Codable {
 }
 
 struct EventsPlayer: Codable {
+    var id: Int
     var name: String
 }
 
 struct EventsAssist: Codable {
+    var id: Int?
     var name: String?
 }
 
@@ -146,6 +148,7 @@ struct LineupsSubs: Codable {
 }
 
 struct LineupsPlayer: Codable {
+    var id: Int
     var name: String
     var number: Int
     var pos: String
