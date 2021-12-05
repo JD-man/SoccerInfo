@@ -28,11 +28,13 @@ class FormationTableViewCell: UITableViewCell {
                         let formation = direction.validateFormation(grid: grid)
                         let row = formation[0]
                         let col = formation[1]
-                        let container = stackView.subviews[col].subviews[row]
+                        let verticalStackView = stackView.subviews[col]
+                        let container = verticalStackView.subviews[row]
                         if let label = container.subviews.first as? UILabel {
                             // label container view
                             container.isHidden = false
-                            // vertical stack view                            
+                            // vertical stack view
+                            verticalStackView.isHidden = false
                             labelConfig(label: label, number: $0.number, color: direction.color)
                         }
                     }
