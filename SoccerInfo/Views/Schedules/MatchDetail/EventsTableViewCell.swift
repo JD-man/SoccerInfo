@@ -127,6 +127,17 @@ class EventsTableViewCell: UITableViewCell {
         case goalCancelled = "Goal Disallowed "
         case penaltyConfirmed = "Penalty confirmed"
         
+        var eventsColor: UIColor? {
+            switch self {
+            case .yellowCard:
+                return UIColor.yellow
+            case .secondYellowCard, .redCard:
+                return UIColor.red
+            default:
+                return UIColor.systemBackground
+            }
+        }
+        
         var eventsImage: UIImage? {
             switch self {
             case .normalGoal, .ownGoal, .penalty, .missedPenalty:
@@ -137,17 +148,6 @@ class EventsTableViewCell: UITableViewCell {
                 return UIImage(systemName: "arrow.left.arrow.right")
             case .goalCancelled, .penaltyConfirmed:
                 return UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")
-            }
-        }
-        
-        var eventsColor: UIColor? {
-            switch self {
-            case .yellowCard:
-                return UIColor.yellow
-            case .secondYellowCard, .redCard:
-                return UIColor.red
-            default:
-                return UIColor.systemBackground
             }
         }
     }
