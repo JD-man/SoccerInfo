@@ -121,7 +121,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         activityView.startAnimating()
         fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
             switch result {
-            case .success(let fixturesTable):                
+            case .success(let fixturesTable):
                 self?.data = Array(fixturesTable.content)
             case .failure(let error):
                 switch error {

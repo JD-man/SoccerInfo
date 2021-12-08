@@ -110,14 +110,8 @@ extension UIViewController {
                             // same day. prev update date start == newUpdateDate start.
                             // update day become nextday 06:00
                             
-                            print(prevUpdateDate.dayStart, currNewUpdateDate.dayStart)
-                            print(prevObject.updateDate, currNewUpdateDate.nextDay.updateHour)
-                            print(prevObject.updateDate, currNewUpdateDate)
-                            print(prevObject.updateDate, currNewUpdateDate.nextDay.updateHour)
-                            
                             if prevUpdateDate.dayStart == currNewUpdateDate.dayStart {
                                 prevObject.updateDate = currNewUpdateDate.nextDay.updateHour
-                                
                                 print("same day")
                             }
                             // other day now before update day 06:00 AM. now < currNewUpdateDate
