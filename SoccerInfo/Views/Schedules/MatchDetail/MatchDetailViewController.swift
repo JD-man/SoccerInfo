@@ -130,10 +130,22 @@ class MatchDetailViewController: UIViewController {
         fetchAPIData(of: .events, url: eventsURL) { [weak self] (result: EventsResponses) in
             switch result {
             case .success(let eventsAPIData):
+                guard eventsAPIData.errors.requests.isEmpty else {
+                    self?.alertCallLimit() {
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    return
+                }
                 let lineupURL = APIComponents.footBallRootURL.toURL(of: .lineups, queryItems: [fixtureIDQuery])
                 self?.fetchAPIData(of: .lineups, url: lineupURL, completion: { (result: LineupsResponses) in
                     switch result {
                     case .success(let lineupsAPIData):
+                        guard lineupsAPIData.errors.requests.isEmpty else {
+                            self?.alertCallLimit() {
+                                self?.navigationController?.popViewController(animated: true)
+                            }
+                            return
+                        }
                         // Make Lineup Realm Data
                         let homeTeam = lineupsAPIData.response[0]
                         let awayTeam = lineupsAPIData.response[1]

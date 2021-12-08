@@ -17,12 +17,6 @@ class NewsViewController: BasicTabViewController<NewsData> {
     var totalPage: Int = 0
     var start: Int = 1
     
-    override var league: League {
-        didSet {
-            fetchNewsAPIData()
-        }
-    }
-    
     override var data: [NewsData] {
         didSet {
             if activityView.isAnimating {
@@ -30,11 +24,6 @@ class NewsViewController: BasicTabViewController<NewsData> {
             }
             newsTableView.reloadData()
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchNewsAPIData()
     }
     
     override func viewConfig() {
@@ -48,12 +37,12 @@ class NewsViewController: BasicTabViewController<NewsData> {
         newsTableView.layer.shadowColor = UIColor.black.cgColor
     }
     
-    func fetchNewsAPIData() {
+    override func fetchData() {
         activityView.startAnimating()
         // News Search Query
         let query = URLQueryItem(name: "query", value: "\(league.newsQuery)")
         let start = URLQueryItem(name: "start", value: "1")
-        let display = URLQueryItem(name: "display", value: "10")
+        let display = URLQueryItem(name: "display", value: "30")
         let url = APIComponents.newsRootURL.toURL(of: .newsSearch,
                                                       queryItems: [query, start, display])
         
@@ -68,7 +57,7 @@ class NewsViewController: BasicTabViewController<NewsData> {
                 if items.isEmpty { return }
                 
                 var randomIndex: Set<Int> = [0]
-                let minCount = min(items.count, 3)
+                let minCount = min(items.count, 5)
                 while randomIndex.count < minCount {
                     randomIndex.insert(Int.random(in: 0 ..< minCount))
                 }

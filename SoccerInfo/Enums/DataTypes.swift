@@ -94,11 +94,11 @@ enum League: String, CaseIterable {
         case .premierLeague:
             return "프리미어리그 | 첼시 | 맨시티 | 리버풀 | 웨스트햄 | 아스날 | 울버햄튼 | 토트넘 | 맨유"
         case .laLiga:
-            return "라리가 | 레알 마드리드 | 아틀레티코 마드리드 | 라요 바예카노 | FC 바르셀로나 | RCD 마요르카 | 발렌시아 CF"
+            return "스페인 라리가 | 라리가 | 프리메라리가"
         case .serieA:
-            return "세리에 A | SSC 나폴리 | AC 밀란 | FC 인터 밀란 | 아탈란타 BC | AS 로마 | 유벤투스 FC | SS 라치오"
+            return "세리에 A"
         case .bundesliga:
-            return "분데스리가 | FC 바이에른 뮌헨 | 보루시아 도르트문트 | SC 프라이부르크 | | RB 라이프치히 | FSV 마인츠 05 | FC 아우크스부르크"
+            return "분데스리가"
         case .ligue1:
             return "리그앙"
         }

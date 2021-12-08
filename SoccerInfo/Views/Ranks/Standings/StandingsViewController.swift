@@ -15,31 +15,13 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     typealias standingResponses = Result<StandingAPIData, Error>
     @IBOutlet weak var standingsTableView: UITableView!
     
-    override var league: League {
-        didSet {
-            fetchStandingRealmData()
-        }
-    }
-    
-//    //update need: season
-//    override var season: Int {
-//        didSet {
-//            fetchStandingRealmData()
-//        }
-//    }
-    
     override var data: [StandingsRealmData] {
         didSet {
-            standingsTableView.reloadSections(IndexSet(integer: 0), with: .fade)
             if activityView.isAnimating {
                 activityView.stopAnimating()
             }
+            standingsTableView.reloadSections(IndexSet(integer: 0), with: .fade)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchStandingRealmData()
     }
     
     override func viewConfig() {
@@ -52,7 +34,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         standingsTableView.layer.borderColor = UIColor.label.cgColor        
     }
     
-    func fetchStandingRealmData() {
+    override func fetchData() {
         activityView.startAnimating()
         fetchRealmData(league: league, season: season) { [weak self] (result: standingObject) in
             switch result {
@@ -70,6 +52,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         }
     }
     
+    
     func fetchStandingAPIData() {
         let league = URLQueryItem(name: "league", value: "\(league.leagueID)")
         let season = URLQueryItem(name: "season", value: "\(season)")
@@ -78,8 +61,12 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponses) in
             switch result {
             case .success(let standingData):
-                let league = standingData.response[0].league
+                guard standingData.errors.requests.isEmpty else {
+                    self?.alertCallLimit() { self?.activityView.stopAnimating() }
+                    return
+                }
                 
+                let league = standingData.response[0].league
                 let leagueID = league.id
                 let season = league.season
                 let standings = league.standings[0]

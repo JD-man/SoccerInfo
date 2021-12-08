@@ -31,11 +31,6 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
      Set scheduleContent : Reload TableView
      */
     
-    override var league: League {
-        didSet {
-            fetchFixturesRealmData()
-        }
-    }
     override var data: [FixturesRealmData] {
         didSet {
             makeScheduleData()
@@ -67,8 +62,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)
-        fetchFixturesRealmData()
+        print(#function)        
     }
     
     override func viewConfig() {
@@ -123,7 +117,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         present(actionSheet, animated: true, completion: nil)
     }
     
-    func fetchFixturesRealmData() {
+    override func fetchData() {
         activityView.startAnimating()
         fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
             switch result {
@@ -149,6 +143,10 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         fetchAPIData(of: .fixtures, url: url) { [weak self] (result: FixturesResponses) in
             switch result {
             case .success(let fixturesData):                
+                guard fixturesData.errors.requests.isEmpty else {
+                    self?.alertCallLimit() { self?.activityView.stopAnimating() }
+                    return
+                }
                 let fixturesResponse = fixturesData.response
                 let fixturesData = fixturesResponse.map {
                     FixturesRealmData(fixtureResponse: $0)

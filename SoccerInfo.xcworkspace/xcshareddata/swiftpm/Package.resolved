@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire",
+        "state": {
+          "branch": null,
+          "revision": "d120af1e8638c7da36c8481fd61a66c0c08dc4fc",
+          "version": "5.4.4"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "0c02c46cfdc0656ce74fd0963a75e5000a0b7f23",
+          "version": "7.1.2"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa.git",
+        "state": {
+          "branch": null,
+          "revision": "bdbbd57f411a0f4e72b359113dbc6d23fdf96680",
+          "version": "10.20.0"
+        }
+      },
+      {
+        "package": "RealmDatabase",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "c3c11a841642ac93c27bd1edd61f989fc0bfb809",
+          "version": "11.6.1"
+        }
+      },
+      {
+        "package": "SideMenu",
+        "repositoryURL": "https://github.com/jonkykong/SideMenu.git",
+        "state": {
+          "branch": null,
+          "revision": "8bd4fd128923cf5494fa726839af8afe12908ad9",
+          "version": "6.5.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

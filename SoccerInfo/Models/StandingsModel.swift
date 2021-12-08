@@ -68,6 +68,7 @@ class StandingsRealmData: EmbeddedObject, BasicTabViewData {
 // MARK: - Standings Response Model
 struct StandingAPIData: Codable {
     var response: [StandingResponse]
+    var errors: FootBallAPIRequestError
 }
 
 struct StandingResponse: Codable {
@@ -99,4 +100,8 @@ struct StandingStatus: Codable {
     var win: Int
     var draw: Int
     var lose: Int
+}
+
+struct FootBallAPIRequestError: Codable {
+    var requests: String
 }

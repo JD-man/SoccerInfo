@@ -11,11 +11,16 @@ import SideMenu
 
 class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
-    var activityView = UIActivityIndicatorView()
-    var league: League = .premierLeague
-    var season: Int = 2021
     var data: [T] = []
-
+    var season: Int = 2021
+    var activityView = UIActivityIndicatorView()
+    
+    var league: League = .premierLeague {
+        didSet {
+            fetchData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
@@ -56,6 +61,12 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         present(sideNav, animated: true, completion: nil)
     }
     
+    // fetch data by league assign when view load
+    override func loadView() {
+        super.loadView()
+        league = PublicPropertyManager.shared.league
+    }
+    
     // for sharing league value whole tab
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -69,9 +80,12 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
         guard let sideVC = menu.topViewController as? SideViewController else { return }
         if league != sideVC.selectedLeague {
-            PublicPropertyManager.shared.league = sideVC.selectedLeague
             league = sideVC.selectedLeague
+            PublicPropertyManager.shared.league = sideVC.selectedLeague
             navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue            
         }
     }
+    
+    // abstract method for fetching data
+    internal func fetchData() { }
 }

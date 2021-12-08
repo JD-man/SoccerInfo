@@ -109,8 +109,15 @@ extension UIViewController {
                             
                             // same day. prev update date start == newUpdateDate start.
                             // update day become nextday 06:00
+                            
+                            print(prevUpdateDate.dayStart, currNewUpdateDate.dayStart)
+                            print(prevObject.updateDate, currNewUpdateDate.nextDay.updateHour)
+                            print(prevObject.updateDate, currNewUpdateDate)
+                            print(prevObject.updateDate, currNewUpdateDate.nextDay.updateHour)
+                            
                             if prevUpdateDate.dayStart == currNewUpdateDate.dayStart {
                                 prevObject.updateDate = currNewUpdateDate.nextDay.updateHour
+                                
                                 print("same day")
                             }
                             // other day now before update day 06:00 AM. now < currNewUpdateDate
@@ -216,5 +223,11 @@ extension UIViewController {
             }
         }))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func alertCallLimit(completion: @escaping () -> Void) {
+        alertWithCheckButton(title: "더 이상 데이터를 받을 수 없습니다.",
+                             message: "매일 오후 9시 이후부터 다시 받을 수 있습니다.",
+                             completion: completion)
     }
 }

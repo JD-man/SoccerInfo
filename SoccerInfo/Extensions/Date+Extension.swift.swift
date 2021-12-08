@@ -28,7 +28,7 @@ extension Date {
     
     // MatchDetail update Day must be bigger than now. MatchDetailTable always load.
     var matchDetailUpdateDay: Date {
-        return Calendar.CalendarKST.date(byAdding: .year, value: 100, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .year, value: 1, to: self.dayStart)!
     }
     
     var afterWeekDay: Date {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A0EA0CE1E18B310620A53FD /* Pods_SoccerInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */; };
 		89123EC02751ECF100DB0077 /* MatchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */; };
 		89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89123EC12751ED4700DB0077 /* MatchDetail.storyboard */; };
 		89123EC42752091D00DB0077 /* MatchDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EC32752091D00DB0077 /* MatchDetailModel.swift */; };
@@ -16,6 +17,11 @@
 		8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */; };
 		8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */; };
 		891CDA8A2760A0AA00556629 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 891CDA892760A0AA00556629 /* GoogleService-Info.plist */; };
+		891CDA8E2760ACF800556629 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA8D2760ACF800556629 /* Alamofire */; };
+		891CDA912760AD0100556629 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA902760AD0100556629 /* SideMenu */; };
+		891CDA942760AD3200556629 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA932760AD3200556629 /* Realm */; };
+		891CDA962760AD3200556629 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA952760AD3200556629 /* RealmSwift */; };
+		891CDA992760AD4400556629 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA982760AD4400556629 /* Kingfisher */; };
 		89281D1A274D3C77001FB81D /* Date+Extension.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89281D19274D3C77001FB81D /* Date+Extension.swift.swift */; };
 		892DEEA027562CAF0077D887 /* UserNotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */; };
 		893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E78274CB11100210ED1 /* SideViewController.swift */; };
@@ -23,7 +29,6 @@
 		893C6E7D274CBED900210ED1 /* SideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E7C274CBED900210ED1 /* SideTableViewCell.swift */; };
 		893C6E82274CD21500210ED1 /* BasicTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E81274CD21500210ED1 /* BasicTabViewController.swift */; };
 		893C6E84274CE7FA00210ED1 /* String+Extension.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E83274CE7FA00210ED1 /* String+Extension.swift.swift */; };
-		893D1431274DFFD200B9AAA0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 893D1430274DFFD200B9AAA0 /* Kingfisher */; };
 		893D1433274E017000B9AAA0 /* FixturesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893D1432274E017000B9AAA0 /* FixturesTableViewCell.swift */; };
 		894BF76A274250B600E71C09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF769274250B600E71C09 /* AppDelegate.swift */; };
 		894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894BF76B274250B600E71C09 /* SceneDelegate.swift */; };
@@ -32,10 +37,6 @@
 		894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF774274250B700E71C09 /* LaunchScreen.storyboard */; };
 		895F7D62274E9B3700C6A0C0 /* PublicPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895F7D61274E9B3700C6A0C0 /* PublicPropertyManager.swift */; };
 		896833052759244E00D97FEC /* LocalizationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896833042759244E00D97FEC /* LocalizationList.swift */; };
-		89740BE5274649760033AD2C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BE4274649760033AD2C /* Alamofire */; };
-		89740BED274649AB0033AD2C /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEC274649AB0033AD2C /* SideMenu */; };
-		89740BF027464A040033AD2C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BEF27464A040033AD2C /* Realm */; };
-		89740BF227464A040033AD2C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89740BF127464A040033AD2C /* RealmSwift */; };
 		89740BFF27464B510033AD2C /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740BFD27464B510033AD2C /* FixturesViewController.swift */; };
 		89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0327464B7F0033AD2C /* StandingsViewController.swift */; };
 		89740C0627464B880033AD2C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0527464B880033AD2C /* NewsViewController.swift */; };
@@ -67,6 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoccerInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79D8FE3338AA14EE6730B479 /* Pods-SoccerInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.release.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.release.xcconfig"; sourceTree = "<group>"; };
 		89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewController.swift; sourceTree = "<group>"; };
 		89123EC12751ED4700DB0077 /* MatchDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MatchDetail.storyboard; sourceTree = "<group>"; };
 		89123EC32752091D00DB0077 /* MatchDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailModel.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		89E8C289275BC6B10031982E /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
 		89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationSectionFooterView.xib; sourceTree = "<group>"; };
 		89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationSectionFooterView.swift; sourceTree = "<group>"; };
+		B9AB4EA7F43AD5976ED25633 /* Pods-SoccerInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.debug.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,11 +132,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89740BF227464A040033AD2C /* RealmSwift in Frameworks */,
-				89740BF027464A040033AD2C /* Realm in Frameworks */,
-				89740BED274649AB0033AD2C /* SideMenu in Frameworks */,
-				89740BE5274649760033AD2C /* Alamofire in Frameworks */,
-				893D1431274DFFD200B9AAA0 /* Kingfisher in Frameworks */,
+				891CDA992760AD4400556629 /* Kingfisher in Frameworks */,
+				5A0EA0CE1E18B310620A53FD /* Pods_SoccerInfo.framework in Frameworks */,
+				891CDA912760AD0100556629 /* SideMenu in Frameworks */,
+				891CDA942760AD3200556629 /* Realm in Frameworks */,
+				891CDA962760AD3200556629 /* RealmSwift in Frameworks */,
+				891CDA8E2760ACF800556629 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +188,8 @@
 			children = (
 				894BF768274250B600E71C09 /* SoccerInfo */,
 				894BF767274250B600E71C09 /* Products */,
+				EAD75E370FB4856B0DCABD39 /* Pods */,
+				BF104418F6FE07E4AEAACFCB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -391,6 +398,23 @@
 			path = APIKey;
 			sourceTree = "<group>";
 		};
+		BF104418F6FE07E4AEAACFCB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EAD75E370FB4856B0DCABD39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9AB4EA7F43AD5976ED25633 /* Pods-SoccerInfo.debug.xcconfig */,
+				79D8FE3338AA14EE6730B479 /* Pods-SoccerInfo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,9 +422,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 894BF77A274250B700E71C09 /* Build configuration list for PBXNativeTarget "SoccerInfo" */;
 			buildPhases = (
+				ED856EBDBFA813CF4AA4E512 /* [CP] Check Pods Manifest.lock */,
 				894BF762274250B600E71C09 /* Sources */,
 				894BF763274250B600E71C09 /* Frameworks */,
 				894BF764274250B600E71C09 /* Resources */,
+				08E85A83F62166753E1A3D45 /* [CP] Embed Pods Frameworks */,
+				891CDA8B2760ABEB00556629 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -408,11 +435,11 @@
 			);
 			name = SoccerInfo;
 			packageProductDependencies = (
-				89740BE4274649760033AD2C /* Alamofire */,
-				89740BEC274649AB0033AD2C /* SideMenu */,
-				89740BEF27464A040033AD2C /* Realm */,
-				89740BF127464A040033AD2C /* RealmSwift */,
-				893D1430274DFFD200B9AAA0 /* Kingfisher */,
+				891CDA8D2760ACF800556629 /* Alamofire */,
+				891CDA902760AD0100556629 /* SideMenu */,
+				891CDA932760AD3200556629 /* Realm */,
+				891CDA952760AD3200556629 /* RealmSwift */,
+				891CDA982760AD4400556629 /* Kingfisher */,
 			);
 			productName = SoccerInfo;
 			productReference = 894BF766274250B600E71C09 /* SoccerInfo.app */;
@@ -443,10 +470,10 @@
 			);
 			mainGroup = 894BF75D274250B600E71C09;
 			packageReferences = (
-				89740BE3274649760033AD2C /* XCRemoteSwiftPackageReference "Alamofire" */,
-				89740BEB274649AB0033AD2C /* XCRemoteSwiftPackageReference "SideMenu" */,
-				89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */,
-				893D142F274DFFD200B9AAA0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				891CDA8C2760ACF800556629 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				891CDA8F2760AD0100556629 /* XCRemoteSwiftPackageReference "SideMenu" */,
+				891CDA922760AD3200556629 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				891CDA972760AD4400556629 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 894BF767274250B600E71C09 /* Products */;
 			projectDirPath = "";
@@ -481,6 +508,67 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08E85A83F62166753E1A3D45 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		891CDA8B2760ABEB00556629 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		ED856EBDBFA813CF4AA4E512 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoccerInfo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		894BF762274250B600E71C09 /* Sources */ = {
@@ -667,12 +755,14 @@
 		};
 		894BF77B274250B700E71C09 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9AB4EA7F43AD5976ED25633 /* Pods-SoccerInfo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;
@@ -700,6 +790,7 @@
 		};
 		894BF77C274250B700E71C09 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79D8FE3338AA14EE6730B479 /* Pods-SoccerInfo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -755,15 +846,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		893D142F274DFFD200B9AAA0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 7.1.0;
-			};
-		};
-		89740BE3274649760033AD2C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		891CDA8C2760ACF800556629 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
@@ -771,7 +854,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		89740BEB274649AB0033AD2C /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+		891CDA8F2760AD0100556629 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
 			requirement = {
@@ -779,41 +862,49 @@
 				minimumVersion = 6.5.0;
 			};
 		};
-		89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		891CDA922760AD3200556629 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.19.0;
+				version = 10.20.0;
+			};
+		};
+		891CDA972760AD4400556629 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		893D1430274DFFD200B9AAA0 /* Kingfisher */ = {
+		891CDA8D2760ACF800556629 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 893D142F274DFFD200B9AAA0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		89740BE4274649760033AD2C /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89740BE3274649760033AD2C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 891CDA8C2760ACF800556629 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		89740BEC274649AB0033AD2C /* SideMenu */ = {
+		891CDA902760AD0100556629 /* SideMenu */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89740BEB274649AB0033AD2C /* XCRemoteSwiftPackageReference "SideMenu" */;
+			package = 891CDA8F2760AD0100556629 /* XCRemoteSwiftPackageReference "SideMenu" */;
 			productName = SideMenu;
 		};
-		89740BEF27464A040033AD2C /* Realm */ = {
+		891CDA932760AD3200556629 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = 891CDA922760AD3200556629 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = Realm;
 		};
-		89740BF127464A040033AD2C /* RealmSwift */ = {
+		891CDA952760AD3200556629 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 89740BEE27464A040033AD2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = 891CDA922760AD3200556629 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		891CDA982760AD4400556629 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 891CDA972760AD4400556629 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

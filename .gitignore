@@ -134,7 +134,7 @@ iOSInjectionProject/
 **/**/GoogleService-Info.plist
 
 ## APIKey
-## **/**/APIKey
+**/**/APIKey
 
 ## Gcc Patch
 /*.gcno

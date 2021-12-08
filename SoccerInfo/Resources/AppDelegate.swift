@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import RealmSwift
 
 // 첫뷰시작전에 로그인, 노티 체크 -> 여기서 해줘야됨
@@ -13,11 +14,16 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Firebase Configure
+        FirebaseApp.configure()
+        
+        // Appearance Configure
         UITableView.appearance().showsVerticalScrollIndicator = false
         UITableView.appearance().showsHorizontalScrollIndicator = false
         UIBarButtonItem.appearance().tintColor = .label
         UITableViewCell.appearance().selectionStyle = .none
         
+        // Synchronous Configure
         let group = DispatchGroup()
         let queue = DispatchQueue.global(qos: .userInitiated)
         
@@ -25,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("login start")
         queue.async {
             let app = App(id: APIComponents.realmAppID)
-            if let currentUser = app.currentUser, currentUser.isLoggedIn == true {
+            if let currentUser = app.currentUser, currentUser.isLoggedIn {
                 print("current user exist",currentUser.id)
                 sleep(1)
                 group.leave()
@@ -44,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        
+        // Initialization Notification Center
         group.enter()
         queue.async {
             print("noti check")
@@ -67,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        // Wait until All Configure
         group.wait()
         print("AppDelegate end")
         return true

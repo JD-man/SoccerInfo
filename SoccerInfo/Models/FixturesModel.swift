@@ -65,6 +65,7 @@ final class FixturesRealmData: EmbeddedObject, BasicTabViewData {
 // MARK: - Fixtures Response Model
 struct FixturesAPIData: Codable {
     var response: [FixturesResponse]
+    var errors: FootBallAPIRequestError
 }
 
 struct FixturesResponse: Codable {
