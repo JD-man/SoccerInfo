@@ -13,6 +13,11 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        UITableView.appearance().showsVerticalScrollIndicator = false
+        UITableView.appearance().showsHorizontalScrollIndicator = false
+        UIBarButtonItem.appearance().tintColor = .label
+        UITableViewCell.appearance().selectionStyle = .none
+        
         let group = DispatchGroup()
         let queue = DispatchQueue.global(qos: .userInitiated)
         
@@ -20,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("login start")
         queue.async {
             let app = App(id: APIComponents.realmAppID)
-            if let currentUser = app.currentUser {
+            if let currentUser = app.currentUser, currentUser.isLoggedIn == true {
                 print("current user exist",currentUser.id)
                 sleep(1)
                 group.leave()
@@ -64,11 +69,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         group.wait()
         print("AppDelegate end")
-        
-        UITableView.appearance().showsVerticalScrollIndicator = false
-        UITableView.appearance().showsHorizontalScrollIndicator = false
-        UIBarButtonItem.appearance().tintColor = .label
-        UITableViewCell.appearance().selectionStyle = .none
         return true
     }
 
