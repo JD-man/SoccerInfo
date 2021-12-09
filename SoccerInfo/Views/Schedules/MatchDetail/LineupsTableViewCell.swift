@@ -28,13 +28,15 @@ class LineupsTableViewCell: UITableViewCell {
         [homePlayerLabel, homePlayerNumberLabel, homePlayerPositionLabel,
          awayPlayerLabel,awayPlayerNumberLabel, awayPlayerPositionLabel]
             .forEach {
-                $0?.font = .systemFont(ofSize: 13, weight: .medium)
                 $0?.adjustsFontSizeToFitWidth = true
+                $0?.font = .systemFont(ofSize: 13, weight: .medium)
             }
-        homePlayerPositionLabel.textColor = .systemGray2
-        awayPlayerPositionLabel.textColor = .systemGray2
         homePlayerNumberLabel.textAlignment = .center
         awayPlayerNumberLabel.textAlignment = .center
+        homePlayerPositionLabel.textColor = .systemGray2
+        awayPlayerPositionLabel.textColor = .systemGray2
+        homePlayerNumberLabel.textColor = .label
+        awayPlayerNumberLabel.textColor = .label
     }
     
     func configure(homeLineup: LineupRealmData, awayLineup: LineupRealmData) {

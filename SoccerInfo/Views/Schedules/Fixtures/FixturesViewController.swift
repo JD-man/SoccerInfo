@@ -13,7 +13,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     // Fixtures RealmData
     typealias FixturesObject = Result<FixturesTable, RealmErrorType>
     // API Response
-    typealias FixturesResponses = Result<FixturesAPIData, Error>
+    typealias FixturesResponses = Result<FixturesAPIData, APIErrorType>
     
     // Dictionary of match date(section title) : schedule content
     typealias FixturesDatas = [String : FixturesContents]
@@ -143,7 +143,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         fetchAPIData(of: .fixtures, url: url) { [weak self] (result: FixturesResponses) in
             switch result {
             case .success(let fixturesData):                
-                guard fixturesData.errors.requests.isEmpty else {
+                guard fixturesData.results != 0 else {
                     self?.alertCallLimit() { self?.activityView.stopAnimating() }
                     return
                 }

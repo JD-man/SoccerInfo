@@ -14,8 +14,8 @@ class MatchDetailViewController: UIViewController {
         print("MatchDetailVC Deinit")
     }
     
-    typealias EventsResponses = Result<EventsAPIData, Error>
-    typealias LineupsResponses = Result<LineupsAPIData, Error>
+    typealias EventsResponses = Result<EventsAPIData, APIErrorType>
+    typealias LineupsResponses = Result<LineupsAPIData, APIErrorType>
     typealias MatchDetailObject = Result<MatchDetailTable, RealmErrorType>
     
     var fixtureID = 0
@@ -130,7 +130,7 @@ class MatchDetailViewController: UIViewController {
         fetchAPIData(of: .events, url: eventsURL) { [weak self] (result: EventsResponses) in
             switch result {
             case .success(let eventsAPIData):
-                guard eventsAPIData.errors.requests.isEmpty else {
+                guard eventsAPIData.results != 0 else {
                     self?.alertCallLimit() {
                         self?.navigationController?.popViewController(animated: true)
                     }
@@ -140,7 +140,7 @@ class MatchDetailViewController: UIViewController {
                 self?.fetchAPIData(of: .lineups, url: lineupURL, completion: { (result: LineupsResponses) in
                     switch result {
                     case .success(let lineupsAPIData):
-                        guard lineupsAPIData.errors.requests.isEmpty else {
+                        guard lineupsAPIData.results != 0 else {
                             self?.alertCallLimit() {
                                 self?.navigationController?.popViewController(animated: true)
                             }

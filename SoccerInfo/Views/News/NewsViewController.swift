@@ -10,7 +10,7 @@ import Kingfisher
 import SafariServices
 
 class NewsViewController: BasicTabViewController<NewsData> {
-    typealias SearchResponse = Result<NewsResponse, Error>
+    typealias SearchResponse = Result<NewsResponse, APIErrorType>
     
     @IBOutlet weak var newsTableView: UITableView!
     

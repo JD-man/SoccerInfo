@@ -12,7 +12,7 @@ import SideMenu
 class StandingsViewController: BasicTabViewController<StandingsRealmData> {
 
     typealias standingObject = Result<StandingsTable, RealmErrorType>
-    typealias standingResponses = Result<StandingAPIData, Error>
+    typealias standingResponses = Result<StandingAPIData, APIErrorType>
     @IBOutlet weak var standingsTableView: UITableView!
     
     override var data: [StandingsRealmData] {
@@ -61,7 +61,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponses) in
             switch result {
             case .success(let standingData):
-                guard standingData.errors.requests.isEmpty else {
+                guard standingData.results != 0 else {
                     self?.alertCallLimit() { self?.activityView.stopAnimating() }
                     return
                 }

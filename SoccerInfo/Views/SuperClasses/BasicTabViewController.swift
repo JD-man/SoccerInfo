@@ -25,6 +25,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         super.viewDidLoad()
         viewConfig()
         sideButtonConfig()
+        league = PublicPropertyManager.shared.league
     }
     
     func viewConfig() {
@@ -61,19 +62,18 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         present(sideNav, animated: true, completion: nil)
     }
     
-    // fetch data by league assign when view load
-    override func loadView() {
-        super.loadView()
-        league = PublicPropertyManager.shared.league
-    }
-    
     // for sharing league value whole tab
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if league != PublicPropertyManager.shared.league {
             league = PublicPropertyManager.shared.league
-            navigationItem.leftBarButtonItem?.title = PublicPropertyManager.shared.league.rawValue
         }
+    }
+    
+    // for sharing league value whole tab
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.leftBarButtonItem?.title = PublicPropertyManager.shared.league.rawValue
     }
     
     // change league

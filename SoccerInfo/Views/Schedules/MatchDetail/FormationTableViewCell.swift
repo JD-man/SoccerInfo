@@ -45,7 +45,7 @@ class FormationTableViewCell: UITableViewCell {
     func labelConfig(label: UILabel, number: Int, color: UIColor) {
         label.text = "\(number)"
         label.textAlignment = .center
-        label.textColor = .systemBackground
+        label.textColor = .label
         label.font = .systemFont(ofSize: 10.5, weight: .medium)
         
         label.clipsToBounds = true
@@ -74,9 +74,9 @@ class FormationTableViewCell: UITableViewCell {
         var color: UIColor {
             switch self {
             case .home:
-                return .teamColor(r: 0, g: 9, b: 87)
+                return .rgbColor(r: 95, g: 65, b: 210)
             case .away:
-                return .teamColor(r: 169, g: 51, b: 58)
+                return .rgbColor(r: 169, g: 51, b: 58)
             }
         }
     }

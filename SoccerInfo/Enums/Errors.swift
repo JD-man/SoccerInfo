@@ -9,14 +9,25 @@ import Foundation
 
 enum RealmErrorType: Error {
     case emptyData    
-    case asyncOpenFail
-    case realmFail
+    case asyncOpenFail // Error 1
+    case realmFail // Error 2
 }
 
-enum APIErrorType: Error {
-    case requestLimit
-    case timeout    
-    case serverError
+enum APIErrorType: Int, Error {
+    case requestLimit = 429 // Error 3
+    case timeout = 499 // Error 4
+    case serverError = 500 // Error 5
+    
+    var description: String {
+        switch self {
+        case .requestLimit:
+            return "더 이상 데이터를 받을 수 없습니다."
+        case .timeout:
+            return "데이터를 받는 시간이 초과 됐습니다."
+        case .serverError:
+            return "서버에 오류가 생겼습니다."
+        }
+    }
 }
 
 /* Football API Error

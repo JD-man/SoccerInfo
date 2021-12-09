@@ -37,7 +37,7 @@ extension UIViewController {
             if objects.isEmpty {
                 // Cloud Realm Load
                 print("Cloud Realm Load")
-                Realm.asyncOpen(configuration: configuration) { result in
+                Realm.asyncOpen(configuration: configuration) { [weak self] result in
                     switch result {
                     case .success(let realm):
                         let syncedObjects = realm.objects(T.self).where {
@@ -54,7 +54,8 @@ extension UIViewController {
                         print("Cloud Realm Loaded")
                     case .failure(let error):
                         print("sync realm error", error)
-                        completion(.failure(.asyncOpenFail))                        
+                        completion(.failure(.asyncOpenFail))
+                        self?.alertWithCheckButton(title: "Error Code : 1", message: "", completion: nil)
                     }
                 }
             }
@@ -66,6 +67,7 @@ extension UIViewController {
         catch {
             print("realm fail", error)
             completion(.failure(.realmFail))
+            alertWithCheckButton(title: "Error Code : 2", message: "", completion: nil)
         }
     }
     
@@ -79,7 +81,7 @@ extension UIViewController {
         let configuration = user.configuration(partitionValue: "\(leagueID)")
         
         
-        Realm.asyncOpen(configuration: configuration) { result in
+        Realm.asyncOpen(configuration: configuration) { [weak self] result in
             switch result {
             case .success(let realm):
                 do {
@@ -130,9 +132,11 @@ extension UIViewController {
                 }
                 catch {
                     print(error)
+                    self?.alertWithCheckButton(title: "Error Code : 1", message: "", completion: nil)
                 }
             case .failure(let error):
                 print("sync realm error", error)
+                self?.alertWithCheckButton(title: "Error Code : 2", message: "", completion: nil)
             }
         }
     }
@@ -152,27 +156,42 @@ extension UIViewController {
 
 //MARK: - extension with Alamofire
 extension UIViewController {
-    func fetchAPIData<T: Codable>(of footBallData: FootballData, url: URL?, completion: @escaping (Result<T, Error>) -> Void) {
+    func fetchAPIData<T: Codable>(of footBallData: FootballData, url: URL?, completion: @escaping (Result<T, APIErrorType>) -> Void) {
         guard let url = url else {
             print("url fail")
             return            
         }
-        AF.request(url, method: .get, headers: footBallData.headers).validate().responseJSON { [weak self] response in
-            switch response.result {
-            case .success(_):
-                guard let data = response.data,
-                      let decoded = try? JSONDecoder().decode(T.self, from: data) else {
-                          print("decode fail")
-                          return }                
-                completion(.success(decoded))
-                print("API CALL")
-            case .failure(let error):
-                self?.alertWithCheckButton(title: "데이터를 가져오는데 실패했습니다",
-                                           message: "네트워크 연결 상태를 확인해주세요.",
-                                           completion: nil)
-                print(error)
+        AF.request(url, method: .get, headers: footBallData.headers)
+            .validate(statusCode: 200 ... 500)
+            .responseJSON { [weak self] response in
+                switch response.result {
+                case .success(_):
+                    let statusCode = response.response?.statusCode ?? 500
+                    switch statusCode {
+                    case 429:
+                        completion(.failure(.requestLimit))
+                        self?.alertAPIError(statusCode: statusCode)
+                    case 499:
+                        completion(.failure(.timeout))
+                        self?.alertAPIError(statusCode: statusCode)
+                    case 500:
+                        completion(.failure(.serverError))
+                        self?.alertAPIError(statusCode: statusCode)
+                    default:
+                        guard let data = response.data,
+                              let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+                                  print("decode fail")
+                                  return }
+                        completion(.success(decoded))
+                        print("API CALL")
+                    }
+                case .failure(let error):
+                    self?.alertWithCheckButton(title: "데이터를 가져오는데 실패했습니다",
+                                               message: "네트워크 연결 상태를 확인해주세요.",
+                                               completion: nil)
+                    print(error)
+                }
             }
-        }
     }
 }
 
@@ -219,9 +238,15 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func alertAPIError(statusCode : Int) {
+        alertWithCheckButton(title: APIErrorType(rawValue: statusCode)?.description ?? "오류가 발생했습니다.",
+                             message: "",
+                             completion: nil)
+    }
+    
     func alertCallLimit(completion: @escaping () -> Void) {
         alertWithCheckButton(title: "더 이상 데이터를 받을 수 없습니다.",
-                             message: "매일 오후 9시 이후부터 다시 받을 수 있습니다.",
+                             message: "다음 오전 9시 이후\n다시 받을 수 있습니다.",
                              completion: completion)
     }
 }

@@ -98,7 +98,7 @@ final class LineupRealmData: EmbeddedObject {
 // MARK: - Events Response Model
 struct EventsAPIData: Codable {
     var response: [EventsResponse]
-    var errors: FootBallAPIRequestError
+    var results: Int
 }
 
 struct EventsResponse: Codable {
@@ -132,7 +132,7 @@ struct EventsAssist: Codable {
 // MARK: - Lineups Response Model
 struct LineupsAPIData: Codable {
     var response: [LineupsResponse]
-    var errors: FootBallAPIRequestError
+    var results: Int
 }
 
 struct LineupsResponse: Codable {

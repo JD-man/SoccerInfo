@@ -38,17 +38,17 @@ class EventsTableViewCell: UITableViewCell {
         
         homePlayerNameLabel.numberOfLines = 0
         awayPlayerNameLabel.numberOfLines = 0
-        homePlayerNameLabel.textColor = .systemBackground
-        awayPlayerNameLabel.textColor = .systemBackground
+        homePlayerNameLabel.textColor = .label
+        awayPlayerNameLabel.textColor = .label
         homePlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         awayPlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         
-        homeDetailLabel.textColor = .systemGray2
-        awayDetailLabel.textColor = .systemGray2
+        homeDetailLabel.textColor = .lightGray
+        awayDetailLabel.textColor = .lightGray
         homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
         awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
         
-        backgroundColor = UIColor(red: 11/255, green: 70/255, blue: 25/255, alpha: 1)
+        backgroundColor = .rgbColor(r: 11, g: 95, b: 25)
     }
     
     func configure(with data: EventsRealmData, isHomeCell: Bool) {
@@ -105,8 +105,8 @@ class EventsTableViewCell: UITableViewCell {
         awayPlayerNameLabel.text = nil        
         homeEventTypeImageView.image = nil
         awayEventTypeImageView.image = nil
-        homeDetailLabel.textColor = .systemGray2
-        awayDetailLabel.textColor = .systemGray2
+        homeDetailLabel.textColor = .lightGray
+        awayDetailLabel.textColor = .lightGray
         homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
         awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
     }
