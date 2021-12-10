@@ -27,7 +27,7 @@ class MainTabBarController: UITabBarController {
         }
         else {
             UITabBar.appearance().tintColor = .label
-            UITabBar.appearance().backgroundColor = .systemBackground
+            UITabBar.appearance().barTintColor = .systemBackground            
         }
     }
 }

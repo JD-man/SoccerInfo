@@ -88,3 +88,15 @@
 ## Day14
 #### 업데이트 예정 사항
 [노션 링크](https://gookbobhenry.notion.site/6393a0fe665d496e978d8c4d59e6565b)
+
+---
+
+## Day15
+#### 출시프로젝트 발표 주제 공유
+[노션 링크](https://gookbobhenry.notion.site/31c94cae321d4fef9687ce3f2c32304e)
+
+---
+
+## Day16
+#### 공부할것, 할일
+[노션 링크](https://gookbobhenry.notion.site/e3b9fc7c30514452be2589c1550a11f6)
