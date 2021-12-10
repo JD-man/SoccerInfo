@@ -12,11 +12,10 @@ class LineupsTableViewCell: UITableViewCell {
     static let identifier = "LineupsTableViewCell"
 
     @IBOutlet weak var homePlayerLabel: UILabel!
-    @IBOutlet weak var homePlayerNumberLabel: UILabel!
-    @IBOutlet weak var homePlayerPositionLabel: UILabel!
-    
     @IBOutlet weak var awayPlayerLabel: UILabel!
+    @IBOutlet weak var homePlayerNumberLabel: UILabel!
     @IBOutlet weak var awayPlayerNumberLabel: UILabel!
+    @IBOutlet weak var homePlayerPositionLabel: UILabel!
     @IBOutlet weak var awayPlayerPositionLabel: UILabel!
     
     override func awakeFromNib() {
@@ -31,21 +30,22 @@ class LineupsTableViewCell: UITableViewCell {
                 $0?.adjustsFontSizeToFitWidth = true
                 $0?.font = .systemFont(ofSize: 13, weight: .medium)
             }
+        
+        homePlayerNumberLabel.textColor = .label
+        awayPlayerNumberLabel.textColor = .label
         homePlayerNumberLabel.textAlignment = .center
         awayPlayerNumberLabel.textAlignment = .center
         homePlayerPositionLabel.textColor = .systemGray2
         awayPlayerPositionLabel.textColor = .systemGray2
-        homePlayerNumberLabel.textColor = .label
-        awayPlayerNumberLabel.textColor = .label
+
     }
     
     func configure(homeLineup: LineupRealmData, awayLineup: LineupRealmData) {
         homePlayerLabel.text = homeLineup.name
+        awayPlayerLabel.text = awayLineup.name        
         homePlayerPositionLabel.text = homeLineup.position
+        awayPlayerPositionLabel.text = awayLineup.position
         homePlayerNumberLabel.text = homeLineup.name == "-" ? "-" : "\(homeLineup.number)"
-        
-        awayPlayerLabel.text = awayLineup.name
-        awayPlayerPositionLabel.text = awayLineup.position        
         awayPlayerNumberLabel.text = awayLineup.name == "-" ? "-" : "\(awayLineup.number)"
     }
 }

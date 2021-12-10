@@ -15,20 +15,20 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     // API Response
     typealias FixturesResponses = Result<FixturesAPIData, APIErrorType>
     
+    // Array of FixturesContent
+    typealias FixturesContents = [FixturesContent]
+    
     // Dictionary of match date(section title) : schedule content
     typealias FixturesDatas = [String : FixturesContents]
-    
-    // Schedule content Tuple: (homeLogo, awayLogo, homeGoal, awayGoal, match hour, fixtureID)
-    typealias FixturesContents = [FixturesContent]
     
     @IBOutlet weak var schedulesTableView: UITableView!
     
     /*
      Change league : fetchData
-     Set data or Change monday by swipe : make scheduleData of data
-     Set ScheduleData : make dateSectionTitles
-     Set dateSectionTitles: make schedule content
-     Set scheduleContent : Reload TableView
+     when Set data or Change first day by swipe : make scheduleData of data
+     when Set ScheduleData : make dateSectionTitles
+     when Set dateSectionTitles: make schedule content
+     when Set scheduleContent : Reload TableView
      */
     
     override var data: [FixturesRealmData] {
@@ -53,9 +53,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
         didSet {
-            if activityView.isAnimating {
-                activityView.stopAnimating()
-            }
+            if activityView.isAnimating { activityView.stopAnimating() }
             schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
         }
     }
@@ -69,9 +67,9 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         super.viewConfig()
         // Schedules TableView Config
         schedulesTableView.addShadow()
-        schedulesTableView.backgroundColor = .clear
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
+        schedulesTableView.backgroundColor = .clear
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
         
         // Swipe Gesture for change monday of week
@@ -136,8 +134,8 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     
     func fetchFixturesAPIData() {
-        let leagueQuery = URLQueryItem(name: "league", value: "\(league.leagueID)")
         let seasonQuery = URLQueryItem(name: "season", value: "2021")
+        let leagueQuery = URLQueryItem(name: "league", value: "\(league.leagueID)")
         let url = APIComponents.footBallRootURL.toURL(of: .fixtures, queryItems: [leagueQuery, seasonQuery])
         
         fetchAPIData(of: .fixtures, url: url) { [weak self] (result: FixturesResponses) in

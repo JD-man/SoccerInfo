@@ -21,9 +21,9 @@ class MainTabBarController: UITabBarController {
             tabbarAppearance.configureWithOpaqueBackground()
             tabbarAppearance.backgroundColor = .systemBackground            
             
-            UITabBar.appearance().standardAppearance = tabbarAppearance
-            UITabBar.appearance().scrollEdgeAppearance = tabbarAppearance
             UITabBar.appearance().tintColor = .label
+            UITabBar.appearance().standardAppearance = tabbarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = tabbarAppearance            
         }
         else {
             UITabBar.appearance().tintColor = .label

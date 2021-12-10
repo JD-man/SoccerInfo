@@ -39,9 +39,9 @@ class SideViewController: UIViewController {
 
     @IBOutlet weak var sideTableView: UITableView!
     
-    let sectionTitles = SideSection.allCases.map { $0.title }
-    let contents = SideSection.allCases.map { $0.contents }
     var selectedLeague: League = .premierLeague
+    let contents = SideSection.allCases.map { $0.contents }
+    let sectionTitles = SideSection.allCases.map { $0.title }
     
     override func viewDidLoad() {
         super.viewDidLoad()        

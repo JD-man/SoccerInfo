@@ -14,8 +14,10 @@ class StandingsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var teamLogoImageView: UIImageView!
+    
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var playedLabel: UILabel!
+    
     @IBOutlet weak var winLabel: UILabel!
     @IBOutlet weak var drawLabel: UILabel!
     @IBOutlet weak var loseLabel: UILabel!
@@ -39,12 +41,15 @@ class StandingsTableViewCell: UITableViewCell {
     func configure(with data: StandingsRealmData) {
         rankLabel.text = "\(data.rank)"
         teamLogoImageView.kf.setImage(with: URL(string: data.teamLogo))
+        
         pointsLabel.text = "\(data.points)"
         playedLabel.text = "\(data.played)"
+        
         winLabel.text = "\(data.win)"
         drawLabel.text = "\(data.draw)"
         loseLabel.text = "\(data.lose)"
         goalDiffLabel.text = "\(data.goalsDiff)"
+        
         if PublicPropertyManager.shared.league == .ligue1 {
             separateLine.isHidden = !(data.rank == 2 || data.rank == 4)
         }

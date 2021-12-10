@@ -11,8 +11,8 @@ class ManualViewController: UIViewController {
     
     let manualImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "ManualVC")
         imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "ManualVC")        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()

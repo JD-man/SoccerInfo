@@ -26,12 +26,13 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     
     override func viewConfig() {
         super.viewConfig()
-        view.backgroundColor = .secondarySystemGroupedBackground
         standingsTableView.delegate = self
         standingsTableView.dataSource = self
         standingsTableView.separatorStyle = .none
         standingsTableView.backgroundColor = .clear
-        standingsTableView.layer.borderColor = UIColor.label.cgColor        
+        standingsTableView.layer.borderColor = UIColor.label.cgColor
+        
+        view.backgroundColor = .secondarySystemGroupedBackground
     }
     
     override func fetchData() {
@@ -54,8 +55,8 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     
     
     func fetchStandingAPIData() {
-        let league = URLQueryItem(name: "league", value: "\(league.leagueID)")
         let season = URLQueryItem(name: "season", value: "\(season)")
+        let league = URLQueryItem(name: "league", value: "\(league.leagueID)")
         let url = APIComponents.footBallRootURL.toURL(of: .standings, queryItems: [league, season])
         
         fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponses) in
@@ -110,8 +111,10 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
         let headerView = nib?.first as! StandingSectionHeaderView
         
         headerView.backgroundColor = .tertiarySystemGroupedBackground
+        
+        // headerview corner config
+        headerView.layer.cornerRadius = 20
         headerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        headerView.layer.cornerRadius = 30
         return headerView
     }
     

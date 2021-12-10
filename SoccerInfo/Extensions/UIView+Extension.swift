@@ -10,10 +10,10 @@ extension UIView {
     func addShadow(color: UIColor = UIColor.black, rad: CGFloat = 10,
                    opacity: Float = 0.15, offset: CGSize = .zero) {
         self.clipsToBounds = false
-        self.layer.shadowColor = color.cgColor
         self.layer.shadowRadius = rad
-        self.layer.shadowOpacity = opacity
         self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowColor = color.cgColor
     }
     
     func addCorner() {

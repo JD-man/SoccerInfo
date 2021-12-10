@@ -18,23 +18,21 @@ extension String {
     // for fixture date
     var toDate: Date {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
         formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
         
         // 2021-11-28T23:00:00+09:00
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
         return formatter.date(from: self) ?? Date()
     }
     
     // for Fixture title to Date
     var sectionTitleToDate: Date {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
         formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)
+        formatter.locale = Locale(identifier: Locale.preferredLanguages.first!)
         
-        formatter.dateFormat = "yyyy-MM-dd EEEE"
-        
+        formatter.dateFormat = "yyyy-MM-dd EEEE"        
         return formatter.date(from: self) ?? Date()
     }
     

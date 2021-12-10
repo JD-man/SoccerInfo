@@ -23,24 +23,24 @@ class FixturesTableViewCell: UITableViewCell {
     }
     
     func viewConfig() {
-        backgroundColor = .secondarySystemGroupedBackground
         scoreLabel.isHidden = true
         timeLabel.isHidden = true        
         isUserInteractionEnabled = false
+        backgroundColor = .secondarySystemGroupedBackground
         
-        scoreLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        timeLabel.font = .systemFont(ofSize: 15, weight: .medium)
         timeLabel.textColor = .systemGray
+        timeLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        scoreLabel.font = .systemFont(ofSize: 16, weight: .medium)
     }
     
     func configure(with data: FixturesContent) {        
         homeLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
         awayLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
         if let homeGoal = data.homeGoal, let awayGoal = data.awayGoal {
-            accessoryType = .disclosureIndicator            
-            isUserInteractionEnabled = true
+            timeLabel.isHidden = true
             scoreLabel.isHidden = false
-            timeLabel.isHidden = true            
+            isUserInteractionEnabled = true
+            accessoryType = .disclosureIndicator
             scoreLabel.text = "\(homeGoal) - \(awayGoal)"
             if UserDefaults.standard.value(forKey: "\(data.fixtureID)") != nil {
                 UserDefaults.standard.removeObject(forKey: "\(data.fixtureID)")
@@ -48,9 +48,9 @@ class FixturesTableViewCell: UITableViewCell {
         }
         else {
             accessoryType = .checkmark
-            isUserInteractionEnabled = true
-            timeLabel.isHidden = false            
             scoreLabel.isHidden = true
+            timeLabel.isHidden = false
+            isUserInteractionEnabled = true
             timeLabel.text = "\(data.matchHour)"
             
             // set accessory color by UserDefaults reserved fixture array
@@ -65,12 +65,12 @@ class FixturesTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        tintColor = .gray
+        timeLabel.text = nil
+        scoreLabel.text = nil
+        accessoryType = .none
         homeLogoImageView.image = nil
         awayLogoImageView.image = nil
-        scoreLabel.text = nil
-        timeLabel.text = nil
-        accessoryType = .none
-        tintColor = .gray
         isUserInteractionEnabled = false
     }
 }

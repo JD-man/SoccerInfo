@@ -43,9 +43,9 @@ class FormationTableViewCell: UITableViewCell {
     }
     
     func labelConfig(label: UILabel, number: Int, color: UIColor) {
-        label.text = "\(number)"
-        label.textAlignment = .center
+        label.text = "\(number)"        
         label.textColor = .label
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 10.5, weight: .medium)
         
         label.clipsToBounds = true

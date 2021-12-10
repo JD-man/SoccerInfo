@@ -26,9 +26,9 @@ class MatchDetailViewController: UIViewController {
     var awayLogo = ""
     var awayTeamName = ""
     
-    var league: League = .premierLeague
     var season = 2021
     var maxSubsCount = 0
+    var league: League = .premierLeague
     
     var data: [MatchDetailRealmData] = [MatchDetailRealmData.initialValue] {
         didSet {
@@ -42,9 +42,7 @@ class MatchDetailViewController: UIViewController {
     
     var matchDetailData: MatchDetailRealmData = MatchDetailRealmData.initialValue {
         didSet {
-            if activityView.isAnimating {
-                activityView.stopAnimating()
-            }
+            if activityView.isAnimating { activityView.stopAnimating() }
             maxSubsCount = max(matchDetailData.awaySubLineup.count,
                               matchDetailData.homeSubLineup.count)
             matchDetailTableView.reloadSections(IndexSet(0 ..< MatchDetailSection.allCases.count),
@@ -52,12 +50,14 @@ class MatchDetailViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var matchDetailTableHeaderView: UIView!
-    @IBOutlet weak var homeLogoImageView: UIImageView!
-    @IBOutlet weak var awayLogoImageView: UIImageView!
+
     @IBOutlet weak var homeTeamNameLabel: UILabel!
     @IBOutlet weak var awayTeamNameLabel: UILabel!
+    @IBOutlet weak var homeLogoImageView: UIImageView!
+    @IBOutlet weak var awayLogoImageView: UIImageView!
     @IBOutlet weak var matchDetailTableView: UITableView!
+    @IBOutlet weak var matchDetailTableHeaderView: UIView!
+    
     var activityView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
@@ -105,9 +105,9 @@ class MatchDetailViewController: UIViewController {
     }
     
     func fetchMatchDetailRealmData() {
+        activityView.startAnimating()
         league = PublicPropertyManager.shared.league
         season = PublicPropertyManager.shared.season
-        activityView.startAnimating()
         fetchRealmData(league: league, season: season) { [weak self] (result: MatchDetailObject) in
             switch result {
             case .success(let matchDetailTable):
@@ -220,7 +220,9 @@ class MatchDetailViewController: UIViewController {
                         let table = MatchDetailTable(leagueID: self!.league.leagueID,
                                                      season: 2021,
                                                      content: content)
-                        self?.updateRealmData(table: table, leagueID: self!.league.leagueID, season: self!.season)
+                        self?.updateRealmData(table: table,
+                                              leagueID: self!.league.leagueID,
+                                              season: self!.season)
                         self?.data = Array(content)
                     case .failure(let error):
                         print(error)
@@ -351,12 +353,15 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = indexPath.section
         let item = indexPath.item
-        let totalHeight: CGFloat = 270
-        let minHeight: CGFloat = 55
-        var height: CGFloat = 0
+        let section = indexPath.section
+        
         if section == 0 {
+            
+            var height: CGFloat = 0
+            let minHeight: CGFloat = 55
+            let totalHeight: CGFloat = 270
+            
             if item == 0 {
                 let currTime = CGFloat(matchDetailData.events[item].time)
                 height = currTime/90 * totalHeight

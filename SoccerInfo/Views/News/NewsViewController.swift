@@ -19,9 +19,7 @@ class NewsViewController: BasicTabViewController<NewsData> {
     
     override var data: [NewsData] {
         didSet {
-            if activityView.isAnimating {
-                activityView.stopAnimating()
-            }
+            if activityView.isAnimating { activityView.stopAnimating() }
             newsTableView.reloadData()
         }
     }
@@ -40,21 +38,20 @@ class NewsViewController: BasicTabViewController<NewsData> {
     override func fetchData() {
         activityView.startAnimating()
         // News Search Query
-        let query = URLQueryItem(name: "query", value: "\(league.newsQuery)")
         let start = URLQueryItem(name: "start", value: "1")
         let display = URLQueryItem(name: "display", value: "30")
+        let query = URLQueryItem(name: "query", value: "\(league.newsQuery)")
         let url = APIComponents.newsRootURL.toURL(of: .newsSearch,
-                                                      queryItems: [query, start, display])
-        
+                                                  queryItems: [query, start, display])
         
         let group = DispatchGroup()
         // News Search
         fetchAPIData(of: .newsSearch, url: url) { [weak self] (result: SearchResponse) in
             switch result {
             case .success(let newsResponse):
-                self?.totalPage = min(self!.totalPage, 100)
                 var items = newsResponse.items
                 if items.isEmpty { return }
+                self?.totalPage = min(self!.totalPage, 100)
                 
                 var randomIndex: Set<Int> = [0]
                 let minCount = min(items.count, 5)
@@ -64,10 +61,11 @@ class NewsViewController: BasicTabViewController<NewsData> {
                 
                 // News Image Search by News title
                 for i in randomIndex {
-                    group.enter()                    
-                    let query = URLQueryItem(name: "query", value: items[i].title!.removeSearchTag)
-                    let display = URLQueryItem(name: "display", value: "1")
+                    group.enter()
                     let sort = URLQueryItem(name: "sort", value: "sim")
+                    let display = URLQueryItem(name: "display", value: "1")
+                    let query = URLQueryItem(name: "query", value: items[i].title!.removeSearchTag)
+                    
                     let url = APIComponents.newsRootURL.toURL(of: .newsImage,
                                                               queryItems: [query, display, sort])
                     
