@@ -50,7 +50,7 @@
 # Issues
 ### 1. Request/Day = 100
 - 사용하려는 API의 하루 호출가능횟수가 너무 작아서 생긴 문제  
-  => Realm Sync를 사용해 해결 [DataFlow](./Plan&Log/DevLog/Log_Day2.md)
+  => Realm Sync를 사용해 해결 [DataFlow](./Plan&Log/DevLog/Log_day2.md)
 ### 2. UpdateDate
 - 매일 새벽 6시이후에 새로운 데이터를 업데이트 할 수 있도록 제작  
   => 같은날 자정 전. 다른날 새벽 6시 이전. 다른날 새벽 6시 이후. 3가지 케이스로 나눠서 업데이트.
@@ -80,8 +80,8 @@
 ### 3. Timezone
 - 출시지역은 대한민국 1개 지역이었으나 나올 수 없는 업데이트 시간이 나옴  
   => 모든 시간을 KST 기준으로 계산하도록 변경   
-  [Calendar+Extension](/SoccerInfo/SoccerInfo/Extensions/Calendar+Extension.swift)  
-  [Date+Extension](/SoccerInfo/SoccerInfo/Extensions/Date+Extension.swift.swift)
+  [Calendar+Extension](./SoccerInfo/Extensions/Calendar+Extension.swift)  
+  [Date+Extension](./SoccerInfo/Extensions/Date+Extension.swift.swift)
 
 ### 4. 네이버 뉴스 검색 API에 썸네일이 없음
 - 랜덤으로 기사 5개를 뽑아 타이틀로 네이버 이미지 검색을 다시 진행
