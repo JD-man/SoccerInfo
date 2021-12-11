@@ -12,4 +12,9 @@ class SquadsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // current 10 match results collection view -> horizontal scroll
+    // curretn 10 match win rate Pie Chart
+    
+    // Fixtures Data -> filtering completed match by score
 }

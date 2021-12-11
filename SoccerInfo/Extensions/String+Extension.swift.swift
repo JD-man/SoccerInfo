@@ -5,7 +5,6 @@
 //  Created by JD_MacMini on 2021/11/23.
 //
 
-import Foundation
 import UIKit
 
 extension String {

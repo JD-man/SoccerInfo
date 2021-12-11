@@ -23,8 +23,8 @@ class FixturesTableViewCell: UITableViewCell {
     }
     
     func viewConfig() {
-        scoreLabel.isHidden = true
-        timeLabel.isHidden = true        
+        timeLabel.isHidden = true
+        scoreLabel.isHidden = true                
         isUserInteractionEnabled = false
         backgroundColor = .secondarySystemGroupedBackground
         

@@ -1,4 +1,4 @@
-# SoccerInfo - 해외축구 정보 앱
+# 풋볼인포 - 해외축구 정보 앱
 
 # Overview
 
