@@ -30,7 +30,7 @@ class StandingsTableViewCell: UITableViewCell {
         viewConfig()
     }
     
-    func viewConfig() {        
+    private func viewConfig() {        
         separateLine.isHidden = true
         
         rankLabel.font = .systemFont(ofSize: 15, weight: .semibold)

@@ -6,20 +6,27 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CurrentMatchCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "CurrentMatchCollectionViewCell"
-
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var winLoseLabel: UILabel!
+    @IBOutlet weak var homeAwayLabel: UILabel!
+    @IBOutlet weak var opposingTeamLogoImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         viewConfig()
     }
     
-    func viewConfig() {
-        addShadow()
-        addCorner(rad: 10)
-        backgroundColor = .systemYellow
+    private func viewConfig() {
+        addCorner(rad: 10)        
     }
-
+    
+    func viewConfigure(with data: FixturesRealmData) {
+        
+    }
 }

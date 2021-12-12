@@ -24,7 +24,7 @@ class EventsTableViewCell: UITableViewCell {
         viewConfig()
     }
     
-    func viewConfig() {
+    private func viewConfig() {
         [timeLabel, homePlayerNameLabel, awayPlayerNameLabel, homeDetailLabel, awayDetailLabel]
             .forEach {
                 $0?.adjustsFontSizeToFitWidth = true

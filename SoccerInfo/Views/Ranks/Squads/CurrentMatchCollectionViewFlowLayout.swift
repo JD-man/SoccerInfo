@@ -12,9 +12,9 @@ class CurrentMatchCollectionViewFlowLayout: UICollectionViewFlowLayout {
         super.init()
         
         // height = collection view height constant - 20
-        let height: CGFloat = 150
+        let height: CGFloat = 130
         // width = screen width * 0.8
-        let width: CGFloat = UIScreen.main.bounds.width * 0.8
+        let width: CGFloat = UIScreen.main.bounds.width * 0.7
         
         let inset: CGFloat = 10
         sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)

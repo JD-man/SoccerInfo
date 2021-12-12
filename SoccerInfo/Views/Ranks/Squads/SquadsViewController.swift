@@ -29,7 +29,8 @@ class SquadsViewController: UIViewController {
     var currentRank: Int = 0
     var teamName: String = ""
     
-    private var data: [Int] = [1,2,3] {
+    // FixturesRealmData
+    private var data: [Int] = Array(0 ..< 10) {
         didSet {
             currentMatchCollectionView.reloadData()
         }
@@ -70,8 +71,18 @@ class SquadsViewController: UIViewController {
                                             forCellWithReuseIdentifier: CurrentMatchCollectionViewCell.identifier)
         
         currentMatchCollectionView.decelerationRate = .fast
+        currentMatchCollectionView.backgroundColor = .clear
+        currentMatchCollectionView.addShadow()
         
-        
+        // dismiss button config
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                            target: self,
+                                            action: #selector(dismissButtonClicked))
+        navigationItem.leftBarButtonItem = dismissButton
+    }
+    
+    @objc func dismissButtonClicked() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -89,6 +100,7 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let flowLayout = currentMatchCollectionView.collectionViewLayout as! CurrentMatchCollectionViewFlowLayout
         
         let offset: CGFloat = flowLayout.itemSize.width
+        
         let estimatedIndex = scrollView.contentOffset.x / offset
         var index = 0
         
@@ -102,6 +114,7 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
             index = Int(round(estimatedIndex))
         }
         
-        targetContentOffset.pointee = CGPoint(x: CGFloat(index) * offset, y: 0)
+        let x = (CGFloat(index) * offset) + (CGFloat(index - 1) * flowLayout.sectionInset.left)
+        targetContentOffset.pointee = CGPoint(x: x, y: 0)
     }
 }

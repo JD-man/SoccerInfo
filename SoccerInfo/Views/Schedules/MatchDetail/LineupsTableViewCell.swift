@@ -23,7 +23,7 @@ class LineupsTableViewCell: UITableViewCell {
         viewConfig()
     }
     
-    func viewConfig() {        
+    private func viewConfig() {        
         [homePlayerLabel, homePlayerNumberLabel, homePlayerPositionLabel,
          awayPlayerLabel,awayPlayerNumberLabel, awayPlayerPositionLabel]
             .forEach {

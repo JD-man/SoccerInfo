@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--뉴스-->
+        <!--Squads View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="SquadsViewController" id="Y6W-OH-hqX" customClass="SquadsViewController" customModule="SoccerInfo" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,7 +23,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUn-68-4tk" userLabel="DimView">
                                 <rect key="frame" x="0.0" y="44" width="414" height="224"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9K-ga-mG0">
                                 <rect key="frame" x="62" y="229.5" width="290" height="131"/>
@@ -105,7 +105,6 @@
                             <constraint firstItem="aAe-NE-Dm0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="wjl-CD-Nio"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="뉴스" id="xjD-fp-Jz4"/>
                     <connections>
                         <outlet property="currentMatchCollectionView" destination="aAe-NE-Dm0" id="F9W-sV-VwM"/>
                         <outlet property="currentRankLabel" destination="rDv-A1-q0e" id="95x-0g-q92"/>
@@ -117,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="439" y="100"/>
+            <point key="canvasLocation" x="1347.8260869565217" y="99.776785714285708"/>
         </scene>
     </scenes>
     <resources>
