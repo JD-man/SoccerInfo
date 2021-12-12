@@ -2,8 +2,7 @@
 
 # Overview
 
-<div align = "center">    
-    <img src = "./Plan&Log/DevLog/91.PNG" width=30%>
+<div align = "center">        
     <img src = "./Plan&Log/DevLog/LaunchScreent_6.5.png" width=200>
 </div>
 

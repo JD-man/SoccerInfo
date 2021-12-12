@@ -16,8 +16,8 @@ extension UIView {
         self.layer.shadowColor = color.cgColor
     }
     
-    func addCorner() {
+    func addCorner(rad: CGFloat = 15) {
         self.clipsToBounds = false
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = rad
     }
 }

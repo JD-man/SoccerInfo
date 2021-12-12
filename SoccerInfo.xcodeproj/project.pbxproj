@@ -16,6 +16,9 @@
 		8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */; };
 		8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */; };
 		8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */; };
+		891794432765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891794412765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift */; };
+		891794442765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 891794422765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib */; };
+		891794472765B886004C02C4 /* CurrentMatchCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891794462765B886004C02C4 /* CurrentMatchCollectionViewFlowLayout.swift */; };
 		891CDA8A2760A0AA00556629 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 891CDA892760A0AA00556629 /* GoogleService-Info.plist */; };
 		891CDA8E2760ACF800556629 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA8D2760ACF800556629 /* Alamofire */; };
 		891CDA912760AD0100556629 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA902760AD0100556629 /* SideMenu */; };
@@ -78,6 +81,9 @@
 		8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StandingSectionHeaderView.xib; sourceTree = "<group>"; };
 		8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingSectionHeaderView.swift; sourceTree = "<group>"; };
 		8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		891794412765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMatchCollectionViewCell.swift; sourceTree = "<group>"; };
+		891794422765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentMatchCollectionViewCell.xib; sourceTree = "<group>"; };
+		891794462765B886004C02C4 /* CurrentMatchCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMatchCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		891CDA892760A0AA00556629 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		89281D19274D3C77001FB81D /* Date+Extension.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift.swift"; sourceTree = "<group>"; };
 		892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterManager.swift; sourceTree = "<group>"; };
@@ -163,6 +169,15 @@
 				89E8C289275BC6B10031982E /* Calendar+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		891794452765A4FC004C02C4 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				89740C1127464D3C0033AD2C /* Squads.storyboard */,
+				891794422765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		893C6E77274CAB8D00210ED1 /* Side */ = {
@@ -336,8 +351,10 @@
 		89740C0727464B910033AD2C /* Squads */ = {
 			isa = PBXGroup;
 			children = (
+				891794452765A4FC004C02C4 /* Storyboards */,
 				89740C0927464BE30033AD2C /* SquadsViewController.swift */,
-				89740C1127464D3C0033AD2C /* Squads.storyboard */,
+				891794412765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift */,
+				891794462765B886004C02C4 /* CurrentMatchCollectionViewFlowLayout.swift */,
 			);
 			path = Squads;
 			sourceTree = "<group>";
@@ -491,6 +508,7 @@
 			files = (
 				89740C1027464D140033AD2C /* Standings.storyboard in Resources */,
 				89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */,
+				891794442765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib in Resources */,
 				891CDA8A2760A0AA00556629 /* GoogleService-Info.plist in Resources */,
 				8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */,
 				89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */,
@@ -575,6 +593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				891794432765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift in Sources */,
 				8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */,
 				89E8C28A275BC6B10031982E /* Calendar+Extension.swift in Sources */,
 				893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */,
@@ -588,6 +607,7 @@
 				89E752FE275227CE0019F62F /* EventsTableViewCell.swift in Sources */,
 				893C6E82274CD21500210ED1 /* BasicTabViewController.swift in Sources */,
 				89E8C290275BE26A0031982E /* FormationSectionFooterView.swift in Sources */,
+				891794472765B886004C02C4 /* CurrentMatchCollectionViewFlowLayout.swift in Sources */,
 				893C6E84274CE7FA00210ED1 /* String+Extension.swift.swift in Sources */,
 				89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */,
 				898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */,

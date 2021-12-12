@@ -125,4 +125,18 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Squads", bundle: nil)
+        let squadVC = storyboard.instantiateViewController(withIdentifier: "SquadsViewController") as! SquadsViewController
+        let selectedData = data[indexPath.row]
+        
+        squadVC.currentRank = selectedData.rank
+        squadVC.logoURL = selectedData.teamLogo
+        squadVC.teamName = selectedData.teamName
+        
+        present(squadVC, animated: true, completion: nil)
+    }
+    
+    
 }
