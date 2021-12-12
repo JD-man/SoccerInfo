@@ -2,9 +2,11 @@
 
 # Overview
 
-<div align = "center">
-    <img src = "./Plan&Log/DevLog/LaunchScreent_6.5.png" width=30%>    
+<div align = "center">    
+    <img src = "./Plan&Log/DevLog/91.PNG" width=30%>
+    <img src = "./Plan&Log/DevLog/LaunchScreent_6.5.png" width=200>
 </div>
+
 
 - [앱스토어 출시!](https://apps.apple.com/kr/app/%ED%92%8B%EB%B3%BC%EC%9D%B8%ED%8F%AC/id1596846211)
 - 해외축구 일정, 순위, 뉴스 확인
