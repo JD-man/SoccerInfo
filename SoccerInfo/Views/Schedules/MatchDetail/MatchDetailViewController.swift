@@ -177,8 +177,8 @@ class MatchDetailViewController: UIViewController {
                         eventsAPIData.response
                             .map {                                
                                 if $0.type == "subst" {
-                                    let inID = $0.player.id
-                                    let outID = $0.assist.id ?? 0
+                                    let inID = $0.player.id ?? -1
+                                    let outID = $0.assist.id ?? -2
                                     if homeStartID.contains(outID) || awayStartID.contains(outID) {
                                         return $0
                                     }
@@ -266,8 +266,8 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
-            let nib = Bundle.main.loadNibNamed("FormationSectionFooterView", owner: self, options: nil)
-            let headerView = nib?.first as! FormationSectionFooterView
+            let nib = UINib(nibName: "FormationSectionFooterView", bundle: nil)
+            let headerView = nib.instantiate(withOwner: self, options: nil).first as! FormationSectionFooterView
             headerView.backgroundColor = .clear
             headerView.homeFormationLabel.text = matchDetailData.homeFormation
             headerView.awayFormationLabel.text = matchDetailData.awayFormation

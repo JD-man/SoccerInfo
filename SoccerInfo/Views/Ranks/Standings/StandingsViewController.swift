@@ -106,9 +106,9 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let nib = Bundle.main.loadNibNamed(StandingSectionHeaderView.identifier, owner: self, options: nil)
-        let headerView = nib?.first as! StandingSectionHeaderView
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {        
+        let nib = UINib(nibName: StandingSectionHeaderView.identifier, bundle: nil)
+        let headerView = nib.instantiate(withOwner: self, options: nil).first as! StandingSectionHeaderView
         
         headerView.backgroundColor = .tertiarySystemGroupedBackground
         

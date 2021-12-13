@@ -264,6 +264,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
             let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
             matchDetailVC.league = league
             matchDetailVC.fixtureID = selectedContent.fixtureID
+            print(selectedContent.fixtureID)
             matchDetailVC.homeLogo = selectedContent.homeLogo
             matchDetailVC.awayLogo = selectedContent.awayLogo
             matchDetailVC.homeTeamName = selectedContent.homeName
