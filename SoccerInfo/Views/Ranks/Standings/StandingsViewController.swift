@@ -132,8 +132,8 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
         squadVC.id = selectedData.teamID
         squadVC.currentRank = selectedData.rank
         squadVC.logoURL = selectedData.teamLogo
-        squadVC.teamName = selectedData.teamName
-        navigationController?.pushViewController(squadVC, animated: true)
+        squadVC.teamName = selectedData.teamName        
+        present(squadVC, animated: true, completion: nil)
     }
     
     

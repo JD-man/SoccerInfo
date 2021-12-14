@@ -56,6 +56,7 @@
 		89B329392750E4830043632E /* NewsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B329382750E4830043632E /* NewsWebViewController.swift */; };
 		89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C12757E2D5000AC2FE /* ManualViewController.swift */; };
 		89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */; };
+		89D5884E276893C700E1D654 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 89D5884D276893C700E1D654 /* Charts */; };
 		89DB128E274BE009009E8888 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB128D274BE009009E8888 /* DataTypes.swift */; };
 		89DB1290274BE125009E8888 /* FixturesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB128F274BE125009E8888 /* FixturesModel.swift */; };
 		89DB1292274BE1C5009E8888 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB1291274BE1C5009E8888 /* Errors.swift */; };
@@ -140,6 +141,7 @@
 			files = (
 				891CDA992760AD4400556629 /* Kingfisher in Frameworks */,
 				5A0EA0CE1E18B310620A53FD /* Pods_SoccerInfo.framework in Frameworks */,
+				89D5884E276893C700E1D654 /* Charts in Frameworks */,
 				891CDA912760AD0100556629 /* SideMenu in Frameworks */,
 				891CDA942760AD3200556629 /* Realm in Frameworks */,
 				891CDA962760AD3200556629 /* RealmSwift in Frameworks */,
@@ -457,6 +459,7 @@
 				891CDA932760AD3200556629 /* Realm */,
 				891CDA952760AD3200556629 /* RealmSwift */,
 				891CDA982760AD4400556629 /* Kingfisher */,
+				89D5884D276893C700E1D654 /* Charts */,
 			);
 			productName = SoccerInfo;
 			productReference = 894BF766274250B600E71C09 /* SoccerInfo.app */;
@@ -491,6 +494,7 @@
 				891CDA8F2760AD0100556629 /* XCRemoteSwiftPackageReference "SideMenu" */,
 				891CDA922760AD3200556629 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				891CDA972760AD4400556629 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				89D5884C276893C700E1D654 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 894BF767274250B600E71C09 /* Products */;
 			projectDirPath = "";
@@ -898,6 +902,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		89D5884C276893C700E1D654 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -925,6 +937,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 891CDA972760AD4400556629 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		89D5884D276893C700E1D654 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 89D5884C276893C700E1D654 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,6 +8,7 @@
 import UIKit
 import RealmSwift
 import Kingfisher
+import Charts
 
 // current 10 match results collection view -> horizontal scroll
 // curretn 10 match win rate Pie Chart
@@ -29,6 +30,7 @@ class SquadsViewController: UIViewController {
     
     @IBOutlet weak var currentMatchCollectionView: UICollectionView!
     
+    @IBOutlet weak var winRatePieChartView: PieChartView!
     var id: Int = 0
     var logoURL: String = ""
     var currentRank: Int = 0
@@ -38,6 +40,7 @@ class SquadsViewController: UIViewController {
     // FixturesRealmData
     private var data: [FixturesRealmData] = [] {
         didSet {
+            pieChartConfig()
             currentMatchCollectionView.reloadData()
         }
     }
@@ -49,11 +52,14 @@ class SquadsViewController: UIViewController {
     }
     
     func viewConfig() {
+        view.backgroundColor = .secondarySystemGroupedBackground
+        
         // logo imageview config
         logoImageView.contentMode = .scaleAspectFit
         logoImageView.kf.setImage(with: URL(string: logoURL))
         
         // label container view shadow
+        labelContainerView.addCorner(rad: 10)
         labelContainerView.addShadow()
         
         // labels config
@@ -80,6 +86,62 @@ class SquadsViewController: UIViewController {
         currentMatchCollectionView.decelerationRate = .fast
         currentMatchCollectionView.backgroundColor = .clear
         currentMatchCollectionView.addShadow()
+    }
+    
+    func pieChartConfig() {
+        var winValue = 0.0
+        var loseValue = 0.0
+        var drawValue = 0.0
+        data.forEach {
+            let homeGoal = $0.homeGoal!
+            let awayGoal = $0.awayGoal!
+            if $0.homeID == id {
+                if homeGoal > awayGoal {
+                    winValue += 1.0
+                }
+                else if homeGoal < awayGoal {
+                    loseValue += 1.0
+                }
+                else {
+                    drawValue += 1.0
+                }
+            }
+            else {
+                if awayGoal > homeGoal {
+                    winValue += 1.0
+                }
+                else if awayGoal < homeGoal {
+                    loseValue += 1.0
+                }
+                else {
+                    drawValue += 1.0
+                }
+            }
+        }
+        let totalValue = winValue + loseValue + drawValue
+        let entries = [
+            PieChartDataEntry(value: winValue / totalValue * 100, label: "승"),
+            PieChartDataEntry(value: drawValue / totalValue * 100, label: "무"),
+            PieChartDataEntry(value: loseValue / totalValue * 100, label: "패")
+        ]
+        let dataSet = PieChartDataSet(entries: entries, label: "| 최근 경기 승률")
+        dataSet.sliceSpace = 3
+        dataSet.colors = [.systemIndigo, .systemGreen, .systemPink]
+        dataSet.valueFont = .systemFont(ofSize: 12, weight: .semibold)
+        dataSet.entryLabelFont = .systemFont(ofSize: 0)
+        
+        let data = PieChartData(dataSet: dataSet)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.maximumFractionDigits = 1
+        formatter.multiplier = 1.0
+        formatter.percentSymbol = "%"
+        data.setValueFormatter(DefaultValueFormatter(formatter: formatter))
+        
+        winRatePieChartView.data = data
+        winRatePieChartView.backgroundColor = .clear
+        winRatePieChartView.legend.horizontalAlignment = .center
+        winRatePieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInOutCirc)
     }
     
     func loadCurrentMatchData() {

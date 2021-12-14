@@ -37,40 +37,36 @@ class CurrentMatchCollectionViewCell: UICollectionViewCell {
     
     private func homeConfigure(data: FixturesRealmData) {
         let homeGoal = data.homeGoal!
-        let awayGoal = data.awayGoal!
+        let awayGoal = data.awayGoal!        
         
-        scoreLabel.text = "\(homeGoal) : \(awayGoal)"
         homeAwayLabel.text = "Home"
+        scoreLabel.text = "\(homeGoal) : \(awayGoal)"
+        winLoseLabelConfig(teamGoal: homeGoal, oppositeGoal: awayGoal)
         opposingTeamLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
-        
-        if homeGoal > awayGoal {
-            winLoseLabel.text = "Win!"
-        }
-        else if homeGoal < awayGoal {
-            winLoseLabel.text = "Lose..."
-        }
-        else {
-            winLoseLabel.text = "Draw"
-        }
     }
     
     private func awayConfigure(data: FixturesRealmData) {
         let homeGoal = data.homeGoal!
         let awayGoal = data.awayGoal!
         
-        scoreLabel.text = "\(awayGoal) : \(homeGoal)"
         homeAwayLabel.text = "Away"
+        scoreLabel.text = "\(awayGoal) : \(homeGoal)"
+        winLoseLabelConfig(teamGoal: awayGoal, oppositeGoal: homeGoal)
         opposingTeamLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
-        
-        if awayGoal > homeGoal {
+    }
+    
+    private func winLoseLabelConfig(teamGoal: Int, oppositeGoal: Int) {
+        if teamGoal > oppositeGoal {
             winLoseLabel.text = "Win!"
+            winLoseLabel.textColor = .systemIndigo
         }
-        else if awayGoal < homeGoal {
+        else if teamGoal < oppositeGoal {
             winLoseLabel.text = "Lose..."
+            winLoseLabel.textColor = .systemPink
         }
         else {
             winLoseLabel.text = "Draw"
+            winLoseLabel.textColor = .systemGreen
         }
     }
-    
 }
