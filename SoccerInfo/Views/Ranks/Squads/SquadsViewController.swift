@@ -7,7 +7,6 @@
 
 import UIKit
 import Kingfisher
-import SwiftUI
 
 // current 10 match results collection view -> horizontal scroll
 // curretn 10 match win rate Pie Chart
@@ -25,9 +24,11 @@ class SquadsViewController: UIViewController {
     
     @IBOutlet weak var currentMatchCollectionView: UICollectionView!
     
+    var id: Int = 0
     var logoURL: String = ""
     var currentRank: Int = 0
     var teamName: String = ""
+    
     
     // FixturesRealmData
     private var data: [Int] = Array(0 ..< 10) {
@@ -73,16 +74,10 @@ class SquadsViewController: UIViewController {
         currentMatchCollectionView.decelerationRate = .fast
         currentMatchCollectionView.backgroundColor = .clear
         currentMatchCollectionView.addShadow()
-        
-        // dismiss button config
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .close,
-                                            target: self,
-                                            action: #selector(dismissButtonClicked))
-        navigationItem.leftBarButtonItem = dismissButton
     }
     
-    @objc func dismissButtonClicked() {
-        dismiss(animated: true, completion: nil)
+    func loadCurrentMatchData() {
+        
     }
 }
 
