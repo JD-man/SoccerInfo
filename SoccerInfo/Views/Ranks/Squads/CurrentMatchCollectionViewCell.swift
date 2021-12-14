@@ -26,7 +26,51 @@ class CurrentMatchCollectionViewCell: UICollectionViewCell {
         addCorner(rad: 10)        
     }
     
-    func viewConfigure(with data: FixturesRealmData) {
-        
+    func configure(with data: FixturesRealmData, isHome: Bool) {
+        if isHome {
+            homeConfigure(data: data)
+        }
+        else {
+            awayConfigure(data: data)
+        }
     }
+    
+    private func homeConfigure(data: FixturesRealmData) {
+        let homeGoal = data.homeGoal!
+        let awayGoal = data.awayGoal!
+        
+        scoreLabel.text = "\(homeGoal) : \(awayGoal)"
+        homeAwayLabel.text = "Home"
+        opposingTeamLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
+        
+        if homeGoal > awayGoal {
+            winLoseLabel.text = "Win!"
+        }
+        else if homeGoal < awayGoal {
+            winLoseLabel.text = "Lose..."
+        }
+        else {
+            winLoseLabel.text = "Draw"
+        }
+    }
+    
+    private func awayConfigure(data: FixturesRealmData) {
+        let homeGoal = data.homeGoal!
+        let awayGoal = data.awayGoal!
+        
+        scoreLabel.text = "\(awayGoal) : \(homeGoal)"
+        homeAwayLabel.text = "Away"
+        opposingTeamLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
+        
+        if awayGoal > homeGoal {
+            winLoseLabel.text = "Win!"
+        }
+        else if awayGoal < homeGoal {
+            winLoseLabel.text = "Lose..."
+        }
+        else {
+            winLoseLabel.text = "Draw"
+        }
+    }
+    
 }
