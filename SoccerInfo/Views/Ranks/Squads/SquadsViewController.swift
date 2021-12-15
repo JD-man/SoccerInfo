@@ -86,6 +86,12 @@ class SquadsViewController: UIViewController {
         currentMatchCollectionView.decelerationRate = .fast
         currentMatchCollectionView.backgroundColor = .clear
         currentMatchCollectionView.addShadow()
+        
+        // Dismiss Button Config
+        let dismissButton = UIBarButtonItem(barButtonSystemItem: .close,
+                                            target: self,
+                                            action: #selector(dismissButtonClicked))
+        navigationItem.leftBarButtonItem = dismissButton
     }
     
     func pieChartConfig() {
@@ -181,6 +187,10 @@ class SquadsViewController: UIViewController {
                                  message: "",
                                  completion: nil)
         }
+    }
+    
+    @objc private func dismissButtonClicked() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

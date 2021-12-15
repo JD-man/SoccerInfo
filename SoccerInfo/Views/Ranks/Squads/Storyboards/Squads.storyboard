@@ -63,13 +63,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 경기 성적" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GE1-0k-xZ7">
-                                <rect key="frame" x="0.0" y="378" width="414" height="24"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <rect key="frame" x="0.0" y="378" width="414" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nnv-Bc-WgG">
-                                <rect key="frame" x="10" y="402" width="394" height="460"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnv-Bc-WgG">
+                                <rect key="frame" x="10" y="397.5" width="394" height="464.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-oi-wIl" customClass="PieChartView" customModule="Charts">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="250"/>
@@ -104,7 +104,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="aAe-NE-Dm0" firstAttribute="width" secondItem="YTH-oi-wIl" secondAttribute="width" id="9OT-gy-r8F"/>
-                                    <constraint firstAttribute="bottom" secondItem="aAe-NE-Dm0" secondAttribute="bottom" constant="15" id="DdQ-j7-Amg"/>
+                                    <constraint firstAttribute="bottom" secondItem="aAe-NE-Dm0" secondAttribute="bottom" constant="20" id="DdQ-j7-Amg"/>
                                     <constraint firstItem="YTH-oi-wIl" firstAttribute="top" secondItem="Nnv-Bc-WgG" secondAttribute="top" id="Krj-AF-VXh"/>
                                     <constraint firstItem="aAe-NE-Dm0" firstAttribute="leading" secondItem="Nnv-Bc-WgG" secondAttribute="leading" id="Nno-KE-Rwe"/>
                                     <constraint firstItem="aAe-NE-Dm0" firstAttribute="top" secondItem="YTH-oi-wIl" secondAttribute="bottom" id="PzE-kz-KGg"/>
