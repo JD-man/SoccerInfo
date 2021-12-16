@@ -46,21 +46,22 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
             dateSectionTitles = schedulesData.keys.sorted { $0 < $1 }
         }
     }
-    var dateSectionTitles = [String](repeating: "", count: 7) {
+    var dateSectionTitles = [String](repeating: "날짜", count: 7) {
         didSet {
             scheduleContent = dateSectionTitles.map { schedulesData[$0]! }
         }
     }
     var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
-        didSet {
+        didSet {            
             if activityView.isAnimating { activityView.stopAnimating() }
             schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
+            //schedulesTableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)        
+        print(#function)
     }
     
     override func viewConfig() {
@@ -174,10 +175,10 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         //make dictionary
         var newScheduleData: FixturesDatas = [:]
         for after in 0 ..< 7 {
-            let formattedDay = Calendar.current.date(byAdding: .day, value: after, to: firstDay)!.formattedDay
+            let formattedDay = Calendar.CalendarKST.date(byAdding: .day, value: after, to: firstDay)!.formattedDay
+            print(formattedDay)
             newScheduleData[formattedDay] = []
         }
-        
         // filter week -> sort by date -> make dictionary
         data.filter { $0.fixtureDate.toDate >= firstDay && $0.fixtureDate.toDate < firstDay.afterWeekDay}
             .sorted(by: { $0.fixtureDate < $1.fixtureDate })
@@ -199,7 +200,14 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                     newScheduleData[$0.fixtureDate.toDate.formattedDay]!.append(element)
                 }
             }
-        schedulesData = newScheduleData
+        if newScheduleData.count == 7 {
+            schedulesData = newScheduleData
+        }
+        else {
+            alertWithCheckButton(title: "1주일 정보 로딩 실패",
+                                 message: "\(newScheduleData.keys)",
+                                 completion: nil)
+        }
     }
     
     @objc func swipeAction(swipeGesture: UISwipeGestureRecognizer) {
@@ -228,7 +236,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         label.text = "  \(dateSectionTitles[section])"
         if dateSectionTitles[section].sectionTitleToDate.dayStart == Date().dayStart {
-            label.text?.append(" (오늘)")
+            label.text?.append(" ⚽️")
         }
         label.font = .systemFont(ofSize: 20, weight: .semibold)        
         return label
@@ -263,8 +271,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
             let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
             let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
             matchDetailVC.league = league
-            matchDetailVC.fixtureID = selectedContent.fixtureID
-            print(selectedContent.fixtureID)
+            matchDetailVC.fixtureID = selectedContent.fixtureID            
             matchDetailVC.homeLogo = selectedContent.homeLogo
             matchDetailVC.awayLogo = selectedContent.awayLogo
             matchDetailVC.homeTeamName = selectedContent.homeName

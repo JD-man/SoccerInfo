@@ -141,14 +141,21 @@ extension UIViewController {
         }
     }
     
-    func loginRealm() {
+    func loginRealm(completion: @escaping () -> Void) {
         let app = App(id: APIComponents.realmAppID)
-        app.login(credentials: .anonymous) { result in
-            switch result {
-            case .success(let user):
-                print("SceneDelegate", user.id)
-            case .failure(let error):
-                print(error)
+        if let user = app.currentUser, user.isLoggedIn {
+            print("Current User Exist")
+            completion()
+        }
+        else {
+            app.login(credentials: .anonymous) { result in
+                switch result {
+                case .success(let user):
+                    print("New User", user.id)
+                    completion()
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
@@ -163,7 +170,7 @@ extension UIViewController {
         }
         AF.request(url, method: .get, headers: footBallData.headers)
             .validate(statusCode: 200 ... 500)
-            .responseJSON { [weak self] response in
+            .responseDecodable(completionHandler: { [weak self] (response: DataResponse<T, AFError>) in
                 switch response.result {
                 case .success(_):
                     let statusCode = response.response?.statusCode ?? 500
@@ -191,7 +198,7 @@ extension UIViewController {
                                                completion: nil)
                     print(error)
                 }
-            }
+            })
     }
 }
 

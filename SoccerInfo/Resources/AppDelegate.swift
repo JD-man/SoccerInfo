@@ -44,8 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print("new anonymous", user.id)
                         group.leave()
                     case .failure(let error):
-                        print(error)
-                        group.leave()
+                        print(error)                        
                     }
                 }
             }

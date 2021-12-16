@@ -24,7 +24,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
-        sideButtonConfig()
+        sideButtonConfig()        
         league = PublicPropertyManager.shared.league
     }
     
