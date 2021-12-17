@@ -15,7 +15,7 @@ class CurrentMatchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var winLoseLabel: UILabel!
     @IBOutlet weak var homeAwayLabel: UILabel!
-    @IBOutlet weak var opposingTeamLogoImageView: UIImageView!
+    @IBOutlet weak var oppositeTeamNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +23,8 @@ class CurrentMatchCollectionViewCell: UICollectionViewCell {
     }
     
     private func viewConfig() {
-        addCorner(rad: 10)        
+        addCorner(rad: 10)
+        oppositeTeamNameLabel.font = .systemFont(ofSize: 18, weight: .heavy)
     }
     
     func configure(with data: FixturesRealmData, isHome: Bool) {
@@ -42,7 +43,7 @@ class CurrentMatchCollectionViewCell: UICollectionViewCell {
         homeAwayLabel.text = "Home"
         scoreLabel.text = "\(homeGoal) : \(awayGoal)"
         winLoseLabelConfig(teamGoal: homeGoal, oppositeGoal: awayGoal)
-        opposingTeamLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
+        oppositeTeamNameLabel.text = LocalizationList.team[data.awayID] ?? ""
     }
     
     private func awayConfigure(data: FixturesRealmData) {
@@ -52,20 +53,20 @@ class CurrentMatchCollectionViewCell: UICollectionViewCell {
         homeAwayLabel.text = "Away"
         scoreLabel.text = "\(awayGoal) : \(homeGoal)"
         winLoseLabelConfig(teamGoal: awayGoal, oppositeGoal: homeGoal)
-        opposingTeamLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
+        oppositeTeamNameLabel.text = LocalizationList.team[data.homeID] ?? ""
     }
     
     private func winLoseLabelConfig(teamGoal: Int, oppositeGoal: Int) {
         if teamGoal > oppositeGoal {
-            winLoseLabel.text = "Win!"
+            winLoseLabel.text = "WIN!"
             winLoseLabel.textColor = .systemIndigo
         }
         else if teamGoal < oppositeGoal {
-            winLoseLabel.text = "Lose..."
+            winLoseLabel.text = "LOSE..."
             winLoseLabel.textColor = .systemPink
         }
         else {
-            winLoseLabel.text = "Draw"
+            winLoseLabel.text = "DRAW"
             winLoseLabel.textColor = .systemGreen
         }
     }

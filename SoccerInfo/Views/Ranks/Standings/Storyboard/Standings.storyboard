@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ula-HW-m5l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ula-HW-m5l">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -81,25 +81,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-N9-w2L">
-                                                    <rect key="frame" x="49" y="7.5" width="138" height="35"/>
-                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHg-De-w6q">
+                                                    <rect key="frame" x="52" y="16" width="132" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vfu-NB-6YG" firstAttribute="trailing" secondItem="eNB-Ef-qnn" secondAttribute="trailing" id="3W7-67-MtE"/>
-                                                <constraint firstItem="s1g-N9-w2L" firstAttribute="leading" secondItem="uvZ-5A-O84" secondAttribute="trailing" constant="5" id="4up-31-Nos"/>
-                                                <constraint firstItem="s1g-N9-w2L" firstAttribute="height" secondItem="bxI-Sq-pbb" secondAttribute="height" multiplier="0.7" id="7uZ-b5-RST"/>
                                                 <constraint firstItem="9Et-MX-C1J" firstAttribute="width" secondItem="bxI-Sq-pbb" secondAttribute="width" multiplier="0.5" id="GLI-gW-6TD"/>
                                                 <constraint firstItem="uvZ-5A-O84" firstAttribute="centerY" secondItem="bxI-Sq-pbb" secondAttribute="centerY" id="Mc2-da-mWr"/>
                                                 <constraint firstItem="uvZ-5A-O84" firstAttribute="leading" secondItem="bxI-Sq-pbb" secondAttribute="leading" constant="15" id="OF9-nD-Psg"/>
                                                 <constraint firstItem="uvZ-5A-O84" firstAttribute="width" secondItem="bxI-Sq-pbb" secondAttribute="width" multiplier="0.07" id="QN5-bO-fLK"/>
                                                 <constraint firstAttribute="trailing" secondItem="9Et-MX-C1J" secondAttribute="trailing" constant="15" id="RaK-zT-m9t"/>
+                                                <constraint firstItem="eHg-De-w6q" firstAttribute="leading" secondItem="uvZ-5A-O84" secondAttribute="trailing" constant="8" id="Rx6-3j-xVz"/>
                                                 <constraint firstItem="vfu-NB-6YG" firstAttribute="leading" secondItem="uvZ-5A-O84" secondAttribute="leading" id="Zfn-0L-ctI"/>
-                                                <constraint firstItem="9Et-MX-C1J" firstAttribute="leading" secondItem="s1g-N9-w2L" secondAttribute="trailing" constant="5" id="bfh-lU-trp"/>
+                                                <constraint firstItem="eHg-De-w6q" firstAttribute="centerY" secondItem="bxI-Sq-pbb" secondAttribute="centerY" id="akq-7i-tdX"/>
+                                                <constraint firstItem="9Et-MX-C1J" firstAttribute="leading" secondItem="eHg-De-w6q" secondAttribute="trailing" constant="8" id="inf-yM-op7"/>
                                                 <constraint firstItem="9Et-MX-C1J" firstAttribute="height" secondItem="bxI-Sq-pbb" secondAttribute="height" multiplier="0.363636" id="jdo-o6-Ngl"/>
                                                 <constraint firstAttribute="bottom" secondItem="vfu-NB-6YG" secondAttribute="bottom" id="nQ3-fn-eah"/>
                                                 <constraint firstItem="9Et-MX-C1J" firstAttribute="centerY" secondItem="bxI-Sq-pbb" secondAttribute="centerY" id="sCd-AF-NSc"/>
-                                                <constraint firstItem="s1g-N9-w2L" firstAttribute="centerY" secondItem="bxI-Sq-pbb" secondAttribute="centerY" id="sd7-Vn-X9D"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -110,7 +112,7 @@
                                             <outlet property="pointsLabel" destination="gyS-Sg-z4H" id="GHX-qE-Zbp"/>
                                             <outlet property="rankLabel" destination="uvZ-5A-O84" id="fFo-gV-JYr"/>
                                             <outlet property="separateLine" destination="vfu-NB-6YG" id="hz8-G9-n6D"/>
-                                            <outlet property="teamLogoImageView" destination="s1g-N9-w2L" id="B0h-0l-eUj"/>
+                                            <outlet property="teamNameLabel" destination="eHg-De-w6q" id="L0C-6f-BNd"/>
                                             <outlet property="winLabel" destination="aiV-Mn-H81" id="jbj-s0-5rI"/>
                                         </connections>
                                     </tableViewCell>

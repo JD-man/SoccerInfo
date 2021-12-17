@@ -21,7 +21,6 @@ class SquadsViewController: UIViewController {
         print("SquadVC deinit")
     }
     
-    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var labelContainerView: UIView!
     
     @IBOutlet weak var teamNameLabel: UILabel!
@@ -53,10 +52,6 @@ class SquadsViewController: UIViewController {
     
     func viewConfig() {
         view.backgroundColor = .secondarySystemGroupedBackground
-        
-        // logo imageview config
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.kf.setImage(with: URL(string: logoURL))
         
         // label container view shadow
         labelContainerView.addCorner(rad: 10)

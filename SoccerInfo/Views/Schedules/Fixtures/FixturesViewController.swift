@@ -176,7 +176,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         var newScheduleData: FixturesDatas = [:]
         for after in 0 ..< 7 {
             let formattedDay = Calendar.CalendarKST.date(byAdding: .day, value: after, to: firstDay)!.formattedDay
-            print(formattedDay)
+            
             newScheduleData[formattedDay] = []
         }
         // filter week -> sort by date -> make dictionary
@@ -272,8 +272,8 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
             let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
             matchDetailVC.league = league
             matchDetailVC.fixtureID = selectedContent.fixtureID            
-            matchDetailVC.homeLogo = selectedContent.homeLogo
-            matchDetailVC.awayLogo = selectedContent.awayLogo
+            matchDetailVC.homeScore = selectedContent.homeGoal ?? 0
+            matchDetailVC.awayScore = selectedContent.awayGoal ?? 0
             matchDetailVC.homeTeamName = selectedContent.homeName
             matchDetailVC.awayTeamName = selectedContent.awayName
             navigationController?.pushViewController(matchDetailVC, animated: true)            

@@ -11,8 +11,8 @@ import Kingfisher
 class FixturesTableViewCell: UITableViewCell {
     static let identifier = "FixturesTableViewCell"
     
-    @IBOutlet weak var homeLogoImageView: UIImageView!
-    @IBOutlet weak var awayLogoImageView: UIImageView!
+    @IBOutlet weak var homeNameLabel: UILabel!
+    @IBOutlet weak var awayNameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var noMatchCellLabel: UILabel!
@@ -29,13 +29,19 @@ class FixturesTableViewCell: UITableViewCell {
         backgroundColor = .secondarySystemGroupedBackground
         
         timeLabel.textColor = .systemGray
-        timeLabel.font = .systemFont(ofSize: 15, weight: .medium)
-        scoreLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        timeLabel.font = .systemFont(ofSize: 12, weight: .medium)
+        scoreLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        
+        homeNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        awayNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        
+        homeNameLabel.textAlignment = .right
+        awayNameLabel.textAlignment = .left
     }
     
-    func configure(with data: FixturesContent) {        
-        homeLogoImageView.kf.setImage(with: URL(string: data.homeLogo))
-        awayLogoImageView.kf.setImage(with: URL(string: data.awayLogo))
+    func configure(with data: FixturesContent) {
+        homeNameLabel.text = LocalizationList.team[data.homeID] ?? ""
+        awayNameLabel.text = LocalizationList.team[data.awayID] ?? ""
         if let homeGoal = data.homeGoal, let awayGoal = data.awayGoal {
             timeLabel.isHidden = true
             scoreLabel.isHidden = false
@@ -69,8 +75,8 @@ class FixturesTableViewCell: UITableViewCell {
         timeLabel.text = nil
         scoreLabel.text = nil
         accessoryType = .none
-        homeLogoImageView.image = nil
-        awayLogoImageView.image = nil
+        homeNameLabel.text = nil
+        awayNameLabel.text = nil
         isUserInteractionEnabled = false
     }
 }

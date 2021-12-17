@@ -20,10 +20,9 @@ class MatchDetailViewController: UIViewController {
     
     var fixtureID = 0
     
-    var homeLogo = ""
+    var homeScore = 0
+    var awayScore = 0
     var homeTeamName = ""
-    
-    var awayLogo = ""
     var awayTeamName = ""
     
     var season = 2021
@@ -50,11 +49,10 @@ class MatchDetailViewController: UIViewController {
         }
     }
     
-
+    @IBOutlet weak var homeScoreLabel: UILabel!
+    @IBOutlet weak var awayScoreLabel: UILabel!
     @IBOutlet weak var homeTeamNameLabel: UILabel!
     @IBOutlet weak var awayTeamNameLabel: UILabel!
-    @IBOutlet weak var homeLogoImageView: UIImageView!
-    @IBOutlet weak var awayLogoImageView: UIImageView!
     @IBOutlet weak var matchDetailTableView: UITableView!
     @IBOutlet weak var matchDetailTableHeaderView: UIView!
     
@@ -71,9 +69,8 @@ class MatchDetailViewController: UIViewController {
         matchDetailTableViewConfig()
         matchDetailTableHeaderView.addCorner()
         
-        homeLogoImageView.kf.setImage(with: URL(string: homeLogo))
-        awayLogoImageView.kf.setImage(with: URL(string: awayLogo))
-        
+        homeScoreLabel.text = "\(homeScore)"
+        awayScoreLabel.text = "\(awayScore)"
         homeTeamNameLabel.numberOfLines = 0
         awayTeamNameLabel.numberOfLines = 0
         homeTeamNameLabel.adjustsFontSizeToFitWidth = true

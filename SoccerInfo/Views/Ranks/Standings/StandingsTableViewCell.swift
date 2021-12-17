@@ -13,8 +13,7 @@ class StandingsTableViewCell: UITableViewCell {
     static let identifier = "StandingsTableViewCell"
 
     @IBOutlet weak var rankLabel: UILabel!
-    @IBOutlet weak var teamLogoImageView: UIImageView!
-    
+    @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var playedLabel: UILabel!
     
@@ -40,7 +39,7 @@ class StandingsTableViewCell: UITableViewCell {
     
     func configure(with data: StandingsRealmData) {
         rankLabel.text = "\(data.rank)"
-        teamLogoImageView.kf.setImage(with: URL(string: data.teamLogo))
+        teamNameLabel.text = LocalizationList.team[data.teamID] ?? ""
         
         pointsLabel.text = "\(data.points)"
         playedLabel.text = "\(data.played)"
