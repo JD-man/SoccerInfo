@@ -17,12 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Firebase Configure
         FirebaseApp.configure()
         
-        // Appearance Configure
-        UITableView.appearance().showsVerticalScrollIndicator = false
-        UITableView.appearance().showsHorizontalScrollIndicator = false
-        UIBarButtonItem.appearance().tintColor = .label
-        UITableViewCell.appearance().selectionStyle = .none
-        
         // Synchronous Configure
         let group = DispatchGroup()
         let queue = DispatchQueue.global(qos: .userInitiated)

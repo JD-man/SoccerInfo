@@ -67,6 +67,8 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     override func viewConfig() {
         super.viewConfig()
         // Schedules TableView Config
+        
+        
         schedulesTableView.addShadow()
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
@@ -235,6 +237,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "  \(dateSectionTitles[section])"
+        label.textColor = .white
         if dateSectionTitles[section].sectionTitleToDate.dayStart == Date().dayStart {
             label.text?.append(" ⚽️")
         }

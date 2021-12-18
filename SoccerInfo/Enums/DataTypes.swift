@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 import Alamofire
+import UIKit
 
 enum FootballData {
     case standings
@@ -102,5 +103,23 @@ enum League: String, CaseIterable {
         case .ligue1:
             return "리그앙"
         }
+    }
+    
+    var colors: [UIColor] {
+        switch self {
+        case .premierLeague:
+            return [.rgbColor(r: 56, g: 0, b: 60), .rgbColor(r: 0, g: 255, b: 133)]
+        case .laLiga:
+            return [.rgbColor(r: 10, g: 14, b: 35), .rgbColor(r: 244, g: 251, b: 199)]
+        case .serieA:
+            return [.rgbColor(r: 0, g: 58, b: 132), .white]
+        case .bundesliga:
+            return [.rgbColor(r: 57, g: 2, b: 11), .rgbColor(r: 173, g: 0, b: 23)]
+        case .ligue1:
+            return [.rgbColor(r: 1, g: 19, b: 59), .rgbColor(r: 218, g: 255, b: 57)]
+        @unknown default:
+            print("League Color Unknown Default")
+        }
+
     }
 }

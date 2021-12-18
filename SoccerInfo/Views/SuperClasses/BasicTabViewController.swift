@@ -8,29 +8,43 @@
 import UIKit
 import RealmSwift
 import SideMenu
+import SwiftUI
 
 class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
     var data: [T] = []
     var season: Int = 2021
     var activityView = UIActivityIndicatorView()
+    var gradient = CAGradientLayer()
     
     var league: League = .premierLeague {
         didSet {
             fetchData()
+            changeBackgroundColor()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
-        sideButtonConfig()        
+        sideButtonConfig()
         league = PublicPropertyManager.shared.league
     }
     
     func viewConfig() {
         view.backgroundColor = .systemBackground
+        
+        // activity view config
         activityView = activityIndicator()
+        
+        // gradient config
+        gradient.frame = view.bounds
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.7)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.locations = [0.0, 1.0]
+        view.layer.insertSublayer(gradient, at: 0)
+        
+        navAppearenceConfig()
     }
     
     func sideButtonConfig() {
@@ -88,4 +102,29 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     
     // abstract method for fetching data
     internal func fetchData() { }
+    
+    func changeBackgroundColor() {
+        let upperColor = league.colors[0]
+        let bottomColor = league.colors[1]
+        let colors = [upperColor.cgColor, bottomColor.cgColor]
+        
+        gradient.colors = colors
+        navigationController?.navigationBar.standardAppearance.backgroundColor = upperColor
+    }
+    
+    func navAppearenceConfig() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let scrollEdgeAppearence = UINavigationBarAppearance()
+        scrollEdgeAppearence.configureWithTransparentBackground()
+        scrollEdgeAppearence.titleTextAttributes = [.foregroundColor : UIColor.white]
+        scrollEdgeAppearence.largeTitleTextAttributes = [.foregroundColor : UIColor.white]
+        navigationController?.navigationBar.scrollEdgeAppearance = scrollEdgeAppearence
+        
+        let standardAppearence = UINavigationBarAppearance()
+        standardAppearence.configureWithOpaqueBackground()
+        standardAppearence.backgroundColor = league.colors[0]
+        standardAppearence.titleTextAttributes = [.foregroundColor : UIColor.white]
+        navigationController?.navigationBar.standardAppearance = standardAppearence
+    }
 }

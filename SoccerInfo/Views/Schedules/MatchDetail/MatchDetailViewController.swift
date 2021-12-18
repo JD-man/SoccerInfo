@@ -83,6 +83,15 @@ class MatchDetailViewController: UIViewController {
         
         // header view config
         matchDetailTableHeaderView.backgroundColor = .secondarySystemGroupedBackground
+        
+        // gradient config
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [league.colors[0].cgColor, league.colors[1].cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 0.7)
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.locations = [0.0, 1.0]
+        view.layer.insertSublayer(gradient, at: 0)
     }
     
     func matchDetailTableViewConfig() {
@@ -256,8 +265,9 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = MatchDetailSection.allCases[section].sectionTitle
+        label.textColor = .white
         label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.text = MatchDetailSection.allCases[section].sectionTitle        
         return label
     }
     
