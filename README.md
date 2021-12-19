@@ -7,19 +7,20 @@
 </div>
 
 
-- [앱스토어 출시!](https://apps.apple.com/kr/app/%ED%92%8B%EB%B3%BC%EC%9D%B8%ED%8F%AC/id1596846211)
+- [앱스토어 출시! (1.1.1 버전 업데이트)](https://apps.apple.com/kr/app/%ED%92%8B%EB%B3%BC%EC%9D%B8%ED%8F%AC/id1596846211)
 - 해외축구 일정, 순위, 뉴스 확인
 - 경기결과 확인
 - 경기세부정보 확인 - 경기기록, 포메이션, 선발/후보 명단
 - 5개 국가 리그 - 영국, 스페인, 독일, 프랑스, 이탈리아
+- 최근 경기 성적 확인
 - 경기 1시간 전 알림 설정
-- 제작기간: 기획 1주, 개발 2주
+- 제작기간: 기획 1주, 개발 2주 ~ 출시 후 업데이트 중
 
 ---
 
 # Video
 <div align = "center">
-    <a href = "https://youtu.be/SrqsYSq0zEI"><img src = "https://img.youtube.com/vi/SrqsYSq0zEI/0.jpg">
+    <a href = "https://youtu.be/8--xFcSfQlc"><img src = "https://img.youtube.com/vi/8--xFcSfQlc/0.jpg">
     </a>
 </div>
 
@@ -31,6 +32,7 @@
 - Kingfisher(https://github.com/onevcat/Kingfisher)
 - Realm-cocoa(https://github.com/realm/realm-cocoa)
 - SideMenu(https://github.com/jonkykong/SideMenu)
+- Charts(https://github.com/danielgindi/Charts)
 - Google Analytics, Crashlytics
 
 ---
@@ -46,7 +48,8 @@
 - 1주차 영상(https://youtu.be/Pgfj12BiwP4)
 - 2주차 1차 업데이트 제출 영상(https://youtu.be/SApj6SQNYGQ)
 - 발표영상(https://youtu.be/SrqsYSq0zEI) 
-
+- 최근성적 업데이트(https://youtu.be/m5k1IMv0aVA) 
+- 팀로고 삭제 및 업데이트 스토어 등록(https://youtu.be/8--xFcSfQlc)
 ---
 
 # Issues
@@ -166,6 +169,10 @@ eventsAPIData.response
     }
     .forEach { eventList.append($0) }
 ```
+
+### 8. 업데이트 심사거절 ~ 통과 과정
+- 정말 힘들었던 업데이트 과정.  
+[과정 정리 기록](./Plan&Log/DevLog/Log_Day19.md)
 
 ---
 
