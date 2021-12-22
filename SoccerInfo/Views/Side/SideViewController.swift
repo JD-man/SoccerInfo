@@ -53,6 +53,13 @@ class SideViewController: UIViewController {
         sideTableView.dataSource = self
         sideTableView.backgroundColor = .clear
         view.backgroundColor = selectedLeague.colors[0]
+        
+        let appearnce = UINavigationBarAppearance()
+        appearnce.configureWithOpaqueBackground()
+        appearnce.backgroundColor = selectedLeague.colors[0]
+        
+        navigationController?.navigationBar.standardAppearance = appearnce
+        navigationController?.navigationBar.scrollEdgeAppearance = appearnce
     }    
 }
 

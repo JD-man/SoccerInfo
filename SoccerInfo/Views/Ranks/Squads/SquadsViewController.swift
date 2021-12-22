@@ -87,6 +87,14 @@ class SquadsViewController: UIViewController {
                                             target: self,
                                             action: #selector(dismissButtonClicked))
         navigationItem.leftBarButtonItem = dismissButton
+        
+        // navigation appearance config
+        let appearnce = UINavigationBarAppearance()
+        appearnce.configureWithOpaqueBackground()
+        appearnce.backgroundColor = PublicPropertyManager.shared.league.colors[0]
+        
+        navigationController?.navigationBar.standardAppearance = appearnce
+        navigationController?.navigationBar.scrollEdgeAppearance = appearnce
     }
     
     func pieChartConfig() {
@@ -125,7 +133,7 @@ class SquadsViewController: UIViewController {
             PieChartDataEntry(value: drawValue / totalValue * 100, label: "무"),
             PieChartDataEntry(value: loseValue / totalValue * 100, label: "패")
         ]
-        let dataSet = PieChartDataSet(entries: entries, label: "| 최근 경기 승률")
+        let dataSet = PieChartDataSet(entries: entries, label: "| 최근 경기 승률(%)")
         dataSet.sliceSpace = 3
         dataSet.colors = [.systemIndigo, .systemGreen, .systemPink]
         dataSet.valueTextColor = .white
@@ -133,15 +141,12 @@ class SquadsViewController: UIViewController {
         dataSet.entryLabelFont = .systemFont(ofSize: 0)
         
         let data = PieChartData(dataSet: dataSet)
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .percent
-        formatter.maximumFractionDigits = 1
-        formatter.multiplier = 1.0
-        formatter.percentSymbol = "%"
-        data.setValueFormatter(DefaultValueFormatter(formatter: formatter))
+        
+        data.setValueFont(.systemFont(ofSize: 12, weight: .medium))
         
         winRatePieChartView.data = data
         winRatePieChartView.backgroundColor = .clear
+        winRatePieChartView.holeColor = .clear
         winRatePieChartView.legend.horizontalAlignment = .center
         winRatePieChartView.legend.textColor = .white
         winRatePieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInOutCirc)
@@ -176,7 +181,7 @@ class SquadsViewController: UIViewController {
                 $0.homeGoal != nil }
                 .sorted { $0.fixtureDate > $1.fixtureDate }
             
-            let fixtureCount = min(10, teamFixture.count)
+            let fixtureCount = min(15, teamFixture.count)
             data = Array(0 ..< fixtureCount).map { return teamFixture[$0] }
         }
         catch {

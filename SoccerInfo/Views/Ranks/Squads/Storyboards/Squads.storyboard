@@ -18,12 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUn-68-4tk" userLabel="DimView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUn-68-4tk" userLabel="DimView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9K-ga-mG0">
-                                <rect key="frame" x="83" y="233" width="248" height="125"/>
+                                <rect key="frame" x="83" y="184" width="248" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="팀명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvQ-Ph-3lC">
                                         <rect key="frame" x="10" y="10" width="228" height="43"/>
@@ -60,23 +59,23 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 경기 성적" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GE1-0k-xZ7">
-                                <rect key="frame" x="0.0" y="378" width="414" height="19.5"/>
+                                <rect key="frame" x="0.0" y="329" width="414" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnv-Bc-WgG">
-                                <rect key="frame" x="10" y="397.5" width="394" height="464.5"/>
+                                <rect key="frame" x="10" y="348.5" width="394" height="513.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-oi-wIl" customClass="PieChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="250"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="300"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="88J-Xe-LQG"/>
+                                            <constraint firstAttribute="height" constant="300" id="88J-Xe-LQG"/>
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-NE-Dm0">
-                                        <rect key="frame" x="0.0" y="250" width="394" height="150"/>
+                                        <rect key="frame" x="0.0" y="300" width="394" height="150"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="TN2-M9-dnJ"/>
@@ -122,7 +121,7 @@
                             <constraint firstItem="Nnv-Bc-WgG" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="bMz-so-M8y"/>
                             <constraint firstItem="GE1-0k-xZ7" firstAttribute="top" secondItem="d9K-ga-mG0" secondAttribute="bottom" constant="20" id="hen-aJ-8EB"/>
                             <constraint firstItem="d9K-ga-mG0" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="meg-ll-U1a"/>
-                            <constraint firstItem="mUn-68-4tk" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.3" id="nnE-nJ-xxl"/>
+                            <constraint firstItem="mUn-68-4tk" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.25" id="nnE-nJ-xxl"/>
                             <constraint firstItem="Nnv-Bc-WgG" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="pXb-6m-Kuj"/>
                             <constraint firstItem="mUn-68-4tk" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="rOR-6X-mqG"/>
                             <constraint firstItem="d9K-ga-mG0" firstAttribute="width" secondItem="mUn-68-4tk" secondAttribute="width" multiplier="0.6" id="sjb-zc-5jD"/>
