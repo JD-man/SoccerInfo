@@ -28,11 +28,8 @@ class NewsViewController: BasicTabViewController<NewsData> {
         super.viewConfig()        
         newsTableView.delegate = self
         newsTableView.dataSource = self
+        newsTableView.backgroundColor = .clear
         newsTableView.separatorInset.left = newsTableView.separatorInset.right
-        
-        newsTableView.layer.shadowRadius = 5
-        newsTableView.layer.shadowOpacity = 1
-        newsTableView.layer.shadowColor = UIColor.black.cgColor
     }
     
     override func fetchData() {
@@ -102,6 +99,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.identifier,
                                                  for: indexPath) as! NewsTableViewCell
+        cell.backgroundColor = league.colors[2]
         cell.configure(with: data[indexPath.section])
         return cell
     }

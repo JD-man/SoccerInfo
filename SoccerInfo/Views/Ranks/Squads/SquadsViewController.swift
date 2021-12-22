@@ -51,7 +51,7 @@ class SquadsViewController: UIViewController {
     }
     
     func viewConfig() {
-        view.backgroundColor = .secondarySystemGroupedBackground
+        view.backgroundColor = PublicPropertyManager.shared.league.colors[0]
         
         // label container view shadow
         labelContainerView.addCorner(rad: 10)
@@ -128,6 +128,7 @@ class SquadsViewController: UIViewController {
         let dataSet = PieChartDataSet(entries: entries, label: "| 최근 경기 승률")
         dataSet.sliceSpace = 3
         dataSet.colors = [.systemIndigo, .systemGreen, .systemPink]
+        dataSet.valueTextColor = .white
         dataSet.valueFont = .systemFont(ofSize: 12, weight: .semibold)
         dataSet.entryLabelFont = .systemFont(ofSize: 0)
         
@@ -142,6 +143,7 @@ class SquadsViewController: UIViewController {
         winRatePieChartView.data = data
         winRatePieChartView.backgroundColor = .clear
         winRatePieChartView.legend.horizontalAlignment = .center
+        winRatePieChartView.legend.textColor = .white
         winRatePieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInOutCirc)
     }
     
@@ -200,6 +202,7 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let fixture = data[indexPath.row]
         let isHome = fixture.homeID == id ? true : false
         
+        cell.backgroundColor = PublicPropertyManager.shared.league.colors[2]
         cell.configure(with: data[indexPath.row], isHome: isHome)
         return cell
     }

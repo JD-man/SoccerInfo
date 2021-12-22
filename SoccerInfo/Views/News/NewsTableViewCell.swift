@@ -8,7 +8,6 @@
 import UIKit
 import Kingfisher
 
-
 class NewsTableViewCell: UITableViewCell {
     
     static let identifier = "NewsTableViewCell"
@@ -33,6 +32,7 @@ class NewsTableViewCell: UITableViewCell {
         newsImageView.layer.cornerRadius = 10
         
         newsTitleLabel.numberOfLines = 1
+        newsTitleLabel.textColor = .white
         newsTitleLabel.font = .systemFont(ofSize: 15, weight: .semibold)
         
         newsDescriptionLabel.numberOfLines = 3

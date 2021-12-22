@@ -66,10 +66,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewConfig() {
         super.viewConfig()
-        // Schedules TableView Config
-        
-        
-        schedulesTableView.addShadow()
+        // Schedules TableView Config        
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
         schedulesTableView.backgroundColor = .clear
@@ -252,9 +249,13 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FixturesTableViewCell.identifier,
                                                  for: indexPath) as! FixturesTableViewCell
-        let section = indexPath.section
+        
         let item = indexPath.item
+        let section = indexPath.section
         let sectionCount = scheduleContent[section].count
+        
+        cell.backgroundColor = league.colors[2]
+        cell.noMatchCellLabel.backgroundColor = league.colors[2]
         cell.noMatchCellLabel.isHidden = sectionCount > 0        
         if sectionCount > 0 {
             cell.configure(with: scheduleContent[section][item])

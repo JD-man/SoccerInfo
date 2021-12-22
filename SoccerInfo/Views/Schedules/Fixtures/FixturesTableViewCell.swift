@@ -26,17 +26,20 @@ class FixturesTableViewCell: UITableViewCell {
         timeLabel.isHidden = true
         scoreLabel.isHidden = true                
         isUserInteractionEnabled = false
-        backgroundColor = .secondarySystemGroupedBackground
         
         timeLabel.textColor = .systemGray
         timeLabel.font = .systemFont(ofSize: 12, weight: .medium)
         scoreLabel.font = .systemFont(ofSize: 13, weight: .medium)
         
-        homeNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
-        awayNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        scoreLabel.textColor = .white
+        homeNameLabel.textColor = .white
+        awayNameLabel.textColor = .white
         
         homeNameLabel.textAlignment = .right
         awayNameLabel.textAlignment = .left
+        
+        homeNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        awayNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
     }
     
     func configure(with data: FixturesContent) {

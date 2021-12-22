@@ -31,8 +31,8 @@ class LineupsTableViewCell: UITableViewCell {
                 $0?.font = .systemFont(ofSize: 13, weight: .medium)
             }
         
-        homePlayerNumberLabel.textColor = .label
-        awayPlayerNumberLabel.textColor = .label
+        homePlayerNumberLabel.textColor = .white
+        awayPlayerNumberLabel.textColor = .white
         homePlayerNumberLabel.textAlignment = .center
         awayPlayerNumberLabel.textAlignment = .center
         homePlayerPositionLabel.textColor = .systemGray2

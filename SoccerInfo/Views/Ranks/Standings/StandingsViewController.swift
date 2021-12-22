@@ -108,7 +108,7 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
         let nib = UINib(nibName: StandingSectionHeaderView.identifier, bundle: nil)
         let headerView = nib.instantiate(withOwner: self, options: nil).first as! StandingSectionHeaderView
         
-        headerView.backgroundColor = .tertiarySystemGroupedBackground
+        headerView.backgroundColor = league.colors[2]
         
         // headerview corner config
         headerView.layer.cornerRadius = 20

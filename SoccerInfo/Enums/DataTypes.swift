@@ -108,18 +108,27 @@ enum League: String, CaseIterable {
     var colors: [UIColor] {
         switch self {
         case .premierLeague:
-            return [.rgbColor(r: 56, g: 0, b: 60), .rgbColor(r: 0, g: 255, b: 133)]
+            return [.rgbColor(r: 56, g: 0, b: 60),
+                    .rgbColor(r: 0, g: 255, b: 133),
+                    .rgbColor(r: 71, g: 15, b: 75)]
         case .laLiga:
-            return [.rgbColor(r: 10, g: 14, b: 35), .rgbColor(r: 244, g: 251, b: 199)]
+            return [.rgbColor(r: 10, g: 14, b: 35),
+                    .rgbColor(r: 244, g: 251, b: 199),
+                    .rgbColor(r: 25, g: 29, b: 50)]
         case .serieA:
-            return [.rgbColor(r: 0, g: 58, b: 132), .white]
+            return [.rgbColor(r: 0, g: 58, b: 132),
+                    .white,
+                    .rgbColor(r: 15, g: 73, b: 147)]
         case .bundesliga:
-            return [.rgbColor(r: 57, g: 2, b: 11), .rgbColor(r: 173, g: 0, b: 23)]
+            return [.rgbColor(r: 57, g: 2, b: 11),
+                    .rgbColor(r: 173, g: 0, b: 23),
+                    .rgbColor(r: 72, g: 17, b: 26)]
         case .ligue1:
-            return [.rgbColor(r: 1, g: 19, b: 59), .rgbColor(r: 218, g: 255, b: 57)]
+            return [.rgbColor(r: 1, g: 19, b: 59),
+                    .rgbColor(r: 218, g: 255, b: 57),
+                    .rgbColor(r: 16, g: 34, b: 74)]
         @unknown default:
             print("League Color Unknown Default")
         }
-
     }
 }

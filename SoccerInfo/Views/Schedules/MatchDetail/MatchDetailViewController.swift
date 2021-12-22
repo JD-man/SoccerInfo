@@ -67,12 +67,13 @@ class MatchDetailViewController: UIViewController {
     func viewConfig() {        
         title = "경기정보"
         matchDetailTableViewConfig()
-        matchDetailTableHeaderView.addCorner()
         
         homeScoreLabel.text = "\(homeScore)"
         awayScoreLabel.text = "\(awayScore)"
         homeTeamNameLabel.numberOfLines = 0
         awayTeamNameLabel.numberOfLines = 0
+        homeTeamNameLabel.textColor = league.colors[1]
+        awayTeamNameLabel.textColor = league.colors[1]
         homeTeamNameLabel.adjustsFontSizeToFitWidth = true
         awayTeamNameLabel.adjustsFontSizeToFitWidth = true
         homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
@@ -82,7 +83,8 @@ class MatchDetailViewController: UIViewController {
         activityView = activityIndicator()
         
         // header view config
-        matchDetailTableHeaderView.backgroundColor = .secondarySystemGroupedBackground
+        matchDetailTableHeaderView.addCorner()
+        matchDetailTableHeaderView.backgroundColor = league.colors[2]
         
         // gradient config
         let gradient = CAGradientLayer()
@@ -98,8 +100,6 @@ class MatchDetailViewController: UIViewController {
         matchDetailTableView.delegate = self
         matchDetailTableView.dataSource = self
         matchDetailTableView.separatorStyle = .none
-        
-        matchDetailTableView.addShadow()
         matchDetailTableView.backgroundColor = .clear
         
         let eventsCell = UINib(nibName: EventsTableViewCell.identifier, bundle: nil)
@@ -334,6 +334,8 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
             
             let homeLineup = matchDetailData.homeStartLineup[indexPath.item]
             let awayLineup = matchDetailData.awayStartLineup[indexPath.item]
+            
+            cell.backgroundColor = league.colors[2]
             cell.configure(homeLineup: homeLineup, awayLineup: awayLineup)
             return cell
         }
@@ -354,6 +356,7 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
                 awayLineup = matchDetailData.awaySubLineup[indexPath.item]
             }
             
+            cell.backgroundColor = league.colors[2]
             cell.configure(homeLineup: homeLineup, awayLineup: awayLineup)
             return cell
         }

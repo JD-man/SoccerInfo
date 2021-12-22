@@ -5,13 +5,7 @@
 //  Created by JD_MacMini on 2021/12/03.
 //
 
-import UIKit
-
-extension UIColor {
-    static func rgbColor(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor {
-        return UIColor(red: r/255, green: g/255, blue: b/255, alpha: 1)
-    }
-}
+import Foundation
 
 struct LocalizationList {
     static let team: [Int : String] = [

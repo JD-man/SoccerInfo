@@ -19,15 +19,15 @@ class MainTabBarController: UITabBarController {
         if #available(iOS 15.0, *) {
             let tabbarAppearance = UITabBarAppearance()
             tabbarAppearance.configureWithOpaqueBackground()
-            tabbarAppearance.backgroundColor = .systemBackground            
+            tabbarAppearance.backgroundColor = .black
             
-            UITabBar.appearance().tintColor = .label
+            UITabBar.appearance().tintColor = .white
             UITabBar.appearance().standardAppearance = tabbarAppearance
             UITabBar.appearance().scrollEdgeAppearance = tabbarAppearance            
         }
         else {
-            UITabBar.appearance().tintColor = .label
-            UITabBar.appearance().barTintColor = .systemBackground            
+            UITabBar.appearance().tintColor = .white
+            UITabBar.appearance().barTintColor = .black
         }
     }
 }

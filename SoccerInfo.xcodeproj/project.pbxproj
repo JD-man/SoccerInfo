@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A0EA0CE1E18B310620A53FD /* Pods_SoccerInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */; };
+		890A7E532773561F00918054 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890A7E522773561F00918054 /* UIColor+Extension.swift */; };
 		89123EC02751ECF100DB0077 /* MatchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */; };
 		89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89123EC12751ED4700DB0077 /* MatchDetail.storyboard */; };
 		89123EC42752091D00DB0077 /* MatchDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EC32752091D00DB0077 /* MatchDetailModel.swift */; };
@@ -74,6 +75,7 @@
 /* Begin PBXFileReference section */
 		05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoccerInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D8FE3338AA14EE6730B479 /* Pods-SoccerInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.release.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.release.xcconfig"; sourceTree = "<group>"; };
+		890A7E522773561F00918054 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewController.swift; sourceTree = "<group>"; };
 		89123EC12751ED4700DB0077 /* MatchDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MatchDetail.storyboard; sourceTree = "<group>"; };
 		89123EC32752091D00DB0077 /* MatchDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailModel.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				89281D19274D3C77001FB81D /* Date+Extension.swift */,
 				899000802753C86C00A4812A /* UIView+Extension.swift */,
 				89E8C289275BC6B10031982E /* Calendar+Extension.swift */,
+				890A7E522773561F00918054 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				89123EC42752091D00DB0077 /* MatchDetailModel.swift in Sources */,
 				89740BFF27464B510033AD2C /* FixturesViewController.swift in Sources */,
 				891345DD274A790E00FACD61 /* APIComponents.swift in Sources */,
+				890A7E532773561F00918054 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

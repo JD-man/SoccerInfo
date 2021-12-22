@@ -37,8 +37,8 @@ class EventsTableViewCell: UITableViewCell {
         
         homePlayerNameLabel.numberOfLines = 0
         awayPlayerNameLabel.numberOfLines = 0
-        homePlayerNameLabel.textColor = .label
-        awayPlayerNameLabel.textColor = .label
+        homePlayerNameLabel.textColor = .white
+        awayPlayerNameLabel.textColor = .white
         homePlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         awayPlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
         
@@ -133,7 +133,7 @@ class EventsTableViewCell: UITableViewCell {
             case .secondYellowCard, .redCard:
                 return UIColor.red
             default:
-                return UIColor.systemBackground
+                return UIColor.white
             }
         }
         

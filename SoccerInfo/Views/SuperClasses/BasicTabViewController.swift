@@ -109,7 +109,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         let colors = [upperColor.cgColor, bottomColor.cgColor]
         
         gradient.colors = colors
-        navigationController?.navigationBar.standardAppearance.backgroundColor = upperColor
+        navigationController?.navigationBar.standardAppearance.backgroundColor = upperColor        
     }
     
     func navAppearenceConfig() {
