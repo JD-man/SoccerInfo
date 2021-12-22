@@ -7,7 +7,7 @@
 
 import UIKit
 import RealmSwift
-import Kingfisher
+
 
 class MatchDetailViewController: UIViewController {
     deinit {

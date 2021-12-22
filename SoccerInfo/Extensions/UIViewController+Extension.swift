@@ -207,9 +207,9 @@ extension UIViewController {
     func activityIndicator() -> UIActivityIndicatorView {
         let activityIndicator: UIActivityIndicatorView = {
             let activityView = UIActivityIndicatorView()
+            activityView.color = .white            
             activityView.style = .large
             activityView.hidesWhenStopped = true
-            activityView.backgroundColor = .systemBackground            
             return activityView
         }()
         

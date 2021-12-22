@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Kingfisher
+
 
 class FixturesTableViewCell: UITableViewCell {
     static let identifier = "FixturesTableViewCell"

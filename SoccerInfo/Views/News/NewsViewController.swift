@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 import SafariServices
 
 class NewsViewController: BasicTabViewController<NewsData> {

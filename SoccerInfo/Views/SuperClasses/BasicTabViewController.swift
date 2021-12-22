@@ -32,7 +32,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     }
     
     func viewConfig() {
-        view.backgroundColor = .systemBackground
+        changeBackgroundColor()
         
         // activity view config
         activityView = activityIndicator()

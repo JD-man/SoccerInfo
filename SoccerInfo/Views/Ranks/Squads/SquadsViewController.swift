@@ -7,11 +7,10 @@
 
 import UIKit
 import RealmSwift
-import Kingfisher
 import Charts
 
-// current 10 match results collection view -> horizontal scroll
-// curretn 10 match win rate Pie Chart
+// current 15 match results collection view -> horizontal scroll
+// curretn 15 match win rate Pie Chart
 
 // Fixtures Data -> filtering completed match by score
 
