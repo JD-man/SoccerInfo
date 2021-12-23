@@ -19,8 +19,9 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     
     var league: League = .premierLeague {
         didSet {
-            fetchData()
+            startActivityView()
             changeBackgroundColor()
+            fetchData()
         }
     }
     
@@ -55,6 +56,11 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         
         sideButton.tintColor = .link
         navigationItem.leftBarButtonItem = sideButton
+    }
+    
+    func startActivityView() {
+        activityView.backgroundColor = league.colors[0]
+        activityView.startAnimating()
     }
     
     @objc func sideButtonClicked() {

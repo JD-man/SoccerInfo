@@ -115,8 +115,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         present(actionSheet, animated: true, completion: nil)
     }
     
-    override func fetchData() {
-        activityView.startAnimating()
+    override func fetchData() {        
         fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
             switch result {
             case .success(let fixturesTable):

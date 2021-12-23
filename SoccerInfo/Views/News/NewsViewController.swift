@@ -31,8 +31,7 @@ class NewsViewController: BasicTabViewController<NewsData> {
         newsTableView.separatorInset.left = newsTableView.separatorInset.right
     }
     
-    override func fetchData() {
-        activityView.startAnimating()
+    override func fetchData() {        
         // News Search Query
         let start = URLQueryItem(name: "start", value: "1")
         let display = URLQueryItem(name: "display", value: "30")

@@ -33,8 +33,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
         view.backgroundColor = .secondarySystemGroupedBackground
     }
     
-    override func fetchData() {
-        activityView.startAnimating()
+    override func fetchData() {        
         fetchRealmData(league: league, season: season) { [weak self] (result: standingObject) in
             switch result {
             case .success(let object):
