@@ -54,7 +54,7 @@ class FixturesTableViewCell: UITableViewCell {
             if UserDefaults.standard.value(forKey: "\(data.fixtureID)") != nil {
                 UserDefaults.standard.removeObject(forKey: "\(data.fixtureID)")
             }
-        }
+        }        
         else {
             accessoryType = .checkmark
             scoreLabel.isHidden = true

@@ -26,9 +26,11 @@ class SquadsViewController: UIViewController {
     @IBOutlet weak var currentRankLabel: UILabel!
     @IBOutlet weak var rankDescriptionLabel: UILabel!
     
-    @IBOutlet weak var currentMatchCollectionView: UICollectionView!
-    
+    @IBOutlet weak var winRateLabel: UILabel!
+    @IBOutlet weak var goalDiffLabel: UILabel!
     @IBOutlet weak var winRatePieChartView: PieChartView!
+    @IBOutlet weak var currentMatchCollectionView: UICollectionView!
+
     var id: Int = 0
     var logoURL: String = ""
     var currentRank: Int = 0
@@ -57,6 +59,8 @@ class SquadsViewController: UIViewController {
         labelContainerView.addShadow()
         
         // labels config
+        teamNameLabel.adjustsFontSizeToFitWidth = true
+        
         teamNameLabel.textAlignment = .center
         currentRankLabel.textAlignment = .center
         rankDescriptionLabel.textAlignment = .center
@@ -67,6 +71,8 @@ class SquadsViewController: UIViewController {
         
         teamNameLabel.text = teamName
         currentRankLabel.text = "\(currentRank)등"
+        winRateLabel.textColor = .white
+        goalDiffLabel.textColor = .white
         
         // collection view config
         currentMatchCollectionView.delegate = self
@@ -97,40 +103,50 @@ class SquadsViewController: UIViewController {
     }
     
     func pieChartConfig() {
-        var winValue = 0.0
-        var loseValue = 0.0
-        var drawValue = 0.0
+        var winValue = 0
+        var loseValue = 0
+        var drawValue = 0
+        var totalGoal = 0
+        var totalLoss = 0
         data.forEach {
             let homeGoal = $0.homeGoal!
             let awayGoal = $0.awayGoal!
             if $0.homeID == id {
+                totalGoal += homeGoal
+                totalLoss += awayGoal
                 if homeGoal > awayGoal {
-                    winValue += 1.0
+                    winValue += 1
                 }
                 else if homeGoal < awayGoal {
-                    loseValue += 1.0
+                    loseValue += 1
                 }
                 else {
-                    drawValue += 1.0
+                    drawValue += 1
                 }
             }
             else {
+                totalGoal += awayGoal
+                totalLoss += homeGoal
                 if awayGoal > homeGoal {
-                    winValue += 1.0
+                    winValue += 1
                 }
                 else if awayGoal < homeGoal {
-                    loseValue += 1.0
+                    loseValue += 1
                 }
                 else {
-                    drawValue += 1.0
+                    drawValue += 1
                 }
             }
         }
         let totalValue = winValue + loseValue + drawValue
+        
+        winRateLabel.text = "최근 \(totalValue)경기 \(winValue)승 \(drawValue)무 \(loseValue)패"
+        goalDiffLabel.text = "최근 \(totalValue)경기 \(totalGoal)득점 \(totalLoss)실점"
+        
         let entries = [
-            PieChartDataEntry(value: winValue / totalValue * 100, label: "승"),
-            PieChartDataEntry(value: drawValue / totalValue * 100, label: "무"),
-            PieChartDataEntry(value: loseValue / totalValue * 100, label: "패")
+            PieChartDataEntry(value: Double(winValue) / Double(totalValue) * 100, label: "승"),
+            PieChartDataEntry(value: Double(drawValue) / Double(totalValue) * 100, label: "무"),
+            PieChartDataEntry(value: Double(loseValue) / Double(totalValue) * 100, label: "패")
         ]
         let dataSet = PieChartDataSet(entries: entries, label: "| 최근 경기 승률(%)")
         dataSet.sliceSpace = 3
@@ -180,7 +196,7 @@ class SquadsViewController: UIViewController {
                 $0.homeGoal != nil }
                 .sorted { $0.fixtureDate > $1.fixtureDate }
             
-            let fixtureCount = min(15, teamFixture.count)
+            let fixtureCount = min(8, teamFixture.count)
             data = Array(0 ..< fixtureCount).map { return teamFixture[$0] }
         }
         catch {

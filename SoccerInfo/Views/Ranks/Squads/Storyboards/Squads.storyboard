@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUn-68-4tk" userLabel="DimView">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="179"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9K-ga-mG0">
-                                <rect key="frame" x="83" y="184" width="248" height="125"/>
+                                <rect key="frame" x="83" y="134.5" width="248" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="팀명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvQ-Ph-3lC">
                                         <rect key="frame" x="10" y="10" width="228" height="43"/>
@@ -58,24 +58,30 @@
                                     <constraint firstAttribute="bottom" secondItem="rDv-A1-q0e" secondAttribute="bottom" constant="10" id="xhJ-q3-zrm"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 경기 성적" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GE1-0k-xZ7">
-                                <rect key="frame" x="0.0" y="329" width="414" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nnv-Bc-WgG">
-                                <rect key="frame" x="10" y="348.5" width="394" height="513.5"/>
+                                <rect key="frame" x="10" y="279.5" width="394" height="582.5"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 경기 성적" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GE1-0k-xZ7">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-oi-wIl" customClass="PieChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="300"/>
+                                        <rect key="frame" x="0.0" y="19.5" width="394" height="300"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="88J-Xe-LQG"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 경기 득실" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoA-53-xC2" userLabel="최근 경기 득실">
+                                        <rect key="frame" x="0.0" y="329.5" width="394" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-NE-Dm0">
-                                        <rect key="frame" x="0.0" y="300" width="394" height="150"/>
+                                        <rect key="frame" x="0.0" y="359" width="394" height="150"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="TN2-M9-dnJ"/>
@@ -99,15 +105,21 @@
                                     </collectionView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="YTH-oi-wIl" firstAttribute="top" secondItem="GE1-0k-xZ7" secondAttribute="bottom" id="62n-6X-LCb"/>
+                                    <constraint firstItem="GE1-0k-xZ7" firstAttribute="top" secondItem="Nnv-Bc-WgG" secondAttribute="top" id="89z-6w-eBa"/>
                                     <constraint firstItem="aAe-NE-Dm0" firstAttribute="width" secondItem="YTH-oi-wIl" secondAttribute="width" id="9OT-gy-r8F"/>
                                     <constraint firstAttribute="bottom" secondItem="aAe-NE-Dm0" secondAttribute="bottom" constant="20" id="DdQ-j7-Amg"/>
-                                    <constraint firstItem="YTH-oi-wIl" firstAttribute="top" secondItem="Nnv-Bc-WgG" secondAttribute="top" id="Krj-AF-VXh"/>
                                     <constraint firstItem="aAe-NE-Dm0" firstAttribute="leading" secondItem="Nnv-Bc-WgG" secondAttribute="leading" id="Nno-KE-Rwe"/>
-                                    <constraint firstItem="aAe-NE-Dm0" firstAttribute="top" secondItem="YTH-oi-wIl" secondAttribute="bottom" id="PzE-kz-KGg"/>
+                                    <constraint firstItem="VoA-53-xC2" firstAttribute="top" secondItem="YTH-oi-wIl" secondAttribute="bottom" constant="10" id="PzE-kz-KGg"/>
                                     <constraint firstAttribute="trailing" secondItem="YTH-oi-wIl" secondAttribute="trailing" id="S4p-01-ZvH"/>
+                                    <constraint firstAttribute="trailing" secondItem="VoA-53-xC2" secondAttribute="trailing" id="bnK-qT-XKp"/>
+                                    <constraint firstItem="VoA-53-xC2" firstAttribute="leading" secondItem="Nnv-Bc-WgG" secondAttribute="leading" id="fxn-h0-C7g"/>
+                                    <constraint firstItem="aAe-NE-Dm0" firstAttribute="top" secondItem="VoA-53-xC2" secondAttribute="bottom" constant="10" id="h5K-Kh-5Ve"/>
+                                    <constraint firstItem="GE1-0k-xZ7" firstAttribute="leading" secondItem="Nnv-Bc-WgG" secondAttribute="leading" id="hG7-42-x2d"/>
                                     <constraint firstItem="YTH-oi-wIl" firstAttribute="width" secondItem="Nnv-Bc-WgG" secondAttribute="width" id="jcv-W0-QD8"/>
                                     <constraint firstAttribute="trailing" secondItem="aAe-NE-Dm0" secondAttribute="trailing" id="ont-Tq-5HJ"/>
                                     <constraint firstItem="YTH-oi-wIl" firstAttribute="leading" secondItem="Nnv-Bc-WgG" secondAttribute="leading" id="p3T-rj-4fP"/>
+                                    <constraint firstAttribute="trailing" secondItem="GE1-0k-xZ7" secondAttribute="trailing" id="z7a-h3-07d"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -116,26 +128,25 @@
                         <constraints>
                             <constraint firstItem="mUn-68-4tk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8Uq-Jc-zZM"/>
                             <constraint firstItem="d9K-ga-mG0" firstAttribute="centerY" secondItem="mUn-68-4tk" secondAttribute="bottom" multiplier="1.1" id="GLF-J9-AgD"/>
-                            <constraint firstItem="GE1-0k-xZ7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="IV8-kJ-PrW"/>
                             <constraint firstItem="mUn-68-4tk" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="N4g-HH-TBx"/>
                             <constraint firstItem="Nnv-Bc-WgG" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="bMz-so-M8y"/>
-                            <constraint firstItem="GE1-0k-xZ7" firstAttribute="top" secondItem="d9K-ga-mG0" secondAttribute="bottom" constant="20" id="hen-aJ-8EB"/>
                             <constraint firstItem="d9K-ga-mG0" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="meg-ll-U1a"/>
-                            <constraint firstItem="mUn-68-4tk" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.25" id="nnE-nJ-xxl"/>
+                            <constraint firstItem="mUn-68-4tk" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.2" id="nnE-nJ-xxl"/>
                             <constraint firstItem="Nnv-Bc-WgG" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="pXb-6m-Kuj"/>
                             <constraint firstItem="mUn-68-4tk" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="rOR-6X-mqG"/>
                             <constraint firstItem="d9K-ga-mG0" firstAttribute="width" secondItem="mUn-68-4tk" secondAttribute="width" multiplier="0.6" id="sjb-zc-5jD"/>
                             <constraint firstItem="Nnv-Bc-WgG" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.951691" id="srq-lB-X4h"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="GE1-0k-xZ7" secondAttribute="trailing" id="u4H-nw-xPi"/>
-                            <constraint firstItem="Nnv-Bc-WgG" firstAttribute="top" secondItem="GE1-0k-xZ7" secondAttribute="bottom" id="z9s-dH-SRB"/>
+                            <constraint firstItem="Nnv-Bc-WgG" firstAttribute="top" secondItem="d9K-ga-mG0" secondAttribute="bottom" constant="20" id="z9s-dH-SRB"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="currentMatchCollectionView" destination="aAe-NE-Dm0" id="F9W-sV-VwM"/>
                         <outlet property="currentRankLabel" destination="rDv-A1-q0e" id="95x-0g-q92"/>
+                        <outlet property="goalDiffLabel" destination="VoA-53-xC2" id="bb8-1W-eOp"/>
                         <outlet property="labelContainerView" destination="d9K-ga-mG0" id="H8m-81-ldO"/>
                         <outlet property="rankDescriptionLabel" destination="oBw-FM-ozx" id="Ony-fL-3BO"/>
                         <outlet property="teamNameLabel" destination="FvQ-Ph-3lC" id="OhW-ZM-K6f"/>
+                        <outlet property="winRateLabel" destination="GE1-0k-xZ7" id="7G3-2B-ABn"/>
                         <outlet property="winRatePieChartView" destination="YTH-oi-wIl" id="Iqd-u6-GyR"/>
                     </connections>
                 </viewController>

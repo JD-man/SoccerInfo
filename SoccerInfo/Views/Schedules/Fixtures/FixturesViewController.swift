@@ -284,6 +284,14 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         // when match is not started, notification add request
         else {
             let sectionDate = dateSectionTitles[indexPath.section]
+            let matchHour = selectedContent.matchHour.components(separatedBy: ":").map { Double($0) ?? 0}
+            let matchDate = Date(timeInterval: 3600 * matchHour[0] + 60 * matchHour[1],
+                                 since: sectionDate.sectionTitleToDate)
+            if Date() >= matchDate {
+                alertWithCheckButton(title: "이미 시작됐거나 지연된 경기입니다.", message: "", completion: nil)
+                return
+            }
+                
             let notiManager = UserNotificationCenterManager()
             notiManager.setNotification(content: selectedContent,
                                         sectionDate: sectionDate) { [weak self] notiResult in
