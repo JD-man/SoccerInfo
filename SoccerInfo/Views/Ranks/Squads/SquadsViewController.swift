@@ -31,8 +31,7 @@ class SquadsViewController: UIViewController {
     @IBOutlet weak var winRatePieChartView: PieChartView!
     @IBOutlet weak var currentMatchCollectionView: UICollectionView!
 
-    var id: Int = 0
-    var logoURL: String = ""
+    var id: Int = 0    
     var currentRank: Int = 0
     var teamName: String = ""
     

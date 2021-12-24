@@ -30,7 +30,6 @@ class StandingsTableViewCell: UITableViewCell {
     
     private func viewConfig() {        
         separateLine.isHidden = true
-        
         rankLabel.font = .systemFont(ofSize: 15, weight: .semibold)
         pointsLabel.font = .systemFont(ofSize: 15, weight: .semibold)
         backgroundColor = .clear        
@@ -48,11 +47,21 @@ class StandingsTableViewCell: UITableViewCell {
         loseLabel.text = "\(data.lose)"
         goalDiffLabel.text = "\(data.goalsDiff)"
         
-        if PublicPropertyManager.shared.league == .ligue1 {
-            separateLine.isHidden = !(data.rank == 2 || data.rank == 4)
-        }
-        else {
-            separateLine.isHidden = !(data.rank == 4 || data.rank == 6)
+        separateLineConfig(rank: data.rank)
+    }
+    
+    func separateLineConfig(rank: Int) {
+        switch PublicPropertyManager.shared.league {
+        case .premierLeague:
+            separateLine.isHidden = !(rank == 4 || rank == 6 || rank == 17)
+        case .laLiga:
+            separateLine.isHidden = !(rank == 4 || rank == 7 || rank == 17)
+        case .serieA:
+            separateLine.isHidden = !(rank == 4 || rank == 7 || rank == 17)
+        case .bundesliga:
+            separateLine.isHidden = !(rank == 4 || rank == 7 || rank == 16)
+        case .ligue1:
+            separateLine.isHidden = !(rank == 2 || rank == 4 || rank == 18)
         }
     }
 }

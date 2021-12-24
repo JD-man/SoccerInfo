@@ -17,8 +17,8 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     
     override var data: [StandingsRealmData] {
         didSet {
-            if activityView.isAnimating { activityView.stopAnimating() }
-            standingsTableView.reloadSections(IndexSet(integer: 0), with: .fade)
+            if activityView.isAnimating { activityView.stopAnimating() }            
+            standingsTableView.reloadData()
         }
     }
     
@@ -130,12 +130,9 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         squadVC.id = selectedData.teamID
         squadVC.currentRank = selectedData.rank
-        squadVC.logoURL = selectedData.teamLogo
         squadVC.teamName = selectedData.teamName
         
         let navSquadVC = UINavigationController(rootViewController: squadVC)
         present(navSquadVC, animated: true, completion: nil)
     }
-    
-    
 }

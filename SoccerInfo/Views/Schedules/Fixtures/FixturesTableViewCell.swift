@@ -49,19 +49,21 @@ class FixturesTableViewCell: UITableViewCell {
             timeLabel.isHidden = true
             scoreLabel.isHidden = false
             isUserInteractionEnabled = true
-            accessoryType = .disclosureIndicator
             scoreLabel.text = "\(homeGoal) - \(awayGoal)"
+            
+            tintColor = .gray
+            accessoryView = UIImageView(image: UIImage(systemName: "chevron.right"))
             if UserDefaults.standard.value(forKey: "\(data.fixtureID)") != nil {
                 UserDefaults.standard.removeObject(forKey: "\(data.fixtureID)")
             }
         }        
-        else {
-            accessoryType = .checkmark
+        else {            
             scoreLabel.isHidden = true
             timeLabel.isHidden = false
             isUserInteractionEnabled = true
             timeLabel.text = "\(data.matchHour)"
             
+            accessoryView = UIImageView(image: UIImage(systemName: "checkmark"))
             // set accessory color by UserDefaults reserved fixture array
             if let reserveds = UserDefaults.standard.value(forKey: "ReservedFixtures") as? [Int] {
                 tintColor = reserveds.contains(data.fixtureID) ? .link : .gray
@@ -77,7 +79,7 @@ class FixturesTableViewCell: UITableViewCell {
         tintColor = .gray
         timeLabel.text = nil
         scoreLabel.text = nil
-        accessoryType = .none
+        accessoryView = nil
         homeNameLabel.text = nil
         awayNameLabel.text = nil
         isUserInteractionEnabled = false

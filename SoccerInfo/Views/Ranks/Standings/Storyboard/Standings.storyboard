@@ -69,10 +69,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vfu-NB-6YG">
-                                                    <rect key="frame" x="15" y="49" width="384" height="1"/>
+                                                    <rect key="frame" x="15" y="48.5" width="384" height="1.5"/>
                                                     <color key="backgroundColor" systemColor="systemGray2Color"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="RcH-pc-Nlr"/>
+                                                        <constraint firstAttribute="height" constant="1.5" id="RcH-pc-Nlr"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvZ-5A-O84">

@@ -26,8 +26,11 @@ class OpenSourceLicenseViewController: UIViewController {
         let sideMenu = "SideMenu \n https://github.com/jonkykong/SideMenu/blob/master/LICENSE \n Copyright 2015 Jonathan Kent <contact@jonkent.me> \n MIT License \n\n"
         let kingFisher = "Kingfisher \n https://github.com/onevcat/Kingfisher/blob/master/LICENSE \n Copyright 2019 Wei Wang \n MIT License \n\n"
         let realm = "Realm-Cocoa \n https://github.com/realm/realm-cocoa/blob/master/LICENSE \n Copyright  2016 Realm Inc. \n Apache License 2.0 \n\n"
+        let charts = "Charts \n https://github.com/danielgindi/Charts/blob/master/LICENSE \n Copyright 2016-2019 Daniel Cohen Gindi & Philipp Jahoda \n Apache License 2.0 \n\n"
+        let firebase = "Google Firebase \n https://firebase.google.com/docs/ios/setup \n Copyright 2015 Google Inc. \n Apache License 2.0 \n\n"
         
-        openSourceTextView.text = alamofire + sideMenu + kingFisher + realm
+        
+        openSourceTextView.text = alamofire + sideMenu + kingFisher + realm + charts + firebase
         
         openSourceTextView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
                                                  constant: 15).isActive = true
