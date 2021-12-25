@@ -7,7 +7,7 @@
 </div>
 
 
-- [앱스토어 출시! (1.1.1 버전 업데이트)](https://apps.apple.com/kr/app/%ED%92%8B%EB%B3%BC%EC%9D%B8%ED%8F%AC/id1596846211)
+- [앱스토어 출시! (1.1.3 버전 업데이트)](https://apps.apple.com/kr/app/%ED%92%8B%EB%B3%BC%EC%9D%B8%ED%8F%AC/id1596846211)
 - 해외축구 일정, 순위, 뉴스 확인
 - 경기결과 확인
 - 경기세부정보 확인 - 경기기록, 포메이션, 선발/후보 명단
@@ -20,7 +20,7 @@
 
 # Video
 <div align = "center">
-    <a href = "https://youtu.be/8--xFcSfQlc"><img src = "https://img.youtube.com/vi/8--xFcSfQlc/0.jpg">
+    <a href = "https://youtu.be/6LX6KvW8E1E"><img src = "https://img.youtube.com/vi/6LX6KvW8E1E/0.jpg">
     </a>
 </div>
 
@@ -50,6 +50,7 @@
 - 발표영상(https://youtu.be/SrqsYSq0zEI) 
 - 최근성적 업데이트(https://youtu.be/m5k1IMv0aVA) 
 - 팀로고 삭제 및 업데이트 스토어 등록(https://youtu.be/8--xFcSfQlc)
+- 1.1.3 업데이트(https://youtu.be/6LX6KvW8E1E)
 ---
 
 # Issues
