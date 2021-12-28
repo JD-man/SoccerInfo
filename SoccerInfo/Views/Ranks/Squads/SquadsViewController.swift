@@ -226,6 +226,19 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
+        let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
+        let selectedData = data[indexPath.item]
+        matchDetailVC.fixtureID = selectedData.fixtureID
+        matchDetailVC.homeScore = selectedData.homeGoal ?? 0
+        matchDetailVC.awayScore = selectedData.awayGoal ?? 0
+        matchDetailVC.homeTeamName = selectedData.homeName
+        matchDetailVC.awayTeamName = selectedData.awayName        
+        matchDetailVC.league = PublicPropertyManager.shared.league
+        navigationController?.pushViewController(matchDetailVC, animated: true)
+    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let flowLayout = currentMatchCollectionView.collectionViewLayout as! CurrentMatchCollectionViewFlowLayout
         
