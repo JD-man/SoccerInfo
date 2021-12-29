@@ -96,7 +96,7 @@ class SquadsViewController: UIViewController {
         let appearnce = UINavigationBarAppearance()
         appearnce.configureWithOpaqueBackground()
         appearnce.backgroundColor = PublicPropertyManager.shared.league.colors[0]
-        
+        appearnce.titleTextAttributes = [.foregroundColor : UIColor.white]
         navigationController?.navigationBar.standardAppearance = appearnce
         navigationController?.navigationBar.scrollEdgeAppearance = appearnce
     }
@@ -234,7 +234,7 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         matchDetailVC.homeScore = selectedData.homeGoal ?? 0
         matchDetailVC.awayScore = selectedData.awayGoal ?? 0
         matchDetailVC.homeTeamName = selectedData.homeName
-        matchDetailVC.awayTeamName = selectedData.awayName        
+        matchDetailVC.awayTeamName = selectedData.awayName
         matchDetailVC.league = PublicPropertyManager.shared.league
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
