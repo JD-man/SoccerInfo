@@ -13,9 +13,9 @@ extension Date {
         return Calendar.CalendarKST.startOfDay(for: self)
     }
     
-    // Realm Update Day Hour = 06:00 AM
+    // Realm Update Day Hour = 08:00 AM
     var updateHour: Date {
-        return Calendar.CalendarKST.date(byAdding: .hour, value: 6, to: self.dayStart)!
+        return Calendar.CalendarKST.date(byAdding: .hour, value: 8, to: self.dayStart)!
     }
     
     var nextDay: Date {
