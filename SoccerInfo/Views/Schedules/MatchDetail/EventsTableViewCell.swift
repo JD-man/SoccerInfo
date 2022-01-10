@@ -7,10 +7,7 @@
 
 import UIKit
 
-class EventsTableViewCell: UITableViewCell {
-    
-    static let identifier = "EventsTableViewCell"
-    
+final class EventsTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var homeDetailLabel: UILabel!
     @IBOutlet weak var awayDetailLabel: UILabel!
@@ -60,7 +57,7 @@ class EventsTableViewCell: UITableViewCell {
         timeLabel.text = "\(data.time)"
     }
     
-    func homeTeamConfig(data: EventsRealmData) {
+    private func homeTeamConfig(data: EventsRealmData) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)
         switch eventDetail {
         case .normalGoal:
@@ -82,7 +79,7 @@ class EventsTableViewCell: UITableViewCell {
         homeEventTypeImageView.tintColor = eventDetail?.eventsColor
     }
     
-    func awayTeamConfig(data: EventsRealmData) {
+    private func awayTeamConfig(data: EventsRealmData) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)        
         switch eventDetail {
         case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:

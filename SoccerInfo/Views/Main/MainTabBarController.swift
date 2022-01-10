@@ -8,14 +8,14 @@
 import UIKit
 import RealmSwift
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()        
     }
     
-    func viewConfig() {
+    private func viewConfig() {
         if #available(iOS 15.0, *) {
             let tabbarAppearance = UITabBarAppearance()
             tabbarAppearance.configureWithOpaqueBackground()

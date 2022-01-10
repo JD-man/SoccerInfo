@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ManualViewController: UIViewController {
+final class ManualViewController: UIViewController {
     
-    let manualImageView: UIImageView = {
+    private let manualImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "ManualVC")        
@@ -22,7 +22,7 @@ class ManualViewController: UIViewController {
         manualImageViewConfig()
     }
     
-    func manualImageViewConfig() {
+    private func manualImageViewConfig() {
         view.addSubview(manualImageView)
         manualImageView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
                                               constant: 15).isActive = true

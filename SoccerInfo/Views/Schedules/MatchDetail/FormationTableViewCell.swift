@@ -7,10 +7,7 @@
 
 import UIKit
 
-class FormationTableViewCell: UITableViewCell {
-    
-    static let identifier = "FormationTableViewCell"
-    
+final class FormationTableViewCell: UITableViewCell {
     @IBOutlet weak var homeStackView: UIStackView!
     @IBOutlet weak var awayStackView: UIStackView!
     
@@ -42,7 +39,7 @@ class FormationTableViewCell: UITableViewCell {
             }
     }
     
-    func labelConfig(label: UILabel, number: Int, color: UIColor) {
+    private func labelConfig(label: UILabel, number: Int, color: UIColor) {
         label.text = "\(number)"        
         label.textColor = .white
         label.textAlignment = .center

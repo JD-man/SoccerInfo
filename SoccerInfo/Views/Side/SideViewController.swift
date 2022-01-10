@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class SideViewController: UIViewController {
+final class SideViewController: UIViewController {
     
     deinit {
         print("SideVC deinit")

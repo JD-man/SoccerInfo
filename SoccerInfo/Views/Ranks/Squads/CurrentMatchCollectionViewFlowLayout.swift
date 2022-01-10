@@ -7,13 +7,13 @@
 
 import UIKit
 
-class CurrentMatchCollectionViewFlowLayout: UICollectionViewFlowLayout {
+final class CurrentMatchCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         
         // height = collection view height constant - 20
         let height: CGFloat = 130
-        // width = screen width * 0.8
+        // width = screen width * 0.7
         let width: CGFloat = UIScreen.main.bounds.width * 0.7
         
         let inset: CGFloat = 10
@@ -24,6 +24,6 @@ class CurrentMatchCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 }

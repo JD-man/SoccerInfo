@@ -7,9 +7,9 @@
 
 import UIKit
 
-class OpenSourceLicenseViewController: UIViewController {
+final class OpenSourceLicenseViewController: UIViewController {
 
-    let openSourceTextView: UITextView = {
+    private let openSourceTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -20,7 +20,7 @@ class OpenSourceLicenseViewController: UIViewController {
         openSourceTextViewConfig()
     }
     
-    func openSourceTextViewConfig() {
+    private func openSourceTextViewConfig() {
         view.addSubview(openSourceTextView)
         let alamofire = "Alamofire \n https://github.com/Alamofire/Alamofire/blob/master/LICENSE \n Copyright 2014-2021 Alamofire Software Foundation (http://alamofire.org/) \n MIT License \n\n"
         let sideMenu = "SideMenu \n https://github.com/jonkykong/SideMenu/blob/master/LICENSE \n Copyright 2015 Jonathan Kent <contact@jonkent.me> \n MIT License \n\n"

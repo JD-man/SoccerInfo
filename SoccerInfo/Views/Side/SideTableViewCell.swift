@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SideTableViewCell: UITableViewCell {
+final class SideTableViewCell: UITableViewCell {
 
-    static let identifier = "SideTableViewCell"
+    //static let identifier = "SideTableViewCell"
     
     @IBOutlet weak var leagueNameLabel: UILabel!
     

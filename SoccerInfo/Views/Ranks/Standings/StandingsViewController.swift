@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import SideMenu
 
-class StandingsViewController: BasicTabViewController<StandingsRealmData> {
+final class StandingsViewController: BasicTabViewController<StandingsRealmData> {
 
     typealias standingObject = Result<StandingsTable, RealmErrorType>
     typealias standingResponses = Result<StandingAPIData, APIErrorType>
@@ -51,7 +51,7 @@ class StandingsViewController: BasicTabViewController<StandingsRealmData> {
     }
     
     
-    func fetchStandingAPIData() {
+    private func fetchStandingAPIData() {
         let season = URLQueryItem(name: "season", value: "\(season)")
         let league = URLQueryItem(name: "league", value: "\(league.leagueID)")
         let url = APIComponents.footBallRootURL.toURL(of: .standings, queryItems: [league, season])

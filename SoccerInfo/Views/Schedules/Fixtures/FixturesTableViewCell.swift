@@ -8,9 +8,7 @@
 import UIKit
 
 
-class FixturesTableViewCell: UITableViewCell {
-    static let identifier = "FixturesTableViewCell"
-    
+final class FixturesTableViewCell: UITableViewCell {
     @IBOutlet weak var homeNameLabel: UILabel!
     @IBOutlet weak var awayNameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -22,7 +20,7 @@ class FixturesTableViewCell: UITableViewCell {
         viewConfig()
     }
     
-    func viewConfig() {
+    private func viewConfig() {
         timeLabel.isHidden = true
         scoreLabel.isHidden = true                
         isUserInteractionEnabled = false

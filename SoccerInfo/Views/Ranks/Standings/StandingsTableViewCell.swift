@@ -7,10 +7,7 @@
 
 import UIKit
 
-class StandingsTableViewCell: UITableViewCell {
-    
-    static let identifier = "StandingsTableViewCell"
-
+final class StandingsTableViewCell: UITableViewCell {
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
@@ -50,7 +47,7 @@ class StandingsTableViewCell: UITableViewCell {
         separateLineConfig(rank: data.rank)
     }
     
-    func separateLineConfig(rank: Int) {
+    private func separateLineConfig(rank: Int) {
         switch PublicPropertyManager.shared.league {
         case .premierLeague:
             separateLine.isHidden = !(rank == 4 || rank == 6 || rank == 17)

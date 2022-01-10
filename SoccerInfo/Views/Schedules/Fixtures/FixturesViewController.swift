@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import SideMenu
 
-class FixturesViewController: BasicTabViewController<FixturesRealmData> {
+final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     // Fixtures RealmData
     typealias FixturesObject = Result<FixturesTable, RealmErrorType>
     // API Response
@@ -87,7 +87,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         manualButtonConfig()
     }
     
-    func manualButtonConfig() {
+    private func manualButtonConfig() {
         let manualButton = UIBarButtonItem(barButtonSystemItem: .bookmarks,
                                            target: self,
                                            action: #selector(manualButtonClicked))
@@ -95,7 +95,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         navigationItem.rightBarButtonItem = manualButton
     }
     
-    @objc func manualButtonClicked() {
+    @objc private func manualButtonClicked() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "사용법",
                                             style: .default,
@@ -132,7 +132,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         }
     }
     
-    func fetchFixturesAPIData() {
+    private func fetchFixturesAPIData() {
         let seasonQuery = URLQueryItem(name: "season", value: "2021")
         let leagueQuery = URLQueryItem(name: "league", value: "\(league.leagueID)")
         let url = APIComponents.footBallRootURL.toURL(of: .fixtures, queryItems: [leagueQuery, seasonQuery])
@@ -168,7 +168,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         }
     }
     
-    func makeScheduleData() {
+    private func makeScheduleData() {
         
         //make dictionary
         var newScheduleData: FixturesDatas = [:]
@@ -208,7 +208,7 @@ class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         }
     }
     
-    @objc func swipeAction(swipeGesture: UISwipeGestureRecognizer) {
+    @objc private func swipeAction(swipeGesture: UISwipeGestureRecognizer) {
         switch swipeGesture.direction {
         case .left:
             firstDay = firstDay.afterWeekDay

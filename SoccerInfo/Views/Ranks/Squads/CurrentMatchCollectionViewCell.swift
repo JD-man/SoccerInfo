@@ -8,10 +8,7 @@
 import UIKit
 
 
-class CurrentMatchCollectionViewCell: UICollectionViewCell {
-    
-    static let identifier = "CurrentMatchCollectionViewCell"
-    
+final class CurrentMatchCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var winLoseLabel: UILabel!
     @IBOutlet weak var homeAwayLabel: UILabel!

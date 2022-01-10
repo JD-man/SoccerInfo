@@ -25,6 +25,7 @@
 		891CDA942760AD3200556629 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA932760AD3200556629 /* Realm */; };
 		891CDA962760AD3200556629 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA952760AD3200556629 /* RealmSwift */; };
 		891CDA992760AD4400556629 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA982760AD4400556629 /* Kingfisher */; };
+		8927FB62278C6BB700CA6656 /* Cell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8927FB61278C6BB700CA6656 /* Cell+Extension.swift */; };
 		89281D1A274D3C77001FB81D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89281D19274D3C77001FB81D /* Date+Extension.swift */; };
 		892DEEA027562CAF0077D887 /* UserNotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */; };
 		893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E78274CB11100210ED1 /* SideViewController.swift */; };
@@ -53,7 +54,6 @@
 		899000812753C86C00A4812A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899000802753C86C00A4812A /* UIView+Extension.swift */; };
 		8990E775275B5CB70025CE05 /* FormationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */; };
 		8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */; };
-		89B329392750E4830043632E /* NewsWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B329382750E4830043632E /* NewsWebViewController.swift */; };
 		89B405CB276AB364004EDB25 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89B405CA276AB364004EDB25 /* Alamofire */; };
 		89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C12757E2D5000AC2FE /* ManualViewController.swift */; };
 		89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */; };
@@ -88,6 +88,7 @@
 		891794422765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentMatchCollectionViewCell.xib; sourceTree = "<group>"; };
 		891794462765B886004C02C4 /* CurrentMatchCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMatchCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		891CDA892760A0AA00556629 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8927FB61278C6BB700CA6656 /* Cell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cell+Extension.swift"; sourceTree = "<group>"; };
 		89281D19274D3C77001FB81D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterManager.swift; sourceTree = "<group>"; };
 		893C6E78274CB11100210ED1 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		899000802753C86C00A4812A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationTableViewCell.swift; sourceTree = "<group>"; };
 		8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationTableViewCell.xib; sourceTree = "<group>"; };
-		89B329382750E4830043632E /* NewsWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWebViewController.swift; sourceTree = "<group>"; };
 		89C843C12757E2D5000AC2FE /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseViewController.swift; sourceTree = "<group>"; };
 		89DB128D274BE009009E8888 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
@@ -172,6 +172,7 @@
 				899000802753C86C00A4812A /* UIView+Extension.swift */,
 				89E8C289275BC6B10031982E /* Calendar+Extension.swift */,
 				890A7E522773561F00918054 /* UIColor+Extension.swift */,
+				8927FB61278C6BB700CA6656 /* Cell+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -323,7 +324,6 @@
 				89B3293A2750E48F0043632E /* Storyboards */,
 				89740C0527464B880033AD2C /* NewsViewController.swift */,
 				89E2C463274FC9AE00C73BC4 /* NewsTableViewCell.swift */,
-				89B329382750E4830043632E /* NewsWebViewController.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -621,7 +621,6 @@
 				89DB128E274BE009009E8888 /* DataTypes.swift in Sources */,
 				89E75304275227EA0019F62F /* LineupsTableViewCell.swift in Sources */,
 				89DB1292274BE1C5009E8888 /* Errors.swift in Sources */,
-				89B329392750E4830043632E /* NewsWebViewController.swift in Sources */,
 				893C6E7D274CBED900210ED1 /* SideTableViewCell.swift in Sources */,
 				89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */,
 				899000812753C86C00A4812A /* UIView+Extension.swift in Sources */,
@@ -636,6 +635,7 @@
 				894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */,
 				89740C0627464B880033AD2C /* NewsViewController.swift in Sources */,
 				89740C0A27464BE30033AD2C /* SquadsViewController.swift in Sources */,
+				8927FB62278C6BB700CA6656 /* Cell+Extension.swift in Sources */,
 				89123EC42752091D00DB0077 /* MatchDetailModel.swift in Sources */,
 				89740BFF27464B510033AD2C /* FixturesViewController.swift in Sources */,
 				891345DD274A790E00FACD61 /* APIComponents.swift in Sources */,

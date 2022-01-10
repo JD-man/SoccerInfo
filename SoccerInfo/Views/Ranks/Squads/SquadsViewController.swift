@@ -14,7 +14,7 @@ import Charts
 
 // Fixtures Data -> filtering completed match by score
 
-class SquadsViewController: UIViewController {
+final class SquadsViewController: UIViewController {
     
     deinit {
         print("SquadVC deinit")
@@ -50,7 +50,7 @@ class SquadsViewController: UIViewController {
         loadCurrentMatchData()
     }
     
-    func viewConfig() {
+    private func viewConfig() {
         view.backgroundColor = PublicPropertyManager.shared.league.colors[0]
         
         // label container view shadow
@@ -101,7 +101,7 @@ class SquadsViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearnce
     }
     
-    func pieChartConfig() {
+    private func pieChartConfig() {
         var winValue = 0
         var loseValue = 0
         var drawValue = 0
@@ -166,7 +166,7 @@ class SquadsViewController: UIViewController {
         winRatePieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInOutCirc)
     }
     
-    func loadCurrentMatchData() {
+    private func loadCurrentMatchData() {
         let league = PublicPropertyManager.shared.league
         let season = PublicPropertyManager.shared.season
         

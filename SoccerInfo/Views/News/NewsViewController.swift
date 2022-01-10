@@ -8,13 +8,13 @@
 import UIKit
 import SafariServices
 
-class NewsViewController: BasicTabViewController<NewsData> {
+final class NewsViewController: BasicTabViewController<NewsData> {
     typealias SearchResponse = Result<NewsResponse, APIErrorType>
     
     @IBOutlet weak var newsTableView: UITableView!
     
-    var totalPage: Int = 0
-    var start: Int = 1
+    private var totalPage: Int = 0
+    private var start: Int = 1
     
     override var data: [NewsData] {
         didSet {

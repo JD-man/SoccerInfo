@@ -7,10 +7,7 @@
 
 import UIKit
 
-class LineupsTableViewCell: UITableViewCell {
-    
-    static let identifier = "LineupsTableViewCell"
-
+final class LineupsTableViewCell: UITableViewCell {
     @IBOutlet weak var homePlayerLabel: UILabel!
     @IBOutlet weak var awayPlayerLabel: UILabel!
     @IBOutlet weak var homePlayerNumberLabel: UILabel!

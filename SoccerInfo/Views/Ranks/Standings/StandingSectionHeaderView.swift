@@ -7,6 +7,6 @@
 
 import UIKit
 
-class StandingSectionHeaderView: UIView {
+final class StandingSectionHeaderView: UIView {
     static let identifier = "StandingSectionHeaderView"
 }

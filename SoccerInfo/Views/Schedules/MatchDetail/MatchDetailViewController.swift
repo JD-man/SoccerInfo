@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 
-class MatchDetailViewController: UIViewController {
+final class MatchDetailViewController: UIViewController {
     deinit {
         print("MatchDetailVC Deinit")
     }
@@ -56,7 +56,7 @@ class MatchDetailViewController: UIViewController {
     @IBOutlet weak var matchDetailTableView: UITableView!
     @IBOutlet weak var matchDetailTableHeaderView: UIView!
     
-    var activityView = UIActivityIndicatorView()
+    private var activityView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class MatchDetailViewController: UIViewController {
         fetchMatchDetailRealmData()
     }
     
-    func viewConfig() {        
+    private func viewConfig() {
         title = "경기정보"
         matchDetailTableViewConfig()
         
@@ -96,7 +96,7 @@ class MatchDetailViewController: UIViewController {
         view.layer.insertSublayer(gradient, at: 0)
     }
     
-    func matchDetailTableViewConfig() {
+    private func matchDetailTableViewConfig() {
         matchDetailTableView.delegate = self
         matchDetailTableView.dataSource = self
         matchDetailTableView.separatorStyle = .none
@@ -110,7 +110,7 @@ class MatchDetailViewController: UIViewController {
         matchDetailTableView.register(formationCell, forCellReuseIdentifier: FormationTableViewCell.identifier)
     }
     
-    func fetchMatchDetailRealmData() {
+    private func fetchMatchDetailRealmData() {
         activityView.startAnimating()
         league = PublicPropertyManager.shared.league
         season = PublicPropertyManager.shared.season
@@ -130,7 +130,7 @@ class MatchDetailViewController: UIViewController {
         }
     }
     
-    func fetchEventsAPIData() {
+    private func fetchEventsAPIData() {
         let fixtureIDQuery = URLQueryItem(name: "fixture", value: "\(fixtureID)")
         let eventsURL = APIComponents.footBallRootURL.toURL(of: .events, queryItems: [fixtureIDQuery])
         fetchAPIData(of: .events, url: eventsURL) { [weak self] (result: EventsResponses) in
