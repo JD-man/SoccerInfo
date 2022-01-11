@@ -170,4 +170,7 @@ fastlane/test_output
 # Fastlane.swift runner binary
 fastlane/FastlaneRunner
 
+# Fastlane Environment
+fastlane/.env
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,xcode,swift,cocoapods
