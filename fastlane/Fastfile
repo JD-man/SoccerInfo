@@ -19,7 +19,13 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     ensure_git_status_clean
-    increment_build_number(xcodeproj: "SoccerInfo.xcodeproj")
+    changelog = prompt(
+      text: "Changelog: ",
+      multi_line_end_keyword: "END"
+    )
+    increment_build_number(
+      build_number: latest_testflight_build_number + 1,
+      xcodeproj: "SoccerInfo.xcodeproj")
     build_app(workspace: "SoccerInfo.xcworkspace", scheme: "SoccerInfo")
     upload_to_testflight
   end
