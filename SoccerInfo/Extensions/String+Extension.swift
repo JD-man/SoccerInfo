@@ -8,9 +8,9 @@
 import UIKit
 
 extension String {
-    func toURL(of dataType: FootballData, queryItems: [URLQueryItem]) -> URL? {
+    func toURL(of dataType: FootballData) -> URL? {
         var components = URLComponents(string: self + dataType.urlPath)
-        components?.queryItems = queryItems        
+        components?.queryItems = dataType.queryItems
         return components?.url
     }
     

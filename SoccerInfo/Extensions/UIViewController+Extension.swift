@@ -164,23 +164,10 @@ extension UIViewController {
 //MARK: - extension with Alamofire
 extension UIViewController {
     func fetchAPIData<T: Codable>(of footBallData: FootballData, completion: @escaping (Result<T, APIErrorType>) -> Void) {
-//        func toURL(of dataType: FootballData, queryItems: [URLQueryItem]) -> URL? {
-//            var components = URLComponents(string: self + dataType.urlPath)
-//            components?.queryItems = queryItems
-//            return components?.url
-//        }
-        let rootURL = footBallData.rootURL
-        let path = footBallData.urlPath
-        
-        var component = URLComponents(string: "\(rootURL)\(path)")
-        component?.queryItems = footBallData.queryItems
-        
-        guard let component = component,
-              let url = component.url else {
+        guard let url = footBallData.rootURL.toURL(of: footBallData) else {
             print("URL fail")
             return
         }
-        
         AF.request(url, method: .get, headers: footBallData.headers)
             .validate(statusCode: 200 ... 500)
             .responseDecodable(completionHandler: { [weak self] (response: DataResponse<T, AFError>) in

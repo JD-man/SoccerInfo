@@ -7,7 +7,7 @@
 </div>
 
 
-- [앱스토어 출시! (1.1.3 버전 업데이트)](https://apps.apple.com/kr/app/%ED%92%8B%EB%B3%BC%EC%9D%B8%ED%8F%AC/id1596846211)
+- [앱스토어 출시! (1.1.4 버전 업데이트)](https://apps.apple.com/kr/app/%ED%92%8B%EB%B3%BC%EC%9D%B8%ED%8F%AC/id1596846211)
 - 해외축구 일정, 순위, 뉴스 확인
 - 경기결과 확인
 - 경기세부정보 확인 - 경기기록, 포메이션, 선발/후보 명단
