@@ -31,17 +31,10 @@ final class NewsViewController: BasicTabViewController<NewsData> {
         newsTableView.separatorInset.left = newsTableView.separatorInset.right
     }
     
-    override func fetchData() {        
-        // News Search Query
-        let start = URLQueryItem(name: "start", value: "1")
-        let display = URLQueryItem(name: "display", value: "30")
-        let query = URLQueryItem(name: "query", value: "\(league.newsQuery)")
-        let url = APIComponents.newsRootURL.toURL(of: .newsSearch,
-                                                  queryItems: [query, start, display])
-        
+    override func fetchData() {
         let group = DispatchGroup()
         // News Search
-        fetchAPIData(of: .newsSearch, url: url) { [weak self] (result: SearchResponse) in
+        fetchAPIData(of: .newsSearch(start: 1, display: 30, league: league)) { [weak self] (result: SearchResponse) in
             switch result {
             case .success(let newsResponse):
                 var items = newsResponse.items
@@ -57,14 +50,7 @@ final class NewsViewController: BasicTabViewController<NewsData> {
                 // News Image Search by News title
                 for i in randomIndex {
                     group.enter()
-                    let sort = URLQueryItem(name: "sort", value: "sim")
-                    let display = URLQueryItem(name: "display", value: "1")
-                    let query = URLQueryItem(name: "query", value: items[i].title!.removeSearchTag)
-                    
-                    let url = APIComponents.newsRootURL.toURL(of: .newsImage,
-                                                              queryItems: [query, display, sort])
-                    
-                    self?.fetchAPIData(of: .newsImage, url: url) { (result: SearchResponse) in
+                    self?.fetchAPIData(of: .newsImage(sort: "sim", display: 1, query: items[i].title ?? "")) { (result: SearchResponse) in
                         switch result {
                         case .success(let newsResponse):
                             if newsResponse.items.isEmpty == false {

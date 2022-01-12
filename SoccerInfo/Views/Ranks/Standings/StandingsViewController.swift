@@ -52,11 +52,7 @@ final class StandingsViewController: BasicTabViewController<StandingsRealmData> 
     
     
     private func fetchStandingAPIData() {
-        let season = URLQueryItem(name: "season", value: "\(season)")
-        let league = URLQueryItem(name: "league", value: "\(league.leagueID)")
-        let url = APIComponents.footBallRootURL.toURL(of: .standings, queryItems: [league, season])
-        
-        fetchAPIData(of: .standings, url: url) { [weak self] (result: standingResponses) in
+        fetchAPIData(of: .standings(season: season, league: league)) { [weak self] (result: standingResponses) in
             switch result {
             case .success(let standingData):
                 guard standingData.results != 0 else {

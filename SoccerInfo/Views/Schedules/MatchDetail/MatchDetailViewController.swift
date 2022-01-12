@@ -70,12 +70,11 @@ final class MatchDetailViewController: UIViewController {
         
         homeScoreLabel.text = "\(homeScore)"
         awayScoreLabel.text = "\(awayScore)"
-        homeTeamNameLabel.numberOfLines = 0
-        awayTeamNameLabel.numberOfLines = 0
-        homeTeamNameLabel.textColor = league.colors[1]
-        awayTeamNameLabel.textColor = league.colors[1]
-        homeTeamNameLabel.adjustsFontSizeToFitWidth = true
-        awayTeamNameLabel.adjustsFontSizeToFitWidth = true
+        [homeTeamNameLabel, awayTeamNameLabel].forEach {
+            $0?.numberOfLines = 0
+            $0?.textColor = league.colors[1]
+            $0?.adjustsFontSizeToFitWidth = true
+        }
         homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
         awayTeamNameLabel.text = awayTeamName.uppercased().modifyTeamName
         
@@ -131,9 +130,7 @@ final class MatchDetailViewController: UIViewController {
     }
     
     private func fetchEventsAPIData() {
-        let fixtureIDQuery = URLQueryItem(name: "fixture", value: "\(fixtureID)")
-        let eventsURL = APIComponents.footBallRootURL.toURL(of: .events, queryItems: [fixtureIDQuery])
-        fetchAPIData(of: .events, url: eventsURL) { [weak self] (result: EventsResponses) in
+        fetchAPIData(of: .events(fixtureID: fixtureID)) { [weak self] (result: EventsResponses) in
             switch result {
             case .success(let eventsAPIData):
                 guard eventsAPIData.results != 0 else {
@@ -142,8 +139,7 @@ final class MatchDetailViewController: UIViewController {
                     }
                     return
                 }
-                let lineupURL = APIComponents.footBallRootURL.toURL(of: .lineups, queryItems: [fixtureIDQuery])
-                self?.fetchAPIData(of: .lineups, url: lineupURL, completion: { (result: LineupsResponses) in
+                self?.fetchAPIData(of: .lineups(fixtureID: self!.fixtureID), completion: { (result: LineupsResponses) in
                     switch result {
                     case .success(let lineupsAPIData):
                         guard lineupsAPIData.results != 0 else {

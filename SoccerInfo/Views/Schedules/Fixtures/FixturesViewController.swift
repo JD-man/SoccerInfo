@@ -133,11 +133,7 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     
     private func fetchFixturesAPIData() {
-        let seasonQuery = URLQueryItem(name: "season", value: "2021")
-        let leagueQuery = URLQueryItem(name: "league", value: "\(league.leagueID)")
-        let url = APIComponents.footBallRootURL.toURL(of: .fixtures, queryItems: [leagueQuery, seasonQuery])
-        
-        fetchAPIData(of: .fixtures, url: url) { [weak self] (result: FixturesResponses) in
+        fetchAPIData(of: .fixtures(season: season, league: league)) { [weak self] (result: FixturesResponses) in
             switch result {
             case .success(let fixturesData):                
                 guard fixturesData.results != 0 else {
