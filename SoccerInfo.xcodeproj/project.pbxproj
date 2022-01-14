@@ -50,6 +50,8 @@
 		89740C1027464D140033AD2C /* Standings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C0F27464D140033AD2C /* Standings.storyboard */; };
 		89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1127464D3C0033AD2C /* Squads.storyboard */; };
 		89740C1427464D430033AD2C /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1327464D430033AD2C /* News.storyboard */; };
+		897483922791AE2000636E8E /* TeamSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897483912791AE2000636E8E /* TeamSchedulesViewController.swift */; };
+		897483942791AE3200636E8E /* TeamSchedules.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897483932791AE3200636E8E /* TeamSchedules.storyboard */; };
 		898A63E0274687450023426A /* StandingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63DF274687450023426A /* StandingsModel.swift */; };
 		898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63E5274690CE0023426A /* MainTabBarController.swift */; };
 		899000812753C86C00A4812A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899000802753C86C00A4812A /* UIView+Extension.swift */; };
@@ -127,6 +129,8 @@
 		89740C0F27464D140033AD2C /* Standings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Standings.storyboard; sourceTree = "<group>"; };
 		89740C1127464D3C0033AD2C /* Squads.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Squads.storyboard; sourceTree = "<group>"; };
 		89740C1327464D430033AD2C /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
+		897483912791AE2000636E8E /* TeamSchedulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSchedulesViewController.swift; sourceTree = "<group>"; };
+		897483932791AE3200636E8E /* TeamSchedules.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamSchedules.storyboard; sourceTree = "<group>"; };
 		898A63DF274687450023426A /* StandingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsModel.swift; sourceTree = "<group>"; };
 		898A63E5274690CE0023426A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		899000802753C86C00A4812A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 		89740BF327464A140033AD2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8974838F2791ADEE00636E8E /* TeamSchedules */,
 				893C6E80274CD1CF00210ED1 /* SuperClasses */,
 				893C6E77274CAB8D00210ED1 /* Side */,
 				89740BF727464A7E0033AD2C /* Main */,
@@ -403,6 +408,23 @@
 				8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */,
 			);
 			path = Standings;
+			sourceTree = "<group>";
+		};
+		8974838F2791ADEE00636E8E /* TeamSchedules */ = {
+			isa = PBXGroup;
+			children = (
+				897483902791AE0100636E8E /* Storyboards */,
+				897483912791AE2000636E8E /* TeamSchedulesViewController.swift */,
+			);
+			path = TeamSchedules;
+			sourceTree = "<group>";
+		};
+		897483902791AE0100636E8E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				897483932791AE3200636E8E /* TeamSchedules.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		89B3293A2750E48F0043632E /* Storyboards */ = {
@@ -576,6 +598,7 @@
 				89740C1027464D140033AD2C /* Standings.storyboard in Resources */,
 				89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */,
 				891794442765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib in Resources */,
+				897483942791AE3200636E8E /* TeamSchedules.storyboard in Resources */,
 				891CDA8A2760A0AA00556629 /* GoogleService-Info.plist in Resources */,
 				8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */,
 				89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */,
@@ -668,6 +691,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897483922791AE2000636E8E /* TeamSchedulesViewController.swift in Sources */,
 				891794432765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift in Sources */,
 				8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */,
 				89E8C28A275BC6B10031982E /* Calendar+Extension.swift in Sources */,
@@ -746,7 +770,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -765,7 +789,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -903,7 +927,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -938,7 +962,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;

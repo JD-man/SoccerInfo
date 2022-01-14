@@ -103,14 +103,15 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
             if let fixtureVC = self as? FixturesViewController {
                 fixtureVC.firstDay = Date().fixtureFirstDay
             }
-            league = sideVC.selectedLeague
             PublicPropertyManager.shared.league = sideVC.selectedLeague
+            league = sideVC.selectedLeague
             navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue            
         }
+        print(#function)
     }
     
     // abstract method for fetching data
-    internal func fetchData() { }
+    func fetchData() { }
     
     func changeBackgroundColor() {
         let upperColor = league.colors[0]

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DaD-Q4-5N3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DaD-Q4-5N3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +19,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="hfh-A1-ZwO" kind="relationship" relationship="viewControllers" id="7cj-vU-WJw"/>
+                        <segue destination="bIn-cX-0HV" kind="relationship" relationship="viewControllers" id="fh0-3f-scO"/>
                         <segue destination="Xl8-PQ-RGq" kind="relationship" relationship="viewControllers" id="hyd-BG-o64"/>
                         <segue destination="RUM-tf-LIi" kind="relationship" relationship="viewControllers" id="MWO-6h-o1n"/>
                     </connections>
@@ -35,7 +36,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6b-PK-0P4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1017" y="22"/>
+            <point key="canvasLocation" x="-1086" y="26"/>
         </scene>
         <!--Standings-->
         <scene sceneID="Xjj-Qc-3IY">
@@ -45,7 +46,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oa-e4-Sfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-783" y="22"/>
+            <point key="canvasLocation" x="-892" y="26"/>
         </scene>
         <!--News-->
         <scene sceneID="8Ex-5U-1LT">
@@ -55,7 +56,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hef-B9-iNk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530" y="22"/>
+            <point key="canvasLocation" x="-488" y="26"/>
+        </scene>
+        <!--TeamSchedules-->
+        <scene sceneID="6Vp-rj-o2L">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TeamSchedules" id="bIn-cX-0HV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Zt3-Tx-ZlX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nuE-I1-Rv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-677" y="26"/>
         </scene>
     </scenes>
     <resources>

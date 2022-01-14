@@ -32,14 +32,32 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
      */
     
     override var data: [FixturesRealmData] {
-        didSet {
-            print("data changed")
+        didSet {            
             let matchDates = data.map { return $0.fixtureDate.toDate.formattedDay }
             openingMatchDate = matchDates.min() ?? ""
             lastMatchDate = matchDates.max() ?? ""
             makeScheduleData()
         }
     }
+    
+    private var schedulesData: FixturesDatas = [:] {
+        didSet {
+            dateSectionTitles = schedulesData.keys.sorted { $0 < $1 }
+        }
+    }
+    private var dateSectionTitles = [String](repeating: "날짜", count: 7) {
+        didSet {
+            scheduleContent = dateSectionTitles.map { schedulesData[$0]! }
+        }
+    }
+    private var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
+        didSet {            
+            if activityView.isAnimating { activityView.stopAnimating() }
+            schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
+            //schedulesTableView.reloadData()
+        }
+    }
+    
     var firstDay: Date = Date().fixtureFirstDay {
         didSet {
             // gesture work when self is visible only.
@@ -48,23 +66,6 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                   let nav = tab.selectedViewController as? UINavigationController,
                   nav.visibleViewController == self else { return }
             makeScheduleData()
-        }
-    }
-    var schedulesData: FixturesDatas = [:] {
-        didSet {
-            dateSectionTitles = schedulesData.keys.sorted { $0 < $1 }
-        }
-    }
-    var dateSectionTitles = [String](repeating: "날짜", count: 7) {
-        didSet {
-            scheduleContent = dateSectionTitles.map { schedulesData[$0]! }
-        }
-    }
-    var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
-        didSet {            
-            if activityView.isAnimating { activityView.stopAnimating() }
-            schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
-            //schedulesTableView.reloadData()
         }
     }
     
@@ -94,12 +95,10 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                                                          action: #selector(swipeAction(swipeGesture:)))
         rightSwipeGesture.direction = .right
         view.addGestureRecognizer(rightSwipeGesture)
-        
-        // manual button config
-        manualButtonConfig()
     }
     
-    private func manualButtonConfig() {
+    override func navAppearenceConfig() {
+        super.navAppearenceConfig()
         let manualButton = UIBarButtonItem(barButtonSystemItem: .bookmarks,
                                            target: self,
                                            action: #selector(manualButtonClicked))
