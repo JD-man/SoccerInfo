@@ -100,6 +100,9 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
         guard let sideVC = menu.topViewController as? SideViewController else { return }
         if league != sideVC.selectedLeague {
+            if let fixtureVC = self as? FixturesViewController {
+                fixtureVC.firstDay = Date().fixtureFirstDay
+            }
             league = sideVC.selectedLeague
             PublicPropertyManager.shared.league = sideVC.selectedLeague
             navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue            

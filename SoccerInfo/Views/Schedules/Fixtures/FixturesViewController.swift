@@ -33,6 +33,7 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override var data: [FixturesRealmData] {
         didSet {
+            print("data changed")
             let matchDates = data.map { return $0.fixtureDate.toDate.formattedDay }
             openingMatchDate = matchDates.min() ?? ""
             lastMatchDate = matchDates.max() ?? ""
@@ -41,6 +42,11 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     var firstDay: Date = Date().fixtureFirstDay {
         didSet {
+            // gesture work when self is visible only.
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                  let tab = windowScene.windows.first?.rootViewController as? MainTabBarController,
+                  let nav = tab.selectedViewController as? UINavigationController,
+                  nav.visibleViewController == self else { return }
             makeScheduleData()
         }
     }
@@ -211,16 +217,20 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     
     @objc private func swipeAction(swipeGesture: UISwipeGestureRecognizer) {
-        guard dateSectionTitles.contains(openingMatchDate) == false &&
-                dateSectionTitles.contains(lastMatchDate) == false else {
-                    alertWithCheckButton(title: "더 이상 경기가 없습니다.", message: "", completion: nil)
-                    return
-                }
+        // check opening or last match day info is included
         
         switch swipeGesture.direction {
         case .left:
+            guard dateSectionTitles.contains(lastMatchDate) == false else {
+                alertWithCheckButton(title: "마지막 일정입니다.", message: "더 이상 경기가 없습니다.", completion: nil)
+                return
+            }
             firstDay = firstDay.afterWeekDay
         case .right:
+            guard dateSectionTitles.contains(openingMatchDate) == false else {
+                alertWithCheckButton(title: "첫번째 일정입니다.", message: "더 이상 경기가 없습니다.", completion: nil)
+                return
+            }
             firstDay = firstDay.beforeWeekDay
         default:
             print("default")

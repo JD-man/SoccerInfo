@@ -8,9 +8,6 @@
 import UIKit
 
 final class SideTableViewCell: UITableViewCell {
-
-    //static let identifier = "SideTableViewCell"
-    
     @IBOutlet weak var leagueNameLabel: UILabel!
     
     override func awakeFromNib() {
