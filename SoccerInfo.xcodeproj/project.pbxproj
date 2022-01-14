@@ -52,6 +52,8 @@
 		89740C1427464D430033AD2C /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1327464D430033AD2C /* News.storyboard */; };
 		897483922791AE2000636E8E /* TeamSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897483912791AE2000636E8E /* TeamSchedulesViewController.swift */; };
 		897483942791AE3200636E8E /* TeamSchedules.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897483932791AE3200636E8E /* TeamSchedules.storyboard */; };
+		897483972791C37D00636E8E /* TeamSchedulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897483952791C37D00636E8E /* TeamSchedulesTableViewCell.swift */; };
+		897483982791C37D00636E8E /* TeamSchedulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 897483962791C37D00636E8E /* TeamSchedulesTableViewCell.xib */; };
 		898A63E0274687450023426A /* StandingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63DF274687450023426A /* StandingsModel.swift */; };
 		898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63E5274690CE0023426A /* MainTabBarController.swift */; };
 		899000812753C86C00A4812A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899000802753C86C00A4812A /* UIView+Extension.swift */; };
@@ -131,6 +133,8 @@
 		89740C1327464D430033AD2C /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		897483912791AE2000636E8E /* TeamSchedulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSchedulesViewController.swift; sourceTree = "<group>"; };
 		897483932791AE3200636E8E /* TeamSchedules.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamSchedules.storyboard; sourceTree = "<group>"; };
+		897483952791C37D00636E8E /* TeamSchedulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSchedulesTableViewCell.swift; sourceTree = "<group>"; };
+		897483962791C37D00636E8E /* TeamSchedulesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSchedulesTableViewCell.xib; sourceTree = "<group>"; };
 		898A63DF274687450023426A /* StandingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsModel.swift; sourceTree = "<group>"; };
 		898A63E5274690CE0023426A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		899000802753C86C00A4812A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -415,6 +419,7 @@
 			children = (
 				897483902791AE0100636E8E /* Storyboards */,
 				897483912791AE2000636E8E /* TeamSchedulesViewController.swift */,
+				897483952791C37D00636E8E /* TeamSchedulesTableViewCell.swift */,
 			);
 			path = TeamSchedules;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				897483932791AE3200636E8E /* TeamSchedules.storyboard */,
+				897483962791C37D00636E8E /* TeamSchedulesTableViewCell.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 				89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */,
 				8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */,
 				894BF773274250B700E71C09 /* Assets.xcassets in Resources */,
+				897483982791C37D00636E8E /* TeamSchedulesTableViewCell.xib in Resources */,
 				89740C1427464D430033AD2C /* News.storyboard in Resources */,
 				89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */,
 				89E752FF275227CE0019F62F /* EventsTableViewCell.xib in Resources */,
@@ -719,6 +726,7 @@
 				892DEEA027562CAF0077D887 /* UserNotificationCenterManager.swift in Sources */,
 				8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */,
 				8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */,
+				897483972791C37D00636E8E /* TeamSchedulesTableViewCell.swift in Sources */,
 				89281D1A274D3C77001FB81D /* Date+Extension.swift in Sources */,
 				89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */,
 				8990E775275B5CB70025CE05 /* FormationTableViewCell.swift in Sources */,

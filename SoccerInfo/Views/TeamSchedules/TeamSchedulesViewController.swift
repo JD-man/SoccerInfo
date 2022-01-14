@@ -21,10 +21,19 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()        
-    }
     
+    @IBOutlet weak var teamSchedulesTableView: UITableView!
+    
+    
+    override func viewConfig() {
+        super.viewConfig()
+        let cellNib = UINib(nibName: "TeamSchedulesTableViewCell", bundle: nil)
+        teamSchedulesTableView.register(cellNib, forCellReuseIdentifier: TeamSchedulesTableViewCell.identifier)
+        
+        teamSchedulesTableView.delegate = self
+        teamSchedulesTableView.dataSource = self
+        teamSchedulesTableView.backgroundColor = .clear
+    }
     override func fetchData() {
         fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
             switch result {
@@ -88,7 +97,7 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                      state: .mixed) { _ in
                 print(teamName)
             }
-        }        
+        }
         let menu = UIMenu(title: "팀변경",
                           image: nil,
                           identifier: nil,
@@ -99,5 +108,22 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                                              primaryAction: nil,
                                              menu: menu)
         navigationItem.rightBarButtonItem = teamMenuButton
+    }
+}
+
+extension TeamSchedulesViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TeamSchedulesTableViewCell.identifier, for: indexPath) as! TeamSchedulesTableViewCell
+        cell.testLabel.text = "\(indexPath.row)"
+        cell.backgroundColor = league.colors[2]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }

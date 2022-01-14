@@ -16,10 +16,25 @@
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7oL-Xf-V3q">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7oL-Xf-V3q" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ITm-nc-Xq7"/>
+                            <constraint firstItem="7oL-Xf-V3q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Yf3-Cf-Jbe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7oL-Xf-V3q" secondAttribute="bottom" id="vRo-Sb-L5K"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7oL-Xf-V3q" secondAttribute="trailing" id="xtv-6h-NF5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Z1B-ux-dJ2"/>
+                    <connections>
+                        <outlet property="teamSchedulesTableView" destination="7oL-Xf-V3q" id="uAl-nm-tF3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
