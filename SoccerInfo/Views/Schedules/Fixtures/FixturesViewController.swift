@@ -33,6 +33,9 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     override var data: [FixturesRealmData] {
         didSet {
+            let matchDates = data.map { return $0.fixtureDate.toDate.formattedDay }
+            openingMatchDate = matchDates.min() ?? ""
+            lastMatchDate = matchDates.max() ?? ""
             makeScheduleData()
         }
     }
@@ -58,6 +61,9 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
             //schedulesTableView.reloadData()
         }
     }
+    
+    private var lastMatchDate: String = ""
+    private var openingMatchDate: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -205,6 +211,12 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     }
     
     @objc private func swipeAction(swipeGesture: UISwipeGestureRecognizer) {
+        guard dateSectionTitles.contains(openingMatchDate) == false &&
+                dateSectionTitles.contains(lastMatchDate) == false else {
+                    alertWithCheckButton(title: "더 이상 경기가 없습니다.", message: "", completion: nil)
+                    return
+                }
+        
         switch swipeGesture.direction {
         case .left:
             firstDay = firstDay.afterWeekDay
