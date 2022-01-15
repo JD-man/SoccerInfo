@@ -25,10 +25,10 @@ final class MatchDetailViewController: UIViewController {
     var homeTeamName = ""
     var awayTeamName = ""
     
-    var season = 2021
-    var maxSubsCount = 0
-    var league: League = .premierLeague
-    
+    private var maxSubsCount = 0
+    private var season = PublicPropertyManager.shared.season
+    private var league: League = PublicPropertyManager.shared.league
+        
     var data: [MatchDetailRealmData] = [MatchDetailRealmData.initialValue] {
         didSet {
             guard let filtered = data.filter({ $0.fixtureID == fixtureID }).first else {
