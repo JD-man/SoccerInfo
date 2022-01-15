@@ -17,13 +17,34 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         didSet {
             if activityView.isAnimating { activityView.stopAnimating() }
             teamMenuButtonConfig()
-            print("data loaded")
+            filterTeamSchedules(teamID: firstMenuID)
         }
     }
     
+    private var teamSchedules: [FixturesRealmData] = [] {
+        didSet {
+            teamSchedulesTableView.reloadData()
+        }
+    }
+    
+    private var _firstMenuID: Int = 0 {
+        didSet {
+            filterTeamSchedules(teamID: firstMenuID)
+        }
+    }
+    private var firstMenuID: Int {
+        get {
+            guard let favoriteTeamID = UserDefaults.standard.value(forKey: "favoriteTeamID") as? Int else {
+                return _firstMenuID
+            }
+            return favoriteTeamID
+        }
+        set {
+            _firstMenuID = newValue
+        }
+    }
     
     @IBOutlet weak var teamSchedulesTableView: UITableView!
-    
     
     override func viewConfig() {
         super.viewConfig()
@@ -34,6 +55,8 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         teamSchedulesTableView.dataSource = self
         teamSchedulesTableView.backgroundColor = .clear
     }
+    
+    // MARK: - Fetch Data
     override func fetchData() {
         fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
             switch result {
@@ -83,19 +106,41 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         }
     }
     
+    // MARK: - Filter team schedules
+    private func filterTeamSchedules(teamID: Int) {
+        let filtered = data.filter {
+            $0.awayID == teamID || $0.homeID == teamID
+        }.sorted {
+            $0.fixtureDate < $1.fixtureDate
+        }
+        
+        teamSchedules = filtered
+    }
+    
+    
+    // MARK: - Navigation config
     override func navAppearenceConfig() {
         super.navAppearenceConfig()
         teamMenuButtonConfig()
     }
     
     private func teamMenuButtonConfig() {
-        let actions = LocalizationList.team.values.map { teamName in
-            UIAction(title: "\(teamName)",
+        let sortedTeam = LocalizationList.team
+            .sorted(by: {
+                $0.value < $1.value
+            })
+        
+        firstMenuID = sortedTeam.first?.key ?? 47
+        
+        let actions = sortedTeam
+            .map { teamDictioanry in
+            UIAction(title: "\(teamDictioanry.value)",
                      image: nil,
                      identifier: nil,
                      discoverabilityTitle: nil,
-                     state: .mixed) { _ in
-                print(teamName)
+                     state: .mixed) { [weak self] _ in
+                self?.firstMenuID = teamDictioanry.key
+                self?.navigationItem.rightBarButtonItem?.title = teamDictioanry.value
             }
         }
         let menu = UIMenu(title: "팀변경",
@@ -103,23 +148,40 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                           identifier: nil,
                           options: .displayInline,
                           children: actions)
-        let teamMenuButton = UIBarButtonItem(title: "팀변경",
+        let teamMenuButton = UIBarButtonItem(title: LocalizationList.team[firstMenuID],
                                              image: nil,
                                              primaryAction: nil,
                                              menu: menu)
         navigationItem.rightBarButtonItem = teamMenuButton
+        
     }
 }
 
 extension TeamSchedulesViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return teamSchedules.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.textColor = league.colors[1]
+        label.text = "Round \(section + 1)"
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TeamSchedulesTableViewCell.identifier, for: indexPath) as! TeamSchedulesTableViewCell
-        cell.testLabel.text = "\(indexPath.row)"
         cell.backgroundColor = league.colors[2]
+        cell.testLabel.text = "\(teamSchedules[indexPath.section].homeName)\(teamSchedules[indexPath.section].awayName)"
         return cell
     }
     

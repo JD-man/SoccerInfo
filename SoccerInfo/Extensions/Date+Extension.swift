@@ -40,18 +40,17 @@ extension Date {
     }
     
     var formattedDay: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US")
-        formatter.timeZone = TimeZone(abbreviation: "KST")        
-        formatter.dateFormat = "yyyy-MM-dd EEEE"
+        let formatter = DateFormatter.KST(dateFormat: "yyyy-MM-dd EEEE")
         return formatter.string(from: self)
     }
     
     var formattedHour: String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US")
-        formatter.timeZone = TimeZone(abbreviation: "KST")        
-        formatter.dateFormat = "HH:mm"
+        let formatter = DateFormatter.KST(dateFormat: "HH:mm")
+        return formatter.string(from: self)
+    }
+    
+    var formattedDate: String {
+        let formatter = DateFormatter.KST(dateFormat: "yyyy-MM-dd EEEE HH:mm")        
         return formatter.string(from: self)
     }
 }

@@ -42,6 +42,7 @@
 		894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 894BF774274250B700E71C09 /* LaunchScreen.storyboard */; };
 		895F7D62274E9B3700C6A0C0 /* PublicPropertyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895F7D61274E9B3700C6A0C0 /* PublicPropertyManager.swift */; };
 		896833052759244E00D97FEC /* LocalizationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896833042759244E00D97FEC /* LocalizationList.swift */; };
+		89707F812792660400E43D89 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89707F802792660400E43D89 /* DateFormatter+Extension.swift */; };
 		89740BFF27464B510033AD2C /* FixturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740BFD27464B510033AD2C /* FixturesViewController.swift */; };
 		89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0327464B7F0033AD2C /* StandingsViewController.swift */; };
 		89740C0627464B880033AD2C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0527464B880033AD2C /* NewsViewController.swift */; };
@@ -123,6 +124,7 @@
 		894BF777274250B700E71C09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		895F7D61274E9B3700C6A0C0 /* PublicPropertyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicPropertyManager.swift; sourceTree = "<group>"; };
 		896833042759244E00D97FEC /* LocalizationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationList.swift; sourceTree = "<group>"; };
+		89707F802792660400E43D89 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		89740BFD27464B510033AD2C /* FixturesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesViewController.swift; sourceTree = "<group>"; };
 		89740C0327464B7F0033AD2C /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
 		89740C0527464B880033AD2C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				89E8C289275BC6B10031982E /* Calendar+Extension.swift */,
 				890A7E522773561F00918054 /* UIColor+Extension.swift */,
 				8927FB61278C6BB700CA6656 /* Cell+Extension.swift */,
+				89707F802792660400E43D89 /* DateFormatter+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89707F812792660400E43D89 /* DateFormatter+Extension.swift in Sources */,
 				897483922791AE2000636E8E /* TeamSchedulesViewController.swift in Sources */,
 				891794432765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift in Sources */,
 				8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */,

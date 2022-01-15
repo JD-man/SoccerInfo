@@ -16,21 +16,14 @@ extension String {
     
     // for fixture date
     var toDate: Date {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "KST")
-        formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US")
-        
         // 2021-11-28T23:00:00+09:00
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let formatter = DateFormatter.KST(dateFormat: "yyyy-MM-dd'T'HH:mm:ssZ")
         return formatter.date(from: self) ?? Date()
     }
     
     // for Fixture title to Date
     var sectionTitleToDate: Date {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(abbreviation: "KST")
-        formatter.locale = Locale(identifier: Locale.preferredLanguages.first ?? "en_US")
-        formatter.dateFormat = "yyyy-MM-dd EEEE"
+        let formatter = DateFormatter.KST(dateFormat: "yyyy-MM-dd EEEE")        
         return formatter.date(from: self) ?? Date()
     }
     
