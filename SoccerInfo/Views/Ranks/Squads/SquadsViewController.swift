@@ -33,8 +33,7 @@ final class SquadsViewController: UIViewController {
 
     var id: Int = 0    
     var currentRank: Int = 0
-    var teamName: String = ""
-    
+    var teamName: String = ""    
     
     // FixturesRealmData
     private var data: [FixturesRealmData] = [] {
@@ -235,7 +234,6 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         matchDetailVC.awayScore = selectedData.awayGoal ?? 0
         matchDetailVC.homeTeamName = selectedData.homeName
         matchDetailVC.awayTeamName = selectedData.awayName
-        matchDetailVC.league = PublicPropertyManager.shared.league
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
     

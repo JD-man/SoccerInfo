@@ -14,8 +14,8 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     
     var data: [T] = []
     var season: Int = 2021
-    var activityView = UIActivityIndicatorView()
     var gradient = CAGradientLayer()
+    var activityView = UIActivityIndicatorView()
     
     var league: League = .premierLeague {
         didSet {

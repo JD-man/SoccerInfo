@@ -13,6 +13,8 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
     typealias FixturesObject = Result<FixturesTable, RealmErrorType>
     typealias FixturesResponses = Result<FixturesAPIData, APIErrorType>
     
+    @IBOutlet weak var teamSchedulesTableView: UITableView!
+    
     override var data: [FixturesRealmData] {
         didSet {
             if activityView.isAnimating { activityView.stopAnimating() }
@@ -44,7 +46,13 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         }
     }
     
-    @IBOutlet weak var teamSchedulesTableView: UITableView!
+    private var scrollSection = 0 {
+        didSet {
+            teamSchedulesTableView.scrollToRow(at: IndexPath(item: 0, section: scrollSection),
+                                               at: .middle,
+                                               animated: true)
+        }
+    }
     
     override func viewConfig() {
         super.viewConfig()
@@ -95,7 +103,7 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                 let leagueID = self!.league.leagueID
                 let season = self!.season
                 let table = FixturesTable(leagueID: leagueID,
-                                          season: 2021,
+                                          season: season,
                                           fixturesData: list)
                 
                 self?.updateRealmData(table: table, leagueID: leagueID, season: season)
@@ -121,7 +129,16 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                                          isHomeTeam: isHomeTeam
             )
         }
+        
         teamSchedules = filtered
+        var section = 0
+        for schedule in teamSchedules {
+            if Date().formattedDate < schedule.fixtureDate {
+                scrollSection = section
+                break
+            }
+            section += 1
+        }
     }
     
     
@@ -163,8 +180,6 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         navigationItem.rightBarButtonItem = teamMenuButton
         
     }
-    
-
 }
 
 extension TeamSchedulesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -179,7 +194,7 @@ extension TeamSchedulesViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textColor = league.colors[1]
-        label.text = "  Round \(section + 1)"
+        label.text = section == scrollSection ? "  Round \(section + 1) ⚽️" : "  Round \(section + 1)"
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }

@@ -220,7 +220,7 @@ final class MatchDetailViewController: UIViewController {
                         }
                         content.append(matchDetailRealmData)
                         let table = MatchDetailTable(leagueID: self!.league.leagueID,
-                                                     season: 2021,
+                                                     season: self!.season,
                                                      content: content)
                         self?.updateRealmData(table: table,
                                               leagueID: self!.league.leagueID,

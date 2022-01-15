@@ -164,7 +164,7 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                 let leagueID = self!.league.leagueID
                 let season = self!.season
                 let table = FixturesTable(leagueID: leagueID,
-                                          season: 2021,
+                                          season: season,
                                           fixturesData: list)
                 
                 self?.updateRealmData(table: table, leagueID: leagueID, season: season)
@@ -289,8 +289,7 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         // when match was over, push match detail VC
         if let _ = selectedContent.homeGoal {
             let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
-            let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
-            matchDetailVC.league = league
+            let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController            
             matchDetailVC.fixtureID = selectedContent.fixtureID            
             matchDetailVC.homeScore = selectedContent.homeGoal ?? 0
             matchDetailVC.awayScore = selectedContent.awayGoal ?? 0

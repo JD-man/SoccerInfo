@@ -25,11 +25,12 @@ class TeamSchedulesTableViewCell: UITableViewCell {
             .forEach {
                 $0?.text = nil
                 $0?.textColor = .white
-                $0?.font = .systemFont(ofSize: 14, weight: .medium)
+                $0?.textAlignment = .right
+                $0?.font = .systemFont(ofSize: 16, weight: .medium)
             }
         scheduleDateLabel.text = nil
         scheduleDateLabel.textColor = .white
-        scheduleDateLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        scheduleDateLabel.font = .systemFont(ofSize: 18, weight: .semibold)
     }
     
     func configure(with data: TeamScheduleCellModel) {
@@ -47,8 +48,7 @@ class TeamSchedulesTableViewCell: UITableViewCell {
             else {
                 resultLabel.textColor = .systemPink
             }
-            resultLabel.text = "\(selectedTeamGoal) : \(oppositeTeamGoal)"
-            
+            resultLabel.text = "\(selectedTeamGoal) : \(oppositeTeamGoal)"            
         }
         scheduleDateLabel.text = data.fixtureDate
         versusLabel.text = "vs \(data.oppsiteTeam)"
