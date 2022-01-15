@@ -17,30 +17,30 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         didSet {
             if activityView.isAnimating { activityView.stopAnimating() }
             teamMenuButtonConfig()
-            filterTeamSchedules(teamID: firstMenuID)
+            filterTeamSchedules(teamID: selectedTeamID)
         }
     }
     
-    private var teamSchedules: [FixturesRealmData] = [] {
+    private var teamSchedules: [TeamScheduleCellModel] = [] {
         didSet {
             teamSchedulesTableView.reloadData()
         }
     }
     
-    private var _firstMenuID: Int = 0 {
+    private var _selectedTeamID: Int = 0 {
         didSet {
-            filterTeamSchedules(teamID: firstMenuID)
+            filterTeamSchedules(teamID: selectedTeamID)
         }
     }
-    private var firstMenuID: Int {
+    private var selectedTeamID: Int {
         get {
             guard let favoriteTeamID = UserDefaults.standard.value(forKey: "favoriteTeamID") as? Int else {
-                return _firstMenuID
+                return _selectedTeamID
             }
             return favoriteTeamID
         }
         set {
-            _firstMenuID = newValue
+            _selectedTeamID = newValue
         }
     }
     
@@ -108,12 +108,19 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
     
     // MARK: - Filter team schedules
     private func filterTeamSchedules(teamID: Int) {
-        let filtered = data.filter {
+        let filtered: [TeamScheduleCellModel] = data.filter {
             $0.awayID == teamID || $0.homeID == teamID
         }.sorted {
             $0.fixtureDate < $1.fixtureDate
+        }.map {
+            let isHomeTeam = $0.homeID == teamID
+            return TeamScheduleCellModel(fixtureDate: $0.fixtureDate.toDate.formattedDate,
+                                         oppsiteTeam: isHomeTeam ? LocalizationList.team[$0.awayID]! : LocalizationList.team[$0.homeID]!,
+                                         homeGoal: $0.homeGoal,
+                                         awayGoal: $0.awayGoal,
+                                         isHomeTeam: isHomeTeam
+            )
         }
-        
         teamSchedules = filtered
     }
     
@@ -122,6 +129,7 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
     override func navAppearenceConfig() {
         super.navAppearenceConfig()
         teamMenuButtonConfig()
+        navigationItem.title = "팀별일정"
     }
     
     private func teamMenuButtonConfig() {
@@ -130,7 +138,7 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                 $0.value < $1.value
             })
         
-        firstMenuID = sortedTeam.first?.key ?? 47
+        selectedTeamID = sortedTeam.first?.key ?? 47
         
         let actions = sortedTeam
             .map { teamDictioanry in
@@ -139,7 +147,7 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                      identifier: nil,
                      discoverabilityTitle: nil,
                      state: .mixed) { [weak self] _ in
-                self?.firstMenuID = teamDictioanry.key
+                self?.selectedTeamID = teamDictioanry.key
                 self?.navigationItem.rightBarButtonItem?.title = teamDictioanry.value
             }
         }
@@ -148,13 +156,15 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
                           identifier: nil,
                           options: .displayInline,
                           children: actions)
-        let teamMenuButton = UIBarButtonItem(title: LocalizationList.team[firstMenuID],
+        let teamMenuButton = UIBarButtonItem(title: LocalizationList.team[selectedTeamID],
                                              image: nil,
                                              primaryAction: nil,
                                              menu: menu)
         navigationItem.rightBarButtonItem = teamMenuButton
         
     }
+    
+
 }
 
 extension TeamSchedulesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -169,23 +179,31 @@ extension TeamSchedulesViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textColor = league.colors[1]
-        label.text = "Round \(section + 1)"
+        label.text = "  Round \(section + 1)"
         label.font = .systemFont(ofSize: 20, weight: .semibold)
         return label
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 50
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TeamSchedulesTableViewCell.identifier, for: indexPath) as! TeamSchedulesTableViewCell
         cell.backgroundColor = league.colors[2]
-        cell.testLabel.text = "\(teamSchedules[indexPath.section].homeName)\(teamSchedules[indexPath.section].awayName)"
+        cell.configure(with: teamSchedules[indexPath.section])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return UITableView.automaticDimension
     }
+}
+
+struct TeamScheduleCellModel {
+    let fixtureDate: String
+    let oppsiteTeam: String
+    let homeGoal: Int?
+    let awayGoal: Int?
+    let isHomeTeam: Bool    
 }
