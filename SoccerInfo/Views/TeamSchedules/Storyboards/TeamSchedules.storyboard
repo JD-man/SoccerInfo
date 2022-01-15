@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7oL-Xf-V3q">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="10" y="88" width="394" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -26,12 +26,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7oL-Xf-V3q" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="ITm-nc-Xq7"/>
-                            <constraint firstItem="7oL-Xf-V3q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Yf3-Cf-Jbe"/>
+                            <constraint firstItem="7oL-Xf-V3q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="Yf3-Cf-Jbe"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7oL-Xf-V3q" secondAttribute="bottom" id="vRo-Sb-L5K"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7oL-Xf-V3q" secondAttribute="trailing" id="xtv-6h-NF5"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7oL-Xf-V3q" secondAttribute="trailing" constant="10" id="xtv-6h-NF5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Z1B-ux-dJ2"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="teamSchedulesTableView" destination="7oL-Xf-V3q" id="uAl-nm-tF3"/>
                     </connections>
@@ -44,7 +45,7 @@
         <scene sceneID="vtq-az-a4h">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y6s-Sg-XhV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tshirt" catalog="system" id="aSX-dB-wh0"/>
+                    <tabBarItem key="tabBarItem" title="" image="puzzlepiece" catalog="system" id="eal-PR-HKa"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Am-Fd-Ls2">
@@ -62,7 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tshirt" catalog="system" width="128" height="99"/>
+        <image name="puzzlepiece" catalog="system" width="128" height="83"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

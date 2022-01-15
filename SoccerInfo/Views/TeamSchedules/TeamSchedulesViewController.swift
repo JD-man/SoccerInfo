@@ -48,7 +48,7 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
     
     private var scrollSection = 0 {
         didSet {
-            teamSchedulesTableView.scrollToRow(at: IndexPath(item: 0, section: scrollSection),
+            teamSchedulesTableView.scrollToRow(at: IndexPath(item: 0, section: scrollSection + 1),
                                                at: .middle,
                                                animated: true)
         }
@@ -132,15 +132,15 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         
         teamSchedules = filtered
         var section = 0
+        let now = Date().formattedDate
         for schedule in teamSchedules {
-            if Date().formattedDate < schedule.fixtureDate {
+            if now < schedule.fixtureDate {
                 scrollSection = section
                 break
             }
             section += 1
         }
     }
-    
     
     // MARK: - Navigation config
     override func navAppearenceConfig() {
@@ -157,26 +157,30 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
         
         selectedTeamID = sortedTeam.first?.key ?? 47
         
-        let actions = sortedTeam
+        let actions: [UIAction] = sortedTeam
             .map { teamDictioanry in
-            UIAction(title: "\(teamDictioanry.value)",
-                     image: nil,
-                     identifier: nil,
-                     discoverabilityTitle: nil,
-                     state: .mixed) { [weak self] _ in
-                self?.selectedTeamID = teamDictioanry.key
-                self?.navigationItem.rightBarButtonItem?.title = teamDictioanry.value
+                let action = UIAction(title: "\(teamDictioanry.value)",
+                                      image: nil,
+                                      identifier: nil,
+                                      discoverabilityTitle: nil,
+                                      state: .mixed) { [weak self] _ in
+                    self?.selectedTeamID = teamDictioanry.key
+                    self?.navigationItem.rightBarButtonItem?.title = teamDictioanry.value
+                }
+                action.state = .off
+                return action
             }
-        }
         let menu = UIMenu(title: "팀변경",
                           image: nil,
                           identifier: nil,
                           options: .displayInline,
                           children: actions)
+        
         let teamMenuButton = UIBarButtonItem(title: LocalizationList.team[selectedTeamID],
                                              image: nil,
                                              primaryAction: nil,
                                              menu: menu)
+        teamMenuButton.tintColor = .link
         navigationItem.rightBarButtonItem = teamMenuButton
         
     }
@@ -194,8 +198,8 @@ extension TeamSchedulesViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textColor = league.colors[1]
-        label.text = section == scrollSection ? "  Round \(section + 1) ⚽️" : "  Round \(section + 1)"
-        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.text = section == scrollSection ? "  Round \(section + 1) 🔜" : "  Round \(section + 1)"
+        label.font = .systemFont(ofSize: 22, weight: .semibold)
         return label
     }
     

@@ -23,14 +23,14 @@ class TeamSchedulesTableViewCell: UITableViewCell {
     private func viewConfig() {
         [versusLabel, resultLabel, homeAwayLabel]
             .forEach {
-                $0?.text = nil
+                $0?.text = ""
                 $0?.textColor = .white
                 $0?.textAlignment = .right
-                $0?.font = .systemFont(ofSize: 16, weight: .medium)
+                $0?.font = .systemFont(ofSize: 16, weight: .semibold)
             }
-        scheduleDateLabel.text = nil
+        scheduleDateLabel.text = ""
         scheduleDateLabel.textColor = .white
-        scheduleDateLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+        scheduleDateLabel.font = .systemFont(ofSize: 18, weight: .bold)
     }
     
     func configure(with data: TeamScheduleCellModel) {
@@ -57,6 +57,6 @@ class TeamSchedulesTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        resultLabel.text = nil
+        resultLabel.text = ""
     }
 }

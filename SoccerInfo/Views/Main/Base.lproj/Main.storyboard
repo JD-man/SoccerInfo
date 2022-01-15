@@ -32,7 +32,7 @@
         <scene sceneID="h2l-cD-ex1">
             <objects>
                 <viewControllerPlaceholder storyboardName="Fixtures" id="hfh-A1-ZwO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="gTp-Tj-3uk"/>
+                    <tabBarItem key="tabBarItem" title="item" id="gTp-Tj-3uk"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6b-PK-0P4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -46,7 +46,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oa-e4-Sfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-892" y="26"/>
+            <point key="canvasLocation" x="-669" y="25"/>
         </scene>
         <!--News-->
         <scene sceneID="8Ex-5U-1LT">
@@ -66,7 +66,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nuE-I1-Rv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677" y="26"/>
+            <point key="canvasLocation" x="-883" y="25"/>
         </scene>
     </scenes>
     <resources>
