@@ -14,9 +14,10 @@ enum RealmErrorType: Error {
 }
 
 enum APIErrorType: Int, Error {
-    case requestLimit = 429 // Error 3
-    case timeout = 499 // Error 4
-    case serverError = 500 // Error 5
+    case footballServerBug = 204
+    case requestLimit = 429
+    case timeout = 499
+    case serverError = 500
     
     var description: String {
         switch self {
@@ -24,14 +25,17 @@ enum APIErrorType: Int, Error {
             return "더 이상 데이터를 받을 수 없습니다."
         case .timeout:
             return "데이터를 받는 시간이 초과 됐습니다."
-        case .serverError:
+        case .serverError, .footballServerBug:
             return "서버에 오류가 생겼습니다."
+        @unknown default:
+            print("APIError Unknown default")
         }
     }
 }
 
 /* Football API Error
  200 : OK, Request Limit(??)
+ 204 : Server Bug
  499 : Time Out
  500 : Server Error
 */

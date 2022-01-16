@@ -175,22 +175,16 @@ extension UIViewController {
                 case .success(_):
                     let statusCode = response.response?.statusCode ?? 500
                     switch statusCode {
-                    case 429:
-                        completion(.failure(.requestLimit))
-                        self?.alertAPIError(statusCode: statusCode)
-                    case 499:
-                        completion(.failure(.timeout))
-                        self?.alertAPIError(statusCode: statusCode)
-                    case 500:
-                        completion(.failure(.serverError))
-                        self?.alertAPIError(statusCode: statusCode)
-                    default:
+                    case 200:
                         guard let data = response.data,
                               let decoded = try? JSONDecoder().decode(T.self, from: data) else {
                                   print("decode fail")
                                   return }
                         completion(.success(decoded))
                         print("API CALL")
+                    default:
+                        completion(.failure(APIErrorType(rawValue: statusCode) ?? .serverError))
+                        self?.alertAPIError(statusCode: statusCode)
                     }
                 case .failure(let error):
                     self?.alertWithCheckButton(title: "데이터를 가져오는데 실패했습니다",
