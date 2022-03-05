@@ -44,7 +44,7 @@
 ---
 
 # Log
-- [개발기록](./Plan&Log/DevLog)
+- [개발기록](./Plan&Log/README.md)
 - 1주차 영상(https://youtu.be/Pgfj12BiwP4)
 - 2주차 1차 업데이트 제출 영상(https://youtu.be/SApj6SQNYGQ)
 - 발표영상(https://youtu.be/SrqsYSq0zEI) 
