@@ -19,7 +19,7 @@
 - MVC, Swift, UIKit
 - Alamofire, Kingfisher, Realm
 - SideMenu, Charts
-- Google Analytics, Crashlytics
+- Fastlane, Google Analytics, Crashlytics
 
 ---
 
@@ -32,5 +32,6 @@
 - [API 문서와 다른 응답 대응](https://github.com/JD-man/FootballInfo/issues/6)
 - [업데이트 거절과 해결과정, 크래시 리포트 복호화](./Plan&Log/DevLog/Log_Day19.md)
 - [AppDelegate에서의 동기적 초기설정](https://github.com/JD-man/FootballInfo/issues/7)
+- [Fastlane 적용기](https://github.com/JD-man/FootballInfo/blob/main/Plan%26Log/DevLog/Fastlane.md)
 
 ---
