@@ -11,7 +11,12 @@ import SafariServices
 final class NewsViewController: BasicTabViewController<NewsData> {
     typealias SearchResponse = Result<NewsResponse, APIErrorType>
     
-    @IBOutlet weak var newsTableView: UITableView!
+    private var newsTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
+        return tableView
+    }()
     
     private var totalPage: Int = 0
     private var start: Int = 1

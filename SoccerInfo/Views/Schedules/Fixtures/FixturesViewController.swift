@@ -21,7 +21,13 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     // Dictionary of match date(section title) : schedule content
     typealias FixturesDatas = [String : FixturesContents]
     
-    @IBOutlet weak var schedulesTableView: UITableView!
+    private let schedulesTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.separatorStyle = .none
+        tableView.register(FixturesTableViewCell.self,
+                           forCellReuseIdentifier: FixturesTableViewCell.identifier)
+        return tableView
+    }()
     
     /*
      Change league : fetchData

@@ -21,14 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let group = DispatchGroup()
         let queue = DispatchQueue.global(qos: .userInitiated)
         
-        group.enter()
         print("login start")
-        queue.async {
+        queue.async(group: group) {
             let app = App(id: APIComponents.realmAppID)
             if let currentUser = app.currentUser, currentUser.isLoggedIn {
                 print("current user exist",currentUser.id)
                 sleep(1)
-                group.leave()
                 return
             }
             else {
@@ -36,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     switch result {
                     case .success(let user):
                         print("new anonymous", user.id)
-                        group.leave()
                     case .failure(let error):
                         print(error)                        
                     }
@@ -45,8 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Initialization Notification Center
-        group.enter()
-        queue.async {
+        queue.async(group: group) {
             print("noti check")
             let notiCenter = UserNotificationCenterManager()
             notiCenter.userNotificationCenter.getNotificationSettings {
@@ -60,10 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                         UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
                     }
-                    print("noti check complete")
-                    group.leave()
+                    print("noti check complete")                    
                 default:
-                    group.leave()
+                    break
                 }
             }
         }

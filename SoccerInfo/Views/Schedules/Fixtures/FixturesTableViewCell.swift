@@ -6,14 +6,47 @@
 //
 
 import UIKit
-
+import SnapKit
 
 final class FixturesTableViewCell: UITableViewCell {
-    @IBOutlet weak var homeNameLabel: UILabel!
-    @IBOutlet weak var awayNameLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var noMatchCellLabel: UILabel!
+    private let homeNameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .right
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
+        return label
+    }()
+    
+    private let awayNameLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
+        return label
+    }()
+    
+    private let scoreLabel: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 13, weight: .medium)
+        return label
+    }()
+    private let timeLabel: UILabel = {
+        let label = UILabel()
+        label.isHidden = true
+        label.textColor = .systemGray
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        return label
+    }()
+    
+    let noMatchCellLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .systemGray2
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,23 +54,36 @@ final class FixturesTableViewCell: UITableViewCell {
     }
     
     private func viewConfig() {
-        timeLabel.isHidden = true
-        scoreLabel.isHidden = true                
         isUserInteractionEnabled = false
+        [homeNameLabel, awayNameLabel, scoreLabel, timeLabel, noMatchCellLabel].forEach {
+            contentView.addSubview($0)
+        }
         
-        timeLabel.textColor = .systemGray
-        timeLabel.font = .systemFont(ofSize: 12, weight: .medium)
-        scoreLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        scoreLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.13)
+            make.height.equalToSuperview().multipliedBy(0.3)
+        }
         
-        scoreLabel.textColor = .white
-        homeNameLabel.textColor = .white
-        awayNameLabel.textColor = .white
+        timeLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
-        homeNameLabel.textAlignment = .right
-        awayNameLabel.textAlignment = .left
+        homeNameLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalTo(scoreLabel.snp.leading).offset(-8)
+            make.centerY.equalToSuperview()
+        }
         
-        homeNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
-        awayNameLabel.font = .systemFont(ofSize: 15, weight: .semibold)
+        awayNameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(scoreLabel.snp.trailing).offset(8)
+            make.trailing.equalToSuperview().offset(-8)
+            make.centerY.equalToSuperview()
+        }
+        
+        noMatchCellLabel.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func configure(with data: FixturesContent) {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A0EA0CE1E18B310620A53FD /* Pods_SoccerInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */; };
+		8903824327DCEC4300C9E274 /* SoccerInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903824227DCEC4300C9E274 /* SoccerInfoTests.swift */; };
 		890A7E532773561F00918054 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890A7E522773561F00918054 /* UIColor+Extension.swift */; };
 		89123EC02751ECF100DB0077 /* MatchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */; };
 		89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89123EC12751ED4700DB0077 /* MatchDetail.storyboard */; };
@@ -27,7 +28,6 @@
 		891CDA992760AD4400556629 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 891CDA982760AD4400556629 /* Kingfisher */; };
 		8927FB62278C6BB700CA6656 /* Cell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8927FB61278C6BB700CA6656 /* Cell+Extension.swift */; };
 		89281D1A274D3C77001FB81D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89281D19274D3C77001FB81D /* Date+Extension.swift */; };
-		8928DB6C279142BE00624D88 /* SoccerInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8928DB6B279142BE00624D88 /* SoccerInfoTests.swift */; };
 		892DEEA027562CAF0077D887 /* UserNotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */; };
 		893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E78274CB11100210ED1 /* SideViewController.swift */; };
 		893C6E7B274CB1C500210ED1 /* Side.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893C6E7A274CB1C500210ED1 /* Side.storyboard */; };
@@ -55,6 +55,13 @@
 		897483942791AE3200636E8E /* TeamSchedules.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897483932791AE3200636E8E /* TeamSchedules.storyboard */; };
 		897483972791C37D00636E8E /* TeamSchedulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897483952791C37D00636E8E /* TeamSchedulesTableViewCell.swift */; };
 		897483982791C37D00636E8E /* TeamSchedulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 897483962791C37D00636E8E /* TeamSchedulesTableViewCell.xib */; };
+		8989C7AE27DCF1C000068308 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 890E186A27DCB42F00F35A37 /* XCTest.framework */; };
+		8989C7B127DCF30900068308 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B027DCF30900068308 /* RxBlocking */; };
+		8989C7B327DCF30900068308 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B227DCF30900068308 /* RxCocoa */; };
+		8989C7B527DCF30900068308 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B427DCF30900068308 /* RxRelay */; };
+		8989C7B727DCF30900068308 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B627DCF30900068308 /* RxSwift */; };
+		8989C7B927DCF30900068308 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B827DCF30900068308 /* RxTest */; };
+		8989C7BC27DCF3B300068308 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7BB27DCF3B300068308 /* ReactorKit */; };
 		898A63E0274687450023426A /* StandingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63DF274687450023426A /* StandingsModel.swift */; };
 		898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63E5274690CE0023426A /* MainTabBarController.swift */; };
 		899000812753C86C00A4812A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899000802753C86C00A4812A /* UIView+Extension.swift */; };
@@ -64,11 +71,6 @@
 		89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C12757E2D5000AC2FE /* ManualViewController.swift */; };
 		89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */; };
 		89D3EC6C27D3A52E009494DA /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC6B27D3A52E009494DA /* Moya */; };
-		89D3EC6F27D3A54D009494DA /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC6E27D3A54D009494DA /* ReactorKit */; };
-		89D3EC7227D3A562009494DA /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7127D3A562009494DA /* RxCocoa */; };
-		89D3EC7427D3A562009494DA /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7327D3A562009494DA /* RxRelay */; };
-		89D3EC7627D3A562009494DA /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7527D3A562009494DA /* RxSwift */; };
-		89D3EC7827D3A562009494DA /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7727D3A562009494DA /* RxTest */; };
 		89D3EC7B27D3A57F009494DA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7A27D3A57F009494DA /* SnapKit */; };
 		89D3EC7E27D3A5B6009494DA /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7D27D3A5B6009494DA /* RxDataSources */; };
 		89D3EC8127D3A5DB009494DA /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC8027D3A5DB009494DA /* RxGesture */; };
@@ -88,7 +90,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8928DB6D279142BE00624D88 /* PBXContainerItemProxy */ = {
+		8903824427DCEC4300C9E274 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 894BF75E274250B600E71C09 /* Project object */;
 			proxyType = 1;
@@ -100,7 +102,10 @@
 /* Begin PBXFileReference section */
 		05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoccerInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D8FE3338AA14EE6730B479 /* Pods-SoccerInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.release.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.release.xcconfig"; sourceTree = "<group>"; };
+		8903824027DCEC4300C9E274 /* SoccerInfoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoccerInfoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8903824227DCEC4300C9E274 /* SoccerInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoccerInfoTests.swift; sourceTree = "<group>"; };
 		890A7E522773561F00918054 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		890E186A27DCB42F00F35A37 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewController.swift; sourceTree = "<group>"; };
 		89123EC12751ED4700DB0077 /* MatchDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MatchDetail.storyboard; sourceTree = "<group>"; };
 		89123EC32752091D00DB0077 /* MatchDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailModel.swift; sourceTree = "<group>"; };
@@ -115,8 +120,6 @@
 		891CDA892760A0AA00556629 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8927FB61278C6BB700CA6656 /* Cell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cell+Extension.swift"; sourceTree = "<group>"; };
 		89281D19274D3C77001FB81D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
-		8928DB69279142BE00624D88 /* SoccerInfoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoccerInfoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8928DB6B279142BE00624D88 /* SoccerInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoccerInfoTests.swift; sourceTree = "<group>"; };
 		892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterManager.swift; sourceTree = "<group>"; };
 		893C6E78274CB11100210ED1 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
 		893C6E7A274CB1C500210ED1 /* Side.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Side.storyboard; sourceTree = "<group>"; };
@@ -169,10 +172,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8928DB66279142BE00624D88 /* Frameworks */ = {
+		8903823D27DCEC4300C9E274 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8989C7AE27DCF1C000068308 /* XCTest.framework in Frameworks */,
+				8989C7B927DCF30900068308 /* RxTest in Frameworks */,
+				8989C7B127DCF30900068308 /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,28 +186,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89D3EC7827D3A562009494DA /* RxTest in Frameworks */,
 				891CDA992760AD4400556629 /* Kingfisher in Frameworks */,
 				89D3EC8127D3A5DB009494DA /* RxGesture in Frameworks */,
 				89B405CB276AB364004EDB25 /* Alamofire in Frameworks */,
 				89D3EC7E27D3A5B6009494DA /* RxDataSources in Frameworks */,
 				89D3EC7B27D3A57F009494DA /* SnapKit in Frameworks */,
-				89D3EC7227D3A562009494DA /* RxCocoa in Frameworks */,
 				89D3EC6C27D3A52E009494DA /* Moya in Frameworks */,
+				8989C7B727DCF30900068308 /* RxSwift in Frameworks */,
+				8989C7B327DCF30900068308 /* RxCocoa in Frameworks */,
 				5A0EA0CE1E18B310620A53FD /* Pods_SoccerInfo.framework in Frameworks */,
-				89D3EC6F27D3A54D009494DA /* ReactorKit in Frameworks */,
-				89D3EC7627D3A562009494DA /* RxSwift in Frameworks */,
 				89D5884E276893C700E1D654 /* Charts in Frameworks */,
+				8989C7B527DCF30900068308 /* RxRelay in Frameworks */,
 				891CDA912760AD0100556629 /* SideMenu in Frameworks */,
 				891CDA942760AD3200556629 /* Realm in Frameworks */,
+				8989C7BC27DCF3B300068308 /* ReactorKit in Frameworks */,
 				891CDA962760AD3200556629 /* RealmSwift in Frameworks */,
-				89D3EC7427D3A562009494DA /* RxRelay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8903824127DCEC4300C9E274 /* SoccerInfoTests */ = {
+			isa = PBXGroup;
+			children = (
+				8903824227DCEC4300C9E274 /* SoccerInfoTests.swift */,
+			);
+			path = SoccerInfoTests;
+			sourceTree = "<group>";
+		};
 		8913C82A274B5CF0000CCC44 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,14 +248,6 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		8928DB6A279142BE00624D88 /* SoccerInfoTests */ = {
-			isa = PBXGroup;
-			children = (
-				8928DB6B279142BE00624D88 /* SoccerInfoTests.swift */,
-			);
-			path = SoccerInfoTests;
-			sourceTree = "<group>";
-		};
 		893C6E77274CAB8D00210ED1 /* Side */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,7 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				894BF768274250B600E71C09 /* SoccerInfo */,
-				8928DB6A279142BE00624D88 /* SoccerInfoTests */,
+				8903824127DCEC4300C9E274 /* SoccerInfoTests */,
 				894BF767274250B600E71C09 /* Products */,
 				EAD75E370FB4856B0DCABD39 /* Pods */,
 				BF104418F6FE07E4AEAACFCB /* Frameworks */,
@@ -276,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				894BF766274250B600E71C09 /* SoccerInfo.app */,
-				8928DB69279142BE00624D88 /* SoccerInfoTests.xctest */,
+				8903824027DCEC4300C9E274 /* SoccerInfoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 		BF104418F6FE07E4AEAACFCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				890E186A27DCB42F00F35A37 /* XCTest.framework */,
 				05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */,
 			);
 			name = Frameworks;
@@ -519,22 +525,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8928DB68279142BE00624D88 /* SoccerInfoTests */ = {
+		8903823F27DCEC4300C9E274 /* SoccerInfoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8928DB71279142BE00624D88 /* Build configuration list for PBXNativeTarget "SoccerInfoTests" */;
+			buildConfigurationList = 8903824627DCEC4300C9E274 /* Build configuration list for PBXNativeTarget "SoccerInfoTests" */;
 			buildPhases = (
-				8928DB65279142BE00624D88 /* Sources */,
-				8928DB66279142BE00624D88 /* Frameworks */,
-				8928DB67279142BE00624D88 /* Resources */,
+				8903823C27DCEC4300C9E274 /* Sources */,
+				8903823D27DCEC4300C9E274 /* Frameworks */,
+				8903823E27DCEC4300C9E274 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8928DB6E279142BE00624D88 /* PBXTargetDependency */,
+				8903824527DCEC4300C9E274 /* PBXTargetDependency */,
 			);
 			name = SoccerInfoTests;
+			packageProductDependencies = (
+				8989C7B027DCF30900068308 /* RxBlocking */,
+				8989C7B827DCF30900068308 /* RxTest */,
+			);
 			productName = SoccerInfoTests;
-			productReference = 8928DB69279142BE00624D88 /* SoccerInfoTests.xctest */;
+			productReference = 8903824027DCEC4300C9E274 /* SoccerInfoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		894BF765274250B600E71C09 /* SoccerInfo */ = {
@@ -561,14 +571,13 @@
 				89D5884D276893C700E1D654 /* Charts */,
 				89B405CA276AB364004EDB25 /* Alamofire */,
 				89D3EC6B27D3A52E009494DA /* Moya */,
-				89D3EC6E27D3A54D009494DA /* ReactorKit */,
-				89D3EC7127D3A562009494DA /* RxCocoa */,
-				89D3EC7327D3A562009494DA /* RxRelay */,
-				89D3EC7527D3A562009494DA /* RxSwift */,
-				89D3EC7727D3A562009494DA /* RxTest */,
 				89D3EC7A27D3A57F009494DA /* SnapKit */,
 				89D3EC7D27D3A5B6009494DA /* RxDataSources */,
 				89D3EC8027D3A5DB009494DA /* RxGesture */,
+				8989C7B227DCF30900068308 /* RxCocoa */,
+				8989C7B427DCF30900068308 /* RxRelay */,
+				8989C7B627DCF30900068308 /* RxSwift */,
+				8989C7BB27DCF3B300068308 /* ReactorKit */,
 			);
 			productName = SoccerInfo;
 			productReference = 894BF766274250B600E71C09 /* SoccerInfo.app */;
@@ -584,7 +593,7 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
-					8928DB68279142BE00624D88 = {
+					8903823F27DCEC4300C9E274 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 894BF765274250B600E71C09;
 					};
@@ -609,24 +618,24 @@
 				89D5884C276893C700E1D654 /* XCRemoteSwiftPackageReference "Charts" */,
 				89B405C9276AB364004EDB25 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				89D3EC6A27D3A52E009494DA /* XCRemoteSwiftPackageReference "Moya" */,
-				89D3EC6D27D3A54D009494DA /* XCRemoteSwiftPackageReference "ReactorKit" */,
-				89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */,
 				89D3EC7927D3A57F009494DA /* XCRemoteSwiftPackageReference "SnapKit" */,
 				89D3EC7C27D3A5B6009494DA /* XCRemoteSwiftPackageReference "RxDataSources" */,
 				89D3EC7F27D3A5DB009494DA /* XCRemoteSwiftPackageReference "RxGesture" */,
+				8989C7AF27DCF30900068308 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				8989C7BA27DCF3B300068308 /* XCRemoteSwiftPackageReference "ReactorKit" */,
 			);
 			productRefGroup = 894BF767274250B600E71C09 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				894BF765274250B600E71C09 /* SoccerInfo */,
-				8928DB68279142BE00624D88 /* SoccerInfoTests */,
+				8903823F27DCEC4300C9E274 /* SoccerInfoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8928DB67279142BE00624D88 /* Resources */ = {
+		8903823E27DCEC4300C9E274 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -722,11 +731,11 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8928DB65279142BE00624D88 /* Sources */ = {
+		8903823C27DCEC4300C9E274 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8928DB6C279142BE00624D88 /* SoccerInfoTests.swift in Sources */,
+				8903824327DCEC4300C9E274 /* SoccerInfoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,10 +792,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8928DB6E279142BE00624D88 /* PBXTargetDependency */ = {
+		8903824527DCEC4300C9E274 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 894BF765274250B600E71C09 /* SoccerInfo */;
-			targetProxy = 8928DB6D279142BE00624D88 /* PBXContainerItemProxy */;
+			targetProxy = 8903824427DCEC4300C9E274 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -810,16 +819,21 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8928DB6F279142BE00624D88 /* Debug */ = {
+		8903824727DCEC4300C9E274 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"XCTest\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -829,16 +843,21 @@
 			};
 			name = Debug;
 		};
-		8928DB70279142BE00624D88 /* Release */ = {
+		8903824827DCEC4300C9E274 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"XCTest\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -885,6 +904,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -946,6 +966,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -975,6 +996,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "풋볼인포";
@@ -990,6 +1012,45 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCrashlytics\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"nanopb\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SoccerInfoDevelopment;
@@ -1010,6 +1071,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoccerInfo/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "풋볼인포";
@@ -1025,6 +1087,45 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2.2;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"FBLPromises\"",
+					"-framework",
+					"\"FirebaseAnalytics\"",
+					"-framework",
+					"\"FirebaseCore\"",
+					"-framework",
+					"\"FirebaseCoreDiagnostics\"",
+					"-framework",
+					"\"FirebaseCrashlytics\"",
+					"-framework",
+					"\"FirebaseInstallations\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"GoogleAppMeasurement\"",
+					"-framework",
+					"\"GoogleDataTransport\"",
+					"-framework",
+					"\"GoogleUtilities\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"StoreKit\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"nanopb\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = SoccerInfoDistribution;
@@ -1038,11 +1139,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8928DB71279142BE00624D88 /* Build configuration list for PBXNativeTarget "SoccerInfoTests" */ = {
+		8903824627DCEC4300C9E274 /* Build configuration list for PBXNativeTarget "SoccerInfoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8928DB6F279142BE00624D88 /* Debug */,
-				8928DB70279142BE00624D88 /* Release */,
+				8903824727DCEC4300C9E274 /* Debug */,
+				8903824827DCEC4300C9E274 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1092,6 +1193,22 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		8989C7AF27DCF30900068308 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		8989C7BA27DCF3B300068308 /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactorKit/ReactorKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 		89B405C9276AB364004EDB25 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1106,22 +1223,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 15.0.0;
-			};
-		};
-		89D3EC6D27D3A54D009494DA /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactorKit/ReactorKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.0;
-			};
-		};
-		89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
 			};
 		};
 		89D3EC7927D3A57F009494DA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -1179,6 +1280,36 @@
 			package = 891CDA972760AD4400556629 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
+		8989C7B027DCF30900068308 /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8989C7AF27DCF30900068308 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		8989C7B227DCF30900068308 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8989C7AF27DCF30900068308 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		8989C7B427DCF30900068308 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8989C7AF27DCF30900068308 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		8989C7B627DCF30900068308 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8989C7AF27DCF30900068308 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		8989C7B827DCF30900068308 /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8989C7AF27DCF30900068308 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		8989C7BB27DCF3B300068308 /* ReactorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8989C7BA27DCF3B300068308 /* XCRemoteSwiftPackageReference "ReactorKit" */;
+			productName = ReactorKit;
+		};
 		89B405CA276AB364004EDB25 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 89B405C9276AB364004EDB25 /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -1188,31 +1319,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 89D3EC6A27D3A52E009494DA /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = Moya;
-		};
-		89D3EC6E27D3A54D009494DA /* ReactorKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89D3EC6D27D3A54D009494DA /* XCRemoteSwiftPackageReference "ReactorKit" */;
-			productName = ReactorKit;
-		};
-		89D3EC7127D3A562009494DA /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		89D3EC7327D3A562009494DA /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
-		};
-		89D3EC7527D3A562009494DA /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
-		};
-		89D3EC7727D3A562009494DA /* RxTest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxTest;
 		};
 		89D3EC7A27D3A57F009494DA /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
