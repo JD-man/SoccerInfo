@@ -283,6 +283,8 @@
 		894BF768274250B600E71C09 /* SoccerInfo */ = {
 			isa = PBXGroup;
 			children = (
+				EF2C4DAE28B1310D0038A74E /* App */,
+				896833032759241D00D97FEC /* Localization */,
 				895F7D60274E9B1900C6A0C0 /* Managers */,
 				89DB128C274BDFD1009E8888 /* Enums */,
 				8913C82F274BB8A2000CCC44 /* Extensions */,
@@ -341,9 +343,6 @@
 		89740BF627464A370033AD2C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				896833032759241D00D97FEC /* Localization */,
-				894BF769274250B600E71C09 /* AppDelegate.swift */,
-				894BF76B274250B600E71C09 /* SceneDelegate.swift */,
 				894BF772274250B700E71C09 /* Assets.xcassets */,
 				894BF774274250B700E71C09 /* LaunchScreen.storyboard */,
 			);
@@ -514,6 +513,15 @@
 				9DB97FBB16703137CF727FD5 /* Pods-SoccerInfo.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EF2C4DAE28B1310D0038A74E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				894BF769274250B600E71C09 /* AppDelegate.swift */,
+				894BF76B274250B600E71C09 /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
