@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 import SideMenu
 import SwiftUI
+import SnapKit
 
 class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
@@ -28,6 +29,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
+        constraintsConfig()
         sideButtonConfig()
         league = PublicPropertyManager.shared.league
     }
@@ -47,6 +49,8 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         
         navAppearenceConfig()
     }
+    
+    func constraintsConfig() { }
     
     func sideButtonConfig() {
         let sideButton = UIBarButtonItem(title: "Premier League",
