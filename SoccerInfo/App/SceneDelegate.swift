@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -17,18 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        
-        // Appearance Configure
-        UIBarButtonItem.appearance().tintColor = .label
-        UITableViewCell.appearance().selectionStyle = .none
-        UITableView.appearance().showsVerticalScrollIndicator = false
-        UITableView.appearance().showsHorizontalScrollIndicator = false
-        UIBarButtonItem.appearance().tintColor = .white
-        
-        
-        print("SceneDelegate end")
+        tableViewConfig()
+        barButtonItemConfig()
+        tabbarControllerConfig()
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -56,7 +49,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+}
 
-
+// Appearance Configure
+extension SceneDelegate {
+    private func tabbarControllerConfig() {
+        if #available(iOS 15.0, *) {
+            let tabbarAppearance = UITabBarAppearance()
+            tabbarAppearance.configureWithOpaqueBackground()
+            tabbarAppearance.backgroundColor = .black
+            
+            UITabBar.appearance().tintColor = .white
+            UITabBar.appearance().standardAppearance = tabbarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = tabbarAppearance
+        }
+        else {
+            UITabBar.appearance().tintColor = .white
+            UITabBar.appearance().barTintColor = .black
+        }
+    }
+    
+    private func barButtonItemConfig() {
+        UIBarButtonItem.appearance().tintColor = .label
+        UIBarButtonItem.appearance().tintColor = .white
+    }
+    
+    private func tableViewConfig() {
+        UITableViewCell.appearance().selectionStyle = .none
+        UITableView.appearance().showsVerticalScrollIndicator = false
+        UITableView.appearance().showsHorizontalScrollIndicator = false
+    }
 }
 
