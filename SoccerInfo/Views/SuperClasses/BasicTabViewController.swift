@@ -13,7 +13,7 @@ import SwiftUI
 class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
     var data: [T] = []
-    var season: Int = 2021
+    var season: Int = PublicPropertyManager.shared.season
     var gradient = CAGradientLayer()
     var activityView = UIActivityIndicatorView()
     
