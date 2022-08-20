@@ -37,9 +37,6 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     func viewConfig() {
         changeBackgroundColor()
         
-        // activity view config
-        activityView = activityIndicator()
-        
         // gradient config
         gradient.frame = view.bounds
         gradient.startPoint = CGPoint(x: 0.5, y: 0.7)
@@ -48,6 +45,11 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         view.layer.insertSublayer(gradient, at: 0)
         
         navAppearenceConfig()
+    }
+    
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { view.addSubview($0) }        
+        activityView = activityIndicator()
     }
     
     func constraintsConfig() { }
