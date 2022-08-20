@@ -68,7 +68,6 @@
 		89D3EC7227D3A562009494DA /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7127D3A562009494DA /* RxCocoa */; };
 		89D3EC7427D3A562009494DA /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7327D3A562009494DA /* RxRelay */; };
 		89D3EC7627D3A562009494DA /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7527D3A562009494DA /* RxSwift */; };
-		89D3EC7827D3A562009494DA /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7727D3A562009494DA /* RxTest */; };
 		89D3EC7B27D3A57F009494DA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7A27D3A57F009494DA /* SnapKit */; };
 		89D3EC7E27D3A5B6009494DA /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7D27D3A5B6009494DA /* RxDataSources */; };
 		89D3EC8127D3A5DB009494DA /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC8027D3A5DB009494DA /* RxGesture */; };
@@ -85,6 +84,7 @@
 		89E8C28A275BC6B10031982E /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C289275BC6B10031982E /* Calendar+Extension.swift */; };
 		89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */; };
 		89E8C290275BE26A0031982E /* FormationSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */; };
+		EFF7697328B1143900C41AB8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF7697128B1113500C41AB8 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +166,7 @@
 		89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationSectionFooterView.xib; sourceTree = "<group>"; };
 		89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationSectionFooterView.swift; sourceTree = "<group>"; };
 		B9AB4EA7F43AD5976ED25633 /* Pods-SoccerInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.debug.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.debug.xcconfig"; sourceTree = "<group>"; };
+		EFF7697128B1113500C41AB8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF7697328B1143900C41AB8 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +182,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89D3EC7827D3A562009494DA /* RxTest in Frameworks */,
 				891CDA992760AD4400556629 /* Kingfisher in Frameworks */,
 				89D3EC8127D3A5DB009494DA /* RxGesture in Frameworks */,
 				89B405CB276AB364004EDB25 /* Alamofire in Frameworks */,
@@ -502,6 +503,7 @@
 		BF104418F6FE07E4AEAACFCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EFF7697128B1113500C41AB8 /* XCTest.framework */,
 				05E0669876991859264ABC16 /* Pods_SoccerInfo.framework */,
 			);
 			name = Frameworks;
@@ -565,7 +567,6 @@
 				89D3EC7127D3A562009494DA /* RxCocoa */,
 				89D3EC7327D3A562009494DA /* RxRelay */,
 				89D3EC7527D3A562009494DA /* RxSwift */,
-				89D3EC7727D3A562009494DA /* RxTest */,
 				89D3EC7A27D3A57F009494DA /* SnapKit */,
 				89D3EC7D27D3A5B6009494DA /* RxDataSources */,
 				89D3EC8027D3A5DB009494DA /* RxGesture */,
@@ -1208,11 +1209,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
-		};
-		89D3EC7727D3A562009494DA /* RxTest */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 89D3EC7027D3A562009494DA /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxTest;
 		};
 		89D3EC7A27D3A57F009494DA /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
