@@ -29,8 +29,10 @@ extension String {
     
     // for news search
     var removeSearchTag: String {
-        return self.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
-            .replacingOccurrences(of: "&quot", with: "").replacingOccurrences(of: ";", with: "")
+        var removed = self
+        let replaceds = ["<b>", "</b>", "&quot", ";", "&apos"]
+        replaceds.forEach { removed = removed.replacingOccurrences(of: $0, with: "") }
+        return removed
     }
     
     // for Removing " " of team name
