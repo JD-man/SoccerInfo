@@ -85,7 +85,7 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
         schedulesTableView.dataSource = self
         schedulesTableView.backgroundColor = .clear
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
-        view.addSubview(schedulesTableView)
+        addSubviews(schedulesTableView)
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self,
