@@ -16,10 +16,12 @@ final class MainTabBarController: UITabBarController {
     }
     
     private func viewConfig() {
-        let viewControllers = TabbarItem.allCases.map { item -> UIViewController in
+        let viewControllers = TabbarItem.allCases.map { item -> UINavigationController in
             let vc = item.viewController
-            vc.tabBarItem.image = UIImage(systemName: item.tabbarImageName)
-            return vc
+            vc.navigationItem.title = item.navigtaionItemTitle
+            let nav = UINavigationController(rootViewController: vc)
+            nav.tabBarItem.image = UIImage(systemName: item.tabbarImageName)
+            return nav
         }
         setViewControllers(viewControllers, animated: false)
     }
@@ -56,6 +58,19 @@ extension MainTabBarController {
                 return "list.number"
             case .news:
                 return "newspaper"
+            }
+        }
+        
+        var navigtaionItemTitle: String {
+            switch self {
+            case .fixtures:
+                return "경기일정"
+            case .teamSchedules:
+                return "팀별일정"
+            case .standings:
+                return "순위"
+            case .news:
+                return "뉴스"
             }
         }
     }
