@@ -29,6 +29,7 @@ final class FixturesTableViewCell: UITableViewCell {
         let label = UILabel()
         label.isHidden = true
         label.textColor = .white
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 13, weight: .medium)
         return label
     }()
@@ -45,12 +46,17 @@ final class FixturesTableViewCell: UITableViewCell {
         label.textAlignment = .center
         label.textColor = .systemGray2
         label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.text = "경기가 없습니다!"
         return label
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         viewConfig()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func viewConfig() {
@@ -66,7 +72,7 @@ final class FixturesTableViewCell: UITableViewCell {
         }
         
         timeLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.center.equalToSuperview()
         }
         
         homeNameLabel.snp.makeConstraints { make in
