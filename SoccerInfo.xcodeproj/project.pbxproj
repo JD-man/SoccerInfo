@@ -75,6 +75,7 @@
 		BD4DBF54ABCA29BEF6130CE1 /* Pods_SoccerInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F89988193D5B07FB052B364 /* Pods_SoccerInfo.framework */; };
 		EF2C4DAB28B12B160038A74E /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B027DCF30900068308 /* RxBlocking */; };
 		EF2C4DAD28B12B830038A74E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EF2C4DAC28B12B830038A74E /* Alamofire */; };
+		EFE2E84928B2775700DC99B1 /* MatchDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE2E84828B2775700DC99B1 /* MatchDetailTableHeaderView.swift */; };
 		EFF7697328B1143900C41AB8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF7697128B1113500C41AB8 /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -149,6 +150,7 @@
 		89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationSectionFooterView.swift; sourceTree = "<group>"; };
 		9DB97FBB16703137CF727FD5 /* Pods-SoccerInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.release.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.release.xcconfig"; sourceTree = "<group>"; };
 		D038C0E2148E73F139127CBD /* Pods-SoccerInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.debug.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.debug.xcconfig"; sourceTree = "<group>"; };
+		EFE2E84828B2775700DC99B1 /* MatchDetailTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailTableHeaderView.swift; sourceTree = "<group>"; };
 		EFF7697128B1113500C41AB8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
@@ -378,6 +380,7 @@
 				89E75302275227EA0019F62F /* LineupsTableViewCell.swift */,
 				8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */,
 				89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */,
+				EFE2E84828B2775700DC99B1 /* MatchDetailTableHeaderView.swift */,
 			);
 			path = MatchDetail;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */,
 				8990E775275B5CB70025CE05 /* FormationTableViewCell.swift in Sources */,
 				893D1433274E017000B9AAA0 /* FixturesTableViewCell.swift in Sources */,
+				EFE2E84928B2775700DC99B1 /* MatchDetailTableHeaderView.swift in Sources */,
 				898A63E0274687450023426A /* StandingsModel.swift in Sources */,
 				894BF76C274250B600E71C09 /* SceneDelegate.swift in Sources */,
 				89740C0627464B880033AD2C /* NewsViewController.swift in Sources */,
