@@ -60,3 +60,22 @@ class TeamSchedulesTableViewCell: UITableViewCell {
         resultLabel.text = ""
     }
 }
+
+extension TeamSchedulesTableViewCell {
+    private final class TeamSchedulesLabel: UILabel {
+        convenience init(fontSize: CGFloat,
+                         fontWeight: UIFont.Weight,
+                         alignment: NSTextAlignment) {
+            self.init(frame: .zero)
+            viewConfig(fontSize: fontSize, fontWeight: fontWeight, alignment: alignment)
+        }
+        
+        private func viewConfig(fontSize: CGFloat,
+                                fontWeight: UIFont.Weight,
+                                alignment: NSTextAlignment) {
+            textColor = .white
+            textAlignment = alignment
+            font = .systemFont(ofSize: fontSize, weight: fontWeight)
+        }
+    }
+}
