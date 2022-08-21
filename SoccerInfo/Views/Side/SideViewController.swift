@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUI
+import SnapKit
 
 final class SideViewController: UIViewController {
     
@@ -37,7 +37,14 @@ final class SideViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var sideTableView: UITableView!
+    private let sideTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.register(SideTableViewCell.self,
+                           forCellReuseIdentifier: SideTableViewCell.identifier)
+        tableView.backgroundColor = .clear
+        return tableView
+    }()
     
     var selectedLeague: League = .premierLeague
     let contents = SideSection.allCases.map { $0.contents }
@@ -46,21 +53,32 @@ final class SideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         viewConfig()
+        navConfig()
+        constraintsConfig()
     }
     
-    func viewConfig() {
+    private func viewConfig() {
         sideTableView.delegate = self
         sideTableView.dataSource = self
         sideTableView.backgroundColor = .clear
         view.backgroundColor = selectedLeague.colors[0]
-        
+        view.addSubview(sideTableView)
+    }
+    
+    private func constraintsConfig() {
+        sideTableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    private func navConfig() {
         let appearnce = UINavigationBarAppearance()
         appearnce.configureWithOpaqueBackground()
         appearnce.backgroundColor = selectedLeague.colors[0]
-        
         navigationController?.navigationBar.standardAppearance = appearnce
         navigationController?.navigationBar.scrollEdgeAppearance = appearnce
-    }    
+    }
 }
 
 extension SideViewController: UITableViewDelegate, UITableViewDataSource {
@@ -91,9 +109,8 @@ extension SideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SideTableViewCell.identifier,
                                                  for: indexPath) as! SideTableViewCell
-        cell.backgroundColor = selectedLeague.colors[2]
-        cell.leagueNameLabel.textColor = .white
-        cell.leagueNameLabel.text = contents[indexPath.section][indexPath.row]
+        let leagueName = contents[indexPath.section][indexPath.row]
+        cell.configure(with: leagueName)
         return cell
     }
     

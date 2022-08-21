@@ -70,8 +70,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     }
     
     @objc func sideButtonClicked() {
-        let storyboard = UIStoryboard(name: "Side", bundle: nil)
-        let sideVC = storyboard.instantiateViewController(withIdentifier: "SideViewController") as! SideViewController
+        let sideVC = SideViewController()
         
         sideVC.selectedLeague = League(rawValue: navigationItem.leftBarButtonItem!.title!)!
         let sideNav = SideMenuNavigationController(rootViewController: sideVC)
@@ -113,7 +112,6 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
             league = sideVC.selectedLeague
             navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue            
         }
-        print(#function)
     }
     
     // abstract method for fetching data
