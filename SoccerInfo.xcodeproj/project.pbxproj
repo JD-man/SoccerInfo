@@ -14,7 +14,6 @@
 		89123EC42752091D00DB0077 /* MatchDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EC32752091D00DB0077 /* MatchDetailModel.swift */; };
 		891345DD274A790E00FACD61 /* APIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891345DC274A790E00FACD61 /* APIComponents.swift */; };
 		8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */; };
-		8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */; };
 		8913C829274B57E0000CCC44 /* StandingSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */; };
 		8913C831274BB8B8000CCC44 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */; };
 		891794432765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891794412765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift */; };
@@ -29,7 +28,6 @@
 		89281D1A274D3C77001FB81D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89281D19274D3C77001FB81D /* Date+Extension.swift */; };
 		892DEEA027562CAF0077D887 /* UserNotificationCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */; };
 		893C6E79274CB11100210ED1 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E78274CB11100210ED1 /* SideViewController.swift */; };
-		893C6E7B274CB1C500210ED1 /* Side.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 893C6E7A274CB1C500210ED1 /* Side.storyboard */; };
 		893C6E7D274CBED900210ED1 /* SideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E7C274CBED900210ED1 /* SideTableViewCell.swift */; };
 		893C6E82274CD21500210ED1 /* BasicTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E81274CD21500210ED1 /* BasicTabViewController.swift */; };
 		893C6E84274CE7FA00210ED1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893C6E83274CE7FA00210ED1 /* String+Extension.swift */; };
@@ -45,14 +43,9 @@
 		89740C0427464B7F0033AD2C /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0327464B7F0033AD2C /* StandingsViewController.swift */; };
 		89740C0627464B880033AD2C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0527464B880033AD2C /* NewsViewController.swift */; };
 		89740C0A27464BE30033AD2C /* SquadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89740C0927464BE30033AD2C /* SquadsViewController.swift */; };
-		89740C0C27464BF20033AD2C /* Fixtures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C0B27464BF20033AD2C /* Fixtures.storyboard */; };
-		89740C1027464D140033AD2C /* Standings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C0F27464D140033AD2C /* Standings.storyboard */; };
 		89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1127464D3C0033AD2C /* Squads.storyboard */; };
-		89740C1427464D430033AD2C /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89740C1327464D430033AD2C /* News.storyboard */; };
 		897483922791AE2000636E8E /* TeamSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897483912791AE2000636E8E /* TeamSchedulesViewController.swift */; };
-		897483942791AE3200636E8E /* TeamSchedules.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897483932791AE3200636E8E /* TeamSchedules.storyboard */; };
 		897483972791C37D00636E8E /* TeamSchedulesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897483952791C37D00636E8E /* TeamSchedulesTableViewCell.swift */; };
-		897483982791C37D00636E8E /* TeamSchedulesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 897483962791C37D00636E8E /* TeamSchedulesTableViewCell.xib */; };
 		8989C7B327DCF30900068308 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B227DCF30900068308 /* RxCocoa */; };
 		8989C7B527DCF30900068308 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B427DCF30900068308 /* RxRelay */; };
 		8989C7B727DCF30900068308 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B627DCF30900068308 /* RxSwift */; };
@@ -105,7 +98,6 @@
 		89123EC32752091D00DB0077 /* MatchDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailModel.swift; sourceTree = "<group>"; };
 		891345DC274A790E00FACD61 /* APIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIComponents.swift; sourceTree = "<group>"; };
 		8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsTableViewCell.swift; sourceTree = "<group>"; };
-		8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StandingSectionHeaderView.xib; sourceTree = "<group>"; };
 		8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingSectionHeaderView.swift; sourceTree = "<group>"; };
 		8913C830274BB8B8000CCC44 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		891794412765A4F8004C02C4 /* CurrentMatchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentMatchCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -116,7 +108,6 @@
 		89281D19274D3C77001FB81D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		892DEE9F27562CAF0077D887 /* UserNotificationCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterManager.swift; sourceTree = "<group>"; };
 		893C6E78274CB11100210ED1 /* SideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
-		893C6E7A274CB1C500210ED1 /* Side.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Side.storyboard; sourceTree = "<group>"; };
 		893C6E7C274CBED900210ED1 /* SideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideTableViewCell.swift; sourceTree = "<group>"; };
 		893C6E81274CD21500210ED1 /* BasicTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTabViewController.swift; sourceTree = "<group>"; };
 		893C6E83274CE7FA00210ED1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -134,14 +125,9 @@
 		89740C0327464B7F0033AD2C /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
 		89740C0527464B880033AD2C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		89740C0927464BE30033AD2C /* SquadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquadsViewController.swift; sourceTree = "<group>"; };
-		89740C0B27464BF20033AD2C /* Fixtures.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Fixtures.storyboard; sourceTree = "<group>"; };
-		89740C0F27464D140033AD2C /* Standings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Standings.storyboard; sourceTree = "<group>"; };
 		89740C1127464D3C0033AD2C /* Squads.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Squads.storyboard; sourceTree = "<group>"; };
-		89740C1327464D430033AD2C /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		897483912791AE2000636E8E /* TeamSchedulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSchedulesViewController.swift; sourceTree = "<group>"; };
-		897483932791AE3200636E8E /* TeamSchedules.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamSchedules.storyboard; sourceTree = "<group>"; };
 		897483952791C37D00636E8E /* TeamSchedulesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSchedulesTableViewCell.swift; sourceTree = "<group>"; };
-		897483962791C37D00636E8E /* TeamSchedulesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSchedulesTableViewCell.xib; sourceTree = "<group>"; };
 		898A63DF274687450023426A /* StandingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsModel.swift; sourceTree = "<group>"; };
 		898A63E5274690CE0023426A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		899000802753C86C00A4812A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -207,15 +193,6 @@
 			path = SoccerInfoTests;
 			sourceTree = "<group>";
 		};
-		8913C82A274B5CF0000CCC44 /* Storyboard */ = {
-			isa = PBXGroup;
-			children = (
-				89740C0F27464D140033AD2C /* Standings.storyboard */,
-				8913C826274B57BF000CCC44 /* StandingSectionHeaderView.xib */,
-			);
-			path = Storyboard;
-			sourceTree = "<group>";
-		};
 		8913C82F274BB8A2000CCC44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				893C6E78274CB11100210ED1 /* SideViewController.swift */,
-				893C6E7A274CB1C500210ED1 /* Side.storyboard */,
 				893C6E7C274CBED900210ED1 /* SideTableViewCell.swift */,
 			);
 			path = Side;
@@ -376,7 +352,6 @@
 		89740BFA27464AA70033AD2C /* News */ = {
 			isa = PBXGroup;
 			children = (
-				89B3293A2750E48F0043632E /* Storyboards */,
 				89740C0527464B880033AD2C /* NewsViewController.swift */,
 				89E2C463274FC9AE00C73BC4 /* NewsTableViewCell.swift */,
 			);
@@ -386,7 +361,6 @@
 		89740BFB27464AE30033AD2C /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				89C843C02757E2A7000AC2FE /* Storyboards */,
 				89740BFD27464B510033AD2C /* FixturesViewController.swift */,
 				893D1432274E017000B9AAA0 /* FixturesTableViewCell.swift */,
 				89C843C12757E2D5000AC2FE /* ManualViewController.swift */,
@@ -422,7 +396,6 @@
 		89740C0827464BD40033AD2C /* Standings */ = {
 			isa = PBXGroup;
 			children = (
-				8913C82A274B5CF0000CCC44 /* Storyboard */,
 				89740C0327464B7F0033AD2C /* StandingsViewController.swift */,
 				8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */,
 				8913C828274B57E0000CCC44 /* StandingSectionHeaderView.swift */,
@@ -433,36 +406,10 @@
 		8974838F2791ADEE00636E8E /* TeamSchedules */ = {
 			isa = PBXGroup;
 			children = (
-				897483902791AE0100636E8E /* Storyboards */,
 				897483912791AE2000636E8E /* TeamSchedulesViewController.swift */,
 				897483952791C37D00636E8E /* TeamSchedulesTableViewCell.swift */,
 			);
 			path = TeamSchedules;
-			sourceTree = "<group>";
-		};
-		897483902791AE0100636E8E /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				897483932791AE3200636E8E /* TeamSchedules.storyboard */,
-				897483962791C37D00636E8E /* TeamSchedulesTableViewCell.xib */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		89B3293A2750E48F0043632E /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				89740C1327464D430033AD2C /* News.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		89C843C02757E2A7000AC2FE /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				89740C0B27464BF20033AD2C /* Fixtures.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		89DB128C274BDFD1009E8888 /* Enums */ = {
@@ -642,23 +589,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89740C1027464D140033AD2C /* Standings.storyboard in Resources */,
 				89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */,
 				891794442765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib in Resources */,
-				897483942791AE3200636E8E /* TeamSchedules.storyboard in Resources */,
 				891CDA8A2760A0AA00556629 /* GoogleService-Info.plist in Resources */,
-				8913C827274B57BF000CCC44 /* StandingSectionHeaderView.xib in Resources */,
 				89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */,
 				894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */,
 				89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */,
 				8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */,
 				894BF773274250B700E71C09 /* Assets.xcassets in Resources */,
-				897483982791C37D00636E8E /* TeamSchedulesTableViewCell.xib in Resources */,
-				89740C1427464D430033AD2C /* News.storyboard in Resources */,
 				89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */,
 				89E752FF275227CE0019F62F /* EventsTableViewCell.xib in Resources */,
-				893C6E7B274CB1C500210ED1 /* Side.storyboard in Resources */,
-				89740C0C27464BF20033AD2C /* Fixtures.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
