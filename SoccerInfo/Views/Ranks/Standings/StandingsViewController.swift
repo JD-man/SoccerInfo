@@ -115,15 +115,7 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {        
-        let nib = UINib(nibName: StandingSectionHeaderView.identifier, bundle: nil)
-        let headerView = nib.instantiate(withOwner: self, options: nil).first as! StandingSectionHeaderView
-        
-        headerView.backgroundColor = league.colors[2]
-        
-        // headerview corner config
-        headerView.layer.cornerRadius = 20
-        headerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        return headerView
+        return StandingSectionHeaderView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
