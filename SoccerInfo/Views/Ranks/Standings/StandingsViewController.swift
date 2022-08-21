@@ -13,7 +13,14 @@ final class StandingsViewController: BasicTabViewController<StandingsRealmData> 
 
     typealias standingObject = Result<StandingsTable, RealmErrorType>
     typealias standingResponses = Result<StandingAPIData, APIErrorType>
-    @IBOutlet weak var standingsTableView: UITableView!
+    
+    private let standingsTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.separatorStyle = .none
+        tableView.register(StandingsTableViewCell.self,
+                           forCellReuseIdentifier: StandingsTableViewCell.identifier)
+        return tableView
+    }()
     
     override var data: [StandingsRealmData] {
         didSet {
