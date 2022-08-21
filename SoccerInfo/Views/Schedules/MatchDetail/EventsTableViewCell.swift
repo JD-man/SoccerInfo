@@ -106,7 +106,9 @@ final class EventsTableViewCell: UITableViewCell {
         homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
         awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
     }
-    
+}
+
+extension EventsTableViewCell {
     enum EventsDetail: String {
         case normalGoal = "Normal Goal"
         case ownGoal = "Own Goal"
