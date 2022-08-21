@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUI
+import SnapKit
 
 final class SideViewController: UIViewController {
     
@@ -37,7 +37,14 @@ final class SideViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var sideTableView: UITableView!
+    private let sideTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .none
+        tableView.register(SideTableViewCell.self,
+                           forCellReuseIdentifier: SideTableViewCell.identifier)
+        tableView.backgroundColor = .clear
+        return tableView
+    }()
     
     var selectedLeague: League = .premierLeague
     let contents = SideSection.allCases.map { $0.contents }
