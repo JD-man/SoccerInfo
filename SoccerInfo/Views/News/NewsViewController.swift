@@ -35,6 +35,14 @@ final class NewsViewController: BasicTabViewController<NewsData> {
         newsTableView.dataSource = self
         newsTableView.backgroundColor = .clear
         newsTableView.separatorInset.left = newsTableView.separatorInset.right
+        addSubviews(newsTableView)
+    }
+    
+    override func constraintsConfig() {
+        super.constraintsConfig()
+        newsTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     override func fetchData() {
