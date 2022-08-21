@@ -53,21 +53,32 @@ final class SideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         viewConfig()
+        navConfig()
+        constraintsConfig()
     }
     
-    func viewConfig() {
+    private func viewConfig() {
         sideTableView.delegate = self
         sideTableView.dataSource = self
         sideTableView.backgroundColor = .clear
         view.backgroundColor = selectedLeague.colors[0]
-        
+        view.addSubview(sideTableView)
+    }
+    
+    private func constraintsConfig() {
+        sideTableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    private func navConfig() {
         let appearnce = UINavigationBarAppearance()
         appearnce.configureWithOpaqueBackground()
         appearnce.backgroundColor = selectedLeague.colors[0]
-        
         navigationController?.navigationBar.standardAppearance = appearnce
         navigationController?.navigationBar.scrollEdgeAppearance = appearnce
-    }    
+    }
 }
 
 extension SideViewController: UITableViewDelegate, UITableViewDataSource {
