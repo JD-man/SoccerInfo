@@ -12,9 +12,10 @@ final class NewsViewController: BasicTabViewController<NewsData> {
     typealias SearchResponse = Result<NewsResponse, APIErrorType>
     
     private var newsTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.separatorStyle = .none
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
+        tableView.rowHeight = 175
         return tableView
     }()
     
