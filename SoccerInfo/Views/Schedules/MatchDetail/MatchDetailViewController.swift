@@ -19,7 +19,6 @@ final class MatchDetailViewController: UIViewController {
     typealias MatchDetailObject = Result<MatchDetailTable, RealmErrorType>
     
     var fixtureID = 0
-    
     var homeScore = 0
     var awayScore = 0
     var homeTeamName = ""
@@ -27,7 +26,7 @@ final class MatchDetailViewController: UIViewController {
     
     private var maxSubsCount = 0
     private var season = PublicPropertyManager.shared.season
-    private var league: League = PublicPropertyManager.shared.league
+    private var league = PublicPropertyManager.shared.league
         
     var data: [MatchDetailRealmData] = [MatchDetailRealmData.initialValue] {
         didSet {
