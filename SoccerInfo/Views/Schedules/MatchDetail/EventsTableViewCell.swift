@@ -6,45 +6,98 @@
 //
 
 import UIKit
+import SnapKit
 
 final class EventsTableViewCell: UITableViewCell {
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var homeDetailLabel: UILabel!
-    @IBOutlet weak var awayDetailLabel: UILabel!
-    @IBOutlet weak var homePlayerNameLabel: UILabel!
-    @IBOutlet weak var awayPlayerNameLabel: UILabel!
-    @IBOutlet weak var homeEventTypeImageView: UIImageView!
-    @IBOutlet weak var awayEventTypeImageView: UIImageView!
+    private let seperatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    private let timeLabel: UILabel = {
+        let label = UILabel()
+        label.clipsToBounds = true
+        label.layer.borderWidth = 0.5
+        label.layer.borderColor = UIColor.systemGray2.cgColor
+        label.layer.cornerRadius = 15 // timeLabel width = 30
+        label.textAlignment = .center
+        label.backgroundColor = .white
+        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
+    private let homeDetailLabel = DetailLabel(alignment: .right)
+    private let homePlayerNameLabel = PlayerNameLabel(alignment: .right)
+    private lazy var homeStackView = EventStackView([homePlayerNameLabel, homeDetailLabel])
+    
+    private let awayDetailLabel = DetailLabel(alignment: .left)
+    private let awayPlayerNameLabel = PlayerNameLabel(alignment: .left)
+    private lazy var awayStackView = EventStackView([awayPlayerNameLabel, awayDetailLabel])
+    
+    private let homeEventTypeImageView = UIImageView()
+    private let awayEventTypeImageView = UIImageView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         viewConfig()
     }
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        viewConfig()
+        constraintsConfig()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func viewConfig() {
-        [timeLabel, homePlayerNameLabel, awayPlayerNameLabel, homeDetailLabel, awayDetailLabel]
-            .forEach {
-                $0?.adjustsFontSizeToFitWidth = true
-            }
-        timeLabel.clipsToBounds = true
-        timeLabel.layer.borderWidth = 0.5
-        timeLabel.layer.borderColor = UIColor.systemGray2.cgColor
-        timeLabel.layer.cornerRadius = timeLabel.frame.width / 2
-        timeLabel.font = .systemFont(ofSize: 12, weight: .semibold)
-        
-        homePlayerNameLabel.numberOfLines = 0
-        awayPlayerNameLabel.numberOfLines = 0
-        homePlayerNameLabel.textColor = .white
-        awayPlayerNameLabel.textColor = .white
-        homePlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        awayPlayerNameLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        
-        homeDetailLabel.textColor = .lightGray
-        awayDetailLabel.textColor = .lightGray
-        homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
-        awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
-        
         backgroundColor = .rgbColor(r: 11, g: 95, b: 25)
+        [seperatorView, timeLabel,
+         homeStackView, awayStackView,
+         homeEventTypeImageView, awayEventTypeImageView].forEach { contentView.addSubview($0) }
+    }
+    
+    private func constraintsConfig() {
+        seperatorView.snp.makeConstraints { make in
+            make.width.equalTo(1)
+            make.center.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.width.height.equalTo(30)
+            make.center.equalToSuperview()
+        }
+        
+        homeEventTypeImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(timeLabel).multipliedBy(0.7)
+            make.trailing.equalTo(timeLabel.snp.leading).offset(-10)
+        }
+        
+        awayEventTypeImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.width.height.equalTo(homeEventTypeImageView)
+            make.leading.equalTo(timeLabel.snp.trailing).offset(10)
+        }
+        
+        homeStackView.snp.makeConstraints { make in
+            make.height.equalTo(35)
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalTo(homeEventTypeImageView.snp.leading).offset(-10)
+        }
+        
+        awayStackView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.height.equalTo(homeStackView)
+            make.leading.equalTo(awayEventTypeImageView.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
     }
     
     func configure(with data: EventsRealmData, isHomeCell: Bool) {
@@ -106,7 +159,9 @@ final class EventsTableViewCell: UITableViewCell {
         homeDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
         awayDetailLabel.font = .systemFont(ofSize: 12, weight: .regular)
     }
-    
+}
+
+extension EventsTableViewCell {
     enum EventsDetail: String {
         case normalGoal = "Normal Goal"
         case ownGoal = "Own Goal"
@@ -145,6 +200,50 @@ final class EventsTableViewCell: UITableViewCell {
             case .goalCancelled, .penaltyConfirmed:
                 return UIImage(systemName: "arrow.triangle.2.circlepath.camera.fill")
             }
+        }
+    }
+}
+
+extension EventsTableViewCell {
+    private final class PlayerNameLabel: UILabel {
+        convenience init(alignment: NSTextAlignment) {
+            self.init(frame: .zero)
+            viewConfig(alignment: alignment)
+        }
+        
+        private func viewConfig(alignment: NSTextAlignment) {
+            numberOfLines = 0
+            textColor = .white
+            textAlignment = alignment
+            adjustsFontSizeToFitWidth = true
+            font = .systemFont(ofSize: 14, weight: .medium)
+        }
+    }
+    
+    private final class DetailLabel: UILabel {
+        convenience init(alignment: NSTextAlignment) {
+            self.init(frame: .zero)
+            viewConfig(alignment: alignment)
+        }
+        
+        private func viewConfig(alignment: NSTextAlignment) {
+            numberOfLines = 0
+            textColor = .lightGray
+            textAlignment = alignment
+            adjustsFontSizeToFitWidth = true
+            font = .systemFont(ofSize: 12, weight: .regular)
+        }
+    }
+    
+    private final class EventStackView: UIStackView {
+        convenience init(_ arrangedSubviews: [UIView]) {
+            self.init(arrangedSubviews: arrangedSubviews)
+            viewConfig()
+        }
+        
+        private func viewConfig() {
+            axis = .vertical
+            distribution = .fillEqually
         }
     }
 }
