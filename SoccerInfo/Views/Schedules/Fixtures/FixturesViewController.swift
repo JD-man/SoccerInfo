@@ -296,14 +296,13 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         
         // when match was over, push match detail VC
         if let _ = selectedContent.homeGoal {
-            let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
-            let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController            
+            let matchDetailVC = MatchDetailViewController()
             matchDetailVC.fixtureID = selectedContent.fixtureID            
             matchDetailVC.homeScore = selectedContent.homeGoal ?? 0
             matchDetailVC.awayScore = selectedContent.awayGoal ?? 0
             matchDetailVC.homeTeamName = selectedContent.homeName
             matchDetailVC.awayTeamName = selectedContent.awayName
-            navigationController?.pushViewController(matchDetailVC, animated: true)            
+            navigationController?.pushViewController(matchDetailVC, animated: true)
         }
         // when match is not started, notification add request
         else {
