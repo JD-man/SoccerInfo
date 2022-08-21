@@ -8,12 +8,18 @@
 import UIKit
 import RealmSwift
 
-class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
+final class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
     
     typealias FixturesObject = Result<FixturesTable, RealmErrorType>
     typealias FixturesResponses = Result<FixturesAPIData, APIErrorType>
     
-    @IBOutlet weak var teamSchedulesTableView: UITableView!
+    private let teamSchedulesTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.separatorStyle = .none
+        tableView.register(TeamSchedulesTableViewCell.self,
+                           forCellReuseIdentifier: TeamSchedulesTableViewCell.identifier)
+        return tableView
+    }()
     
     override var data: [FixturesRealmData] {
         didSet {
