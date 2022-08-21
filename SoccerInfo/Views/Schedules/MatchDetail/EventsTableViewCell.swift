@@ -150,3 +150,47 @@ extension EventsTableViewCell {
         }
     }
 }
+
+extension EventsTableViewCell {
+    private final class PlayerNameLabel: UILabel {
+        convenience init(alignment: NSTextAlignment) {
+            self.init(frame: .zero)
+            viewConfig(alignment: alignment)
+        }
+        
+        private func viewConfig(alignment: NSTextAlignment) {
+            numberOfLines = 0
+            textColor = .white
+            textAlignment = alignment
+            adjustsFontSizeToFitWidth = true
+            font = .systemFont(ofSize: 14, weight: .medium)
+        }
+    }
+    
+    private final class DetailLabel: UILabel {
+        convenience init(alignment: NSTextAlignment) {
+            self.init(frame: .zero)
+            viewConfig(alignment: alignment)
+        }
+        
+        private func viewConfig(alignment: NSTextAlignment) {
+            numberOfLines = 0
+            textColor = .lightGray
+            textAlignment = alignment
+            adjustsFontSizeToFitWidth = true
+            font = .systemFont(ofSize: 12, weight: .regular)
+        }
+    }
+    
+    private final class EventStackView: UIStackView {
+        convenience init(_ arrangedSubviews: [UIView]) {
+            self.init(arrangedSubviews: arrangedSubviews)
+            viewConfig()
+        }
+        
+        private func viewConfig() {
+            axis = .vertical
+            distribution = .fillEqually
+        }
+    }
+}
