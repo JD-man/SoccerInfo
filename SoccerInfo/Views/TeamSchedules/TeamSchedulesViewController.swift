@@ -8,12 +8,18 @@
 import UIKit
 import RealmSwift
 
-class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
+final class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
     
     typealias FixturesObject = Result<FixturesTable, RealmErrorType>
     typealias FixturesResponses = Result<FixturesAPIData, APIErrorType>
     
-    @IBOutlet weak var teamSchedulesTableView: UITableView!
+    private let teamSchedulesTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.separatorStyle = .none
+        tableView.register(TeamSchedulesTableViewCell.self,
+                           forCellReuseIdentifier: TeamSchedulesTableViewCell.identifier)
+        return tableView
+    }()
     
     override var data: [FixturesRealmData] {
         didSet {
@@ -56,12 +62,17 @@ class TeamSchedulesViewController: BasicTabViewController<FixturesRealmData> {
     
     override func viewConfig() {
         super.viewConfig()
-        let cellNib = UINib(nibName: "TeamSchedulesTableViewCell", bundle: nil)
-        teamSchedulesTableView.register(cellNib, forCellReuseIdentifier: TeamSchedulesTableViewCell.identifier)
-        
         teamSchedulesTableView.delegate = self
         teamSchedulesTableView.dataSource = self
         teamSchedulesTableView.backgroundColor = .clear
+        addSubviews(teamSchedulesTableView)
+    }
+    
+    override func constraintsConfig() {
+        super.constraintsConfig()
+        teamSchedulesTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     // MARK: - Fetch Data
