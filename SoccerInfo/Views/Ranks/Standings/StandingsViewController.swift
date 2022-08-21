@@ -36,8 +36,16 @@ final class StandingsViewController: BasicTabViewController<StandingsRealmData> 
         standingsTableView.separatorStyle = .none
         standingsTableView.backgroundColor = .clear
         standingsTableView.layer.borderColor = UIColor.label.cgColor
+        addSubviews(standingsTableView)
         
         view.backgroundColor = .secondarySystemGroupedBackground
+    }
+    
+    override func constraintsConfig() {
+        super.constraintsConfig()
+        standingsTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     override func fetchData() {        
