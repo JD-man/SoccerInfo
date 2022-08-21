@@ -62,12 +62,17 @@ final class TeamSchedulesViewController: BasicTabViewController<FixturesRealmDat
     
     override func viewConfig() {
         super.viewConfig()
-        let cellNib = UINib(nibName: "TeamSchedulesTableViewCell", bundle: nil)
-        teamSchedulesTableView.register(cellNib, forCellReuseIdentifier: TeamSchedulesTableViewCell.identifier)
-        
         teamSchedulesTableView.delegate = self
         teamSchedulesTableView.dataSource = self
         teamSchedulesTableView.backgroundColor = .clear
+        addSubviews(teamSchedulesTableView)
+    }
+    
+    override func constraintsConfig() {
+        super.constraintsConfig()
+        teamSchedulesTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     // MARK: - Fetch Data
