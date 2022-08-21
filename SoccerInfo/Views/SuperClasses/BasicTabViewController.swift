@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 import SideMenu
 import SwiftUI
+import SnapKit
 
 class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigationControllerDelegate, SideMenuNavigationControllerDelegate {
     
@@ -28,15 +29,13 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
+        constraintsConfig()
         sideButtonConfig()
         league = PublicPropertyManager.shared.league
     }
     
     func viewConfig() {
         changeBackgroundColor()
-        
-        // activity view config
-        activityView = activityIndicator()
         
         // gradient config
         gradient.frame = view.bounds
@@ -47,6 +46,13 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
         
         navAppearenceConfig()
     }
+    
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { view.addSubview($0) }        
+        activityView = activityIndicator()
+    }
+    
+    func constraintsConfig() { }
     
     func sideButtonConfig() {
         let sideButton = UIBarButtonItem(title: "Premier League",
@@ -64,8 +70,7 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
     }
     
     @objc func sideButtonClicked() {
-        let storyboard = UIStoryboard(name: "Side", bundle: nil)
-        let sideVC = storyboard.instantiateViewController(withIdentifier: "SideViewController") as! SideViewController
+        let sideVC = SideViewController()
         
         sideVC.selectedLeague = League(rawValue: navigationItem.leftBarButtonItem!.title!)!
         let sideNav = SideMenuNavigationController(rootViewController: sideVC)
@@ -107,7 +112,6 @@ class BasicTabViewController<T: BasicTabViewData>: UIViewController, UINavigatio
             league = sideVC.selectedLeague
             navigationItem.leftBarButtonItem?.title = sideVC.selectedLeague.rawValue            
         }
-        print(#function)
     }
     
     // abstract method for fetching data

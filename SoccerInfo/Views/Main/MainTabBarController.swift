@@ -12,22 +12,66 @@ final class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewConfig()        
+        viewConfig()
     }
     
     private func viewConfig() {
-        if #available(iOS 15.0, *) {
-            let tabbarAppearance = UITabBarAppearance()
-            tabbarAppearance.configureWithOpaqueBackground()
-            tabbarAppearance.backgroundColor = .black
-            
-            UITabBar.appearance().tintColor = .white
-            UITabBar.appearance().standardAppearance = tabbarAppearance
-            UITabBar.appearance().scrollEdgeAppearance = tabbarAppearance            
+        let viewControllers = TabbarItem.allCases.map { item -> UINavigationController in
+            let vc = item.viewController
+            vc.navigationItem.title = item.navigtaionItemTitle
+            let nav = UINavigationController(rootViewController: vc)
+            nav.tabBarItem.image = UIImage(systemName: item.tabbarImageName)
+            return nav
         }
-        else {
-            UITabBar.appearance().tintColor = .white
-            UITabBar.appearance().barTintColor = .black
+        setViewControllers(viewControllers, animated: false)
+    }
+}
+
+extension MainTabBarController {
+    
+    enum TabbarItem: CaseIterable {
+        case fixtures
+        case teamSchedules
+        case standings
+        case news
+        
+        var viewController: UIViewController {
+            switch self {
+            case .fixtures:
+                return FixturesViewController()
+            case .teamSchedules:
+                return TeamSchedulesViewController()
+            case .standings:
+                return StandingsViewController()
+            case .news:
+                return NewsViewController()
+            }
+        }
+        
+        var tabbarImageName: String {
+            switch self {
+            case .fixtures:
+                return "calendar"
+            case .teamSchedules:
+                return "puzzlepiece"
+            case .standings:
+                return "list.number"
+            case .news:
+                return "newspaper"
+            }
+        }
+        
+        var navigtaionItemTitle: String {
+            switch self {
+            case .fixtures:
+                return "경기일정"
+            case .teamSchedules:
+                return "팀별일정"
+            case .standings:
+                return "순위"
+            case .news:
+                return "뉴스"
+            }
         }
     }
 }

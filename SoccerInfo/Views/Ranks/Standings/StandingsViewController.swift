@@ -13,7 +13,14 @@ final class StandingsViewController: BasicTabViewController<StandingsRealmData> 
 
     typealias standingObject = Result<StandingsTable, RealmErrorType>
     typealias standingResponses = Result<StandingAPIData, APIErrorType>
-    @IBOutlet weak var standingsTableView: UITableView!
+    
+    private let standingsTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.separatorStyle = .none
+        tableView.register(StandingsTableViewCell.self,
+                           forCellReuseIdentifier: StandingsTableViewCell.identifier)
+        return tableView
+    }()
     
     override var data: [StandingsRealmData] {
         didSet {
@@ -29,8 +36,16 @@ final class StandingsViewController: BasicTabViewController<StandingsRealmData> 
         standingsTableView.separatorStyle = .none
         standingsTableView.backgroundColor = .clear
         standingsTableView.layer.borderColor = UIColor.label.cgColor
+        addSubviews(standingsTableView)
         
         view.backgroundColor = .secondarySystemGroupedBackground
+    }
+    
+    override func constraintsConfig() {
+        super.constraintsConfig()
+        standingsTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     override func fetchData() {        
@@ -100,15 +115,7 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {        
-        let nib = UINib(nibName: StandingSectionHeaderView.identifier, bundle: nil)
-        let headerView = nib.instantiate(withOwner: self, options: nil).first as! StandingSectionHeaderView
-        
-        headerView.backgroundColor = league.colors[2]
-        
-        // headerview corner config
-        headerView.layer.cornerRadius = 20
-        headerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        return headerView
+        return StandingSectionHeaderView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

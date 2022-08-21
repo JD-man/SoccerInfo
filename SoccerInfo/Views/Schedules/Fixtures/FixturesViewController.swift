@@ -22,7 +22,7 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     typealias FixturesDatas = [String : FixturesContents]
     
     private let schedulesTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.separatorStyle = .none
         tableView.register(FixturesTableViewCell.self,
                            forCellReuseIdentifier: FixturesTableViewCell.identifier)
@@ -78,18 +78,14 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     private var lastMatchDate: String = ""
     private var openingMatchDate: String = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print(#function)
-    }
-    
     override func viewConfig() {
         super.viewConfig()
-        // Schedules TableView Config        
+        // Schedules TableView Config
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
         schedulesTableView.backgroundColor = .clear
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
+        addSubviews(schedulesTableView)
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self,
@@ -101,6 +97,12 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                                                          action: #selector(swipeAction(swipeGesture:)))
         rightSwipeGesture.direction = .right
         view.addGestureRecognizer(rightSwipeGesture)
+    }
+    
+    override func constraintsConfig() {
+        schedulesTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     override func navAppearenceConfig() {
