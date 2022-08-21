@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ula-HW-m5l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ula-HW-m5l">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -104,17 +104,6 @@
                                                 <constraint firstItem="9Et-MX-C1J" firstAttribute="centerY" secondItem="bxI-Sq-pbb" secondAttribute="centerY" id="sCd-AF-NSc"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="drawLabel" destination="qz2-Xo-ABp" id="Ecn-zr-0wu"/>
-                                            <outlet property="goalDiffLabel" destination="eNB-Ef-qnn" id="6Dz-Rr-HqR"/>
-                                            <outlet property="loseLabel" destination="p3L-9y-2YU" id="YIE-zH-yfE"/>
-                                            <outlet property="playedLabel" destination="0C0-wa-lZf" id="FBc-c5-gXm"/>
-                                            <outlet property="pointsLabel" destination="gyS-Sg-z4H" id="GHX-qE-Zbp"/>
-                                            <outlet property="rankLabel" destination="uvZ-5A-O84" id="fFo-gV-JYr"/>
-                                            <outlet property="separateLine" destination="vfu-NB-6YG" id="hz8-G9-n6D"/>
-                                            <outlet property="teamNameLabel" destination="eHg-De-w6q" id="L0C-6f-BNd"/>
-                                            <outlet property="winLabel" destination="aiV-Mn-H81" id="jbj-s0-5rI"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -130,9 +119,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="순위" largeTitleDisplayMode="always" id="C3i-qN-Wbc"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="standingsTableView" destination="uOk-bF-P89" id="GM8-fT-hCr"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
