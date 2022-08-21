@@ -37,9 +37,13 @@ final class NewsTableViewCell: UITableViewCell {
     private var newsImageInitialWidth: CGFloat = 120
     private var newsImageInitialLeftConstant: CGFloat = 15
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         viewConfig()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func viewConfig() {
@@ -48,7 +52,7 @@ final class NewsTableViewCell: UITableViewCell {
         }
         
         newsImageView.snp.makeConstraints { make in
-            make.leading.equalTo(contentView).offset(15)
+            make.leading.equalToSuperview().offset(15)
             make.width.equalTo(120)
             make.centerY.equalToSuperview()
             make.height.equalTo(newsImageView.snp.width).multipliedBy(2.0/3.0)
@@ -56,15 +60,15 @@ final class NewsTableViewCell: UITableViewCell {
         
         newsTitleLabel.snp.makeConstraints { make in
             make.leading.equalTo(newsImageView.snp.trailing).offset(15)
-            make.top.trailing.equalTo(contentView).inset(15)
+            make.top.trailing.equalToSuperview().inset(15)
         }
         newsTitleLabel.snp.contentHuggingVerticalPriority = 252
         newsTitleLabel.snp.contentCompressionResistanceVerticalPriority = 752
         
         newsDescriptionLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(newsTitleLabel)
-            make.top.bottom.equalTo(newsTitleLabel.snp.bottom).offset(10)
-            make.bottom.greaterThanOrEqualTo(contentView).offset(15)
+            make.top.equalTo(newsTitleLabel.snp.bottom).offset(10)
+            make.bottom.lessThanOrEqualToSuperview().offset(-15)
         }
     }
     
