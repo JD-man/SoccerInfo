@@ -109,9 +109,8 @@ extension SideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SideTableViewCell.identifier,
                                                  for: indexPath) as! SideTableViewCell
-        cell.backgroundColor = selectedLeague.colors[2]
-        cell.leagueNameLabel.textColor = .white
-        cell.leagueNameLabel.text = contents[indexPath.section][indexPath.row]
+        let leagueName = contents[indexPath.section][indexPath.row]
+        cell.configure(with: leagueName)
         return cell
     }
     
