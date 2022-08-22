@@ -46,3 +46,19 @@ final class LineupsTableViewCell: UITableViewCell {
         awayPlayerNumberLabel.text = awayLineup.name == "-" ? "-" : "\(awayLineup.number)"
     }
 }
+
+extension LineupsTableViewCell {
+    private final class LineupLabel: UILabel {
+        convenience init(color: UIColor, alignment: NSTextAlignment = .justified) {
+            self.init(frame: .zero)
+            viewConfig(color: color, alignment: alignment)
+        }
+        
+        private func viewConfig(color: UIColor, alignment: NSTextAlignment) {
+            textColor = color
+            textAlignment = alignment
+            adjustsFontSizeToFitWidth = true
+            font = .systemFont(ofSize: 13, weight: .medium)
+        }
+    }
+}
