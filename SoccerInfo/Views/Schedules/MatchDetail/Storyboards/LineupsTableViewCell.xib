@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -102,14 +102,6 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <connections>
-                <outlet property="awayPlayerLabel" destination="MwG-qC-0jQ" id="xae-tl-K0d"/>
-                <outlet property="awayPlayerNumberLabel" destination="K4W-9p-cU8" id="6Ed-Yz-ZQA"/>
-                <outlet property="awayPlayerPositionLabel" destination="xDE-g4-rs6" id="NLg-bn-5rD"/>
-                <outlet property="homePlayerLabel" destination="2KV-KZ-bKH" id="vi5-tp-g3y"/>
-                <outlet property="homePlayerNumberLabel" destination="M6P-d5-7sY" id="ewj-Ho-VFg"/>
-                <outlet property="homePlayerPositionLabel" destination="RKO-JZ-NJQ" id="EnF-4G-LYv"/>
-            </connections>
             <point key="canvasLocation" x="131.8840579710145" y="84.375"/>
         </tableViewCell>
     </objects>

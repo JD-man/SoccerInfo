@@ -55,15 +55,15 @@ final class MatchDetailViewController: UIViewController {
         
         tableView.register(EventsTableViewCell.self,
                            forCellReuseIdentifier: EventsTableViewCell.identifier)
-//        tableView.register(LineupsTableViewCell.self,
-//                           forCellReuseIdentifier: LineupsTableViewCell.identifier)
+        tableView.register(LineupsTableViewCell.self,
+                           forCellReuseIdentifier: LineupsTableViewCell.identifier)
 //        tableView.register(FormationTableViewCell.self,
 //                           forCellReuseIdentifier: FormationTableViewCell.identifier)
         //let eventsCell = UINib(nibName: EventsTableViewCell.identifier, bundle: nil)
-        let lineupsCell = UINib(nibName: LineupsTableViewCell.identifier, bundle: nil)
+        //let lineupsCell = UINib(nibName: LineupsTableViewCell.identifier, bundle: nil)
         let formationCell = UINib(nibName: FormationTableViewCell.identifier, bundle: nil)
 //        tableView.register(eventsCell, forCellReuseIdentifier: EventsTableViewCell.identifier)
-        tableView.register(lineupsCell, forCellReuseIdentifier: LineupsTableViewCell.identifier)
+//        tableView.register(lineupsCell, forCellReuseIdentifier: LineupsTableViewCell.identifier)
         tableView.register(formationCell, forCellReuseIdentifier: FormationTableViewCell.identifier)
 
         return tableView
