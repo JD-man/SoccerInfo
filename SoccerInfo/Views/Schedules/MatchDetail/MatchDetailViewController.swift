@@ -269,13 +269,8 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
-            let nib = UINib(nibName: "FormationSectionFooterView", bundle: nil)
-            let headerView = nib.instantiate(withOwner: self, options: nil).first as! FormationSectionFooterView
-            headerView.backgroundColor = .clear
-            headerView.homeFormationLabel.text = matchDetailData.homeFormation
-            headerView.awayFormationLabel.text = matchDetailData.awayFormation
-            headerView.homeFormationLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-            headerView.awayFormationLabel.font = .systemFont(ofSize: 18, weight: .semibold)
+            let headerView = FormationSectionFooterView()
+            headerView.configure(with: matchDetailData)
             return headerView
         }
         return nil
