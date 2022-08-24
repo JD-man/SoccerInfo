@@ -68,3 +68,13 @@ final class CurrentMatchCollectionViewCell: UICollectionViewCell {
         }
     }
 }
+
+extension CurrentMatchCollectionViewCell {
+    private final class CurrentMatchLabel: UILabel {
+        convenience init(size: CGFloat, weight: UIFont.Weight) {
+            self.init(frame: .zero)
+            textColor = .white
+            font = .systemFont(ofSize: size, weight: weight)
+        }
+    }
+}
