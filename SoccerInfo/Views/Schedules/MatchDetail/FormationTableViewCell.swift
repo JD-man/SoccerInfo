@@ -6,19 +6,56 @@
 //
 
 import UIKit
+import SnapKit
 
 final class FormationTableViewCell: UITableViewCell {
-    @IBOutlet weak var homeStackView: UIStackView!
-    @IBOutlet weak var awayStackView: UIStackView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    private let footballFieldImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "FootballField")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    private let homeStackView = FormationStackView()
+    private let awayStackView = FormationStackView()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        viewConfig()
+        constraintsConfig()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func viewConfig() {
+        [footballFieldImageView, homeStackView, awayStackView]
+            .forEach { contentView.addSubview($0) }
+    }
+    
+    private func constraintsConfig() {
+        footballFieldImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        homeStackView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalTo(contentView.snp.centerX).offset(-8)
+            make.top.bottom.equalToSuperview().inset(8)
+        }
+        
+        awayStackView.snp.makeConstraints { make in
+            make.leading.equalTo(contentView.snp.centerX).offset(8)
+            make.trailing.equalToSuperview().offset(-15)
+            make.top.bottom.equalToSuperview().inset(8)
+        }
     }
     
     func configure(homeLineup: [LineupRealmData], awayLineup: [LineupRealmData]) {
-        [(homeLineup, homeStackView! ,FormationDirection.home),
-         (awayLineup, awayStackView! ,FormationDirection.away)]
+        [(homeLineup, homeStackView, FormationDirection.home),
+         (awayLineup, awayStackView, FormationDirection.away)]
             .forEach { lineup, stackView, direction in
                 lineup.forEach {
                     if let grid = $0.grid {

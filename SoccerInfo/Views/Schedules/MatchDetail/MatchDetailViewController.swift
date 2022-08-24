@@ -7,7 +7,7 @@
 
 import UIKit
 import RealmSwift
-
+import SnapKit
 
 final class MatchDetailViewController: UIViewController {
     deinit {
@@ -19,7 +19,6 @@ final class MatchDetailViewController: UIViewController {
     typealias MatchDetailObject = Result<MatchDetailTable, RealmErrorType>
     
     var fixtureID = 0
-    
     var homeScore = 0
     var awayScore = 0
     var homeTeamName = ""
@@ -27,7 +26,7 @@ final class MatchDetailViewController: UIViewController {
     
     private var maxSubsCount = 0
     private var season = PublicPropertyManager.shared.season
-    private var league: League = PublicPropertyManager.shared.league
+    private var league = PublicPropertyManager.shared.league
         
     var data: [MatchDetailRealmData] = [MatchDetailRealmData.initialValue] {
         didSet {
@@ -49,43 +48,38 @@ final class MatchDetailViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var homeScoreLabel: UILabel!
-    @IBOutlet weak var awayScoreLabel: UILabel!
-    @IBOutlet weak var homeTeamNameLabel: UILabel!
-    @IBOutlet weak var awayTeamNameLabel: UILabel!
-    @IBOutlet weak var matchDetailTableView: UITableView!
-    @IBOutlet weak var matchDetailTableHeaderView: UIView!
+    private let matchDetailTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.separatorStyle = .none
+        // 각 셀들을 다시 만들면서 주석처리한걸 정리하면 됨!
+        tableView.register(EventsTableViewCell.self,
+                           forCellReuseIdentifier: EventsTableViewCell.identifier)
+        tableView.register(LineupsTableViewCell.self,
+                           forCellReuseIdentifier: LineupsTableViewCell.identifier)
+        tableView.register(FormationTableViewCell.self,
+                           forCellReuseIdentifier: FormationTableViewCell.identifier)
+        return tableView
+    }()
     
     private var activityView = UIActivityIndicatorView()
+    private let headerView = MatchDetailTableHeaderView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
+        constraintsConfig()
         fetchMatchDetailRealmData()
+        headerViewConfig()
     }
     
     private func viewConfig() {
         title = "경기정보"
+        gradientConfig()
         matchDetailTableViewConfig()
-        
-        homeScoreLabel.text = "\(homeScore)"
-        awayScoreLabel.text = "\(awayScore)"
-        [homeTeamNameLabel, awayTeamNameLabel].forEach {
-            $0?.numberOfLines = 0
-            $0?.textColor = league.colors[1]
-            $0?.adjustsFontSizeToFitWidth = true
-        }
-        homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
-        awayTeamNameLabel.text = awayTeamName.uppercased().modifyTeamName
-        
-        // activity view config
         activityView = activityIndicator()
-        
-        // header view config
-        matchDetailTableHeaderView.addCorner()
-        matchDetailTableHeaderView.backgroundColor = league.colors[2]
-        
-        // gradient config
+    }
+    
+    private func gradientConfig() {
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = [league.colors[0].cgColor, league.colors[1].cgColor]
@@ -100,13 +94,22 @@ final class MatchDetailViewController: UIViewController {
         matchDetailTableView.dataSource = self
         matchDetailTableView.separatorStyle = .none
         matchDetailTableView.backgroundColor = .clear
+        view.addSubview(matchDetailTableView)
+    }
+    
+    private func constraintsConfig() {
+        matchDetailTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide).inset(15)
+        }
         
-        let eventsCell = UINib(nibName: EventsTableViewCell.identifier, bundle: nil)
-        let lineupsCell = UINib(nibName: LineupsTableViewCell.identifier, bundle: nil)
-        let formationCell = UINib(nibName: FormationTableViewCell.identifier, bundle: nil)
-        matchDetailTableView.register(eventsCell, forCellReuseIdentifier: EventsTableViewCell.identifier)
-        matchDetailTableView.register(lineupsCell, forCellReuseIdentifier: LineupsTableViewCell.identifier)
-        matchDetailTableView.register(formationCell, forCellReuseIdentifier: FormationTableViewCell.identifier)
+    }
+    
+    private func headerViewConfig() {
+        headerView.configure(homeScore: homeScore,
+                             awayScore: awayScore,
+                             homeTeamName: homeTeamName,
+                             awayTeamName: awayTeamName)
+        matchDetailTableView.tableHeaderView = headerView
     }
     
     private func fetchMatchDetailRealmData() {
@@ -269,14 +272,9 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
-            let nib = UINib(nibName: "FormationSectionFooterView", bundle: nil)
-            let headerView = nib.instantiate(withOwner: self, options: nil).first as! FormationSectionFooterView
-            headerView.backgroundColor = .clear
-            headerView.homeFormationLabel.text = matchDetailData.homeFormation
-            headerView.awayFormationLabel.text = matchDetailData.awayFormation
-            headerView.homeFormationLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-            headerView.awayFormationLabel.font = .systemFont(ofSize: 18, weight: .semibold)
-            return headerView
+            let footerView = FormationSectionFooterView()
+            footerView.configure(with: matchDetailData)
+            return footerView
         }
         return nil
     }
