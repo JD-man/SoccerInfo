@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,12 +81,6 @@
                 <constraint firstItem="H6i-Zq-BJC" firstAttribute="top" secondItem="pux-6L-SHm" secondAttribute="bottom" constant="10" id="zM1-lg-Koh"/>
             </constraints>
             <size key="customSize" width="283" height="148"/>
-            <connections>
-                <outlet property="homeAwayLabel" destination="pux-6L-SHm" id="Sty-E0-7aT"/>
-                <outlet property="oppositeTeamNameLabel" destination="Ggz-yu-LtG" id="sej-a9-QK7"/>
-                <outlet property="scoreLabel" destination="H6i-Zq-BJC" id="4AO-aA-de8"/>
-                <outlet property="winLoseLabel" destination="iRB-Ta-32i" id="j3O-Ev-Kro"/>
-            </connections>
             <point key="canvasLocation" x="287.68115942028987" y="132.58928571428572"/>
         </collectionViewCell>
     </objects>
