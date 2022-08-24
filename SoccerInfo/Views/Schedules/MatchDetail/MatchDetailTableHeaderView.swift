@@ -43,15 +43,16 @@ final class MatchDetailTableHeaderView: UIView {
         }
         
         homeTeamNameLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.5)
             make.bottom.lessThanOrEqualToSuperview().offset(-10)
         }
         
         awayTeamNameLabel.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
-            make.bottom.equalTo(homeTeamNameLabel)
+            make.bottom.lessThanOrEqualToSuperview().offset(-10)
             make.leading.equalTo(homeTeamNameLabel.snp.trailing)
+            make.top.equalTo(homeTeamNameLabel.snp.top)
         }
         
         homeScoreLabel.snp.makeConstraints { make in
