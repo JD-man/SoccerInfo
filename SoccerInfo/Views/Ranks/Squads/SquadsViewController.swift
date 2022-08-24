@@ -78,9 +78,8 @@ final class SquadsViewController: UIViewController {
         currentMatchCollectionView.showsVerticalScrollIndicator = false
         currentMatchCollectionView.showsHorizontalScrollIndicator = false
         currentMatchCollectionView.collectionViewLayout = CurrentMatchCollectionViewFlowLayout()
-        currentMatchCollectionView.register(UINib(nibName: "CurrentMatchCollectionViewCell", bundle: nil),
+        currentMatchCollectionView.register(CurrentMatchCollectionViewCell.self,
                                             forCellWithReuseIdentifier: CurrentMatchCollectionViewCell.identifier)
-        
         currentMatchCollectionView.decelerationRate = .fast
         currentMatchCollectionView.backgroundColor = .clear
         currentMatchCollectionView.addShadow()
