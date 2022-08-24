@@ -39,11 +39,6 @@ final class EventsTableViewCell: UITableViewCell {
     private let homeEventTypeImageView = UIImageView()
     private let awayEventTypeImageView = UIImageView()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        viewConfig()
-    }
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         viewConfig()

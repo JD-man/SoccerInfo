@@ -16,7 +16,7 @@ final class MatchDetailTableHeaderView: UIView {
     private let awayTeamNameLabel = MatchDetailTeamNameLabel()
     
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         viewConfig()
         constraintsConfig()
     }

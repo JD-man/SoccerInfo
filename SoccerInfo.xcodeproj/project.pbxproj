@@ -10,7 +10,6 @@
 		8903824327DCEC4300C9E274 /* SoccerInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8903824227DCEC4300C9E274 /* SoccerInfoTests.swift */; };
 		890A7E532773561F00918054 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890A7E522773561F00918054 /* UIColor+Extension.swift */; };
 		89123EC02751ECF100DB0077 /* MatchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */; };
-		89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89123EC12751ED4700DB0077 /* MatchDetail.storyboard */; };
 		89123EC42752091D00DB0077 /* MatchDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89123EC32752091D00DB0077 /* MatchDetailModel.swift */; };
 		891345DD274A790E00FACD61 /* APIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891345DC274A790E00FACD61 /* APIComponents.swift */; };
 		8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */; };
@@ -53,7 +52,6 @@
 		898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63E5274690CE0023426A /* MainTabBarController.swift */; };
 		899000812753C86C00A4812A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899000802753C86C00A4812A /* UIView+Extension.swift */; };
 		8990E775275B5CB70025CE05 /* FormationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */; };
-		8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */; };
 		89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C12757E2D5000AC2FE /* ManualViewController.swift */; };
 		89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */; };
 		89D3EC7B27D3A57F009494DA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7A27D3A57F009494DA /* SnapKit */; };
@@ -66,11 +64,8 @@
 		89E2C464274FC9AE00C73BC4 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E2C463274FC9AE00C73BC4 /* NewsTableViewCell.swift */; };
 		89E2C466274FE20D00C73BC4 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E2C465274FE20D00C73BC4 /* NewsModel.swift */; };
 		89E752FE275227CE0019F62F /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E752FC275227CE0019F62F /* EventsTableViewCell.swift */; };
-		89E752FF275227CE0019F62F /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E752FD275227CE0019F62F /* EventsTableViewCell.xib */; };
 		89E75304275227EA0019F62F /* LineupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E75302275227EA0019F62F /* LineupsTableViewCell.swift */; };
-		89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E75303275227EA0019F62F /* LineupsTableViewCell.xib */; };
 		89E8C28A275BC6B10031982E /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C289275BC6B10031982E /* Calendar+Extension.swift */; };
-		89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */; };
 		89E8C290275BE26A0031982E /* FormationSectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */; };
 		BD4DBF54ABCA29BEF6130CE1 /* Pods_SoccerInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F89988193D5B07FB052B364 /* Pods_SoccerInfo.framework */; };
 		EF2C4DAB28B12B160038A74E /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 8989C7B027DCF30900068308 /* RxBlocking */; };
@@ -96,7 +91,6 @@
 		8903824227DCEC4300C9E274 /* SoccerInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoccerInfoTests.swift; sourceTree = "<group>"; };
 		890A7E522773561F00918054 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailViewController.swift; sourceTree = "<group>"; };
-		89123EC12751ED4700DB0077 /* MatchDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MatchDetail.storyboard; sourceTree = "<group>"; };
 		89123EC32752091D00DB0077 /* MatchDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailModel.swift; sourceTree = "<group>"; };
 		891345DC274A790E00FACD61 /* APIComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIComponents.swift; sourceTree = "<group>"; };
 		8913C820274B3433000CCC44 /* StandingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -134,7 +128,6 @@
 		898A63E5274690CE0023426A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		899000802753C86C00A4812A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationTableViewCell.swift; sourceTree = "<group>"; };
-		8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationTableViewCell.xib; sourceTree = "<group>"; };
 		89C843C12757E2D5000AC2FE /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseViewController.swift; sourceTree = "<group>"; };
 		89DB128D274BE009009E8888 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
@@ -143,11 +136,8 @@
 		89E2C463274FC9AE00C73BC4 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		89E2C465274FE20D00C73BC4 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		89E752FC275227CE0019F62F /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
-		89E752FD275227CE0019F62F /* EventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
 		89E75302275227EA0019F62F /* LineupsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineupsTableViewCell.swift; sourceTree = "<group>"; };
-		89E75303275227EA0019F62F /* LineupsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineupsTableViewCell.xib; sourceTree = "<group>"; };
 		89E8C289275BC6B10031982E /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
-		89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormationSectionFooterView.xib; sourceTree = "<group>"; };
 		89E8C28F275BE26A0031982E /* FormationSectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationSectionFooterView.swift; sourceTree = "<group>"; };
 		9DB97FBB16703137CF727FD5 /* Pods-SoccerInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.release.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.release.xcconfig"; sourceTree = "<group>"; };
 		D038C0E2148E73F139127CBD /* Pods-SoccerInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoccerInfo.debug.xcconfig"; path = "Target Support Files/Pods-SoccerInfo/Pods-SoccerInfo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -376,7 +366,6 @@
 		89740BFC27464AF60033AD2C /* MatchDetail */ = {
 			isa = PBXGroup;
 			children = (
-				89E752F3275227000019F62F /* Storyboards */,
 				89123EBF2751ECF100DB0077 /* MatchDetailViewController.swift */,
 				89E752FC275227CE0019F62F /* EventsTableViewCell.swift */,
 				89E75302275227EA0019F62F /* LineupsTableViewCell.swift */,
@@ -425,18 +414,6 @@
 				89DB1291274BE1C5009E8888 /* Errors.swift */,
 			);
 			path = Enums;
-			sourceTree = "<group>";
-		};
-		89E752F3275227000019F62F /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				89123EC12751ED4700DB0077 /* MatchDetail.storyboard */,
-				89E752FD275227CE0019F62F /* EventsTableViewCell.xib */,
-				89E75303275227EA0019F62F /* LineupsTableViewCell.xib */,
-				8990E774275B5CB70025CE05 /* FormationTableViewCell.xib */,
-				89E8C28B275BE1380031982E /* FormationSectionFooterView.xib */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		89F1ADCE2747BF8500E860BB /* APIKey */ = {
@@ -595,16 +572,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89123EC22751ED4700DB0077 /* MatchDetail.storyboard in Resources */,
 				891794442765A4F8004C02C4 /* CurrentMatchCollectionViewCell.xib in Resources */,
 				891CDA8A2760A0AA00556629 /* GoogleService-Info.plist in Resources */,
-				89E8C28C275BE1380031982E /* FormationSectionFooterView.xib in Resources */,
 				894BF776274250B700E71C09 /* LaunchScreen.storyboard in Resources */,
-				89E75305275227EA0019F62F /* LineupsTableViewCell.xib in Resources */,
-				8990E776275B5CB70025CE05 /* FormationTableViewCell.xib in Resources */,
 				894BF773274250B700E71C09 /* Assets.xcassets in Resources */,
 				89740C1227464D3C0033AD2C /* Squads.storyboard in Resources */,
-				89E752FF275227CE0019F62F /* EventsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

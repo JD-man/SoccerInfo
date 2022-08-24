@@ -62,19 +62,20 @@ final class MatchDetailViewController: UIViewController {
     }()
     
     private var activityView = UIActivityIndicatorView()
+    private let headerView = MatchDetailTableHeaderView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
         constraintsConfig()
         fetchMatchDetailRealmData()
+        headerViewConfig()
     }
     
     private func viewConfig() {
         title = "경기정보"
-        matchDetailTableViewConfig()
-        //headerConfig()
         gradientConfig()
+        matchDetailTableViewConfig()
         activityView = activityIndicator()
     }
     
@@ -89,24 +90,26 @@ final class MatchDetailViewController: UIViewController {
     }
     
     private func matchDetailTableViewConfig() {
-        view.addSubview(matchDetailTableView)
         matchDetailTableView.delegate = self
         matchDetailTableView.dataSource = self
         matchDetailTableView.separatorStyle = .none
         matchDetailTableView.backgroundColor = .clear
-        
-        let headerView = MatchDetailTableHeaderView()
-        headerView.configure(homeScore: homeScore,
-                             awayScore: awayScore,
-                             homeTeamName: homeTeamName,
-                             awayTeamName: awayTeamName)
-        matchDetailTableView.tableHeaderView = headerView
+        view.addSubview(matchDetailTableView)
     }
     
     private func constraintsConfig() {
         matchDetailTableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide).inset(15)
         }
+        
+    }
+    
+    private func headerViewConfig() {
+        headerView.configure(homeScore: homeScore,
+                             awayScore: awayScore,
+                             homeTeamName: homeTeamName,
+                             awayTeamName: awayTeamName)
+        matchDetailTableView.tableHeaderView = headerView
     }
     
     private func fetchMatchDetailRealmData() {
@@ -269,9 +272,9 @@ extension MatchDetailViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 1 {
-            let headerView = FormationSectionFooterView()
-            headerView.configure(with: matchDetailData)
-            return headerView
+            let footerView = FormationSectionFooterView()
+            footerView.configure(with: matchDetailData)
+            return footerView
         }
         return nil
     }
