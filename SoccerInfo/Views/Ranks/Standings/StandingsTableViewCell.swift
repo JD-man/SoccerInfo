@@ -47,7 +47,7 @@ final class StandingsTableViewCell: UITableViewCell {
         [playedLabel, winLabel, drawLabel, loseLabel, goalDiffLabel].forEach {
             $0.textAlignment = .center
             $0.font = .systemFont(ofSize: 15, weight: .regular)
-            $0.textColor = .systemBackground
+            $0.textColor = .white
         }
         
         zip([rankLabel, pointsLabel, teamNameLabel],
@@ -55,7 +55,7 @@ final class StandingsTableViewCell: UITableViewCell {
         .forEach { label, weight in
             label.font = .systemFont(ofSize: 15, weight: weight)
             label.textAlignment = .center
-            label.textColor = .systemBackground
+            label.textColor = .white
         }
         
         separateLine.isHidden = true
