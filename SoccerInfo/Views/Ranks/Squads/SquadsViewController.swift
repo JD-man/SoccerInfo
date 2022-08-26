@@ -49,55 +49,95 @@ final class SquadsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
+        constraintsConfig()
         loadCurrentMatchData()
     }
     
     private func viewConfig() {
+        navigationConfig()
+        collectionViewConfig()
+        labelContainerView.configure(teamName: teamName, rank: currentRank)
         view.backgroundColor = PublicPropertyManager.shared.league.colors[0]
         
-        // label container view shadow
-        labelContainerView.addCorner(rad: 10)
-        labelContainerView.addShadow()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
         
-        // labels config
-        teamNameLabel.adjustsFontSizeToFitWidth = true
+        [winRateLabel, winRatePieChartView,
+         currentMatchLabel, currentMatchCollectionView]
+            .forEach { scrollView.addSubview($0) }
         
-        teamNameLabel.textAlignment = .center
-        currentRankLabel.textAlignment = .center
-        rankDescriptionLabel.textAlignment = .center
+        [dimView, labelContainerView, scrollView]
+            .forEach { view.addSubview($0) }
+    }
+    
+    private func constraintsConfig() {
+        dimView.snp.makeConstraints { make in
+            make.height.equalToSuperview().multipliedBy(0.2)
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
         
-        teamNameLabel.font = .systemFont(ofSize: 24, weight: .bold)
-        currentRankLabel.font = .systemFont(ofSize: 19, weight: .medium)
-        rankDescriptionLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        labelContainerView.snp.makeConstraints { make in
+            make.height.equalTo(125)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(dimView).multipliedBy(0.6)
+            make.centerY.equalTo(dimView).multipliedBy(1.1)
+        }
         
-        teamNameLabel.text = teamName
-        currentRankLabel.text = "\(currentRank)등"
-        winRateLabel.textColor = .white
-        goalDiffLabel.textColor = .white
+        scrollView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(labelContainerView.snp.bottom).offset(20)
+        }
         
-        // collection view config
+        winRateLabel.snp.makeConstraints { make in
+            make.width.equalTo(scrollView)
+            make.leading.top.trailing.equalToSuperview()
+        }
+        
+        winRatePieChartView.snp.makeConstraints { make in
+            make.height.equalTo(300)
+            make.width.equalTo(winRateLabel)
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(winRateLabel.snp.bottom)
+        }
+
+        currentMatchLabel.snp.makeConstraints { make in
+            make.width.equalTo(winRateLabel)
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(winRatePieChartView.snp.bottom).offset(10)
+        }
+
+        currentMatchCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(150)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(scrollView).offset(-20)
+            make.top.equalTo(currentMatchLabel.snp.bottom).offset(10)
+        }
+    }
+    
+    private func collectionViewConfig() {
+        currentMatchCollectionView.addShadow()
         currentMatchCollectionView.delegate = self
         currentMatchCollectionView.dataSource = self
+        currentMatchCollectionView.backgroundColor = .clear
+        currentMatchCollectionView.decelerationRate = .fast
         currentMatchCollectionView.showsVerticalScrollIndicator = false
         currentMatchCollectionView.showsHorizontalScrollIndicator = false
-        currentMatchCollectionView.collectionViewLayout = CurrentMatchCollectionViewFlowLayout()
-        currentMatchCollectionView.register(CurrentMatchCollectionViewCell.self,
-                                            forCellWithReuseIdentifier: CurrentMatchCollectionViewCell.identifier)
-        currentMatchCollectionView.decelerationRate = .fast
-        currentMatchCollectionView.backgroundColor = .clear
-        currentMatchCollectionView.addShadow()
         
-        // Dismiss Button Config
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .close,
-                                            target: self,
-                                            action: #selector(dismissButtonClicked))
+        currentMatchCollectionView.register(
+            CurrentMatchCollectionViewCell.self,
+            forCellWithReuseIdentifier: CurrentMatchCollectionViewCell.identifier
+        )
+    }
+    
+    private func navigationConfig() {
         navigationItem.leftBarButtonItem = dismissButton
         
-        // navigation appearance config
         let appearnce = UINavigationBarAppearance()
         appearnce.configureWithOpaqueBackground()
-        appearnce.backgroundColor = PublicPropertyManager.shared.league.colors[0]
         appearnce.titleTextAttributes = [.foregroundColor : UIColor.white]
+        appearnce.backgroundColor = PublicPropertyManager.shared.league.colors[0]
+        
         navigationController?.navigationBar.standardAppearance = appearnce
         navigationController?.navigationBar.scrollEdgeAppearance = appearnce
     }
@@ -141,7 +181,7 @@ final class SquadsViewController: UIViewController {
         let totalValue = winValue + loseValue + drawValue
         
         winRateLabel.text = "최근 \(totalValue)경기 \(winValue)승 \(drawValue)무 \(loseValue)패"
-        goalDiffLabel.text = "최근 \(totalValue)경기 \(totalGoal)득점 \(totalLoss)실점"
+        currentMatchLabel.text = "최근 \(totalValue)경기 \(totalGoal)득점 \(totalLoss)실점"
         
         let entries = [
             PieChartDataEntry(value: Double(winValue) / Double(totalValue) * 100, label: "승"),
