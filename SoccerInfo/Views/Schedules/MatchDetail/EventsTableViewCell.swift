@@ -19,12 +19,15 @@ final class EventsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.clipsToBounds = true
         label.layer.borderWidth = 0.5
-        label.layer.borderColor = UIColor.systemGray2.cgColor
         label.layer.cornerRadius = 15 // timeLabel width = 30
+        label.layer.borderColor = UIColor.systemGray2.cgColor
+        
+        label.textColor = .black
         label.textAlignment = .center
         label.backgroundColor = .white
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        
         label.adjustsFontSizeToFitWidth = true
+        label.font = .systemFont(ofSize: 12, weight: .semibold)
         return label
     }()
     
