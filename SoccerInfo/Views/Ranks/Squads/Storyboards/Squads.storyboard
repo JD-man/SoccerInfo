@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -139,16 +139,6 @@
                             <constraint firstItem="Nnv-Bc-WgG" firstAttribute="top" secondItem="d9K-ga-mG0" secondAttribute="bottom" constant="20" id="z9s-dH-SRB"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="currentMatchCollectionView" destination="aAe-NE-Dm0" id="F9W-sV-VwM"/>
-                        <outlet property="currentRankLabel" destination="rDv-A1-q0e" id="95x-0g-q92"/>
-                        <outlet property="goalDiffLabel" destination="VoA-53-xC2" id="bb8-1W-eOp"/>
-                        <outlet property="labelContainerView" destination="d9K-ga-mG0" id="H8m-81-ldO"/>
-                        <outlet property="rankDescriptionLabel" destination="oBw-FM-ozx" id="Ony-fL-3BO"/>
-                        <outlet property="teamNameLabel" destination="FvQ-Ph-3lC" id="OhW-ZM-K6f"/>
-                        <outlet property="winRateLabel" destination="GE1-0k-xZ7" id="7G3-2B-ABn"/>
-                        <outlet property="winRatePieChartView" destination="YTH-oi-wIl" id="Iqd-u6-GyR"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

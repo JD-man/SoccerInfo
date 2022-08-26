@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import RealmSwift
 import Charts
 
@@ -20,16 +21,18 @@ final class SquadsViewController: UIViewController {
         print("SquadVC deinit")
     }
     
-    @IBOutlet weak var labelContainerView: UIView!
+    private let dimView = UIView()
+    private let scrollView = UIScrollView()
+    private let winRateLabel = CategoryLabel()
+    private let currentMatchLabel = CategoryLabel()
+    private let winRatePieChartView = PieChartView()
+    private let labelContainerView = CurrentMatchLabelContainerView()
     
-    @IBOutlet weak var teamNameLabel: UILabel!
-    @IBOutlet weak var currentRankLabel: UILabel!
-    @IBOutlet weak var rankDescriptionLabel: UILabel!
-    
-    @IBOutlet weak var winRateLabel: UILabel!
-    @IBOutlet weak var goalDiffLabel: UILabel!
-    @IBOutlet weak var winRatePieChartView: PieChartView!
-    @IBOutlet weak var currentMatchCollectionView: UICollectionView!
+    private let currentMatchCollectionView = UICollectionView(
+        frame: .zero, collectionViewLayout: CurrentMatchCollectionViewFlowLayout())
+    private lazy var dismissButton = UIBarButtonItem(
+        barButtonSystemItem: .close, target: self, action: #selector(dismissButtonClicked)
+    )
 
     var id: Int = 0    
     var currentRank: Int = 0
@@ -46,55 +49,95 @@ final class SquadsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewConfig()
+        constraintsConfig()
         loadCurrentMatchData()
     }
     
     private func viewConfig() {
+        navigationConfig()
+        collectionViewConfig()
+        labelContainerView.configure(teamName: teamName, rank: currentRank)
         view.backgroundColor = PublicPropertyManager.shared.league.colors[0]
         
-        // label container view shadow
-        labelContainerView.addCorner(rad: 10)
-        labelContainerView.addShadow()
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
         
-        // labels config
-        teamNameLabel.adjustsFontSizeToFitWidth = true
+        [winRateLabel, winRatePieChartView,
+         currentMatchLabel, currentMatchCollectionView]
+            .forEach { scrollView.addSubview($0) }
         
-        teamNameLabel.textAlignment = .center
-        currentRankLabel.textAlignment = .center
-        rankDescriptionLabel.textAlignment = .center
+        [dimView, labelContainerView, scrollView]
+            .forEach { view.addSubview($0) }
+    }
+    
+    private func constraintsConfig() {
+        dimView.snp.makeConstraints { make in
+            make.height.equalToSuperview().multipliedBy(0.2)
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
         
-        teamNameLabel.font = .systemFont(ofSize: 24, weight: .bold)
-        currentRankLabel.font = .systemFont(ofSize: 19, weight: .medium)
-        rankDescriptionLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        labelContainerView.snp.makeConstraints { make in
+            make.height.equalTo(125)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(dimView).multipliedBy(0.6)
+            make.centerY.equalTo(dimView).multipliedBy(1.1)
+        }
         
-        teamNameLabel.text = teamName
-        currentRankLabel.text = "\(currentRank)등"
-        winRateLabel.textColor = .white
-        goalDiffLabel.textColor = .white
+        scrollView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(labelContainerView.snp.bottom).offset(20)
+        }
         
-        // collection view config
+        winRateLabel.snp.makeConstraints { make in
+            make.width.equalTo(scrollView)
+            make.leading.top.trailing.equalToSuperview()
+        }
+        
+        winRatePieChartView.snp.makeConstraints { make in
+            make.height.equalTo(300)
+            make.width.equalTo(winRateLabel)
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(winRateLabel.snp.bottom)
+        }
+
+        currentMatchLabel.snp.makeConstraints { make in
+            make.width.equalTo(winRateLabel)
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(winRatePieChartView.snp.bottom).offset(10)
+        }
+
+        currentMatchCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(150)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(scrollView).offset(-20)
+            make.top.equalTo(currentMatchLabel.snp.bottom).offset(10)
+        }
+    }
+    
+    private func collectionViewConfig() {
+        currentMatchCollectionView.addShadow()
         currentMatchCollectionView.delegate = self
         currentMatchCollectionView.dataSource = self
+        currentMatchCollectionView.backgroundColor = .clear
+        currentMatchCollectionView.decelerationRate = .fast
         currentMatchCollectionView.showsVerticalScrollIndicator = false
         currentMatchCollectionView.showsHorizontalScrollIndicator = false
-        currentMatchCollectionView.collectionViewLayout = CurrentMatchCollectionViewFlowLayout()
-        currentMatchCollectionView.register(CurrentMatchCollectionViewCell.self,
-                                            forCellWithReuseIdentifier: CurrentMatchCollectionViewCell.identifier)
-        currentMatchCollectionView.decelerationRate = .fast
-        currentMatchCollectionView.backgroundColor = .clear
-        currentMatchCollectionView.addShadow()
         
-        // Dismiss Button Config
-        let dismissButton = UIBarButtonItem(barButtonSystemItem: .close,
-                                            target: self,
-                                            action: #selector(dismissButtonClicked))
+        currentMatchCollectionView.register(
+            CurrentMatchCollectionViewCell.self,
+            forCellWithReuseIdentifier: CurrentMatchCollectionViewCell.identifier
+        )
+    }
+    
+    private func navigationConfig() {
         navigationItem.leftBarButtonItem = dismissButton
         
-        // navigation appearance config
         let appearnce = UINavigationBarAppearance()
         appearnce.configureWithOpaqueBackground()
-        appearnce.backgroundColor = PublicPropertyManager.shared.league.colors[0]
         appearnce.titleTextAttributes = [.foregroundColor : UIColor.white]
+        appearnce.backgroundColor = PublicPropertyManager.shared.league.colors[0]
+        
         navigationController?.navigationBar.standardAppearance = appearnce
         navigationController?.navigationBar.scrollEdgeAppearance = appearnce
     }
@@ -138,7 +181,7 @@ final class SquadsViewController: UIViewController {
         let totalValue = winValue + loseValue + drawValue
         
         winRateLabel.text = "최근 \(totalValue)경기 \(winValue)승 \(drawValue)무 \(loseValue)패"
-        goalDiffLabel.text = "최근 \(totalValue)경기 \(totalGoal)득점 \(totalLoss)실점"
+        currentMatchLabel.text = "최근 \(totalValue)경기 \(totalGoal)득점 \(totalLoss)실점"
         
         let entries = [
             PieChartDataEntry(value: Double(winValue) / Double(totalValue) * 100, label: "승"),
@@ -147,20 +190,20 @@ final class SquadsViewController: UIViewController {
         ]
         let dataSet = PieChartDataSet(entries: entries, label: "| 최근 경기 승률(%)")
         dataSet.sliceSpace = 3
-        dataSet.colors = [.systemIndigo, .systemGreen, .systemPink]
         dataSet.valueTextColor = .white
-        dataSet.valueFont = .systemFont(ofSize: 12, weight: .semibold)
         dataSet.entryLabelFont = .systemFont(ofSize: 0)
+        dataSet.colors = [.systemIndigo, .systemGreen, .systemPink]
+        dataSet.valueFont = .systemFont(ofSize: 12, weight: .semibold)
         
         let data = PieChartData(dataSet: dataSet)
         
         data.setValueFont(.systemFont(ofSize: 12, weight: .medium))
         
         winRatePieChartView.data = data
-        winRatePieChartView.backgroundColor = .clear
         winRatePieChartView.holeColor = .clear
-        winRatePieChartView.legend.horizontalAlignment = .center
+        winRatePieChartView.backgroundColor = .clear
         winRatePieChartView.legend.textColor = .white
+        winRatePieChartView.legend.horizontalAlignment = .center
         winRatePieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInOutCirc)
     }
     
@@ -175,11 +218,9 @@ final class SquadsViewController: UIViewController {
                                  completion: nil)
             return
         }
-        print("FetchRealmData", user)
         let configuration = user.configuration(partitionValue: "\(league.leagueID)")
         do {
             // Local Realm Load
-            print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
             
             // check league, season, updateDate
@@ -225,14 +266,13 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
-        let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
+        let matchDetailVC = MatchDetailViewController()
         let selectedData = data[indexPath.item]
         matchDetailVC.fixtureID = selectedData.fixtureID
-        matchDetailVC.homeScore = selectedData.homeGoal ?? 0
-        matchDetailVC.awayScore = selectedData.awayGoal ?? 0
         matchDetailVC.homeTeamName = selectedData.homeName
         matchDetailVC.awayTeamName = selectedData.awayName
+        matchDetailVC.homeScore = selectedData.homeGoal ?? 0
+        matchDetailVC.awayScore = selectedData.awayGoal ?? 0
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
     
@@ -256,5 +296,20 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let x = (CGFloat(index) * offset) + (CGFloat(index - 1) * flowLayout.sectionInset.left)
         targetContentOffset.pointee = CGPoint(x: x, y: 0)
+    }
+}
+
+extension SquadsViewController {
+    private final class CategoryLabel: UILabel {
+        convenience init() {
+            self.init(frame: .zero)
+            viewConfig()
+        }
+        
+        private func viewConfig() {
+            textColor = .white
+            textAlignment = .center
+            font = .systemFont(ofSize: 16, weight: .semibold)
+        }
     }
 }
