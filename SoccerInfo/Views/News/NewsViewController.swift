@@ -12,9 +12,10 @@ final class NewsViewController: BasicTabViewController<NewsData> {
     typealias SearchResponse = Result<NewsResponse, APIErrorType>
     
     private var newsTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.separatorStyle = .none
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
+        tableView.rowHeight = 175
         return tableView
     }()
     
@@ -34,6 +35,14 @@ final class NewsViewController: BasicTabViewController<NewsData> {
         newsTableView.dataSource = self
         newsTableView.backgroundColor = .clear
         newsTableView.separatorInset.left = newsTableView.separatorInset.right
+        addSubviews(newsTableView)
+    }
+    
+    override func constraintsConfig() {
+        super.constraintsConfig()
+        newsTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     override func fetchData() {

@@ -22,7 +22,7 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     typealias FixturesDatas = [String : FixturesContents]
     
     private let schedulesTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.separatorStyle = .none
         tableView.register(FixturesTableViewCell.self,
                            forCellReuseIdentifier: FixturesTableViewCell.identifier)
@@ -78,18 +78,14 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     private var lastMatchDate: String = ""
     private var openingMatchDate: String = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print(#function)
-    }
-    
     override func viewConfig() {
         super.viewConfig()
-        // Schedules TableView Config        
+        // Schedules TableView Config
         schedulesTableView.delegate = self
         schedulesTableView.dataSource = self
         schedulesTableView.backgroundColor = .clear
         schedulesTableView.separatorInset.right = schedulesTableView.separatorInset.left
+        addSubviews(schedulesTableView)
         
         // Swipe Gesture for change monday of week
         let leftSwipeGesture = UISwipeGestureRecognizer(target: self,
@@ -101,6 +97,12 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
                                                          action: #selector(swipeAction(swipeGesture:)))
         rightSwipeGesture.direction = .right
         view.addGestureRecognizer(rightSwipeGesture)
+    }
+    
+    override func constraintsConfig() {
+        schedulesTableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     override func navAppearenceConfig() {
@@ -294,14 +296,13 @@ extension FixturesViewController: UITableViewDelegate, UITableViewDataSource {
         
         // when match was over, push match detail VC
         if let _ = selectedContent.homeGoal {
-            let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
-            let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController            
+            let matchDetailVC = MatchDetailViewController()
             matchDetailVC.fixtureID = selectedContent.fixtureID            
             matchDetailVC.homeScore = selectedContent.homeGoal ?? 0
             matchDetailVC.awayScore = selectedContent.awayGoal ?? 0
             matchDetailVC.homeTeamName = selectedContent.homeName
             matchDetailVC.awayTeamName = selectedContent.awayName
-            navigationController?.pushViewController(matchDetailVC, animated: true)            
+            navigationController?.pushViewController(matchDetailVC, animated: true)
         }
         // when match is not started, notification add request
         else {
