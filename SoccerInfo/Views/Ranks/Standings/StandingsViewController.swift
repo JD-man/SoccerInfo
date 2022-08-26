@@ -127,8 +127,7 @@ extension StandingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Squads", bundle: nil)
-        let squadVC = storyboard.instantiateViewController(withIdentifier: "SquadsViewController") as! SquadsViewController
+        let squadVC = SquadsViewController()
         let selectedData = data[indexPath.row]
         
         squadVC.id = selectedData.teamID

@@ -84,7 +84,7 @@ extension StandingSectionHeaderView {
         private func viewConfig(title: String) {
             text = title
             textAlignment = .center
-            textColor = .systemBackground
+            textColor = .white
             font = .systemFont(ofSize: 15, weight: .semibold)
         }
     }
