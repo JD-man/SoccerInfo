@@ -147,20 +147,20 @@ final class SquadsViewController: UIViewController {
         ]
         let dataSet = PieChartDataSet(entries: entries, label: "| 최근 경기 승률(%)")
         dataSet.sliceSpace = 3
-        dataSet.colors = [.systemIndigo, .systemGreen, .systemPink]
         dataSet.valueTextColor = .white
-        dataSet.valueFont = .systemFont(ofSize: 12, weight: .semibold)
         dataSet.entryLabelFont = .systemFont(ofSize: 0)
+        dataSet.colors = [.systemIndigo, .systemGreen, .systemPink]
+        dataSet.valueFont = .systemFont(ofSize: 12, weight: .semibold)
         
         let data = PieChartData(dataSet: dataSet)
         
         data.setValueFont(.systemFont(ofSize: 12, weight: .medium))
         
         winRatePieChartView.data = data
-        winRatePieChartView.backgroundColor = .clear
         winRatePieChartView.holeColor = .clear
-        winRatePieChartView.legend.horizontalAlignment = .center
+        winRatePieChartView.backgroundColor = .clear
         winRatePieChartView.legend.textColor = .white
+        winRatePieChartView.legend.horizontalAlignment = .center
         winRatePieChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0, easingOption: .easeInOutCirc)
     }
     
@@ -175,11 +175,9 @@ final class SquadsViewController: UIViewController {
                                  completion: nil)
             return
         }
-        print("FetchRealmData", user)
         let configuration = user.configuration(partitionValue: "\(league.leagueID)")
         do {
             // Local Realm Load
-            print("Local Realm Load")
             let localRealm = try Realm(configuration: configuration)
             
             // check league, season, updateDate
@@ -225,14 +223,13 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "MatchDetail", bundle: nil)
-        let matchDetailVC = storyboard.instantiateViewController(withIdentifier: "MatchDetailViewController") as! MatchDetailViewController
+        let matchDetailVC = MatchDetailViewController()
         let selectedData = data[indexPath.item]
         matchDetailVC.fixtureID = selectedData.fixtureID
-        matchDetailVC.homeScore = selectedData.homeGoal ?? 0
-        matchDetailVC.awayScore = selectedData.awayGoal ?? 0
         matchDetailVC.homeTeamName = selectedData.homeName
         matchDetailVC.awayTeamName = selectedData.awayName
+        matchDetailVC.homeScore = selectedData.homeGoal ?? 0
+        matchDetailVC.awayScore = selectedData.awayGoal ?? 0
         navigationController?.pushViewController(matchDetailVC, animated: true)
     }
     
