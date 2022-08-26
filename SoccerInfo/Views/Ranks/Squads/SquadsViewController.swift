@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import RealmSwift
 import Charts
 
@@ -20,16 +21,18 @@ final class SquadsViewController: UIViewController {
         print("SquadVC deinit")
     }
     
-    @IBOutlet weak var labelContainerView: UIView!
+    private let dimView = UIView()
+    private let scrollView = UIScrollView()
+    private let winRateLabel = CategoryLabel()
+    private let currentMatchLabel = CategoryLabel()
+    private let winRatePieChartView = PieChartView()
+    private let labelContainerView = CurrentMatchLabelContainerView()
     
-    @IBOutlet weak var teamNameLabel: UILabel!
-    @IBOutlet weak var currentRankLabel: UILabel!
-    @IBOutlet weak var rankDescriptionLabel: UILabel!
-    
-    @IBOutlet weak var winRateLabel: UILabel!
-    @IBOutlet weak var goalDiffLabel: UILabel!
-    @IBOutlet weak var winRatePieChartView: PieChartView!
-    @IBOutlet weak var currentMatchCollectionView: UICollectionView!
+    private let currentMatchCollectionView = UICollectionView(
+        frame: .zero, collectionViewLayout: CurrentMatchCollectionViewFlowLayout())
+    private lazy var dismissButton = UIBarButtonItem(
+        barButtonSystemItem: .close, target: self, action: #selector(dismissButtonClicked)
+    )
 
     var id: Int = 0    
     var currentRank: Int = 0
