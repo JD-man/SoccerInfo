@@ -255,3 +255,18 @@ extension SquadsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         targetContentOffset.pointee = CGPoint(x: x, y: 0)
     }
 }
+
+extension SquadsViewController {
+    private final class CategoryLabel: UILabel {
+        convenience init() {
+            self.init(frame: .zero)
+            viewConfig()
+        }
+        
+        private func viewConfig() {
+            textColor = .white
+            textAlignment = .center
+            font = .systemFont(ofSize: 16, weight: .semibold)
+        }
+    }
+}
