@@ -116,12 +116,6 @@ final class FixturesViewController: BasicTabViewController<FixturesRealmData> {
     
     @objc private func manualButtonClicked() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "사용법",
-                                            style: .default,
-                                            handler: { [weak self] _ in
-            let manualVC = ManualViewController()
-            self?.present(manualVC, animated: true, completion: nil)
-        }))
         actionSheet.addAction(UIAlertAction(title: "오픈소스 라이센스",
                                             style: .default,
                                             handler: { [weak self] _ in
