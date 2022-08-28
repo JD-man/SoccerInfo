@@ -33,11 +33,11 @@ final class TeamSchedulesTableViewCell: UITableViewCell {
     private func constraintsConfig() {
         scheduleDateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().offset(20)
         }
         
         versusLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(scheduleDateLabel)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(scheduleDateLabel.snp.bottom).offset(10)
         }
         
@@ -49,7 +49,7 @@ final class TeamSchedulesTableViewCell: UITableViewCell {
         resultLabel.snp.makeConstraints { make in
             make.trailing.equalTo(versusLabel)
             make.top.equalTo(homeAwayLabel.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-10).priority(.low)
         }
     }
     
