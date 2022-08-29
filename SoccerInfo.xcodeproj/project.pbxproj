@@ -50,7 +50,6 @@
 		898A63E6274690CE0023426A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898A63E5274690CE0023426A /* MainTabBarController.swift */; };
 		899000812753C86C00A4812A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899000802753C86C00A4812A /* UIView+Extension.swift */; };
 		8990E775275B5CB70025CE05 /* FormationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */; };
-		89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C12757E2D5000AC2FE /* ManualViewController.swift */; };
 		89C843C42757E531000AC2FE /* OpenSourceLicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */; };
 		89D3EC7B27D3A57F009494DA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7A27D3A57F009494DA /* SnapKit */; };
 		89D3EC7E27D3A5B6009494DA /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 89D3EC7D27D3A5B6009494DA /* RxDataSources */; };
@@ -125,7 +124,6 @@
 		898A63E5274690CE0023426A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		899000802753C86C00A4812A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8990E773275B5CB70025CE05 /* FormationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationTableViewCell.swift; sourceTree = "<group>"; };
-		89C843C12757E2D5000AC2FE /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceLicenseViewController.swift; sourceTree = "<group>"; };
 		89DB128D274BE009009E8888 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 		89DB128F274BE125009E8888 /* FixturesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesModel.swift; sourceTree = "<group>"; };
@@ -346,7 +344,6 @@
 			children = (
 				89740BFD27464B510033AD2C /* FixturesViewController.swift */,
 				893D1432274E017000B9AAA0 /* FixturesTableViewCell.swift */,
-				89C843C12757E2D5000AC2FE /* ManualViewController.swift */,
 				89C843C32757E531000AC2FE /* OpenSourceLicenseViewController.swift */,
 			);
 			path = Fixtures;
@@ -669,7 +666,6 @@
 				89E75304275227EA0019F62F /* LineupsTableViewCell.swift in Sources */,
 				89DB1292274BE1C5009E8888 /* Errors.swift in Sources */,
 				893C6E7D274CBED900210ED1 /* SideTableViewCell.swift in Sources */,
-				89C843C22757E2D5000AC2FE /* ManualViewController.swift in Sources */,
 				899000812753C86C00A4812A /* UIView+Extension.swift in Sources */,
 				892DEEA027562CAF0077D887 /* UserNotificationCenterManager.swift in Sources */,
 				8913C821274B3433000CCC44 /* StandingsTableViewCell.swift in Sources */,
@@ -888,7 +884,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				ENABLE_TESTING_SEARCH_PATHS = NO;
@@ -905,7 +901,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -924,7 +920,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z2SX2S8N8L;
 				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -940,7 +936,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDman.SoccerInfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
