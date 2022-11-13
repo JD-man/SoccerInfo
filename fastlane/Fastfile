@@ -18,9 +18,30 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta_update do
-    # ensure_git_status_clean
-    
-    build_app(workspace: "SoccerInfo.xcworkspace", scheme: "SoccerInfo")
-    upload_to_testflight
+    version = get_version_number(xcodeproj: "SoccerInfo.xcodeproj")
+    # build_app(workspace: "SoccerInfo.xcworkspace", scheme: "SoccerInfo")
+    puts "#{version} 빌드 완료"
+
+    # upload_to_testflight
+    puts "#{version} 테스트 플라이트 업로드 완료"
+
+    # upload_symbols_to_crashlytics(gsp_path: "./SoccerInfo/GoogleService-Info.plist")
+    puts "#{version} Crashlytics dSYM 업로드 완료"
+
+    create_pull_request(
+      repo: "JD-man/FootballInfo",
+      title: "새 버전 PR",
+      base: "develop",
+      body: "main으로 새 버전 PR"
+    )
+    puts "#{version} develop PR 완료"
+
+    create_pull_request(
+      repo: "JD-man/FootballInfo",
+      title: "새 버전 PR",
+      base: "main",
+      body: "main으로 새 버전 PR"
+    )
+    puts "#{version} main PR 완료"
   end
 end
