@@ -19,13 +19,13 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta_update do
     version = get_version_number(xcodeproj: "SoccerInfo.xcodeproj")
-    # build_app(workspace: "SoccerInfo.xcworkspace", scheme: "SoccerInfo")
+    build_app(workspace: "SoccerInfo.xcworkspace", scheme: "SoccerInfo")
     puts "#{version} 빌드 완료"
 
-    # upload_to_testflight
+    upload_to_testflight
     puts "#{version} 테스트 플라이트 업로드 완료"
 
-    # upload_symbols_to_crashlytics(gsp_path: "./SoccerInfo/GoogleService-Info.plist")
+    upload_symbols_to_crashlytics(gsp_path: "./SoccerInfo/GoogleService-Info.plist")
     puts "#{version} Crashlytics dSYM 업로드 완료"
 
     create_pull_request(
