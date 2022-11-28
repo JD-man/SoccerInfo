@@ -18,8 +18,8 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta_update do
-    version = get_version_number(xcodeproj: "SoccerInfo.xcodeproj")
-    build_app(workspace: "SoccerInfo.xcworkspace", scheme: "SoccerInfo")
+    version = get_version_number(xcodeproj: "FootballInfo.xcodeproj")
+    build_app(workspace: "FootballInfo.xcworkspace", scheme: "Release")
     puts "#{version} 빌드 완료"
 
     upload_to_testflight
