@@ -12,9 +12,20 @@ protocol RootDependency: Dependency {
   // created by this RIB.
 }
 
-final class RootComponent: Component<RootDependency> {
+final class RootComponent: Component<RootDependency>, MainDependency {
+  var mainViewController: MainViewControllable {
+    return rootViewController
+  }
   
-  // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+  private let rootViewController: RootViewController
+  
+  init(
+    dependency: RootDependency,
+    rootViewController: RootViewController
+  ) {
+    self.rootViewController = rootViewController
+    super.init(dependency: dependency)
+  }
 }
 
 // MARK: - Builder
