@@ -13,69 +13,69 @@ import RealmSwift
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // Firebase Configure
-      #if !DEBUG
-      print("Fire base configure")
-        FirebaseApp.configure()
-      #endif
-        
-        // Synchronous Configure
-        let group = DispatchGroup()
-        let queue = DispatchQueue.global()
-        
-        print("login start")
-        group.enter()
-        queue.async(group: group) {
-            let app = App(id: APIComponents.realmAppID)
-            if let currentUser = app.currentUser, currentUser.isLoggedIn {
-                print("current user exist",currentUser.id)
-                sleep(1)
-                group.leave()
-                return
-            }
-            else {
-                app.login(credentials: .anonymous) { result in
-                    switch result {
-                    case .success(let user):
-                        print("new anonymous", user.id)
-                        group.leave()
-                    case .failure(let error):
-                        print(error)
-                        group.leave()
-                    }
-                }
-            }
-        }
-        
-        // Initialization Notification Center
-        group.enter()
-        queue.async(group: group) {
-            print("noti check")
-            let notiCenter = UserNotificationCenterManager()
-            notiCenter.userNotificationCenter.getNotificationSettings {
-                switch $0.authorizationStatus {
-                case .denied:
-                    if let reserved = UserDefaults.standard.object(forKey: "ReservedFixtures") as? [Int] {
-                        for fixture in reserved {
-                            print(fixture)
-                            notiCenter.userNotificationCenter.removePendingNotificationRequests(withIdentifiers: ["\(fixture)"])
-                            print("removing")
-                        }
-                        UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
-                    }
-                    print("noti check complete")
-                    group.leave()
-                default:
-                    group.leave()
-                    break
-                }
-            }
-        }
-        
-        // Wait until All Configure
-        group.wait()
-        print("AppDelegate end")
+//        
+//        // Firebase Configure
+//      #if !DEBUG
+//      print("Fire base configure")
+//        FirebaseApp.configure()
+//      #endif
+//        
+//        // Synchronous Configure
+//        let group = DispatchGroup()
+//        let queue = DispatchQueue.global()
+//        
+//        print("login start")
+//        group.enter()
+//        queue.async(group: group) {
+//            let app = App(id: APIComponents.realmAppID)
+//            if let currentUser = app.currentUser, currentUser.isLoggedIn {
+//                print("current user exist",currentUser.id)
+//                sleep(1)
+//                group.leave()
+//                return
+//            }
+//            else {
+//                app.login(credentials: .anonymous) { result in
+//                    switch result {
+//                    case .success(let user):
+//                        print("new anonymous", user.id)
+//                        group.leave()
+//                    case .failure(let error):
+//                        print(error)
+//                        group.leave()
+//                    }
+//                }
+//            }
+//        }
+//        
+//        // Initialization Notification Center
+//        group.enter()
+//        queue.async(group: group) {
+//            print("noti check")
+//            let notiCenter = UserNotificationCenterManager()
+//            notiCenter.userNotificationCenter.getNotificationSettings {
+//                switch $0.authorizationStatus {
+//                case .denied:
+//                    if let reserved = UserDefaults.standard.object(forKey: "ReservedFixtures") as? [Int] {
+//                        for fixture in reserved {
+//                            print(fixture)
+//                            notiCenter.userNotificationCenter.removePendingNotificationRequests(withIdentifiers: ["\(fixture)"])
+//                            print("removing")
+//                        }
+//                        UserDefaults.standard.removeObject(forKey: "ReservedFixtures")
+//                    }
+//                    print("noti check complete")
+//                    group.leave()
+//                default:
+//                    group.leave()
+//                    break
+//                }
+//            }
+//        }
+//        
+//        // Wait until All Configure
+//        group.wait()
+//        print("AppDelegate end")
         return true
     }
 
