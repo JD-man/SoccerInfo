@@ -37,7 +37,7 @@ enum FootballData {
     var rootURL: String {
         switch self {
         case .standings, .fixtures, .events, .lineups:
-            return APIComponents.footBallRootURL
+            return "" //APIComponents.footBallRootURL
         case .newsSearch, .newsImage:
             return APIComponents.newsRootURL
         }
@@ -96,9 +96,9 @@ enum FootballData {
     var headers: HTTPHeaders {
         switch self {
         case .standings, .fixtures , .events, .lineups:
-            return APIComponents.footBallHeaders
+          return [:]//APIComponents.footBallHeaders
         case .newsImage, .newsSearch:
-            return APIComponents.newsHeaders
+          return [:]//APIComponents.newsHeaders
         @unknown default:
             print("FootballData headers unknown default")
         }
