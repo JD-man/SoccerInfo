@@ -20,7 +20,9 @@ protocol SchedulePresentable: Presentable {
 }
 
 protocol ScheduleListener: AnyObject {
-  // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+  func changeLeagueInfo(of leagueInfo: LeagueInfo)
+}
+
 protocol ScheduleInteractorDependency {
   var leagueInfoStream: LeagueInfoStreamProtocol { get }
 }
@@ -104,6 +106,18 @@ extension ScheduleInteractor {
         .just(.setWeeklyScheduleContent(nextWeekScheduleContent)),
         .just(.setFirstDay(nextWeekFirstDay))
       )
+      
+    case .changeLeague(let league):
+      let currentSeason = currentState.leagueInfo.season
+      let newLeagueInfo = LeagueInfo(season: currentSeason, league: league)
+      return .just(.setLeagueInfo(newLeagueInfo))
+        .do(onNext: { [weak self] _ in
+          guard let self = self else { return }
+          self.listener?.changeLeagueInfo(of: newLeagueInfo)
+        })
+    }
+  }
+  
   func transform(mutation: Observable<ScheduleReactorModel.Mutation>) -> Observable<ScheduleReactorModel.Mutation> {
     let firstDay = initialState.firstDay
     let leagueInfoMutation = dependency.leagueInfoStream.leagueInfo
