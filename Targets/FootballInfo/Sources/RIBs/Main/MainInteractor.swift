@@ -17,14 +17,19 @@ protocol MainListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol MainInteractorDependency {
+  var mutableLeagueInfoStream: MutableLeagueInfoStreamProtocol { get }
+}
+
 final class MainInteractor: Interactor, MainInteractable {
   
   weak var router: MainRouting?
   weak var listener: MainListener?
+  private let dependency: MainInteractorDependency
   
-  // TODO: Add additional dependencies to constructor. Do not perform any logic
-  // in constructor.
-  override init() {}
+  init(dependency: MainInteractorDependency) {
+    self.dependency = dependency
+  }
   
   override func didBecomeActive() {
     super.didBecomeActive()
@@ -38,5 +43,10 @@ final class MainInteractor: Interactor, MainInteractable {
   
   private func setTabs() {
     router?.setTabViews()
+  }
+  
+  // MARK: - LeagueInfo Stream
+  func changeLeagueInfo(of leagueInfo: LeagueInfo) {
+    dependency.mutableLeagueInfoStream.changeLeagueInfo(to: leagueInfo)
   }
 }
