@@ -106,7 +106,17 @@ extension ScheduleInteractor {
         .just(.setWeeklyScheduleContent(nextWeekScheduleContent)),
         .just(.setFirstDay(nextWeekFirstDay))
       )
-    }
+  func transform(mutation: Observable<ScheduleReactorModel.Mutation>) -> Observable<ScheduleReactorModel.Mutation> {
+    let firstDay = initialState.firstDay
+    let leagueInfoMutation = dependency.leagueInfoStream.leagueInfo
+      .withUnretained(self)
+      .flatMap { interactor, leagueInfo -> Observable<Mutation> in
+        return .concat(
+          interactor.fetchSchedules(leagueInfo: leagueInfo, firstDay: firstDay),
+          .just(.setLeagueInfo(leagueInfo))
+        )
+      }
+    return .merge(mutation, leagueInfoMutation)
   }
   
   func reduce(state: State, mutation: Mutation) -> State {
