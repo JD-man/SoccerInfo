@@ -67,21 +67,25 @@ final class ScheduleViewController: UIViewController,
       .bind(to: listner.viewAction)
       .disposed(by: disposeBag)
     
-    view.rx
-      .swipeGesture(.left)
+    let swipe = view.rx
+      .swipeGesture([.left, .right])
       .when(.ended)
       .skip(1)
+      .publish()
+    
+    swipe
+      .filter { $0.direction == .left }
       .map { _ in ScheduleReactorModel.Action.nextSchedule }
       .bind(to: listner.viewAction)
       .disposed(by: disposeBag)
     
-    view.rx
-      .swipeGesture(.right)
-      .when(.ended)
-      .skip(1)
+    swipe
+      .filter { $0.direction == .right }
       .map { _ in ScheduleReactorModel.Action.prevSchedule }
       .bind(to: listner.viewAction)
       .disposed(by: disposeBag)
+    
+    swipe.connect().disposed(by: disposeBag)
   }
   
   private func bindState() {
