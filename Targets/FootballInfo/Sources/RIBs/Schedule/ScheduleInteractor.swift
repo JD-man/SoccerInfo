@@ -22,13 +22,20 @@ protocol ScheduleListener: AnyObject {
 }
 
 final class ScheduleInteractor: PresentableInteractor<SchedulePresentable>, ScheduleInteractable, SchedulePresentableListener {
+  var viewAction: ActionSubject<ScheduleReactorModel.Action> { action }
+  var viewState: Observable<ScheduleReactorModel.State> { state }
   
   weak var router: ScheduleRouting?
   weak var listener: ScheduleListener?
+  private let useCase: ScheduleUseCaseProtocol
   
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.
-  override init(presenter: SchedulePresentable) {
+  init(
+    presenter: SchedulePresentable,
+    useCase: ScheduleUseCaseProtocol
+  ) {
+    self.useCase = useCase
     super.init(presenter: presenter)
     presenter.listener = self
   }
