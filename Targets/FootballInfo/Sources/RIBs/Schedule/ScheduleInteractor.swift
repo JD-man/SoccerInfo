@@ -81,20 +81,7 @@ extension ScheduleInteractor {
     
     switch action {
     case .fetchSchedule:
-      return useCase.executeRealmFixture(season: 2022, league: "39")
-        .withUnretained(self)
-        .flatMap { interactor, data -> Observable<Mutation> in
-          let firstDay = interactor.currentState.firstDay
-          let totalScheduleDictionary = interactor.makeTotalScheduleDictionary(data: data)
-          let weeklyScheduleContent = interactor.makeWeeklyScheduleContent(
-            firstDay: firstDay,
-            totalDictionary: totalScheduleDictionary
-          )
-          return .concat(
-            .just(.setTotalScheduleDictionary(totalScheduleDictionary)),
-            .just(.setWeeklyScheduleContent(weeklyScheduleContent))
-          )
-        }
+      return fetchSchedules(leagueInfo: leagueInfo, firstDay: firstDay)
       
     case .prevSchedule:
       let prevWeekFirstDay = currentState.firstDay.beforeWeekDay
@@ -186,6 +173,28 @@ extension ScheduleInteractor {
         }
         
         return .init(dateHeader: dateHeader, items: items)
+      }
+  }
+  
+  private func fetchSchedules(leagueInfo: LeagueInfo, firstDay: Date) -> Observable<Mutation> {
+    let season = leagueInfo.season
+    let league = "\(leagueInfo.league.leagueID)"
+    return useCase.executeRealmFixture(season: season, league: league)
+      .withUnretained(self)
+      .flatMap { interactor, data -> Observable<Mutation> in
+        let totalScheduleDictionary = interactor.makeTotalScheduleDictionary(
+          data: data,
+          leagueInfo: leagueInfo
+        )
+        let weeklyScheduleContent = interactor.makeWeeklyScheduleContent(
+          firstDay: firstDay,
+          totalDictionary: totalScheduleDictionary,
+          leagueInfo: leagueInfo
+        )
+        return .concat(
+          .just(.setTotalScheduleDictionary(totalScheduleDictionary)),
+          .just(.setWeeklyScheduleContent(weeklyScheduleContent))
+        )
       }
   }
 }
