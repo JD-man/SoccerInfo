@@ -21,6 +21,8 @@ protocol SchedulePresentable: Presentable {
 
 protocol ScheduleListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+protocol ScheduleInteractorDependency {
+  var leagueInfoStream: LeagueInfoStreamProtocol { get }
 }
 
 final class ScheduleInteractor: PresentableInteractor<SchedulePresentable>,
@@ -35,6 +37,7 @@ final class ScheduleInteractor: PresentableInteractor<SchedulePresentable>,
   typealias Mutation = ScheduleReactorModel.Mutation
   typealias State = ScheduleReactorModel.State
   
+  private let dependency: ScheduleInteractorDependency
   // TODO: - Date extension 모듈화시 어떻게 사용할지 생각
   var initialState = State(firstDay: Date().fixtureFirstDay)
   
@@ -46,9 +49,11 @@ final class ScheduleInteractor: PresentableInteractor<SchedulePresentable>,
   // in constructor.
   init(
     presenter: SchedulePresentable,
-    useCase: ScheduleUseCaseProtocol
+    useCase: ScheduleUseCaseProtocol,
+    dependency: ScheduleInteractorDependency
   ) {
     self.useCase = useCase
+    self.dependency = dependency
     super.init(presenter: presenter)
     presenter.listener = self
   }
