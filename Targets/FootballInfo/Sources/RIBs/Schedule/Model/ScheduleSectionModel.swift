@@ -29,6 +29,7 @@ extension ScheduleSectionModel {
     typealias Identity = Int
     var identity: Int { fixtureID }
     
+    let leagueInfo: LeagueInfo
     let homeID: Int
     let homeName: String
     let homeLogo: String
@@ -42,8 +43,9 @@ extension ScheduleSectionModel {
     let matchHour: String
     let fixtureID: Int
     
-    static func emptyContent(id: Int) -> Item {
-      return .init(homeID: 0,
+    static func emptyContent(id: Int, leagueInfo: LeagueInfo) -> Item {
+      return .init(leagueInfo: leagueInfo,
+                   homeID: 0,
                    homeName: "empty",
                    homeLogo: "",
                    awayID: 0,
