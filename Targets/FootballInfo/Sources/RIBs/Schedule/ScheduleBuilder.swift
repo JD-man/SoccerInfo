@@ -32,7 +32,20 @@ final class ScheduleBuilder: Builder<ScheduleDependency>, ScheduleBuildable {
   func build(withListener listener: ScheduleListener) -> ScheduleRouting {
     let component = ScheduleComponent(dependency: dependency)
     let viewController = ScheduleViewController()
-    let interactor = ScheduleInteractor(presenter: viewController)
+    
+    // TODO: DI
+    let footballRepository = FootballRepository()
+    let footballRealmRepository = FootballRealmRepository()
+    
+    let useCase = ScheduleUseCase(
+      footballRepository: footballRepository,
+      footballRealmRepository: footballRealmRepository
+    )
+    
+    let interactor = ScheduleInteractor(
+      presenter: viewController,
+      useCase: useCase
+    )
     interactor.listener = listener
     return ScheduleRouter(interactor: interactor, viewController: viewController)
   }
