@@ -11,6 +11,6 @@ final class PublicPropertyManager {
     private init() {}
     static let shared = PublicPropertyManager()
     
-    var league: League = .premierLeague
+  var league: LeagueInfo.League = .premierLeague
     var season: Int = 2022
 }

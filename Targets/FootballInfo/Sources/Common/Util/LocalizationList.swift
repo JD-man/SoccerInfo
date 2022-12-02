@@ -8,8 +8,8 @@
 import Foundation
 
 struct LocalizationList {
-    static var team: [Int : String] {
-        switch PublicPropertyManager.shared.league {
+  static func team(of league: LeagueInfo.League) -> [Int : String] {
+        switch league {
         case .premierLeague:
             return [
                 33 : "맨유",

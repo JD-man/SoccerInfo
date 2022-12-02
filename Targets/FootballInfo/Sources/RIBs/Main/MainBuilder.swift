@@ -8,20 +8,18 @@
 import RIBs
 
 protocol MainDependency: Dependency {
-  // TODO: Make sure to convert the variable into lower-camelcase.
   var mainViewController: MainViewControllable { get }
-  // TODO: Declare the set of dependencies required by this RIB, but won't be
-  // created by this RIB.
 }
 
-final class MainComponent: Component<MainDependency> {
+final class MainComponent: Component<MainDependency>, MainInteractorDependency {
   
-  // TODO: Make sure to convert the variable into lower-camelcase.
   fileprivate var mainViewController: MainViewControllable {
     return dependency.mainViewController
   }
   
-  // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+  var mutableLeagueInfoStream: MutableLeagueInfoStreamProtocol {
+    return shared { MutableLeagueInfoStream() }
+  }
 }
 
 // MARK: - Builder
@@ -38,7 +36,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
   
   func build(withListener listener: MainListener) -> MainRouting {
     let component = MainComponent(dependency: dependency)
-    let interactor = MainInteractor()
+    let interactor = MainInteractor(dependency: component)
     interactor.listener = listener
     
     let scheduleBuilder = ScheduleBuilder(dependency: component)
@@ -63,4 +61,7 @@ extension MainComponent: ScheduleDependency,
                          RankDependency,
                          NewsDependency {
   
+  var leagueInfoStream: LeagueInfoStreamProtocol {
+    return mutableLeagueInfoStream
+  }
 }

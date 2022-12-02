@@ -38,7 +38,7 @@
 //     */
 //    
 //    override var data: [FixturesRealmData] {
-//        didSet {            
+//        didSet {
 //            let matchDates = data.map { return $0.fixtureDate.toDate.formattedDay }
 //            openingMatchDate = matchDates.min() ?? ""
 //            lastMatchDate = matchDates.max() ?? ""
@@ -57,7 +57,7 @@
 //        }
 //    }
 //    private var scheduleContent = [FixturesContents](repeating: [FixturesContent.initialContent], count: 7) {
-//        didSet {            
+//        didSet {
 //            if activityView.isAnimating { activityView.stopAnimating() }
 //            schedulesTableView.reloadSections(IndexSet(0 ..< 7), with: .fade)
 //            //schedulesTableView.reloadData()
@@ -128,7 +128,7 @@
 //        present(actionSheet, animated: true, completion: nil)
 //    }
 //    
-//    override func fetchData() {        
+//    override func fetchData() {
 //        fetchRealmData(league: league, season: season) { [weak self] (result: FixturesObject) in
 //            switch result {
 //            case .success(let fixturesTable):
@@ -148,7 +148,7 @@
 //    private func fetchFixturesAPIData() {
 //        fetchAPIData(of: .fixtures(season: season, league: league)) { [weak self] (result: FixturesResponses) in
 //            switch result {
-//            case .success(let fixturesData):                
+//            case .success(let fixturesData):
 //                guard fixturesData.results != 0 else {
 //                    self?.alertCallLimit() { self?.activityView.stopAnimating() }
 //                    return
@@ -256,7 +256,7 @@
 //        if dateSectionTitles[section].sectionTitleToDate.dayStart == Date().dayStart {
 //            label.text?.append(" ⚽️")
 //        }
-//        label.font = .systemFont(ofSize: 20, weight: .semibold)        
+//        label.font = .systemFont(ofSize: 20, weight: .semibold)
 //        return label
 //    }
 //    
@@ -274,7 +274,7 @@
 //        
 //        cell.backgroundColor = league.colors[2]
 //        cell.noMatchCellLabel.backgroundColor = league.colors[2]
-//        cell.noMatchCellLabel.isHidden = sectionCount > 0        
+//        cell.noMatchCellLabel.isHidden = sectionCount > 0
 //        if sectionCount > 0 {
 //            cell.configure(with: scheduleContent[section][item])
 //        }
@@ -291,7 +291,7 @@
 //        // when match was over, push match detail VC
 //        if let _ = selectedContent.homeGoal {
 //            let matchDetailVC = MatchDetailViewController()
-//            matchDetailVC.fixtureID = selectedContent.fixtureID            
+//            matchDetailVC.fixtureID = selectedContent.fixtureID
 //            matchDetailVC.homeScore = selectedContent.homeGoal ?? 0
 //            matchDetailVC.awayScore = selectedContent.awayGoal ?? 0
 //            matchDetailVC.homeTeamName = selectedContent.homeName
@@ -325,7 +325,7 @@
 //                                                  message: "알림 설정을 해주셔야 경기 시간 알림 사용이 가능합니다.",
 //                                                  completion: nil)
 //                    }
-//                }                
+//                }
 //            }
 //        }
 //    }

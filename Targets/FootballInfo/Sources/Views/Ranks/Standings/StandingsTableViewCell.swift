@@ -93,7 +93,7 @@ final class StandingsTableViewCell: UITableViewCell {
     
     func configure(with data: StandingsRealmData) {
         rankLabel.text = "\(data.rank)"
-        teamNameLabel.text = LocalizationList.team[data.teamID] ?? ""
+        //teamNameLabel.text = LocalizationList.team[data.teamID] ?? ""
         
         pointsLabel.text = "\(data.points)"
         playedLabel.text = "\(data.played)"

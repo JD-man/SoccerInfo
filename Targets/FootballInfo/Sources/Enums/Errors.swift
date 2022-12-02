@@ -8,9 +8,10 @@
 import Foundation
 
 enum RealmErrorType: Error {
-    case emptyData    
-    case asyncOpenFail // Error 1
-    case realmFail // Error 2
+  case loginFail
+  case emptyData    
+  case asyncOpenFail // Error 1
+  case realmFail // Error 2
 }
 
 enum APIErrorType: Int, Error {

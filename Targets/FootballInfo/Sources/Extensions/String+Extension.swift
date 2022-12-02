@@ -8,11 +8,11 @@
 import UIKit
 
 extension String {
-    func toURL(of dataType: FootballData) -> URL? {
-        var components = URLComponents(string: self + dataType.urlPath)
-        components?.queryItems = dataType.queryItems
-        return components?.url
-    }
+//    func toURL(of dataType: FootballData) -> URL? {
+//        var components = URLComponents(string: self + dataType.urlPath)
+//        components?.queryItems = dataType.queryItems
+//        return components?.url
+//    }
     
     // for fixture date
     var toDate: Date {
