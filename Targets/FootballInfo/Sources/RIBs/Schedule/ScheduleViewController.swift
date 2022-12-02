@@ -121,7 +121,7 @@ extension ScheduleViewController: UITableViewDelegate {
     let label = UILabel()
     let dateHeader = dataSources[section].dateHeader
     let isMatchDay = dateHeader.sectionTitleToDate.dayStart == Date().dayStart
-    let headerText = isMatchDay ? "  \(dateHeader)" : "  \(dateHeader) ⚽️"
+    let headerText = isMatchDay ? "  \(dateHeader) ⚽️" : "  \(dateHeader)"
     
     label.textColor = .white
     label.text = headerText
