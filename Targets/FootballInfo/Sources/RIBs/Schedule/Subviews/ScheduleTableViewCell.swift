@@ -94,14 +94,17 @@ final class ScheduleTableViewCell: UITableViewCell {
   }
   
   func configure(with data: ScheduleSectionModel.Item) {
-    
+    let league = data.leagueInfo.league
     if data.homeName == "empty" {
+      noMatchCellLabel.backgroundColor = league.colors[2]
       noMatchCellLabel.isHidden = false
       return
     }
     
-    homeNameLabel.text = LocalizationList.team[data.homeID] ?? ""
-    awayNameLabel.text = LocalizationList.team[data.awayID] ?? ""
+    backgroundColor = league.colors[2]
+    noMatchCellLabel.backgroundColor = league.colors[2]
+    homeNameLabel.text = LocalizationList.team(of: league)[data.homeID] ?? ""
+    awayNameLabel.text = LocalizationList.team(of: league)[data.awayID] ?? ""
     if let homeGoal = data.homeGoal, let awayGoal = data.awayGoal {
       timeLabel.isHidden = true
       scoreLabel.isHidden = false

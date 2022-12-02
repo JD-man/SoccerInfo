@@ -109,7 +109,8 @@ extension ScheduleViewController {
         withIdentifier: ScheduleTableViewCell.identifier,
         for: indexPath) as? ScheduleTableViewCell
       else {
-        return ScheduleTableViewCell() }
+        return ScheduleTableViewCell()
+      }
       cell.configure(with: item)
       return cell
     }
