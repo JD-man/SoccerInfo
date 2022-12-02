@@ -30,7 +30,7 @@ final class SideViewController: UIViewController {
         var contents: [String] {
             switch self {
             case .league:
-                return League.allCases.map { $0.rawValue }
+              return LeagueInfo.League.allCases.map { $0.rawValue }
             @unknown default:
                 print("SideSection contents unknown default")
             }
@@ -46,7 +46,7 @@ final class SideViewController: UIViewController {
         return tableView
     }()
     
-    var selectedLeague: League = .premierLeague
+  var selectedLeague: LeagueInfo.League = .premierLeague
     let contents = SideSection.allCases.map { $0.contents }
     let sectionTitles = SideSection.allCases.map { $0.title }
     
@@ -121,7 +121,7 @@ extension SideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // navigationController of this view is SideMenuNavigationController
         let leagueName = contents[indexPath.section][indexPath.row]
-        selectedLeague = League(rawValue: leagueName) ?? .premierLeague
+      selectedLeague = LeagueInfo.League(rawValue: leagueName) ?? .premierLeague
         navigationController?.dismiss(animated: true, completion: nil)
     }
 }

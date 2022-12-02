@@ -89,12 +89,12 @@ final class CurrentMatchCollectionViewCell: UICollectionViewCell {
     
     private func homeConfigure(data: FixturesRealmData) {
         let homeGoal = data.homeGoal!
-        let awayGoal = data.awayGoal!        
+        let awayGoal = data.awayGoal!
         
         homeAwayLabel.text = "Home"
         scoreLabel.text = "\(homeGoal) : \(awayGoal)"
         winLoseLabelConfig(teamGoal: homeGoal, oppositeGoal: awayGoal)
-        oppositeTeamNameLabel.text = LocalizationList.team[data.awayID] ?? ""
+        //oppositeTeamNameLabel.text = LocalizationList.team[data.awayID] ?? ""
     }
     
     private func awayConfigure(data: FixturesRealmData) {
@@ -104,7 +104,7 @@ final class CurrentMatchCollectionViewCell: UICollectionViewCell {
         homeAwayLabel.text = "Away"
         scoreLabel.text = "\(awayGoal) : \(homeGoal)"
         winLoseLabelConfig(teamGoal: awayGoal, oppositeGoal: homeGoal)
-        oppositeTeamNameLabel.text = LocalizationList.team[data.homeID] ?? ""
+        //oppositeTeamNameLabel.text = LocalizationList.team[data.homeID] ?? ""
     }
     
     private func winLoseLabelConfig(teamGoal: Int, oppositeGoal: Int) {
