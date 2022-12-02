@@ -30,12 +30,22 @@ extension FootballAPI: Moya.TargetType {
   
   var task: Moya.Task {
     switch self {
-    case .fixture(let query):
-      return .requestJSONEncodable(query)
+    case .fixture:
+      return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
     }
   }
   
   var headers: [String : String]? {
     return APIComponents.footBallHeaders
+  }
+  
+  var parameters: [String: String] {
+    switch self {
+    case .fixture(let query):
+      return [
+        "season": query.season,
+        "league": query.league
+      ]
+    }
   }
 }

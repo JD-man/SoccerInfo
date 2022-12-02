@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // ScheduleUseCase 안으로 집어넣기??
 struct FixturesRequestQuery: Encodable {
   var season: String
