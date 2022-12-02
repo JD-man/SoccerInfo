@@ -30,14 +30,14 @@ final class ScheduleInteractor: PresentableInteractor<SchedulePresentable>,
                                 SchedulePresentableListener,
                                 Reactor {
   
-  var viewAction: ActionSubject<ScheduleReactorModel.Action> { action }
-  var viewState: Observable<ScheduleReactorModel.State> { state }
-  
   typealias Action = ScheduleReactorModel.Action
   typealias Mutation = ScheduleReactorModel.Mutation
   typealias State = ScheduleReactorModel.State
   
+  var viewAction: ActionSubject<ScheduleReactorModel.Action> { action }
+  var viewState: Observable<ScheduleReactorModel.State> { state }
   private let dependency: ScheduleInteractorDependency
+  
   // TODO: - Date extension 모듈화시 어떻게 사용할지 생각
   var initialState = State(firstDay: Date().fixtureFirstDay)
   
@@ -84,11 +84,10 @@ extension ScheduleInteractor {
       return fetchSchedules(leagueInfo: leagueInfo, firstDay: firstDay)
       
     case .prevSchedule:
-      let prevWeekFirstDay = currentState.firstDay.beforeWeekDay
-      let totalScheduleDictionary = currentState.totalScheduleDictionary
       let prevWeekScheduleContent = makeWeeklyScheduleContent(
         firstDay: prevWeekFirstDay,
-        totalDictionary: totalScheduleDictionary
+        totalDictionary: totalScheduleDictionary,
+        leagueInfo: leagueInfo
       )
       return .concat(
         .just(.setWeeklyScheduleContent(prevWeekScheduleContent)),
@@ -96,11 +95,10 @@ extension ScheduleInteractor {
       )
       
     case .nextSchedule:
-      let nextWeekFirstDay = currentState.firstDay.afterWeekDay
-      let totalScheduleDictionary = currentState.totalScheduleDictionary
       let nextWeekScheduleContent = makeWeeklyScheduleContent(
         firstDay: nextWeekFirstDay,
-        totalDictionary: totalScheduleDictionary
+        totalDictionary: totalScheduleDictionary,
+        leagueInfo: leagueInfo
       )
       return .concat(
         .just(.setWeeklyScheduleContent(nextWeekScheduleContent)),
@@ -128,6 +126,8 @@ extension ScheduleInteractor {
       newState.totalScheduleDictionary = totalScheduleDictionary
     case .setWeeklyScheduleContent(let weeklyScheduleContent):
       newState.weeklyScheduleContent = weeklyScheduleContent
+    case .setLeagueInfo(let league):
+      newState.leagueInfo = league
     }
     return newState
   }
