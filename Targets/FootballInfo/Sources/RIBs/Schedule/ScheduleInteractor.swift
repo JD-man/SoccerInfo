@@ -73,6 +73,12 @@ final class ScheduleInteractor: PresentableInteractor<SchedulePresentable>,
 extension ScheduleInteractor {
   
   func mutate(action: Action) -> Observable<Mutation> {
+    let firstDay = currentState.firstDay
+    let prevWeekFirstDay = firstDay.beforeWeekDay
+    let nextWeekFirstDay = firstDay.afterWeekDay
+    let leagueInfo = currentState.leagueInfo
+    let totalScheduleDictionary = currentState.totalScheduleDictionary
+    
     switch action {
     case .fetchSchedule:
       return useCase.executeRealmFixture(season: 2022, league: "39")
@@ -133,14 +139,18 @@ extension ScheduleInteractor {
 extension ScheduleInteractor {
   typealias TotalScheduleDictionary = [String: [ScheduleSectionModel.Item]]
   
-  private func makeTotalScheduleDictionary(data: [FixturesRealmData]) -> TotalScheduleDictionary {
+  private func makeTotalScheduleDictionary(
+    data: [FixturesRealmData],
+    leagueInfo: LeagueInfo
+  ) -> TotalScheduleDictionary {
     
     return data
       .sorted(by: { $0.fixtureDate < $1.fixtureDate })
       .reduce(into: [:]) { partialResult, realmData in
         let date = realmData.fixtureDate.toDate
         let dateHeader = date.formattedDay
-        let item = ScheduleSectionModel.Item(homeID: realmData.homeID,
+        let item = ScheduleSectionModel.Item(leagueInfo: leagueInfo,
+                                             homeID: realmData.homeID,
                                              homeName: realmData.homeName,
                                              homeLogo: realmData.homeLogo,
                                              awayID: realmData.awayID,
@@ -160,7 +170,9 @@ extension ScheduleInteractor {
   
   private func makeWeeklyScheduleContent(
     firstDay: Date,
-    totalDictionary: TotalScheduleDictionary) -> [ScheduleSectionModel] {
+    totalDictionary: TotalScheduleDictionary,
+    leagueInfo: LeagueInfo
+  ) -> [ScheduleSectionModel] {
       
     return [Int](0 ..< 7)
       .map { after -> ScheduleSectionModel in
@@ -169,7 +181,8 @@ extension ScheduleInteractor {
         }
         
         guard let items = totalDictionary[dateHeader] else {
-          return .init(dateHeader: dateHeader, items: [.emptyContent(id: after)])
+          return .init(dateHeader: dateHeader, items: [
+            .emptyContent(id: after, leagueInfo: leagueInfo)])
         }
         
         return .init(dateHeader: dateHeader, items: items)
