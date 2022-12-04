@@ -11,6 +11,8 @@ import RxSwift
 protocol MainRouting: Routing {
   func cleanupViews()
   func setTabViews()
+  func attachSideMenu(with currentLeagueInfo: LeagueInfo)
+  func detachSideMenu()
 }
 
 protocol MainListener: AnyObject {
@@ -45,8 +47,20 @@ final class MainInteractor: Interactor, MainInteractable {
     router?.setTabViews()
   }
   
-  // MARK: - LeagueInfo Stream
-  func changeLeagueInfo(of leagueInfo: LeagueInfo) {
-    dependency.mutableLeagueInfoStream.changeLeagueInfo(to: leagueInfo)
+  // MARK: - League Info Stream
+  func didLeagueSelect(of currentLeagueInfo: LeagueInfo) {
+    dependency.mutableLeagueInfoStream.changeLeagueInfo(to: currentLeagueInfo)
+    detachSideMenu()
+  }
+}
+
+// MARK: - Side Menu Routing
+extension MainInteractor {
+  func attachSideMenu(with leagueInfo: LeagueInfo) {
+    router?.attachSideMenu(with: leagueInfo)
+  }
+  
+  func detachSideMenu() {
+    router?.detachSideMenu()
   }
 }
