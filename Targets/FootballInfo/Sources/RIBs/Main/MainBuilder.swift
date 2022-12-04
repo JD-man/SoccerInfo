@@ -11,7 +11,7 @@ protocol MainDependency: Dependency {
   var mainViewController: MainViewControllable { get }
 }
 
-final class MainComponent: Component<MainDependency>, MainInteractorDependency {
+final class MainComponent: Component<MainDependency>, MainInteractorDependency, SideMenuDependency {
   
   fileprivate var mainViewController: MainViewControllable {
     return dependency.mainViewController
@@ -43,6 +43,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     let teamScheduleBuilder = TeamScheduleBuilder(dependency: component)
     let rankBuilder = RankBuilder(dependency: component)
     let newsBuilder = NewsBuilder(dependency: component)
+    let sideMenuBuilder = SideMenuBuilder(dependency: component)
     
     return MainRouter(
       interactor: interactor,
@@ -50,7 +51,8 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
       scheduleBuilder: scheduleBuilder,
       teamScheduleBuilder: teamScheduleBuilder,
       rankBuilder: rankBuilder,
-      newsBuilder: newsBuilder
+      newsBuilder: newsBuilder,
+      sideMenuBuilder: sideMenuBuilder
     )
   }
 }
