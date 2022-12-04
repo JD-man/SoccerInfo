@@ -13,7 +13,7 @@ struct ScheduleReactorModel {
     case fetchSchedule
     case prevSchedule
     case nextSchedule
-    case changeLeague(LeagueInfo.League)
+    case showSideMenu
   }
   
   enum Mutation {
@@ -21,10 +21,12 @@ struct ScheduleReactorModel {
     case setLeagueInfo(LeagueInfo)
     case setTotalScheduleDictionary(TotalScheduleDictionary)
     case setWeeklyScheduleContent([ScheduleSectionModel])
+    case setIsSideMenuShown(Bool)
   }
   
   struct State {
     var firstDay: Date
+    var isSideMenuShown: Bool = false
     var leagueInfo: LeagueInfo = LeagueInfo(league: .premierLeague)
     var totalScheduleDictionary: TotalScheduleDictionary = [:]
     var weeklyScheduleContent: [ScheduleSectionModel] = []

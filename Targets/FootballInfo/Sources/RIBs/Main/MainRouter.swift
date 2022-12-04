@@ -11,16 +11,20 @@ protocol MainInteractable: Interactable,
                            ScheduleListener,
                            TeamScheduleListener,
                            RankListener,
-                           NewsListener {
+                           NewsListener,
+                           SideMenuListener {
   var router: MainRouting? { get set }
   var listener: MainListener? { get set }
 }
 
 protocol MainViewControllable: ViewControllable {
   func setViewControllers(_ viewControllables: [ViewControllable])
+  func presentSideMenu(_ viewControllable: ViewControllable)
+  func dismissSideMenu(_ viewControllable: ViewControllable)
 }
 
 final class MainRouter: Router<MainInteractable>, MainRouting {
+  
   private let viewController: MainViewControllable
   
   private let scheduleBuilder: ScheduleBuildable
@@ -35,19 +39,24 @@ final class MainRouter: Router<MainInteractable>, MainRouting {
   private let newsBuilder: NewsBuildable
   private var newsRouter: NewsRouting?
   
+  private let sideMenuBuilder: SideMenuBuildable
+  private var sideMenuRouter: SideMenuRouting?
+  
   init(
     interactor: MainInteractable,
     viewController: MainViewControllable,
     scheduleBuilder: ScheduleBuildable,
     teamScheduleBuilder: TeamScheduleBuildable,
     rankBuilder: RankBuildable,
-    newsBuilder: NewsBuildable
+    newsBuilder: NewsBuildable,
+    sideMenuBuilder: SideMenuBuildable
   ) {
     self.viewController = viewController
     self.scheduleBuilder = scheduleBuilder
     self.teamScheduleBuilder = teamScheduleBuilder
     self.rankBuilder = rankBuilder
     self.newsBuilder = newsBuilder
+    self.sideMenuBuilder = sideMenuBuilder
     super.init(interactor: interactor)
     interactor.router = self
   }
@@ -78,5 +87,21 @@ final class MainRouter: Router<MainInteractable>, MainRouting {
     let viewControllables = routers.map { $0.viewControllable }
     
     viewController.setViewControllers(viewControllables)
+  }
+  
+  func attachSideMenu(with currentLeagueInfo: LeagueInfo) {
+    guard sideMenuRouter == nil else { return }
+    let sideMenuRouter = sideMenuBuilder.build(withListener: interactor, currentLeagueInfo: currentLeagueInfo)
+    self.sideMenuRouter = sideMenuRouter
+    viewController.presentSideMenu(sideMenuRouter.viewControllable)
+    
+    attachChild(sideMenuRouter)
+  }
+  
+  func detachSideMenu() {
+    guard let sideMenuRouter = sideMenuRouter else { return }
+    viewController.dismissSideMenu(sideMenuRouter.viewControllable)
+    detachChild(sideMenuRouter)
+    self.sideMenuRouter = nil
   }
 }

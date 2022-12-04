@@ -11,7 +11,6 @@ import RxSwift
 import ReactorKit
 
 protocol ScheduleRouting: ViewableRouting {
-  // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol SchedulePresentable: Presentable {
@@ -20,7 +19,7 @@ protocol SchedulePresentable: Presentable {
 }
 
 protocol ScheduleListener: AnyObject {
-  func changeLeagueInfo(of leagueInfo: LeagueInfo)
+  func attachSideMenu(with currentLeagueInfo: LeagueInfo)
 }
 
 protocol ScheduleInteractorDependency {
@@ -107,13 +106,12 @@ extension ScheduleInteractor {
         .just(.setFirstDay(nextWeekFirstDay))
       )
       
-    case .changeLeague(let league):
-      let currentSeason = currentState.leagueInfo.season
-      let newLeagueInfo = LeagueInfo(season: currentSeason, league: league)
-      return .just(.setLeagueInfo(newLeagueInfo))
+    case .showSideMenu:
+      return .just(.setIsSideMenuShown(true))
         .do(onNext: { [weak self] _ in
           guard let self = self else { return }
-          self.listener?.changeLeagueInfo(of: newLeagueInfo)
+          let currentLeagueInfo = self.currentState.leagueInfo
+          self.listener?.attachSideMenu(with: currentLeagueInfo)
         })
     }
   }
@@ -125,7 +123,8 @@ extension ScheduleInteractor {
       .flatMap { interactor, leagueInfo -> Observable<Mutation> in
         return .concat(
           interactor.fetchSchedules(leagueInfo: leagueInfo, firstDay: firstDay),
-          .just(.setLeagueInfo(leagueInfo))
+          .just(.setLeagueInfo(leagueInfo)),
+          .just(.setIsSideMenuShown(false))
         )
       }
     return .merge(mutation, leagueInfoMutation)
@@ -142,6 +141,8 @@ extension ScheduleInteractor {
       newState.weeklyScheduleContent = weeklyScheduleContent
     case .setLeagueInfo(let league):
       newState.leagueInfo = league
+    case .setIsSideMenuShown(let isShown):
+      newState.isSideMenuShown = isShown
     }
     return newState
   }

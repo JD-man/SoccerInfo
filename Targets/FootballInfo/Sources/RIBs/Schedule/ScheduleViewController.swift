@@ -31,12 +31,28 @@ final class ScheduleViewController: UIViewController,
   private let schedulesTableView: UITableView = {
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     tableView.separatorStyle = .none
-    tableView.backgroundColor = .red
+    tableView.backgroundColor = .clear
     tableView.separatorInset.right = tableView.separatorInset.left
     tableView.rowHeight = 70
     tableView.register(ScheduleTableViewCell.self,
                        forCellReuseIdentifier: ScheduleTableViewCell.identifier)
     return tableView
+  }()
+  
+  fileprivate let sideMenuButton: UIBarButtonItem = {
+    let item = UIBarButtonItem()
+    item.style = .plain
+    item.tintColor = .link
+    return item
+  }()
+  
+  fileprivate lazy var gradient: CAGradientLayer = {
+    let gradient = CAGradientLayer()
+    gradient.frame = self.view.bounds
+    gradient.startPoint = CGPoint(x: 0.5, y: 0.7)
+    gradient.endPoint = CGPoint(x: 0.5, y: 1.0)
+    gradient.locations = [0.0, 1.0]
+    return gradient
   }()
   
   override func viewDidLoad() {
@@ -49,8 +65,10 @@ final class ScheduleViewController: UIViewController,
   }
   
   private func viewConfig() {
-    view.backgroundColor = .systemIndigo
+    view.backgroundColor = .clear
     view.addSubview(schedulesTableView)
+    navigationItem.leftBarButtonItem = sideMenuButton
+    view.layer.insertSublayer(gradient, at: 0)
   }
   
   private func constraintConfig() {
@@ -60,13 +78,33 @@ final class ScheduleViewController: UIViewController,
   }
   
   private func bindAction() {
-    guard let listner = listener else { return }
-    
+    guard let listener = listener else { return }
+    viewDidLoadFetch(listener: listener)
+    swipe(listener: listener)
+    sideMenuButton(listener: listener)
+  }
+  
+  private func bindState() {
+    guard let listener = listener else { return }
+    weeklyScheduleContent(listener: listener)
+    league(listener: listener)
+  }
+  
+  private func bindEtc() {
+    tableViewDelegate()
+  }
+}
+
+// MARK: - Action
+extension ScheduleViewController {
+  private func viewDidLoadFetch(listener: SchedulePresentableListener) {
     Observable.just(Void())
       .map { ScheduleReactorModel.Action.fetchSchedule }
-      .bind(to: listner.viewAction)
+      .bind(to: listener.viewAction)
       .disposed(by: disposeBag)
-    
+  }
+  
+  private func swipe(listener: SchedulePresentableListener) {
     let swipe = view.rx
       .swipeGesture([.left, .right])
       .when(.ended)
@@ -76,32 +114,53 @@ final class ScheduleViewController: UIViewController,
     swipe
       .filter { $0.direction == .left }
       .map { _ in ScheduleReactorModel.Action.nextSchedule }
-      .bind(to: listner.viewAction)
+      .bind(to: listener.viewAction)
       .disposed(by: disposeBag)
     
     swipe
       .filter { $0.direction == .right }
       .map { _ in ScheduleReactorModel.Action.prevSchedule }
-      .bind(to: listner.viewAction)
+      .bind(to: listener.viewAction)
       .disposed(by: disposeBag)
     
     swipe.connect().disposed(by: disposeBag)
   }
   
-  private func bindState() {
-    guard let listner = listener else { return }
-    listner.viewState
+  private func sideMenuButton(listener: SchedulePresentableListener) {
+    sideMenuButton.rx.tap
+      .map { ScheduleReactorModel.Action.showSideMenu }
+      .bind(to: listener.viewAction)
+      .disposed(by: disposeBag)
+  }
+}
+
+// MARK: - State
+extension ScheduleViewController {
+  private func weeklyScheduleContent(listener: SchedulePresentableListener) {
+    listener.viewState
       .map(\.weeklyScheduleContent)
       .asDriver(onErrorJustReturn: [])
       .drive(schedulesTableView.rx.items(dataSource: self.dataSources))
       .disposed(by: disposeBag)
   }
   
-  private func bindEtc() {
+  private func league(listener: SchedulePresentableListener) {
+    listener.viewState
+      .map(\.leagueInfo)
+      .asDriver(onErrorJustReturn: .init(league: .premierLeague))
+      .drive(self.rx.updateLeague)
+      .disposed(by: disposeBag)
+  }
+}
+
+// MARK: - Etc {
+extension ScheduleViewController {
+  private func tableViewDelegate() {
     schedulesTableView.rx.setDelegate(self).disposed(by: disposeBag)
   }
 }
 
+// MARK: - RxDataSources
 extension ScheduleViewController {
   private func scheduleTableViewDataSources() -> ScheduleDataSources {
     return ScheduleDataSources { dataSource, tableView, indexPath, item in
@@ -117,6 +176,7 @@ extension ScheduleViewController {
   }
 }
 
+// MARK: - TableView Delegate
 extension ScheduleViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let label = UILabel()
@@ -132,5 +192,21 @@ extension ScheduleViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
+  }
+}
+
+// MARK: - Reactive exetension
+// TODO: - Common
+extension Reactive where Base: ScheduleViewController {
+  var updateLeague: Binder<LeagueInfo> {
+    return Binder(base.self) { vc, leagueInfo in
+      let league = leagueInfo.league
+      base.sideMenuButton.title = league.rawValue
+      let upperColor = league.colors[0]
+      let bottomColor = league.colors[1]
+      let colors = [upperColor.cgColor, bottomColor.cgColor]
+      base.gradient.colors = colors
+      base.navigationController?.navigationBar.standardAppearance.backgroundColor = upperColor
+    }
   }
 }
