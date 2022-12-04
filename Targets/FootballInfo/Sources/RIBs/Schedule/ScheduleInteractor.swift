@@ -20,7 +20,7 @@ protocol SchedulePresentable: Presentable {
 }
 
 protocol ScheduleListener: AnyObject {
-  func changeLeagueInfo(of leagueInfo: LeagueInfo)
+  func attachSideMenu(with currentLeagueInfo: LeagueInfo)
 }
 
 protocol ScheduleInteractorDependency {
