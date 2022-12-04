@@ -19,9 +19,12 @@ protocol MainInteractable: Interactable,
 
 protocol MainViewControllable: ViewControllable {
   func setViewControllers(_ viewControllables: [ViewControllable])
+  func presentSideMenu(_ viewControllable: ViewControllable)
+  func dismissSideMenu(_ viewControllable: ViewControllable)
 }
 
 final class MainRouter: Router<MainInteractable>, MainRouting {
+  
   private let viewController: MainViewControllable
   
   private let scheduleBuilder: ScheduleBuildable

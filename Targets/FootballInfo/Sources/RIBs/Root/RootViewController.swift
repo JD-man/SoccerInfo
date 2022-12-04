@@ -37,6 +37,14 @@ final class RootViewController: UITabBarController, RootPresentable, RootViewCon
       return nav
     }
   }
+  
+  func presentSideMenu(_ viewControllable: RIBs.ViewControllable) {
+    present(viewControllable.uiviewController, animated: true)
+  }
+  
+  func dismissSideMenu(_ viewControllable: ViewControllable) {
+    viewControllable.uiviewController.dismiss(animated: true)
+  }
 }
 
 extension RootViewController {
