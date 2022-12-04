@@ -39,6 +39,13 @@ final class ScheduleViewController: UIViewController,
     return tableView
   }()
   
+  fileprivate let sideMenuButton: UIBarButtonItem = {
+    let item = UIBarButtonItem()
+    item.style = .plain
+    item.tintColor = .link
+    return item
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     viewConfig()
@@ -51,6 +58,7 @@ final class ScheduleViewController: UIViewController,
   private func viewConfig() {
     view.backgroundColor = .systemIndigo
     view.addSubview(schedulesTableView)
+    navigationItem.leftBarButtonItem = sideMenuButton
   }
   
   private func constraintConfig() {
@@ -62,6 +70,7 @@ final class ScheduleViewController: UIViewController,
   private func bindAction() {
     guard let listner = listener else { return }
     
+    sideMenuButton(listener: listener)
     Observable.just(Void())
       .map { ScheduleReactorModel.Action.fetchSchedule }
       .bind(to: listner.viewAction)
@@ -88,9 +97,13 @@ final class ScheduleViewController: UIViewController,
     swipe.connect().disposed(by: disposeBag)
   }
   
-  private func bindState() {
-    guard let listner = listener else { return }
-    listner.viewState
+  private func sideMenuButton(listener: SchedulePresentableListener) {
+    sideMenuButton.rx.tap
+      .map { ScheduleReactorModel.Action.showSideMenu }
+      .bind(to: listener.viewAction)
+      .disposed(by: disposeBag)
+  }
+}
       .map(\.weeklyScheduleContent)
       .asDriver(onErrorJustReturn: [])
       .drive(schedulesTableView.rx.items(dataSource: self.dataSources))
