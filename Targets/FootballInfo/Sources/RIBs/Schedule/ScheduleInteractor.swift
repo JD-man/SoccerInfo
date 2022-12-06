@@ -193,11 +193,14 @@ extension ScheduleInteractor {
                                              homeID: realmData.homeID,
                                              homeName: realmData.homeName,
                                              homeLogo: realmData.homeLogo,
+                                             homeGoal: realmData.homeGoal,
                                              awayID: realmData.awayID,
                                              awayName: realmData.awayName,
                                              awayLogo: realmData.awayLogo,
+                                             awayGoal: realmData.awayGoal,
                                              matchHour: date.formattedHour,
                                              fixtureID: realmData.fixtureID)
+        
         
         guard var newItems = partialResult[dateHeader] else {
           partialResult[dateHeader] = [item]
