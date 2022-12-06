@@ -68,11 +68,11 @@ final class MatchDetailTableHeaderView: UIView {
         }
     }
     
-    func configure(homeScore: Int, awayScore: Int, homeTeamName: String, awayTeamName: String) {
-        homeScoreLabel.text = "\(homeScore)"
-        awayScoreLabel.text = "\(awayScore)"
-        homeTeamNameLabel.text = homeTeamName.uppercased().modifyTeamName
-        awayTeamNameLabel.text = awayTeamName.uppercased().modifyTeamName
+  func configure(with model: MatchDetailHeaderModel) {
+    homeScoreLabel.text = "\(model.homeScore)"
+    awayScoreLabel.text = "\(model.awayScore)"
+    homeTeamNameLabel.text = model.homeTeamName.uppercased().modifyTeamName
+    awayTeamNameLabel.text = model.awayTeamName.uppercased().modifyTeamName
     }
 }
 
