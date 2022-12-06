@@ -14,6 +14,8 @@ struct ScheduleReactorModel {
     case prevSchedule
     case nextSchedule
     case showSideMenu
+    case showMatchDetail(ScheduleSectionModel.Item)
+    case showReserveAlert
   }
   
   enum Mutation {
@@ -22,6 +24,7 @@ struct ScheduleReactorModel {
     case setTotalScheduleDictionary(TotalScheduleDictionary)
     case setWeeklyScheduleContent([ScheduleSectionModel])
     case setIsSideMenuShown(Bool)
+    case setPresentReserveAlert(Void?)
   }
   
   struct State {
@@ -30,5 +33,6 @@ struct ScheduleReactorModel {
     var leagueInfo: LeagueInfo = LeagueInfo(league: .premierLeague)
     var totalScheduleDictionary: TotalScheduleDictionary = [:]
     var weeklyScheduleContent: [ScheduleSectionModel] = []
+    var presentReserveAlert: Void?
   }
 }
