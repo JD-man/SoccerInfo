@@ -7,6 +7,8 @@
 
 import RIBs
 import RxSwift
+import RxCocoa
+import ReactorKit
 
 protocol MatchDetailRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -23,12 +25,23 @@ protocol MatchDetailListener: AnyObject {
 
 final class MatchDetailInteractor: PresentableInteractor<MatchDetailPresentable>, MatchDetailInteractable, MatchDetailPresentableListener {
   
+  typealias Action = MatchDetailReactorModel.Action
+  typealias Mutation = MatchDetailReactorModel.Mutation
+  typealias State = MatchDetailReactorModel.State
+  
   weak var router: MatchDetailRouting?
   weak var listener: MatchDetailListener?
   
+  var initialState: State
+  
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.
-  override init(presenter: MatchDetailPresentable) {
+  init(
+    presenter: MatchDetailPresentable,
+    fixtureId: Int,
+    leagueInfo: LeagueInfo,
+    headerModel: MatchDetailHeaderModel) {
+    self.initialState = State(fixtureId: fixtureId, leagueInfo: leagueInfo, headerModel: headerModel)
     super.init(presenter: presenter)
     presenter.listener = self
   }
