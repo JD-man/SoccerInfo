@@ -8,8 +8,8 @@
 import Foundation
 
 struct MatchDetailHeaderModel {
-  let homeScore: Int
-  let awayScore: Int
+  let homeScore: String
+  let awayScore: String
   let homeTeamName: String
   let awayTeamName: String
 }
