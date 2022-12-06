@@ -29,6 +29,9 @@ final class MatchDetailInteractor: PresentableInteractor<MatchDetailPresentable>
   typealias Mutation = MatchDetailReactorModel.Mutation
   typealias State = MatchDetailReactorModel.State
   
+  var viewAction: ReactorKit.ActionSubject<MatchDetailReactorModel.Action> { action }
+  var viewState: RxSwift.Observable<MatchDetailReactorModel.State> { state }
+  
   weak var router: MatchDetailRouting?
   weak var listener: MatchDetailListener?
   
@@ -55,4 +58,21 @@ final class MatchDetailInteractor: PresentableInteractor<MatchDetailPresentable>
     super.willResignActive()
     // TODO: Pause any business logic.
   }
+}
+
+extension MatchDetailInteractor: Reactor {
+  func mutate(action: MatchDetailReactorModel.Action) -> Observable<MatchDetailReactorModel.Mutation> {
+    switch action {
+      
+    }
+  }
+  
+  func reduce(state: MatchDetailReactorModel.State, mutation: MatchDetailReactorModel.Mutation) -> MatchDetailReactorModel.State {
+    var newState = state
+    switch mutation {
+      
+    }
+    return newState
+  }
+  
 }
