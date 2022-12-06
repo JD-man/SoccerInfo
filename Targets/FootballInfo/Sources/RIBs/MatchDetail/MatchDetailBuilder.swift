@@ -7,20 +7,27 @@
 
 import RIBs
 
-protocol MatchDetailDependency: Dependency {
-  // TODO: Declare the set of dependencies required by this RIB, but cannot be
-  // created by this RIB.
-}
+protocol MatchDetailDependency: Dependency { }
 
 final class MatchDetailComponent: Component<MatchDetailDependency> {
+  fileprivate let fixtureId: Int
+  fileprivate let leagueInfo: LeagueInfo
   
-  // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+  init(dependency: MatchDetailDependency, fixtureId: Int, leagueInfo: LeagueInfo) {
+    self.fixtureId = fixtureId
+    self.leagueInfo = leagueInfo
+    super.init(dependency: dependency)
+  }
 }
 
 // MARK: - Builder
 
 protocol MatchDetailBuildable: Buildable {
-  func build(withListener listener: MatchDetailListener) -> MatchDetailRouting
+  func build(
+    withListener listener: MatchDetailListener,
+    fixtureId: Int,
+    leagueInfo: LeagueInfo,
+    headerModel: MatchDetailHeaderModel) -> MatchDetailRouting
 }
 
 final class MatchDetailBuilder: Builder<MatchDetailDependency>, MatchDetailBuildable {
@@ -29,10 +36,23 @@ final class MatchDetailBuilder: Builder<MatchDetailDependency>, MatchDetailBuild
     super.init(dependency: dependency)
   }
   
-  func build(withListener listener: MatchDetailListener) -> MatchDetailRouting {
-    let component = MatchDetailComponent(dependency: dependency)
+  func build(
+    withListener listener: MatchDetailListener,
+    fixtureId: Int,
+    leagueInfo: LeagueInfo,
+    headerModel: MatchDetailHeaderModel) -> MatchDetailRouting {
+    let component = MatchDetailComponent(
+      dependency: dependency,
+      fixtureId: fixtureId,
+      leagueInfo: leagueInfo
+    )
     let viewController = MatchDetailViewController()
-    let interactor = MatchDetailInteractor(presenter: viewController)
+    let interactor = MatchDetailInteractor(
+      presenter: viewController,
+      fixtureId: component.fixtureId,
+      leagueInfo: component.leagueInfo,
+      headerModel: headerModel
+    )
     interactor.listener = listener
     return MatchDetailRouter(interactor: interactor, viewController: viewController)
   }
