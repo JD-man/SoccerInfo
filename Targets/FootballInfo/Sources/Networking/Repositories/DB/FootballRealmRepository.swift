@@ -12,7 +12,10 @@ import RxSwift
 final class FootballRealmRepository: FootballRealmRepositoryProtocol {
   
   private let provider = RealmProvider()
-  
+}
+
+// MARK: - Fixture
+extension FootballRealmRepository {
   func fixture(season: Int, league: String) -> Observable<FixturesTable> {
     let query = RealmQuery(season: season, league: league)
     return provider.fetchRealmData(query: query)
@@ -26,5 +29,13 @@ final class FootballRealmRepository: FootballRealmRepositoryProtocol {
                               season: query.season,
                               fixturesData: list)
     provider.updateRealmData(table: table, query: query)
+  }
+}
+
+// MARK: - Match Detail
+extension FootballRealmRepository {
+  func matchDetail(season: Int, league: String) -> Observable<MatchDetailTable> {
+    let query = RealmQuery(season: season, league: league)
+    return provider.fetchRealmData(query: query)
   }
 }
