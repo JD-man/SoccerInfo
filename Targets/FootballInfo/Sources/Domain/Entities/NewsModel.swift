@@ -12,7 +12,7 @@ struct NewsResponse: Codable {
     var items: [NewsData]
 }
 
-struct NewsData: Codable, BasicTabViewData {
+struct NewsData: Codable {
     var title: String?
     var link: String?
     var description: String?

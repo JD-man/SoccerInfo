@@ -26,7 +26,7 @@ final class FixturesTable: Object, RealmTable {
 }
 
 // Domain Entity
-final class FixturesRealmData: EmbeddedObject, BasicTabViewData {
+final class FixturesRealmData: EmbeddedObject {
     @Persisted var fixtureID: Int
     @Persisted var fixtureDate: String
     
