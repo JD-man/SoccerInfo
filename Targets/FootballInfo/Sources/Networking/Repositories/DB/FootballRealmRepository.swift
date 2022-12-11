@@ -9,11 +9,6 @@ import Foundation
 import RealmSwift
 import RxSwift
 
-protocol FootballRealmRepositoryProtocol: AnyObject {
-  func fixture(season: Int, league: String) -> Observable<FixturesTable>
-  func updateFixture(fixturesData: [FixturesRealmData], season: Int, league: String)
-}
-
 final class FootballRealmRepository: FootballRealmRepositoryProtocol {
   
   private let provider = RealmProvider()
