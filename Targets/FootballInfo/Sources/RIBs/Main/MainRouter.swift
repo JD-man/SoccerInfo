@@ -10,7 +10,7 @@ import RIBs
 protocol MainInteractable: Interactable,
                            ScheduleListener,
                            TeamScheduleListener,
-                           RankListener,
+                           StandingsListener,
                            NewsListener,
                            SideMenuListener {
   var router: MainRouting? { get set }
@@ -33,8 +33,8 @@ final class MainRouter: Router<MainInteractable>, MainRouting {
   private let teamScheduleBuilder: TeamScheduleBuildable
   private var teamScheduleRouter: TeamScheduleRouting?
   
-  private let rankBuilder: RankBuildable
-  private var rankRouter: RankRouting?
+  private let StandingsBuilder: StandingsBuildable
+  private var StandingsRouter: StandingsRouting?
   
   private let newsBuilder: NewsBuildable
   private var newsRouter: NewsRouting?
@@ -47,14 +47,14 @@ final class MainRouter: Router<MainInteractable>, MainRouting {
     viewController: MainViewControllable,
     scheduleBuilder: ScheduleBuildable,
     teamScheduleBuilder: TeamScheduleBuildable,
-    rankBuilder: RankBuildable,
+    StandingsBuilder: StandingsBuildable,
     newsBuilder: NewsBuildable,
     sideMenuBuilder: SideMenuBuildable
   ) {
     self.viewController = viewController
     self.scheduleBuilder = scheduleBuilder
     self.teamScheduleBuilder = teamScheduleBuilder
-    self.rankBuilder = rankBuilder
+    self.StandingsBuilder = StandingsBuilder
     self.newsBuilder = newsBuilder
     self.sideMenuBuilder = sideMenuBuilder
     super.init(interactor: interactor)
@@ -66,7 +66,7 @@ final class MainRouter: Router<MainInteractable>, MainRouting {
   func setTabViews() {
     guard scheduleRouter == nil,
           teamScheduleRouter == nil,
-          rankRouter == nil,
+          StandingsRouter == nil,
           newsRouter == nil
     else {
       return
@@ -74,15 +74,15 @@ final class MainRouter: Router<MainInteractable>, MainRouting {
     
     let scheduleRouter = scheduleBuilder.build(withListener: interactor)
     let teamScheduleRouter = teamScheduleBuilder.build(withListener: interactor)
-    let rankRouter = rankBuilder.build(withListener: interactor)
+    let StandingsRouter = StandingsBuilder.build(withListener: interactor)
     let newsRouter = newsBuilder.build(withListener: interactor)
     
     self.scheduleRouter = scheduleRouter
     self.teamScheduleRouter = teamScheduleRouter
-    self.rankRouter = rankRouter
+    self.StandingsRouter = StandingsRouter
     self.newsRouter = newsRouter
     
-    let routers = [scheduleRouter, teamScheduleRouter, rankRouter, newsRouter]
+    let routers = [scheduleRouter, teamScheduleRouter, StandingsRouter, newsRouter]
     routers.forEach { attachChild($0) }
     let viewControllables = routers.map { $0.viewControllable }
     

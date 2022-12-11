@@ -41,7 +41,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     
     let scheduleBuilder = ScheduleBuilder(dependency: component)
     let teamScheduleBuilder = TeamScheduleBuilder(dependency: component)
-    let rankBuilder = RankBuilder(dependency: component)
+    let StandingsBuilder = StandingsBuilder(dependency: component)
     let newsBuilder = NewsBuilder(dependency: component)
     let sideMenuBuilder = SideMenuBuilder(dependency: component)
     
@@ -50,7 +50,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
       viewController: component.mainViewController,
       scheduleBuilder: scheduleBuilder,
       teamScheduleBuilder: teamScheduleBuilder,
-      rankBuilder: rankBuilder,
+      StandingsBuilder: StandingsBuilder,
       newsBuilder: newsBuilder,
       sideMenuBuilder: sideMenuBuilder
     )
@@ -60,7 +60,7 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
 // MARK: MainComponent Dependecy
 extension MainComponent: ScheduleDependency,
                          TeamScheduleDependency,
-                         RankDependency,
+                         StandingsDependency,
                          NewsDependency {
   
   var leagueInfoStream: LeagueInfoStreamProtocol {
