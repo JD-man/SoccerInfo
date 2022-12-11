@@ -8,7 +8,7 @@
 import Foundation
 
 // ScheduleUseCase 안으로 집어넣기??
-struct FixturesRequestQuery: Encodable {
+struct FixturesRequestQuery {
   var season: String
   var league: String
 }

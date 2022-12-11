@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct LineupRequestQuery {
+  var fixture: String
+}
