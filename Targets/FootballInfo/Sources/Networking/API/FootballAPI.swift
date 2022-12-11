@@ -10,6 +10,8 @@ import Moya
 
 enum FootballAPI {
   case fixture(query: FixturesRequestQuery)
+  case event(query: EventRequestQuery)
+  case lineup(query: LineupRequestQuery)
 }
 
 extension FootballAPI: Moya.TargetType {
@@ -21,6 +23,8 @@ extension FootballAPI: Moya.TargetType {
   var path: String {
     switch self {
     case .fixture: return "/fixtures"
+    case .event: return "/fixtures/events"
+    case .lineup: return "/fixtures/lineups"
     }
   }
   
@@ -29,10 +33,7 @@ extension FootballAPI: Moya.TargetType {
   }
   
   var task: Moya.Task {
-    switch self {
-    case .fixture:
-      return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
-    }
+    return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
   }
   
   var headers: [String : String]? {
@@ -45,6 +46,15 @@ extension FootballAPI: Moya.TargetType {
       return [
         "season": query.season,
         "league": query.league
+      ]
+    case .event(let query):
+      return [
+        "fixture": query.fixture
+      ]
+      
+    case .lineup(let query):
+      return [
+        "fixture": query.fixture
       ]
     }
   }
