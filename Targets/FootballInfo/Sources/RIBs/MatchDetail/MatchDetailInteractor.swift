@@ -70,8 +70,8 @@ extension MatchDetailInteractor: Reactor {
     case .fetchMatchDetail:
       let fixtureId = currentState.fixtureId
       let season = currentState.leagueInfo.season
-      let league = currentState.leagueInfo.league
-      return useCase.executeRealmMatchDetail(season: season, league: league.rawValue, fixtureId: fixtureId)
+      let league = "\(currentState.leagueInfo.league.leagueID)"
+      return useCase.executeRealmMatchDetail(season: season, league: league, fixtureId: fixtureId)
         .withUnretained(self)
         .flatMap { interactor, matchDetailEntity -> Observable<MatchDetailReactorModel.Mutation> in
           let eventSection = interactor.configureEventSection(of: matchDetailEntity)

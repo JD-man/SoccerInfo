@@ -57,6 +57,7 @@ final class RealmProvider {
           }
           if syncedObjects.isEmpty {
             observer.onError(RealmErrorType.emptyData)
+            print("Cloud Realm Empty")
           }
           else {
             guard let first = syncedObjects.first else {
@@ -64,8 +65,8 @@ final class RealmProvider {
             }
             observer.onNext(first)
             observer.onCompleted()
+            print("Cloud Realm Loaded")
           }
-          print("Cloud Realm Loaded")
         case .failure(let error):
           print("sync realm error", error)
           observer.onError(RealmErrorType.realmFail)
