@@ -40,18 +40,23 @@ final class MatchDetailBuilder: Builder<MatchDetailDependency>, MatchDetailBuild
     withListener listener: MatchDetailListener,
     fixtureId: Int,
     leagueInfo: LeagueInfo,
-    headerModel: MatchDetailHeaderModel) -> MatchDetailRouting {
+    headerModel: MatchDetailHeaderModel) -> MatchDetailRouting
+  {
     let component = MatchDetailComponent(
       dependency: dependency,
       fixtureId: fixtureId,
       leagueInfo: leagueInfo
     )
     let viewController = MatchDetailViewController()
+    let footballRepository = FootballRepository()
+    let footballRealmRepository = FootballRealmRepository()
+    let useCase = MatchDetailUseCase(footballRepository: footballRepository, footballRealmRepository: footballRealmRepository)
     let interactor = MatchDetailInteractor(
       presenter: viewController,
       fixtureId: component.fixtureId,
       leagueInfo: component.leagueInfo,
-      headerModel: headerModel
+      headerModel: headerModel,
+      useCase: useCase
     )
     interactor.listener = listener
     return MatchDetailRouter(interactor: interactor, viewController: viewController)
