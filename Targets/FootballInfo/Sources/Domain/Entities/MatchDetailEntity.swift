@@ -19,7 +19,7 @@ struct MatchDetailEntity {
 }
 
 extension MatchDetailEntity {
-  struct EventsEntity {
+  struct EventsEntity: Hashable {
       var time: Int
       var teamName: String
       var player: String
@@ -28,7 +28,7 @@ extension MatchDetailEntity {
       var eventDetail: String
   }
 
-  struct LineupEntity {
+  struct LineupEntity: Hashable {
       var name: String
       var number: Int
       var position: String

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct LeagueInfo: Equatable {
+struct LeagueInfo: Hashable {
   var season: Int = 2022
   var league: League
 }
