@@ -1,8 +1,8 @@
 //
-//  MatchDetailModel.swift
-//  SoccerInfo
+//  File.swift
+//  FootballInfo
 //
-//  Created by JD_MacMini on 2021/11/27.
+//  Created by 조동현 on 2022/12/10.
 //
 
 import Foundation
@@ -93,66 +93,4 @@ final class LineupRealmData: EmbeddedObject {
         self.position = lineupsPlayer.pos
         self.grid = lineupsPlayer.grid
     }
-}
-
-// MARK: - Events Response Model
-struct EventsAPIData: Codable {
-    var response: [EventsResponse]
-    var results: Int
-}
-
-struct EventsResponse: Codable {
-    var time: EventsTime
-    var team: EventsTeam
-    var player: EventsPlayer
-    var assist: EventsAssist
-    var type: String
-    var detail: String
-}
-
-struct EventsTime: Codable {
-    var elapsed: Int
-    var extra: Int?
-}
-
-struct EventsTeam: Codable {
-    var name: String
-}
-
-struct EventsPlayer: Codable {
-    var id: Int?
-    var name: String
-}
-
-struct EventsAssist: Codable {
-    var id: Int?
-    var name: String?
-}
-
-// MARK: - Lineups Response Model
-struct LineupsAPIData: Codable {
-    var response: [LineupsResponse]
-    var results: Int
-}
-
-struct LineupsResponse: Codable {
-    var formation: String
-    var startXI: [LineupsStartXI]
-    var substitutes: [LineupsSubs]
-}
-
-struct LineupsStartXI: Codable {
-    var player: LineupsPlayer
-}
-
-struct LineupsSubs: Codable {
-    var player: LineupsPlayer
-}
-
-struct LineupsPlayer: Codable {
-    var id: Int?
-    var name: String
-    var number: Int
-    var pos: String
-    var grid: String?
 }

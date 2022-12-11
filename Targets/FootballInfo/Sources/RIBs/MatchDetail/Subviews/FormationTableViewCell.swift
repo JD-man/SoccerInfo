@@ -53,7 +53,7 @@ final class FormationTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(homeLineup: [LineupRealmData], awayLineup: [LineupRealmData]) {
+    func configure(homeLineup: [MatchDetailEntity.LineupEntity], awayLineup: [MatchDetailEntity.LineupEntity]) {
         [(homeLineup, homeStackView, FormationDirection.home),
          (awayLineup, awayStackView, FormationDirection.away)]
             .forEach { lineup, stackView, direction in

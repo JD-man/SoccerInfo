@@ -11,6 +11,12 @@ import RxSwift
 import ReactorKit
 
 protocol ScheduleRouting: ViewableRouting {
+  func attachMatchDetail(
+    fixtureId: Int,
+    leagueInfo: LeagueInfo,
+    headerModel: MatchDetailHeaderModel
+  )
+  func detachMatchDetail()
 }
 
 protocol SchedulePresentable: Presentable {
@@ -113,6 +119,26 @@ extension ScheduleInteractor {
           let currentLeagueInfo = self.currentState.leagueInfo
           self.listener?.attachSideMenu(with: currentLeagueInfo)
         })
+      
+    case .showMatchDetail(let selectedMatch):
+      return .just(.setPresentReserveAlert(nil))
+        .do(onNext: { [weak self] _ in
+          guard let self = self else { return }
+          let headerModel = MatchDetailHeaderModel(
+            homeScore: "\(selectedMatch.homeGoal ?? 0)",
+            awayScore: "\(selectedMatch.awayGoal ?? 0)",
+            homeTeamName: selectedMatch.homeName,
+            awayTeamName: selectedMatch.awayName
+          )
+          self.router?.attachMatchDetail(
+            fixtureId: selectedMatch.fixtureID,
+            leagueInfo: self.currentState.leagueInfo,
+            headerModel: headerModel
+          )
+        })
+    
+    case .showReserveAlert:
+      return .empty()
     }
   }
   
@@ -143,6 +169,8 @@ extension ScheduleInteractor {
       newState.leagueInfo = league
     case .setIsSideMenuShown(let isShown):
       newState.isSideMenuShown = isShown
+    case .setPresentReserveAlert(let present):
+      newState.presentReserveAlert = present
     }
     return newState
   }
@@ -165,11 +193,14 @@ extension ScheduleInteractor {
                                              homeID: realmData.homeID,
                                              homeName: realmData.homeName,
                                              homeLogo: realmData.homeLogo,
+                                             homeGoal: realmData.homeGoal,
                                              awayID: realmData.awayID,
                                              awayName: realmData.awayName,
                                              awayLogo: realmData.awayLogo,
+                                             awayGoal: realmData.awayGoal,
                                              matchHour: date.formattedHour,
                                              fixtureID: realmData.fixtureID)
+        
         
         guard var newItems = partialResult[dateHeader] else {
           partialResult[dateHeader] = [item]

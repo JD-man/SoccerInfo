@@ -12,7 +12,7 @@ protocol ScheduleDependency: Dependency {
   var leagueInfoStream: LeagueInfoStreamProtocol { get }
 }
 
-final class ScheduleComponent: Component<ScheduleDependency>, ScheduleInteractorDependency {
+final class ScheduleComponent: Component<ScheduleDependency>, ScheduleInteractorDependency, MatchDetailDependency {
   var leagueInfoStream: LeagueInfoStreamProtocol { dependency.leagueInfoStream }
 }
 
@@ -47,6 +47,12 @@ final class ScheduleBuilder: Builder<ScheduleDependency>, ScheduleBuildable {
       dependency: component
     )
     interactor.listener = listener
-    return ScheduleRouter(interactor: interactor, viewController: viewController)
+    
+    let matchDetailBuilder = MatchDetailBuilder(dependency: component)
+    return ScheduleRouter(
+      interactor: interactor,
+      viewController: viewController,
+      matchDetailBuilder: matchDetailBuilder
+    )
   }
 }

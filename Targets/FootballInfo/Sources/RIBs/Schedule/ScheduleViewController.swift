@@ -82,6 +82,7 @@ final class ScheduleViewController: UIViewController,
     viewDidLoadFetch(listener: listener)
     swipe(listener: listener)
     sideMenuButton(listener: listener)
+    matchDetail(listner: listener)
   }
   
   private func bindState() {
@@ -130,6 +131,13 @@ extension ScheduleViewController {
     sideMenuButton.rx.tap
       .map { ScheduleReactorModel.Action.showSideMenu }
       .bind(to: listener.viewAction)
+      .disposed(by: disposeBag)
+  }
+  
+  private func matchDetail(listner: SchedulePresentableListener) {
+    schedulesTableView.rx.modelSelected(ScheduleSectionModel.Item.self)
+      .map { ScheduleReactorModel.Action.showMatchDetail($0) }
+      .bind(to: listner.viewAction)
       .disposed(by: disposeBag)
   }
 }
@@ -192,6 +200,17 @@ extension ScheduleViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 50
+  }
+}
+
+// MARK: - Match Detail Navigating
+extension ScheduleViewController {
+  func pushMatchDetail(_ viewControllable: RIBs.ViewControllable) {
+    navigationController?.pushViewController(viewControllable.uiviewController, animated: true)
+  }
+  
+  func popMatchDetail() {
+    navigationController?.popViewController(animated: true)
   }
 }
 

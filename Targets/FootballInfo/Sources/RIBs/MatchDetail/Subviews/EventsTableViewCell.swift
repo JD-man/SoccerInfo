@@ -98,7 +98,7 @@ final class EventsTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with data: EventsRealmData, isHomeCell: Bool) {
+    func configure(with data: MatchDetailEntity.EventsEntity, isHomeCell: Bool) {      
         if isHomeCell {
             homeTeamConfig(data: data)
         }
@@ -108,7 +108,7 @@ final class EventsTableViewCell: UITableViewCell {
         timeLabel.text = "\(data.time)"
     }
     
-    private func homeTeamConfig(data: EventsRealmData) {
+  private func homeTeamConfig(data: MatchDetailEntity.EventsEntity) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)
         switch eventDetail {
         case .normalGoal:
@@ -130,7 +130,7 @@ final class EventsTableViewCell: UITableViewCell {
         homeEventTypeImageView.tintColor = eventDetail?.eventsColor
     }
     
-    private func awayTeamConfig(data: EventsRealmData) {
+    private func awayTeamConfig(data: MatchDetailEntity.EventsEntity) {
         let eventDetail = EventsDetail(rawValue: data.eventDetail.components(separatedBy: "-").first!)        
         switch eventDetail {
         case .normalGoal, .sub1, .sub2, .sub3, .sub4, .sub5:
