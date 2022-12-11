@@ -12,6 +12,7 @@ enum FootballAPI {
   case fixture(query: FixturesRequestQuery)
   case event(query: EventRequestQuery)
   case lineup(query: LineupRequestQuery)
+  case standing(query: StandingRequestQuery)
 }
 
 extension FootballAPI: Moya.TargetType {
@@ -25,6 +26,7 @@ extension FootballAPI: Moya.TargetType {
     case .fixture: return "/fixtures"
     case .event: return "/fixtures/events"
     case .lineup: return "/fixtures/lineups"
+    case .standing: return "/standings"
     }
   }
   
@@ -55,6 +57,11 @@ extension FootballAPI: Moya.TargetType {
     case .lineup(let query):
       return [
         "fixture": query.fixture
+      ]
+    case .standing(let query):
+      return [
+        "season": query.season,
+        "league": query.league
       ]
     }
   }
