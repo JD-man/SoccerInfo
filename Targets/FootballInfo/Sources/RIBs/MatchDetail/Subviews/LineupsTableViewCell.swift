@@ -79,13 +79,18 @@ final class LineupsTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(homeLineup: LineupRealmData, awayLineup: LineupRealmData) {
+  func configure(
+    homeLineup: MatchDetailEntity.LineupEntity,
+    awayLineup: MatchDetailEntity.LineupEntity,
+    leagueInfo: LeagueInfo
+  ) {
         homePlayerLabel.text = homeLineup.name
         awayPlayerLabel.text = awayLineup.name        
         homePlayerPositionLabel.text = homeLineup.position
         awayPlayerPositionLabel.text = awayLineup.position
         homePlayerNumberLabel.text = homeLineup.name == "-" ? "-" : "\(homeLineup.number)"
         awayPlayerNumberLabel.text = awayLineup.name == "-" ? "-" : "\(awayLineup.number)"
+    backgroundColor = leagueInfo.league.colors[2]
     }
 }
 
