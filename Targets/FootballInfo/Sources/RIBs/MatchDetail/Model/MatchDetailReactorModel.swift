@@ -9,17 +9,17 @@ import Foundation
 
 struct MatchDetailReactorModel {
   enum Action {
-    // case fetchMatchDetail
+    case fetchMatchDetail
   }
   
   enum Mutation {
-    
+    case setMatchDetailSection([MatchDetailSectionModel])
   }
   
   struct State {
     let fixtureId: Int
     let leagueInfo: LeagueInfo
     let headerModel: MatchDetailHeaderModel
-    //    let matchDetailSection: [MatchDetailSectionModel] = []
+    var matchDetailSection: [MatchDetailSectionModel] = []
   }
 }
