@@ -7,6 +7,7 @@
 
 import RIBs
 import RxSwift
+import ReactorKit
 
 protocol StandingsRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -26,9 +27,19 @@ final class StandingsInteractor: PresentableInteractor<StandingsPresentable>, St
   weak var router: StandingsRouting?
   weak var listener: StandingsListener?
   
+  var viewAction: ActionSubject<StandingsReactorModel.Action> { action }
+  var viewState: Observable<StandingsReactorModel.State> { state }
+  var initialState = State()
+  
+  private let standingsUseCase: StandingsUseCaseProtocol
+  
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.
-  override init(presenter: StandingsPresentable) {
+  init(
+    presenter: StandingsPresentable,
+    standingsUseCase: StandingsUseCaseProtocol
+  ) {
+    self.standingsUseCase = standingsUseCase
     super.init(presenter: presenter)
     presenter.listener = self
   }

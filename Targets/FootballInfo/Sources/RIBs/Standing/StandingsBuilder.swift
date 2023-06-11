@@ -32,7 +32,16 @@ final class StandingsBuilder: Builder<StandingsDependency>, StandingsBuildable {
   func build(withListener listener: StandingsListener) -> StandingsRouting {
     let component = StandingsComponent(dependency: dependency)
     let viewController = StandingsViewController()
-    let interactor = StandingsInteractor(presenter: viewController)
+    let footballRepository = FootballRepository()
+    let footballRealmRepository = FootballRealmRepository()
+    let standingsUseCase = StandingsUseCase(
+      footballRepository: footballRepository,
+      footballRealmRepository: footballRealmRepository
+    )
+    let interactor = StandingsInteractor(
+      presenter: viewController,
+      standingsUseCase: standingsUseCase
+    )
     interactor.listener = listener
     return StandingsRouter(interactor: interactor, viewController: viewController)
   }
