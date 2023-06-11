@@ -35,4 +35,12 @@ final class FootballRepository: FootballRepositoryProtocol {
       .asObservable()
       .map(LineupsAPIData.self)
   }
+  
+  func standing(season: Int, league: String) -> Observable<StandingAPIData> {
+    let query = StandingRequestQuery(season: "\(season)", league: league)
+    return provider.rx
+      .request(.standing(query: query))
+      .asObservable()
+      .map(StandingAPIData.self)
+  }
 }
