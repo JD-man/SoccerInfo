@@ -16,4 +16,6 @@ protocol FootballRealmRepositoryProtocol: AnyObject {
   func matchDetail(season: Int, league: String) -> Observable<MatchDetailTable>
   // TODO: - Match detail update
   // func updateMatchDetail()
+  
+  func standing(season: Int, league: String) -> Observable<StandingsTable>
 }

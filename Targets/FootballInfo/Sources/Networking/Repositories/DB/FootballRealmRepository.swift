@@ -39,3 +39,11 @@ extension FootballRealmRepository {
     return provider.fetchRealmData(query: query)
   }
 }
+
+// MARK: - Standing
+extension FootballRealmRepository {
+  func standing(season: Int, league: String) -> Observable<StandingsTable> {
+    let query = RealmQuery(season: season, league: league)
+    return provider.fetchRealmData(query: query)
+  }
+}
