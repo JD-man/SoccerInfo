@@ -54,3 +54,32 @@ final class StandingsInteractor: PresentableInteractor<StandingsPresentable>, St
     // TODO: Pause any business logic.
   }
 }
+
+extension StandingsInteractor: Reactor {
+  
+  typealias Action = StandingsReactorModel.Action
+  typealias Mutation = StandingsReactorModel.Mutation
+  typealias State = StandingsReactorModel.State
+  
+  func mutate(action: StandingsReactorModel.Action) -> Observable<StandingsReactorModel.Mutation> {
+    switch action {
+    case .fetchStandings:
+      let season = currentState.leagueInfo.season
+      let league = currentState.leagueInfo.league.leagueID
+      return standingsUseCase.executeRealmStanding(season: season, league: "\(league)")
+        .map {
+          print($0)
+          return .setStandingsSection
+        }
+    }
+  }
+  
+  func reduce(state: StandingsReactorModel.State, mutation: StandingsReactorModel.Mutation) -> StandingsReactorModel.State {
+    var newState = state
+    switch mutation {
+    case .setStandingsSection:
+      print("set standings section")
+    }
+    return newState
+  }
+}
